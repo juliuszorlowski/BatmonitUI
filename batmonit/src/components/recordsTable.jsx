@@ -4,7 +4,7 @@ import TableHeader from "./common/tableHeader";
 
 class RecordsTable extends Component {
   columns = [
-    { path: "_id", label: "ID" },
+    { path: "uuid", label: "ID" },
     { path: "date", label: "Date" },
     { path: "turbine", label: "Turbine" },
     { path: "bat", label: "Bat" },
@@ -27,9 +27,9 @@ class RecordsTable extends Component {
         />
         <tbody>
           {records.map((record) => (
-            <tr key={record._id}>
+            <tr key={record.uuid}>
               <td>
-                <Link to={`/records/${record._id}`}>{record._id}</Link>
+                <Link to={`/records/${record.uuid}`}>{record.uuid}</Link>
               </td>
               <td>{record.date}</td>
               <td>{record.turbine}</td>

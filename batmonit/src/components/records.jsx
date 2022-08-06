@@ -19,8 +19,8 @@ class Records extends Component {
   };
 
   componentDidMount() {
-    const species = [{ _id: "", name: "All" }, ...getSpecies()];
-    const turbines = [{ _id: "", name: "All" }, ...getTurbines()];
+    const species = [{ uuid: "", name: "All" }, ...getSpecies()];
+    const turbines = [{ uuid: "", name: "All" }, ...getTurbines()];
 
     this.setState({
       records: getRecords(),
@@ -55,8 +55,8 @@ class Records extends Component {
     } = this.state;
 
     const filtered =
-      selectedSpecies && selectedSpecies._id
-        ? allRecords.filter((r) => r.species._id === selectedSpecies._id)
+      selectedSpecies && selectedSpecies.uuid
+        ? allRecords.filter((r) => r.species.uuid === selectedSpecies.uuid)
         : allRecords;
 
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);

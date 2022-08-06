@@ -9,7 +9,7 @@ class Species extends Component {
   };
 
   componentDidMount() {
-    const species = [{ _id: "", name: "All" }, ...getSpecies()];
+    const species = [{ uuid: "", name: "All" }, ...getSpecies()];
 
     this.setState({
       species,
