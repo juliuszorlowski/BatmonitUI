@@ -13,9 +13,19 @@ app.use(express.json());
 // app.use("/api/species", species);
 // app.use("/api/records", records);
 
+app.get("/api/turbines", async (req, res) => {
+  const turbines = await Turbine.findAll();
+  res.send(turbines);
+});
+
 app.get("/api/species", async (req, res) => {
   const species = await Species.findAll();
   res.send(species);
+});
+
+app.get("/api/records", async (req, res) => {
+  const records = await Record.findAll();
+  res.send(records);
 });
 
 app.listen({ port: 3900 }, async () => {
