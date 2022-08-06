@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.hasMany(Record, { foreignKey: "turbineId" });
     }
+
+    toJSON() {
+      return { ...this.get(), id: undefined };
+    }
   }
   Turbine.init(
     {
