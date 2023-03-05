@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import Axios from "axios";
 import RecordsTable from "./recordsTable";
 import ListGroup from "./common/listGroup";
 import Pagination from "./common/pagination";
 import { getRecords } from "../services/fakeRecordService";
 import { getTurbines } from "../services/fakeTurbineService";
-import { getSpecies } from "../services/fakeSpeciesService";
+import { getSpecies } from "../services/speciesService";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";
 
@@ -18,13 +19,13 @@ class Records extends Component {
     sortColumn: { path: "title", order: "asc" },
   };
 
-  componentDidMount() {
-    const species = [{ uuid: "", name: "All" }, ...getSpecies()];
-    const turbines = [{ uuid: "", name: "All" }, ...getTurbines()];
+  async componentDidMount() {
+    const { data } = await getSpecies();
+    const species = [{ uuid: "", name: "All" }, ...data];
 
     this.setState({
       records: getRecords(),
-      turbines,
+      turbines: getTurbines(),
       species,
     });
   }

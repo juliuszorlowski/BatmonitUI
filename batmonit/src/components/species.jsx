@@ -8,8 +8,9 @@ class Species extends Component {
     species: [],
   };
 
-  componentDidMount() {
-    const species = [{ uuid: "", name: "All" }, ...getSpecies()];
+  async componentDidMount() {
+    const { data } = await getSpecies();
+    const species = [{ uuid: "", name: "All" }, ...data];
 
     this.setState({
       species,
