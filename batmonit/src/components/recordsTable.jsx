@@ -34,7 +34,8 @@ class RecordsTable extends Component {
               <td>{record.date}</td>
               <td>{record.turbine}</td>
               <td>{record.bat === true ? "YES" : "NO"}</td>
-              <td>{record.species.name}</td>
+              {/* <td>{record.species.name}</td> */}
+              <td></td>
               <td>{record.turbineStopSignal === true ? "YES" : "NO"}</td>
               <td>{record.verification === true ? "YES" : "NO"}</td>
               <td>{record.audio}</td>

@@ -3,7 +3,7 @@ import Axios from "axios";
 import RecordsTable from "./recordsTable";
 import ListGroup from "./common/listGroup";
 import Pagination from "./common/pagination";
-import { getRecords } from "../services/fakeRecordService";
+import { getRecords } from "../services/recordService";
 import { getTurbines } from "../services/fakeTurbineService";
 import { getSpecies } from "../services/speciesService";
 import { paginate } from "../utils/paginate";
@@ -23,8 +23,10 @@ class Records extends Component {
     const { data } = await getSpecies();
     const species = [{ uuid: "", name: "All" }, ...data];
 
+    const { data: records } = await getRecords();
+
     this.setState({
-      records: getRecords(),
+      records,
       turbines: getTurbines(),
       species,
     });
