@@ -1,0 +1,7 @@
+{
+    "name": "batmonit-api-node - Development",
+    "username": "root",
+    "database": "batmonitdb",
+    "host": "localhost",
+    "dialect": "mysql"
+}
