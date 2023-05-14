@@ -1,6 +1,7 @@
 // const turbines = require("./routes/turbines");
 // const species = require("./routes/species");
 // const records = require("./routes/records");
+const debug = require("debug")("app:startup");
 const config = require("config");
 const express = require("express");
 const helmet = require("helmet");
@@ -14,12 +15,12 @@ app.use(cors());
 app.use(express.json());
 app.use(helmet());
 
-console.log("Application Name: " + config.get("name"));
-console.log("Password: " + process.env.APP_PASSWORD);
+debug("Application Name: " + config.get("name"));
+debug("Password: " + config.get("password"));
 
 if (app.get("env") === "development") {
   app.use(morgan("tiny"));
-  console.log("Morgan enabled...");
+  debug("Morgan enabled...");
 }
 // app.use("/api/turbines", turbines);
 // app.use("/api/species", species);
@@ -42,9 +43,9 @@ app.get("/api/records", async (req, res) => {
 
 const port = process.env.PORT || 3900;
 app.listen({ port: port }, async () => {
-  console.log(`Server up on http://localhost:${port}`);
+  debug(`Server up on http://localhost:${port}`);
   await sequelize.authenticate();
-  console.log("Database connected!");
+  debug("Database connected!");
 });
 
 app.post("/records", async (req, res) => {
