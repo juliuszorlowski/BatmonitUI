@@ -4,7 +4,7 @@ import RecordsTable from "./recordsTable";
 import ListGroup from "./common/listGroup";
 import Pagination from "./common/pagination";
 import { getRecords } from "../services/recordService";
-import { getTurbines } from "../services/fakeTurbineService";
+import { getTurbines } from "../services/turbineService";
 import { getSpecies } from "../services/speciesService";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";

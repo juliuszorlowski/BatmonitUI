@@ -26,6 +26,16 @@ const NavBar = () => {
                 Records
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" aria-current="page" to="/species">
+                Species
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" aria-current="page" to="/turbines">
+                Turbines
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

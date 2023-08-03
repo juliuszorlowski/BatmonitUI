@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Species from "./components/species";
+import Turbines from "./components/turbines";
 import Records from "./components/records";
 import NotFound from "./components/notFound";
 import NavBar from "./components/navBar";
@@ -17,9 +18,10 @@ class App extends Component {
         <NavBar />
         <main className="container">
           <Switch>
-            <Route path="/species" component={Species}></Route>
             <Route path="/records/:id" component={RecordDetails}></Route>
             <Route path="/records" component={Records}></Route>
+            <Route path="/species" component={Species}></Route>
+            <Route path="/turbines" component={Turbines}></Route>
             <Route path="/not-found" component={NotFound}></Route>
             <Redirect from="/" exact to="/records" />
             <Redirect to="/not-found" />
