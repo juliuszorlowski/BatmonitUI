@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Species from "./components/species";
@@ -9,27 +9,25 @@ import NavBar from "./components/navBar";
 import RecordDetails from "./components/recordDetails";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
 
-class App extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <ToastContainer />
-        <NavBar />
-        <main className="container">
-          <Switch>
-            <Route path="/records/:id" component={RecordDetails}></Route>
-            <Route path="/records" component={Records}></Route>
-            <Route path="/species" component={Species}></Route>
-            <Route path="/turbines" component={Turbines}></Route>
-            <Route path="/not-found" component={NotFound}></Route>
-            <Redirect from="/" exact to="/records" />
-            <Redirect to="/not-found" />
-          </Switch>
-        </main>
-      </React.Fragment>
-    );
-  }
+function App() {
+  return (
+    <BrowserRouter>
+      <ToastContainer />
+      <NavBar />
+      <main className="container">
+        <Switch>
+          <Route path="/records/:id" component={RecordDetails}></Route>
+          <Route path="/records" component={Records}></Route>
+          <Route path="/species" component={Species}></Route>
+          <Route path="/turbines" component={Turbines}></Route>
+          <Route path="/not-found" component={NotFound}></Route>
+          <Route path="/" render={() => <Redirect to="/records" />} />
+        </Switch>
+      </main>
+    </BrowserRouter>
+  );
 }
 
 export default App;

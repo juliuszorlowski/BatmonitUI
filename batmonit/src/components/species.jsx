@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ListGroup from "./common/listGroup";
 import { getSpecies } from "../services/speciesService";
-import _ from "lodash";
 
 class Species extends Component {
   state = {

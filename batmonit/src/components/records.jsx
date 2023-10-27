@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Axios from "axios";
 import RecordsTable from "./recordsTable";
 import ListGroup from "./common/listGroup";
 import Pagination from "./common/pagination";

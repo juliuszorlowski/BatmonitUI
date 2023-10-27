@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ListGroup from "./common/listGroup";
 import { getTurbines } from "../services/turbineService";
-import _ from "lodash";
 
 class Turbines extends Component {
   state = {
