@@ -1,11 +1,10 @@
 import React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import Root from "./components/root";
 import Species from "./components/species";
 import Turbines from "./components/turbines";
 import Records from "./components/records";
 import NotFound from "./components/notFound";
-import NavBar from "./components/navBar";
 import RecordDetails from "./components/recordDetails";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
@@ -14,8 +13,7 @@ import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
 function App() {
   return (
     <BrowserRouter>
-      <ToastContainer />
-      <NavBar />
+      <Root />
       <main className="container">
         <Switch>
           <Route path="/records/:id" component={RecordDetails}></Route>
