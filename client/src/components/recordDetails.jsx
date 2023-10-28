@@ -1,20 +1,15 @@
-import React, { Component } from "react";
+import { useParams, useHistory } from "react-router-dom";
 
-class RecordDetails extends Component {
-  handleBack = () => {
-    this.props.history.push("/records");
-  };
+export default function RecordDetails() {
+  let { id } = useParams();
+  let history = useHistory();
 
-  render() {
-    return (
-      <div>
-        <h1>Record Details {this.props.match.params.id}</h1>
-        <button className="btn btn-primary" onClick={this.handleBack}>
-          Back
-        </button>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1>Record Details {id}</h1>
+      <button className="btn btn-primary" onClick={history.goBack}>
+        Back
+      </button>
+    </div>
+  );
 }
-
-export default RecordDetails;

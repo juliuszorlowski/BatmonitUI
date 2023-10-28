@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import Root from "./components/root";
 import Species from "./components/species";
 import Turbines from "./components/turbines";
@@ -8,7 +8,6 @@ import NotFound from "./components/notFound";
 import RecordDetails from "./components/recordDetails";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
   return (

@@ -32,10 +32,9 @@ class RecordsTable extends Component {
                 <Link to={`/records/${record.uuid}`}>{record.uuid}</Link>
               </td>
               <td>{record.date}</td>
-              <td>{record.turbine}</td>
+              <td>{record.turbineId}</td>
               <td>{record.bat === true ? "YES" : "NO"}</td>
-              {/* <td>{record.species.name}</td> */}
-              <td></td>
+              <td>{record.speciesId}</td>
               <td>{record.turbineStopSignal === true ? "YES" : "NO"}</td>
               <td>{record.verification === true ? "YES" : "NO"}</td>
               <td>{record.audio}</td>
