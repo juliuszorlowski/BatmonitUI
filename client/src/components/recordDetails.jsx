@@ -6,7 +6,8 @@ export default function RecordDetails() {
 
   return (
     <div>
-      <h1>Record Details {id}</h1>
+      <h1>Record Details</h1>
+      <p>{id}</p>
       <button className="btn btn-primary" onClick={history.goBack}>
         Back
       </button>

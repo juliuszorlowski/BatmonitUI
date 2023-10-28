@@ -1,7 +1,7 @@
 import { ToastContainer } from "react-toastify";
 import NavBar from "./navBar";
 
-function Root() {
+export default function Root() {
   return (
     <div>
       <ToastContainer />
@@ -12,5 +12,3 @@ function Root() {
     </div>
   );
 }
-
-export default Root;
