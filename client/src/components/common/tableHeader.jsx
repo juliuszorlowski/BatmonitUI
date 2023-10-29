@@ -1,6 +1,5 @@
 export default function TableHeader({ columns, sortColumn, onSort }) {
   function raiseSort(path) {
-    const sortColumn = { ...sortColumn };
     if (sortColumn.path === path)
       sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
     else {

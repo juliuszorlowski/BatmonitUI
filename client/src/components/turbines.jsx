@@ -4,6 +4,7 @@ import { getTurbines } from "../services/turbineService";
 
 export default function Turbines() {
   const [turbines, setTurbines] = useState([]);
+  const [selectedTurbine, setSelectedTurbine] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -14,14 +15,18 @@ export default function Turbines() {
     fetchData();
   }, []);
 
+  function handleTurbineSelect(turbine) {
+    setSelectedTurbine(turbine);
+  }
+
   return (
     <div>
       <div className="row">
         <div className="col-3">
           <ListGroup
             items={turbines}
-            // selectedItem={this.state.selectedTurbines}
-            // onItemSelect={this.handleTurbinesSelect}
+            selectedItem={selectedTurbine}
+            onItemSelect={handleTurbineSelect}
           />
         </div>
       </div>

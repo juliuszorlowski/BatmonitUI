@@ -1,23 +1,28 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import TableHeader from "./common/tableHeader";
+import TableBody from "./common/tableBody";
 
 export default function RecordsTable({ records, sortColumn, onSort }) {
-  const [columns] = useState([
+  const columns = [
     { path: "uuid", label: "Id" },
     { path: "date", label: "Date" },
-    { path: "turbine", label: "Turbine" },
-    { path: "bat", label: "Bat" },
-    { path: "species.name", label: "Species" },
+    { path: "turbineId", label: "Turbine" },
+    {
+      path: "bat",
+      label: "Bat",
+      content: (column) => (column.content === true ? "YES" : "NO"),
+    },
+    { path: "speciesId", label: "Species" },
     { path: "turbineStopSignal", label: "Turbine Stop Signal" },
     { path: "verification", label: "Verification" },
     { path: "audio", label: "Audio" },
     { path: "sonogram", label: "Sonogram" },
-  ]);
+  ];
 
   return (
     <table className="table">
       <TableHeader columns={columns} sortColumn={sortColumn} onSort={onSort} />
+      {/* <TableBody data={records} columns={columns} /> */}
       <tbody>
         {records.map((record) => (
           <tr key={record.uuid}>

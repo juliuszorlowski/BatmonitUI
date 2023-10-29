@@ -21,12 +21,12 @@ class Records extends Component {
   async componentDidMount() {
     const { data } = await getSpecies();
     const species = [{ uuid: "", name: "All" }, ...data];
-
     const { data: records } = await getRecords();
+    const { data: turbines } = await getTurbines();
 
     this.setState({
       records,
-      turbines: getTurbines(),
+      turbines,
       species,
     });
   }
@@ -35,12 +35,12 @@ class Records extends Component {
     this.setState({ currentPage: page });
   };
 
-  handleTurbineSelect = (turbine) => {
-    this.setState({ selectedTurbine: turbine, currentPage: 1 });
+  handleSpeciesSelect = (species) => {
+    this.setState({ /*selectedSpecies: species, */ currentPage: 1 });
   };
 
-  handleSpeciesSelect = (species) => {
-    this.setState({ selectedSpecies: species, currentPage: 1 });
+  handleTurbineSelect = (turbine) => {
+    this.setState({ selectedTurbine: turbine, currentPage: 1 });
   };
 
   handleSort = (sortColumn) => {
@@ -55,16 +55,12 @@ class Records extends Component {
       selectedSpecies,
       records: allRecords,
     } = this.state;
-
     const filtered =
       selectedSpecies && selectedSpecies.uuid
         ? allRecords.filter((r) => r.species.uuid === selectedSpecies.uuid)
         : allRecords;
-
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
-
     const records = paginate(sorted, currentPage, pageSize);
-
     return { totalCount: filtered.length, records: records };
   };
 
@@ -79,18 +75,18 @@ class Records extends Component {
     return (
       <div>
         <div className="row">
-          {/* <div className="col-3">
-            <ListGroup
-              items={this.state.turbines}
-              selectedItem={this.state.selectedTurbine}
-              onItemSelect={this.handleTurbineSelect}
-            />
-          </div> */}
           <div className="col-3">
             <ListGroup
               items={this.state.species}
               selectedItem={this.state.selectedSpecies}
               onItemSelect={this.handleSpeciesSelect}
+            />
+          </div>
+          <div className="col-3">
+            <ListGroup
+              items={this.state.turbines}
+              selectedItem={this.state.selectedTurbine}
+              onItemSelect={this.handleTurbineSelect}
             />
           </div>
         </div>

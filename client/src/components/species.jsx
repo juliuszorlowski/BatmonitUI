@@ -4,6 +4,7 @@ import { getSpecies } from "../services/speciesService";
 
 export default function Species() {
   const [species, setSpecies] = useState([]);
+  const [selectedSpecies, setSelectedSpecies] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -14,14 +15,18 @@ export default function Species() {
     fetchData();
   }, []);
 
+  function handleSpeciesSelect(species) {
+    setSelectedSpecies(species);
+  }
+
   return (
     <div>
       <div className="row">
         <div className="col-3">
           <ListGroup
             items={species}
-            // selectedItem={selectedSpecies}
-            // onItemSelect={handleSpeciesSelect}
+            selectedItem={selectedSpecies}
+            onItemSelect={handleSpeciesSelect}
           />
         </div>
       </div>
