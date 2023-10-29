@@ -20,7 +20,7 @@ class Records extends Component {
 
   async componentDidMount() {
     const { data } = await getSpecies();
-    const species = [{ uuid: "", name: "All" }, ...data];
+    const species = [{ id: "", name: "All" }, ...data];
     const { data: records } = await getRecords();
     const { data: turbines } = await getTurbines();
 
@@ -56,8 +56,8 @@ class Records extends Component {
       records: allRecords,
     } = this.state;
     const filtered =
-      selectedSpecies && selectedSpecies.uuid
-        ? allRecords.filter((r) => r.species.uuid === selectedSpecies.uuid)
+      selectedSpecies && selectedSpecies.id
+        ? allRecords.filter((r) => r.species.id === selectedSpecies.id)
         : allRecords;
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
     const records = paginate(sorted, currentPage, pageSize);

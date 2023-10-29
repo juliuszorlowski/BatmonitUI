@@ -4,7 +4,7 @@ import TableBody from "./common/tableBody";
 
 export default function RecordsTable({ records, sortColumn, onSort }) {
   const columns = [
-    { path: "uuid", label: "Id" },
+    { path: "id", label: "Id" },
     { path: "date", label: "Date" },
     { path: "turbineId", label: "Turbine" },
     {
@@ -25,9 +25,9 @@ export default function RecordsTable({ records, sortColumn, onSort }) {
       {/* <TableBody data={records} columns={columns} /> */}
       <tbody>
         {records.map((record) => (
-          <tr key={record.uuid}>
+          <tr key={record.id}>
             <td>
-              <Link to={`/records/${record.uuid}`}>{record.uuid}</Link>
+              <Link to={`/records/${record.id}`}>{record.id}</Link>
             </td>
             <td>{record.date}</td>
             <td>{record.turbineId}</td>

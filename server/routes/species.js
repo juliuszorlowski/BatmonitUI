@@ -12,11 +12,11 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:uuid", async (req, res) => {
-  const uuid = req.params.uuid;
+router.get("/:id", async (req, res) => {
+  const id = req.params.id;
   try {
     const species = await Species.findOne({
-      where: { uuid },
+      where: { id },
     });
     res.send(species);
   } catch (err) {

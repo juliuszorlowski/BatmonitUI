@@ -9,7 +9,7 @@ export default function Species() {
   useEffect(() => {
     async function fetchData() {
       const { data } = await getSpecies();
-      const species = [{ uuid: "", name: "All" }, ...data];
+      const species = [{ id: "", name: "All" }, ...data];
       setSpecies(species);
     }
     fetchData();

@@ -9,7 +9,7 @@ export default function Turbines() {
   useEffect(() => {
     async function fetchData() {
       const { data } = await getTurbines();
-      const turbines = [{ uuid: "", name: "All" }, ...data];
+      const turbines = [{ id: "", name: "All" }, ...data];
       setTurbines(turbines);
     }
     fetchData();

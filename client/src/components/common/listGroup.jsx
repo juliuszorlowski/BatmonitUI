@@ -26,7 +26,7 @@ const ListGroup = ({
 
 ListGroup.defaultProps = {
   textProperty: "name",
-  valueProperty: "uuid",
+  valueProperty: "id",
 };
 
 export default ListGroup;

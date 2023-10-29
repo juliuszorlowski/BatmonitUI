@@ -11,17 +11,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.hasMany(Record, { foreignKey: "turbineId" });
     }
-
-    toJSON() {
-      return { ...this.get(), id: undefined };
-    }
   }
   Turbine.init(
     {
-      uuid: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,

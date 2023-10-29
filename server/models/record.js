@@ -12,17 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(Turbine, { foreignKey: "turbineId" });
       this.belongsTo(Species, { foreignKey: "speciesId" });
     }
-
-    toJSON() {
-      return { ...this.get(), id: undefined };
-    }
   }
   Record.init(
     {
-      uuid: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-      },
       date: {
         type: DataTypes.DATE,
         allowNull: false,
