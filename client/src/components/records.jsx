@@ -25,8 +25,9 @@ class Records extends Component {
   async componentDidMount() {
     const { data } = await getSpecies();
     const species = [{ id: "", name: "All" }, ...data];
+    const { data: allTurbines } = await getTurbines();
+    const turbines = [{ id: "", name: "All" }, ...allTurbines];
     const { data: records } = await getRecords();
-    const { data: turbines } = await getTurbines();
 
     this.setState({
       records,
