@@ -22,18 +22,27 @@ class Records extends Component {
     sortColumn: { path: "title", order: "asc" },
   };
 
-  async componentDidMount() {
+  async populateSpecies() {
     const { data } = await getSpecies();
     const species = [{ id: "", name: "All" }, ...data];
+    this.setState({ species });
+  }
+
+  async populateTurbines() {
     const { data: allTurbines } = await getTurbines();
     const turbines = [{ id: "", name: "All" }, ...allTurbines];
-    const { data: records } = await getRecords();
+    this.setState({ turbines });
+  }
 
-    this.setState({
-      records,
-      turbines,
-      species,
-    });
+  async populateRecords() {
+    const { data: records } = await getRecords();
+    this.setState({ records });
+  }
+
+  async componentDidMount() {
+    await this.populateSpecies();
+    await this.populateTurbines();
+    await this.populateRecords();
   }
 
   handlePageChange = (page) => {
