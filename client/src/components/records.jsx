@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import SearchBox from "./searchBox";
 import RecordsTable from "./recordsTable";
 import ListGroup from "./common/listGroup";
 import Pagination from "./common/pagination";
@@ -15,6 +16,9 @@ class Records extends Component {
     species: [],
     currentPage: 1,
     pageSize: 8,
+    selectedSpecies: null,
+    selectedTurbine: null,
+    searchQuery: "",
     sortColumn: { path: "title", order: "asc" },
   };
 
@@ -36,11 +40,30 @@ class Records extends Component {
   };
 
   handleSpeciesSelect = (species) => {
-    this.setState({ /*selectedSpecies: species, */ currentPage: 1 });
+    this.setState({
+      selectedSpecies: species,
+      selectedTurbine: null,
+      searchQuery: "",
+      currentPage: 1,
+    });
   };
 
   handleTurbineSelect = (turbine) => {
-    this.setState({ selectedTurbine: turbine, currentPage: 1 });
+    this.setState({
+      selectedTurbine: turbine,
+      selectedSpecies: null,
+      searchQuery: "",
+      currentPage: 1,
+    });
+  };
+
+  handleSearch = (query) => {
+    this.setState({
+      searchQuery: query,
+      selectedSpecies: null,
+      selectedTurbine: null,
+      currentPage: 1,
+    });
   };
 
   handleSort = (sortColumn) => {
@@ -53,12 +76,21 @@ class Records extends Component {
       currentPage,
       sortColumn,
       selectedSpecies,
+      selectedTurbine,
+      searchQuery,
       records: allRecords,
     } = this.state;
-    const filtered =
-      selectedSpecies && selectedSpecies.id
-        ? allRecords.filter((r) => r.species.id === selectedSpecies.id)
-        : allRecords;
+
+    let filtered = allRecords;
+    if (searchQuery)
+      filtered = allRecords.filter((r) =>
+        r.date.toLowerCase().startsWith(searchQuery.toLowerCase())
+      );
+    else if (selectedSpecies && selectedSpecies.id)
+      filtered = allRecords.filter((r) => r.speciesId === selectedSpecies.id);
+    else if (selectedTurbine && selectedTurbine.id)
+      filtered = allRecords.filter((r) => r.turbineId === selectedTurbine.id);
+
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
     const records = paginate(sorted, currentPage, pageSize);
     return { totalCount: filtered.length, records: records };
@@ -66,7 +98,7 @@ class Records extends Component {
 
   render() {
     const { length: count } = this.state.records;
-    const { pageSize, currentPage, sortColumn } = this.state;
+    const { pageSize, currentPage, searchQuery, sortColumn } = this.state;
 
     if (count === 0) return <p>No records based on the current selection</p>;
 
@@ -92,6 +124,7 @@ class Records extends Component {
         </div>
         <div>
           <p>Showing {totalCount} records in the database.</p>
+          <SearchBox value={searchQuery} onChange={this.handleSearch} />
           <RecordsTable
             records={records}
             sortColumn={sortColumn}
