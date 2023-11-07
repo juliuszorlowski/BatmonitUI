@@ -1,6 +1,7 @@
 const records = require("./routes/records");
 const turbines = require("./routes/turbines");
 const species = require("./routes/species");
+const users = require("./routes/users");
 const debug = require("debug")("app:startup");
 const config = require("config");
 const express = require("express");
@@ -24,6 +25,7 @@ if (app.get("env") === "development") {
 app.use("/api/records", records);
 app.use("/api/species", species);
 app.use("/api/turbines", turbines);
+app.use("/api/users", users);
 
 const port = process.env.PORT || 3900;
 app.listen({ port: port }, async () => {

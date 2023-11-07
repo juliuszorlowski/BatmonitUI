@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ Turbine, Species }) {
       // define association here
-      this.belongsTo(Turbine, { foreignKey: "turbineId" });
-      this.belongsTo(Species, { foreignKey: "speciesId" });
+      this.belongsTo(Turbine, { foreignKey: "turbineId", as: "turbine" });
+      this.belongsTo(Species, { foreignKey: "speciesId", as: "species" });
     }
   }
   Record.init(

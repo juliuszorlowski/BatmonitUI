@@ -1,10 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const { Record } = require("../models");
+const { Turbine } = require("../models");
+const { Species } = require("../models");
 
 router.get("/", async (req, res) => {
   try {
-    const records = await Record.findAll();
+    const records = await Record.findAll({
+      include: [
+        { model: Species, as: "species" },
+        { model: Turbine, as: "turbine" },
+      ],
+    });
     res.send(records);
   } catch (err) {
     console.error(err);

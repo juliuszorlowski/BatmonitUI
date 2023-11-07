@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import TableHeader from "./common/tableHeader";
-import TableBody from "./common/tableBody";
 
 export default function RecordsTable({ records, sortColumn, onSort }) {
   const columns = [
@@ -22,7 +21,6 @@ export default function RecordsTable({ records, sortColumn, onSort }) {
   return (
     <table className="table">
       <TableHeader columns={columns} sortColumn={sortColumn} onSort={onSort} />
-      {/* <TableBody data={records} columns={columns} /> */}
       <tbody>
         {records.map((record) => (
           <tr key={record.id}>
@@ -30,9 +28,9 @@ export default function RecordsTable({ records, sortColumn, onSort }) {
               <Link to={`/records/${record.id}`}>{record.id}</Link>
             </td>
             <td>{record.date}</td>
-            <td>{record.turbineId}</td>
+            <td>{record.turbine.name}</td>
             <td>{record.bat === true ? "YES" : "NO"}</td>
-            <td>{record.speciesId}</td>
+            <td>{record.species.name}</td>
             <td>{record.turbineStopSignal === true ? "YES" : "NO"}</td>
             <td>{record.verification === true ? "YES" : "NO"}</td>
             <td>{record.audio}</td>
