@@ -1,3 +1,4 @@
 {
-    "name": "batmonit-api-node"
+    "name": "batmonit-api-node",
+    "jwtPrivateKey": ""
 }

@@ -1,3 +1,6 @@
+const config = require("config");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 const express = require("express");
 const router = express.Router();
 const { User } = require("../models");
@@ -30,12 +33,15 @@ router.post("/", async (req, res) => {
     return res.status(400).json("User already registered.");
   }
 
-  const { name, email, password } = req.body;
+  const { name, email } = req.body;
 
   try {
-    const user = await User.create({ name, email, password });
+    const salt = await bcrypt.genSalt(10);
+    const password = await bcrypt.hash(req.body.password, salt);
+    user = await User.create({ name, email, password });
 
-    res.json(user);
+    const token = jwt.sign({ uuid: user.uuid }, config.get("jwtPrivateKey"));
+    res.header("x-auth-token", token).json(user);
   } catch (err) {
     console.log(err);
     return res.status(400).json(err.message);
