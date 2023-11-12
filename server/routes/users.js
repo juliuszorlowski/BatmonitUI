@@ -39,14 +39,17 @@ router.post("/", async (req, res) => {
     return res.status(400).json("User already registered.");
   }
 
-  const { name, email } = req.body;
+  const { name, email, isAdmin } = req.body;
 
   try {
     const salt = await bcrypt.genSalt(10);
     const password = await bcrypt.hash(req.body.password, salt);
-    user = await User.create({ name, email, password });
+    user = await User.create({ name, email, password, isAdmin });
 
-    const token = jwt.sign({ uuid: user.uuid }, config.get("jwtPrivateKey"));
+    const token = jwt.sign(
+      { uuid: user.uuid, isAdmin: user.isAdmin },
+      config.get("jwtPrivateKey")
+    );
     res.header("x-auth-token", token).json(user);
   } catch (err) {
     console.log(err);
@@ -56,13 +59,14 @@ router.post("/", async (req, res) => {
 
 router.put("/:uuid", async (req, res) => {
   const uuid = req.params.uuid;
-  const { name, email, password } = req.body;
+  const { name, email, password, isAdmin } = req.body;
   try {
     const user = await User.findOne({ where: { uuid } });
 
     user.name = name;
     user.email = email;
     user.password = password;
+    user.isAdmin = isAdmin;
 
     await user.save();
 

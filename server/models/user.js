@@ -50,6 +50,11 @@ module.exports = (sequelize, DataTypes) => {
           len: [5, 1024],
         },
       },
+      isAdmin: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
     },
     {
       sequelize,

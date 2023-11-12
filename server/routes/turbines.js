@@ -1,3 +1,4 @@
+const admin = require("../middleware/admin");
 const auth = require("../middleware/auth");
 const express = require("express");
 const router = express.Router();
@@ -26,7 +27,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", auth, async (req, res) => {
+router.post("/", [auth, admin], async (req, res) => {
   const { name } = req.body;
   try {
     const turbine = await Turbine.create({ name });
@@ -38,7 +39,7 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
-router.put("/:uuid", auth, async (req, res) => {
+router.put("/:uuid", [auth, admin], async (req, res) => {
   const id = req.params.uuid;
   const { name } = req.body;
   try {
@@ -55,7 +56,7 @@ router.put("/:uuid", auth, async (req, res) => {
   }
 });
 
-router.delete("/:uuid", auth, async (req, res) => {
+router.delete("/:uuid", [auth, admin], async (req, res) => {
   const id = req.params.uuid;
   try {
     const turbine = await Turbine.findOne({ where: { id } });
