@@ -1,3 +1,4 @@
+const auth = require("../middleware/auth");
 const config = require("config");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -15,12 +16,17 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:uuid", async (req, res) => {
-  const uuid = req.params.uuid;
+router.get("/me", auth, async (req, res) => {
+  const uuid = req.user.uuid;
   try {
     const user = await User.findOne({ where: { uuid } });
 
-    res.send(user);
+    if (user === null) {
+      res.json("User not found.");
+    } else {
+      user.password = undefined;
+      res.send(user);
+    }
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: "Something went wrong" });
