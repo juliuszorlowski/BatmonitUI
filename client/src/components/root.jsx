@@ -1,18 +1,15 @@
 import { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
-import { jwtDecode } from "jwt-decode";
 import NavBar from "./navBar";
+import auth from "../services/authService";
 
 export default function Root() {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      try {
-        const jwt = localStorage.getItem("token");
-        const user = jwtDecode(jwt);
-        setUser(user);
-      } catch (ex) {}
+      const user = auth.getCurrentUser();
+      setUser(user);
     }
     fetchData();
   }, []);

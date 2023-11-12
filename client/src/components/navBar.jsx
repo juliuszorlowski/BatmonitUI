@@ -36,7 +36,7 @@ export default function NavBar({ user }) {
                 Turbines
               </NavLink>
             </li>
-            {!user.name && (
+            {!user && (
               <>
                 <li className="nav-item">
                   <NavLink className="nav-link" aria-current="page" to="/login">
@@ -54,7 +54,7 @@ export default function NavBar({ user }) {
                 </li>
               </>
             )}
-            {user.name && (
+            {user && (
               <>
                 <li className="nav-item">
                   <NavLink
