@@ -50,7 +50,10 @@ router.post("/", async (req, res) => {
       { uuid: user.uuid, isAdmin: user.isAdmin },
       config.get("jwtPrivateKey")
     );
-    res.header("x-auth-token", token).json(user);
+    res
+      .header("x-auth-token", token)
+      .header("access-control-expose-headers", "x-auth-token")
+      .json(user);
   } catch (err) {
     console.log(err);
     return res.status(400).json(err.message);
