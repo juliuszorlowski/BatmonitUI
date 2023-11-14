@@ -1,8 +1,8 @@
 {
-    "name": "batmonit-api-node - Development",
-    "username": "root",
-    "password": "batmonit",
-    "database": "batmonitdb",
-    "host": "localhost",
-    "dialect": "mysql"
+  "name": "batmonit-api-node - Development",
+  "username": "root",
+  "password": "batmonit",
+  "database": "batmonitdb",
+  "host": "localhost",
+  "dialect": "mysql"
 }

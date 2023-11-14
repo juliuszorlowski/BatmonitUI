@@ -1,4 +1,5 @@
 {
-    "name": "batmonit-api-node",
-    "jwtPrivateKey": ""
+  "jwtPrivateKey": "",
+  "port": "3900",
+  "requiresAuth": true
 }

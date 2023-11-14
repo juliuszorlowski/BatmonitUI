@@ -54,6 +54,13 @@ export default function NavBar({ user }) {
                 </li>
               </>
             )}
+            {user && user.isAdmin && (
+              <li className="nav-item">
+                <NavLink className="nav-link" aria-current="page" to="/users">
+                  Users
+                </NavLink>
+              </li>
+            )}
             {user && (
               <>
                 <li className="nav-item">
