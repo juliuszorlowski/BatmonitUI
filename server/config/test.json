@@ -1,0 +1,9 @@
+{
+  "jwtPrivateKey": "1234",
+  "name": "batmonit-api-node - Test",
+  "username": "root",
+  "password": "batmonit",
+  "database": "batmonitdb_test",
+  "host": "localhost",
+  "dialect": "mysql"
+}
