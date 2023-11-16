@@ -1,5 +1,5 @@
 const auth = require("../middleware/auth");
-const generateToken = require("../middleware/token");
+const generateAuthToken = require("../middleware/token");
 const bcrypt = require("bcrypt");
 const express = require("express");
 const router = express.Router();
@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
     const password = await bcrypt.hash(req.body.password, salt);
     user = await User.create({ name, email, password, isAdmin });
 
-    const token = generateToken(user);
+    const token = generateAuthToken(user);
     res
       .header("x-auth-token", token)
       .header("access-control-expose-headers", "x-auth-token")

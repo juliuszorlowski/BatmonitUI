@@ -1,15 +1,15 @@
 const request = require("supertest");
-const generateToken = require("../../middleware/token");
+const generateAuthToken = require("../../middleware/token");
 const { DataTypes } = require("sequelize");
 const { Turbine } = require("../../models");
 let server;
 
 describe("/api/turbines", () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     server = require("../../index");
   });
   afterEach(async () => {
-    server.close();
+    await server.close();
     await Turbine.truncate();
   });
 
@@ -65,7 +65,7 @@ describe("/api/turbines", () => {
         name: "Username",
         isAdmin: true,
       };
-      token = generateToken(user);
+      token = generateAuthToken(user);
       name = "Turbine 1";
     });
 

@@ -1,4 +1,4 @@
-const generateToken = require("../middleware/token");
+const generateAuthToken = require("../middleware/token");
 const bcrypt = require("bcrypt");
 const express = require("express");
 const Joi = require("joi");
@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
   const validPassword = await bcrypt.compare(req.body.password, user.password);
   if (!validPassword) return res.status(400).json("Invalid email or password.");
 
-  const token = generateToken(user);
+  const token = generateAuthToken(user);
   res.send(token);
 });
 

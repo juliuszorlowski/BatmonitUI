@@ -1,15 +1,15 @@
 const request = require("supertest");
-const generateToken = require("../../middleware/token");
+const generateAuthToken = require("../../middleware/token");
 const { DataTypes } = require("sequelize");
 const { Species } = require("../../models");
 let server;
 
 describe("/api/species", () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     server = require("../../index");
   });
   afterEach(async () => {
-    server.close();
+    await server.close();
     await Species.truncate();
   });
 
@@ -60,7 +60,7 @@ describe("/api/species", () => {
         name: "Username",
         isAdmin: true,
       };
-      token = generateToken(user);
+      token = generateAuthToken(user);
       name = "Species 1";
     });
 

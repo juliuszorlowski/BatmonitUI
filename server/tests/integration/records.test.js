@@ -7,7 +7,7 @@ describe("/api/records", () => {
     server = require("../../index");
   });
   afterEach(async () => {
-    server.close();
+    await server.close();
     await Record.truncate();
   });
 
