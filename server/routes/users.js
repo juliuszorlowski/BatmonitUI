@@ -22,7 +22,7 @@ router.get("/me", auth, async (req, res) => {
     const user = await User.findOne({ where: { uuid } });
 
     if (user === null) {
-      res.json("User not found.");
+      res.status(404).json("User not found.");
     } else {
       user.password = undefined;
       res.send(user);

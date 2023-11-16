@@ -17,10 +17,15 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
   try {
-    const turbines = await Turbine.findOne({
+    const turbine = await Turbine.findOne({
       where: { id },
     });
-    res.send(turbines);
+    if (!turbine)
+      return res
+        .status(404)
+        .json("The turbine with the given ID was not found.");
+
+    res.send(turbine);
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: "Something went wrong" });

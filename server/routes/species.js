@@ -20,6 +20,11 @@ router.get("/:id", async (req, res) => {
     const species = await Species.findOne({
       where: { id },
     });
+    if (!species)
+      return res
+        .status(404)
+        .json("The species with the given ID was not found.");
+
     res.send(species);
   } catch (err) {
     console.error(err);
