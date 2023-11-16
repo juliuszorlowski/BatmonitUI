@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const config = require("config");
+const generateToken = require("../../../middleware/token");
 const { DataTypes } = require("sequelize");
 
 describe("user.generateAuthToken", () => {
@@ -9,10 +10,7 @@ describe("user.generateAuthToken", () => {
       name: "Username",
       isAdmin: true,
     };
-    const token = jwt.sign(
-      { uuid: user.uuid, name: user.name, isAdmin: user.isAdmin },
-      config.get("jwtPrivateKey")
-    );
+    const token = generateToken(user);
 
     const decoded = jwt.verify(token, config.get("jwtPrivateKey"));
 

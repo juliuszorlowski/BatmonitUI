@@ -5,11 +5,10 @@ let server;
 describe("/api/records", () => {
   beforeEach(async () => {
     server = require("../../index");
-    await Record.sync();
   });
   afterEach(async () => {
     server.close();
-    await Record.sync();
+    await Record.truncate();
   });
 
   describe("GET /", () => {

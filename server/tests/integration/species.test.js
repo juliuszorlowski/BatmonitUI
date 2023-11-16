@@ -1,6 +1,5 @@
 const request = require("supertest");
-const jwt = require("jsonwebtoken");
-const config = require("config");
+const generateToken = require("../../middleware/token");
 const { DataTypes } = require("sequelize");
 const { Species } = require("../../models");
 let server;
@@ -8,7 +7,6 @@ let server;
 describe("/api/species", () => {
   beforeEach(async () => {
     server = require("../../index");
-    await Species.sync();
   });
   afterEach(async () => {
     server.close();
@@ -57,10 +55,12 @@ describe("/api/species", () => {
     };
 
     beforeEach(() => {
-      token = jwt.sign(
-        { uuid: new DataTypes.UUIDV4(), name: "Username", isAdmin: true },
-        config.get("jwtPrivateKey")
-      );
+      const user = {
+        uuid: new DataTypes.UUIDV4(),
+        name: "Username",
+        isAdmin: true,
+      };
+      token = generateToken(user);
       name = "Species 1";
     });
 
