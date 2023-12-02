@@ -32,4 +32,34 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  const {
+    date,
+    turbineId,
+    bat,
+    speciesId,
+    turbineStopSignal,
+    verification,
+    audio,
+    sonogram,
+  } = req.body;
+  try {
+    const record = await Record.create({
+      date,
+      turbineId,
+      bat,
+      speciesId,
+      turbineStopSignal,
+      verification,
+      audio,
+      sonogram,
+    });
+
+    res.json(record);
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json(err.message);
+  }
+});
+
 module.exports = router;
