@@ -1,6 +1,6 @@
 const fs = require("fs");
-const path = require("path");
 const axios = require("axios");
+const { spawn } = require("child_process");
 
 watchDirectoryAndSeedRecords();
 
@@ -34,6 +34,8 @@ function watchDirectoryAndSeedRecords() {
       console.log(`Wav1: ${wav1}`);
       console.log(`Wav2: ${wav2}`);
 
+      spawnPythonScript();
+
       axios
         .post("http://localhost:3900/api/records", {
           date: timestamp,
@@ -55,18 +57,18 @@ function watchDirectoryAndSeedRecords() {
   });
 }
 
-// const { spawn } = require("child_process");
+function spawnPythonScript() {
+  const childPython = spawn("python", ["./python/script.py"]);
 
-// const childPython = spawn("python", ["./python/script.py"]);
+  childPython.stdout.on("data", (data) => {
+    console.log(`stdout: ${data}`);
+  });
 
-// childPython.stdout.on("data", (data) => {
-//   console.log(`stdout: ${data}`);
-// });
+  childPython.stderr.on("data", (data) => {
+    console.error(`stderr: ${data}`);
+  });
 
-// childPython.stderr.on("data", (data) => {
-//   console.error(`stderr: ${data}`);
-// });
-
-// childPython.on("close", (code) => {
-//   console.log(`child process exited with code: ${code}`);
-// });
+  childPython.on("close", (code) => {
+    console.log(`child process exited with code: ${code}`);
+  });
+}
