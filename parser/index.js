@@ -58,7 +58,7 @@ function watchDirectoryAndSeedRecords() {
 }
 
 function spawnPythonScript() {
-  const childPython = spawn("python", ["./python/script.py"]);
+  const childPython = spawn("python3.11", ["./python/script.py"]);
 
   childPython.stdout.on("data", (data) => {
     console.log(`stdout: ${data}`);
