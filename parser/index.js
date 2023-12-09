@@ -5,7 +5,7 @@ const axios = require("axios");
 watchDirectoryAndSeedRecords();
 
 function watchDirectoryAndSeedRecords() {
-  fs.watch(path.join(__dirname, "recordings"), (eventType, filename) => {
+  fs.watch("/home/batmonit/batmonit/recordings/", (eventType, filename) => {
     if (eventType === "rename" && filename) {
       console.log(`New file detected: ${filename}`);
 
