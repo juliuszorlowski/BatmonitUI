@@ -1,11 +1,13 @@
+import hug
 import os
+import signal
+import threading
 import time
 import requests
 
-# import  as inference TODO
+# import  as inference
 
 PATH = r"../recordings/"
-URL = "http://localhost:3900/api/records"
 
 def watch_directory():
     from watchdog.events import FileSystemEventHandler
@@ -19,11 +21,13 @@ def watch_directory():
             print(f'Utworzono plik: {file_name}')
             record = NewRecord(file_name)
             create_record(vars(record))
+            # print_record(vars(record))
 
     event_handler = MyHandler()
     observer = Observer()
     observer.schedule(event_handler, PATH, recursive=True)
     observer.start()
+    print("Watchdog is watching...")
     try:
         while True:
             time.sleep(1)
@@ -33,14 +37,15 @@ def watch_directory():
 
 class NewRecord():
     def __init__(self, file_name) -> None:
-        self.audio = f"/{PATH}/{file_name}"
-        self.spectrogram = "/spectrograms/TODO" #TODO
+        self.audio = f"../recordings/{file_name}"
+        self.sonogram = "/spectrograms/TODO" #TODO
         _, self.date, self.name = self._process_new_file(file_name)
         self.speciesId = 3 #TODO inference(self.audio_path)
         self.verification = 1
         self.turbineStopSignal = 1
         self.bat = 1
         self.turbineId = 1
+        
 
     def _process_new_file(self, file_name):
         # file name is created in form: turbineId_date_time_idRecord
@@ -57,17 +62,18 @@ class NewRecord():
     def convert_to_dict(self):
         return vars(self)    
 
-# def start_server_with_watchdog():
-#     watch_thread = threading.Thread(target=watch_directory)
-#     watch_thread.start()
-#     __hug__.http.serve(port=3900)
+def start_server_with_watchdog():
+    watch_thread = threading.Thread(target=watch_directory)
+    watch_thread.start()
+    __hug__.http.serve(port=3800)
 
-# @hug.post('/api/records')
-def create_record(data, url):
-    print("Record sent successfully!")
+# @hug.post()
+def create_record(data):
+    url = "http://localhost:3900/api/records"
+    print(data)
     response = requests.post(url, json=data)
-    print(response.status_code)
-    print(response.json())
+    # print("Record sent successfully!", output_json)
+    # return output_json, hug.HTTP_200
 
 # @hug.get('/api/records')
 # def print_record(output_json: hug.types.json):
@@ -75,5 +81,5 @@ def create_record(data, url):
 #     return output_json, hug.HTTP_OK
 
 if __name__ == '__main__':
-    watch_directory()
     # start_server_with_watchdog()
+    watch_directory()
