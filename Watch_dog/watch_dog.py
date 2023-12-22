@@ -1,12 +1,11 @@
-import hug
 import os
-import signal
-import threading
 import time
+import requests
 
-# import  as inference
+# import  as inference TODO
 
-PATH = r"Watched_folder/"
+PATH = r"../recordings/"
+URL = "http://localhost:3900/api/records"
 
 def watch_directory():
     from watchdog.events import FileSystemEventHandler
@@ -20,7 +19,6 @@ def watch_directory():
             print(f'Utworzono plik: {file_name}')
             record = NewRecord(file_name)
             create_record(vars(record))
-            # print_record(vars(record))
 
     event_handler = MyHandler()
     observer = Observer()
@@ -35,13 +33,14 @@ def watch_directory():
 
 class NewRecord():
     def __init__(self, file_name) -> None:
-        self.audio = f"/records/{file_name}"
+        self.audio = f"/{PATH}/{file_name}"
         self.spectrogram = "/spectrograms/TODO" #TODO
-        self.turbineId, self.date, self.name = self._process_new_file(file_name)
-        self.spiecesId = 3 #TODO inference(self.audio_path)
+        _, self.date, self.name = self._process_new_file(file_name)
+        self.speciesId = 3 #TODO inference(self.audio_path)
         self.verification = 1
         self.turbineStopSignal = 1
         self.bat = 1
+        self.turbineId = 1
 
     def _process_new_file(self, file_name):
         # file name is created in form: turbineId_date_time_idRecord
@@ -58,15 +57,17 @@ class NewRecord():
     def convert_to_dict(self):
         return vars(self)    
 
-def start_server_with_watchdog():
-    watch_thread = threading.Thread(target=watch_directory)
-    watch_thread.start()
-    __hug__.http.serve(port=3900)
+# def start_server_with_watchdog():
+#     watch_thread = threading.Thread(target=watch_directory)
+#     watch_thread.start()
+#     __hug__.http.serve(port=3900)
 
-@hug.post('/api/records')
-def create_record(output_json: hug.types.json):
-    print("Record sent successfully!", output_json)
-    return output_json, hug.HTTP_200
+# @hug.post('/api/records')
+def create_record(data, url):
+    print("Record sent successfully!")
+    response = requests.post(url, json=data)
+    print(response.status_code)
+    print(response.json())
 
 # @hug.get('/api/records')
 # def print_record(output_json: hug.types.json):
@@ -74,4 +75,5 @@ def create_record(output_json: hug.types.json):
 #     return output_json, hug.HTTP_OK
 
 if __name__ == '__main__':
-    start_server_with_watchdog()
+    watch_directory()
+    # start_server_with_watchdog()
