@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: { msg: "Date must not be empty" },
         },
       },
-      sonogram: {
+      spectrogram: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {

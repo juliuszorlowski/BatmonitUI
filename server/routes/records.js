@@ -41,7 +41,7 @@ router.post("/", async (req, res) => {
     turbineStopSignal,
     verification,
     audio,
-    sonogram,
+    spectrogram,
   } = req.body;
   try {
     const record = await Record.create({
@@ -52,7 +52,7 @@ router.post("/", async (req, res) => {
       turbineStopSignal,
       verification,
       audio,
-      sonogram,
+      spectrogram,
     });
 
     res.json(record);

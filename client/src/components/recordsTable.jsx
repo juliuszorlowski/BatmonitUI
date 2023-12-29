@@ -15,7 +15,7 @@ export default function RecordsTable({ records, sortColumn, onSort }) {
     { path: "turbineStopSignal", label: "Turbine Stop Signal" },
     { path: "verification", label: "Verification" },
     { path: "audio", label: "Audio" },
-    { path: "sonogram", label: "Sonogram" },
+    { path: "spectrogram", label: "Spectrogram" },
   ];
 
   return (
@@ -34,7 +34,7 @@ export default function RecordsTable({ records, sortColumn, onSort }) {
             <td>{record.turbineStopSignal === true ? "YES" : "NO"}</td>
             <td>{record.verification === true ? "YES" : "NO"}</td>
             <td>{record.audio}</td>
-            <td>{record.sonogram}</td>
+            <td>{record.spectrogram}</td>
           </tr>
         ))}
       </tbody>

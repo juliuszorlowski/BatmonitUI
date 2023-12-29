@@ -36,7 +36,7 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      sonogram: {
+      spectrogram: {
         type: DataTypes.STRING,
         allowNull: false,
       },
