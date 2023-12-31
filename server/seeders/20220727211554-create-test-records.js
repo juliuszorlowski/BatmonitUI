@@ -31,24 +31,74 @@ module.exports = {
           updatedAt: "2022-07-27 21:27:27",
         },
         {
-          name: "Nyctalus noctula",
+          name: "Barbastella barbastellus",
           createdAt: "2022-07-27 21:05:10",
           updatedAt: "2022-07-27 21:05:10",
         },
         {
-          name: "Eptesicus sp.",
+          name: "Eptesicus nilssonii",
           createdAt: "2022-07-27 21:05:16",
           updatedAt: "2022-07-27 21:05:16",
         },
         {
-          name: "Pipistrellus nathusii",
+          name: "Eptesicus serotinus",
           createdAt: "2022-07-27 21:27:39",
           updatedAt: "2022-07-27 21:27:39",
         },
         {
-          name: "Nyctalus leisleri",
+          name: "Myotis brandtii",
           createdAt: "2022-07-27 21:27:51",
           updatedAt: "2022-07-27 21:27:51",
+        },
+        {
+          name: "Myotis dasycneme",
+          createdAt: "2022-07-27 21:28:00",
+          updatedAt: "2022-07-27 21:28:00",
+        },
+        {
+          name: "Myotis daubentonii",
+          createdAt: "2022-07-27 21:29:00",
+          updatedAt: "2022-07-27 21:29:00",
+        },
+        {
+          name: "Myothis nattereri",
+          createdAt: "2022-07-27 21:30:00",
+          updatedAt: "2022-07-27 21:30:00",
+        },
+        {
+          name: "Nyctalus leisleri",
+          createdAt: "2022-07-27 21:31:00",
+          updatedAt: "2022-07-27 21:31:00",
+        },
+        {
+          name: "Nyctalus noctula",
+          createdAt: "2022-07-27 21:32:00",
+          updatedAt: "2022-07-27 21:32:00",
+        },
+        {
+          name: "Pipistrellus nathusii",
+          createdAt: "2022-07-27 21:33:00",
+          updatedAt: "2022-07-27 21:33:00",
+        },
+        {
+          name: "Pipistrellus pipistrellus",
+          createdAt: "2022-07-27 21:34:00",
+          updatedAt: "2022-07-27 21:34:00",
+        },
+        {
+          name: "Pipistrellus pygmaeus",
+          createdAt: "2022-07-27 21:35:00",
+          updatedAt: "2022-07-27 21:35:00",
+        },
+        {
+          name: "Plecotus auritus",
+          createdAt: "2022-07-27 21:36:00",
+          updatedAt: "2022-07-27 21:36:00",
+        },
+        {
+          name: "Vespertilio murinus",
+          createdAt: "2022-07-27 21:37:00",
+          updatedAt: "2022-07-27 21:37:00",
         },
       ],
       {}
