@@ -7,20 +7,32 @@
 \studtype{Zaoczne}
 \title{BatMonit -- system wykrywania nietoperzy na farmach wiatrowych}
 \engtitle{BatMonit -- bat detection system on wind farms}
-\acronym{BRR}
-\titledate{2023-10-10}
+\acronym{Batmonit2}
+\titledate{2021-11-07}
 \supervisor{dr Puźniakowski Tadeusz}
 \author{Juliusz Orłowski}{s19799}{Aplikacje Internetowe}{Niestacjonarny}
 \author{Jakub Prucnal}{s19800}{Sztuczna Inteligencja}{Niestacjonarny}
 \author{Magdalena Wybraniec}{s19798}{Sztuczna Inteligencja}{Niestacjonarny}
-\consultant{--- brak ---} % Koniecznie trzeba podać brak, albo wpisać konsultantów tak jak przy autorach
-\projectgoals{Celem tego projektu jest pokazanie jak można użyć klasy sprz do przygotowania pracy inżynierskiej na PJATK}
-\productsandservices{Szablon pracy w systemie LaTeX}
-\mainfunctionalities{Właściwie to brak, jest to tylko szablon}
-\successmeasure{Kompilujący się elegancko szablon w postaci stylu LaTeX-owego który można użyć do robienia pracy inż.}
-\projlimitations{Wymagana podstawowa znajomość systemu składu tekstu LaTeX.}
+\consultant{Dawid Gradolewski}
+\consultant{Damian Dziak}
+\projectgoals{Projekt typu R\&D, ma na celu wytworzenie systemu softwarowego pobierającego i analizującego dźwięk pochodzący z mikrofonu ultradźwięków oraz rozpoznającego pojawienie się nietoperzy, zapisujący nagrania w bazie danych i wizualizujący je w interfejsie - panelu administratora. Dodatkowo celem będzie przygotowanie analizy odległości i kątów z jakiej mikrofon rejestruje głos nietoperza i adekwatnie – zaproponowanie liczby i rozstawienia urządzeń nasłuchowych, tak aby pokryć kąt 360 stopni wokół turbiny na farmie wiatrowej.}
+\productsandservices{System wykrywający nietoperze z nagrań ultradźwięków, możliwy do połączenia z systemem wyłączania turbiny}
+\mainfunctionalities{
+\begin{itemize}
+\item{Mikrofon ultradźwiękowy wraz z oprogramowaniem nagrywającym dźwięk}
+\item{Urządzenie do którego nagrania są przesyłane i przechowywane oraz automatycznie analizowane w poszukiwaniu na nim nietoperza}
+\item{Baza danych do której trafiają przeanalizowane nagrania}
+\item{Interfejs wizualizujący nagrania}
+\end{itemize}
+}
+\successmeasure{Oprogramowanie wykrywające i rozpoznające pojawienie się nietoperzy oraz wytworzenie urządzenia do rejestracji ultradźwięków. Dokonana analiza ulokowania urządzeń rejestrujących na wiatraku oraz jej akceptacja przez konsultanta z firmy BIOSECO.}
+\projlimitations{
+Czas trwania projektu jest ograniczony do momentu przekazania książki dyplomowej do dziekanatu uczelni PJATK.
+Ograniczona dostępność nagrań głosów nietoperzy w full-spectrum – możliwa sytuacja gdy tworzenie projektu będzie odbywało się na podstawie nagrań przetworzonych.
+Aktywność nietoperzy ma miejsce od końca marca do października – w związku z tym brak możliwości nagrywania ich aktywności w trakcie semestru zimowego – a tym samym brak możliwości wykonania prób hardware’u przed kwieniem 2022.
+}
 \date{\today}
-\nabstract{To jest streszczenie niezwykle innowacyjnej pracy inżynierskiej w której przeplatają się elementy paplaniny z wygenerowanym tekstem pseudonaukowym rozpoznawanym jako dezinformacja.}
+\nabstract{TODO}
 
 
 
@@ -33,41 +45,251 @@
 
 \tableofcontents
 
-\chapter{Informacje wstępne}
+\chapter{Wstęp}\label{ch:wstep}
 
+U podłoża rozwoju alternatywnych źródeł elektryczności leży uczynienie branży energetycznej bardziej „zieloną”, aby życie przyszłych pokoleń było przynajmniej tak samo dobre, jak nasze jest dzisiaj. W poszukiwaniu rozwiązań, które zabezpieczają społeczności w dobie globalnego ocieplenia,  zrównoważony rozwój stał się rdzeniem idei alternatywnych źródeł energii. Druga część historii posiada jednak swą ciemną stronę – wiele danych naukowych wskazuje na znaczący niekorzystny wpływ farm wiatrowych na przyrodę, a zwłaszcza nietoperze. A są one ważnym elementem bioróżnorodności i poszukiwanego zrównoważonego rozwoju. Autorzy pracy dyplomowej w kooperacji z firmą Bioseco wypracowali oparty o sztuczną inteligencję system, który w przypadku dalszego jego rozwijania, zmniejszy śmiertelność nietoperzy na farmach wiatrowych i pomoże utrzymać branży wiatrowej miano ekologicznej. Chiropterologom zaś oraz urzędnikom oceniającym projekty wiatrowe pod kątem realizacji przyrodniczych norm prawnych, zapewni dodatkowe narzędzia minimalizacji wpływu farm na nietoperze.
 
+\section{Cele projektu}
 
-\section{O projekcie}\label{ch:wstep}
+W ramach sformułowanego tematu wyszczególniono następujące cele badawcze i programistyczne:
 
-To jest przykładowy szablon pracy inżynierskiej na PJATK.
+\begin{itemize}
+\item{realizację działającego produktu o minimalnym zestawie funkcjonalności (ang: Minimal Viable Product, dalej: MVP) rejestrującego i identyfikującego nietoperze oraz wysyłającego sygnał wyłączenia – docelowo do systemu turbiny wiatrowej – składającego się z części sprzętowej i oprogramowania: modelu konwolucyjnych sieci neuronowych (ang: convoluted neural network, dalej CNN) oraz z aplikacji użytkownika oraz bazy danych,}
+\item{opracowanie koncepcji liczby i układu mikrofonów ultradźwięków docelowego produktu poprzez przeprowadzenie badań terenowych i laboratoryjnych w zakresie zasięgu pracy testowanego sprzętu, tak by cały system pokrywał obszar 360 stopni dookoła turbiny wiatrowej, w odległości do około 100 m,}
+\item{opracowanie modelu sieci neuronowych uzyskującego przynajmniej 90\% skuteczności w identyfikacji nietoperzy - borowca wielkiego Nyctalus noctula i karlików Pipistrellus sp., głównych ofiar kolizji z turbinami wiatrowymi,}
+\item{przyczynienie się do rozwiązania realnego problemu występującego w obszarze branży energetyki wiatrowej oraz ochrony przyrody,}
+\item{rozpoczęcie współpracy z Bioseco Sp. z o.o. w celu zaprezentowania umiejętności studentów firmie oraz ich szybszego rozwijania dzięki kontaktowi z realnymi problemami biznesowymi, merytorycznymi, produkcyjnymi i wdrożeniowymi, rozwiązywanymi aktualnie przed doświadczony zespół specjalistów firmy.}
+\end{itemize}
 
-\chapter{Przykładowe elementy}
+\chapter{Podłoże projektu}
 
-W niniejszym rozdziale pokażę różne ciekawe elementy które można użyć w pracy. Nie są to wszystkie możliwości, ale te, które moim zdaniem najczęściej pojawiają się w pracach inż. Na przykład, jeśli chcemy powołać się na jakieś źródła, robimy to tak~\cite{BEHESHTIROUI2021107419}.
+\section{Geneza problemu}
 
-\section{Listingi}
+Lądowe farmy wiatrowe mogą mieć znaczący wpływ na środowisko naturalne, w szczególności na nietoperze. Wszystkie gatunki nietoperzy w Polsce są objęte ścisłą ochroną gatunkową i podlegają ochronie prawnej zgodnie z Rozporządzeniem Ministra Środowiska z dnia 16 grudnia 2016 r. w sprawie ochrony gatunkowej zwierząt \cite{Rozporządzenie}. Tym samym inwestor realizujący inwestycję wiatrową przestrzegając prawa ochrony przyrody jest zobligowany uzyskać tzw. Decyzję Środowiskową (dalej: DŚ). Zawarte są w niej wszelkie informacje dotyczące: chiropterofauny danego obszaru, szacowanego wpływu inwestycji na nietoperze, działań zapobiegających i minimalizujących ewentualny wpływ inwestycji na nietoperze, tak by spełniała ona założenia dobrych praktyk i przepisy prawa – polskiego i międzynarodowego. 
 
-Jak załączać kod źródłowy jest pokazane na listingu~\ref{lst:helloworld}
+Dotychczas przyjętą praktyką w przypadku wykrycia zbyt dużych aktywności nietoperzy w monitoringu przedrealizacyjnym było wpisanie do DŚ obowiązkowych wyłączeń turbin w okresach, w których te zbyt duże aktywności wykryto \cite{Wytyczne}. Jednak dynamika użytkowania przestrzeni przez nietoperze jest bardzo zmienna i po realizacji inwestycji ssaki te mogą mieć bardzo zróżnicowaną aktywność i w całych wyznaczonych okresach nie muszą być zagrożone. A wyłączenia turbin na długie okresy w roku wiążą się z ogromnymi stratami inwestorów. System opracowany w ramach niniejszej pracy inżynierskiej może zapoczątkować nowe standardy na poziomie krajowym, europejskim i światowym, w zakresie niezbędnych działań minimalizujących wpływ siłowni na nietoperze – zamiast dotychczas stosowanych, z góry określonych wyłączeń na długi okres, mogłyby być wykorzystywane wyłączenia sterowane na bieżąco przez system – turbiny zatrzymywane byłyby tylko w czasie, kiedy większe liczebności nietoperzy faktycznie się pojawiają.
 
+\section{Aktualne rozwiązania konkurencyjne}
 
-\begin{lstlisting}[language=c,caption={Przykładowy witaj w świecie}, label={lst:helloworld}]
-printf("hello");
-\end{lstlisting}
+Intensywny rozwój sieci neuronowych oraz internetu rzeczy (ang: IoT) przyczynił się do powstania podobnych rozwiązań. Na rynku światowym istnieją zbliżone pod kątem funkcjonalnym systemy, takie jak: DTBat i Fleximouse.
 
-\section{Obrazki}
+\section{IoT}
 
-Na ilustracji~\ref{img:pjatklogo} widzimy oficjalne logo PJATK.
+\section{Sieci neuronowe}
+
+\section{Kooperacja z Bioseco S.A.}
+
+\chapter{Metody pracy}
+
+\section{Proces wytwórczy}
+
+\subsection{Przyjęte podejście}
+
+\subsection{Organizacja zespołu}
+
+\subsection{Charakterystyka przyrostów}
+
+\section{Srodowisko technologiczne}
+
+\subsection{Technologie}
+
+\subsection{Infrastuktura techniczna}
+
+\subsection{Infrastuktura komunikacyjna i dokumentacja}
+
+\section{Analiza zagrożeń}
+
+\chapter{Prace badawczo-rozwojowe i projektowanie}
+
+\section{Konsultacje z Bioseco S.A.}
+
+\section{Konsultacje chiropterologiczne}
+
+\section{Mikrofon ultradźwięków spełniający wymogi końcowego produktu}
+
+\section{Odtwarzanie ultradźwięków}
+
+\section{Głosy nietoperzy typu full-spectrum}
+
+\subsection{Wytworzenie sztucznego głosu nietoperza w programie Audacity}
+
+W celu przetestowania działania sprzętu rejestrującego i oprogramowania przetwarzającego zarejestrowane dźwięki, przeprowadzono doświadczenie polegające na sztucznym wytworzeniu dźwięków, które imitowały by głos nietoperza.
+Pierwszym etapem było wygenerowanie w programie Audacity sinusoidalnej fali dźwiękowej z początkową częstotliwością 51 kHz i końcową częstotliwością 42 kHz, amplitudą początkową 0 i amplitudą końcową 1, interpolacją logarytmiczną oraz czasem trwania 25 ms (\ref{img:wykres_fali}).
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{sprz/pjatk}
-    \caption{Logo PJATK załączone jako obrazek}
-    \label{img:pjatklogo}
+    \includegraphics[width=0.8\textwidth]{sprz/wykres_fali}
+    \caption{Wykres fali dźwiękowej}
+    \label{img:wykres_fali}
 \end{figure}
 
-albo dla wygody jako makro tak jak na obrazku~\ref{img:pjatklogo2}
+Uzyskany w ten sposób wykres fali dźwiękowej skopiowano dziesięciokrotnie i utworzono sekwencję 500 ms dźwięków, przed którą i po której wprowadzono 500 ms ciszy w celu łatwiejszego wyodrębnienia dźwięków po ich późniejszym zarejestrowaniu (\ref{img:wykres_fali_wielokrotnej}).
 
-\putimage{Obrazek załączony za pomocą makra}{sprz/pjatk}{img:pjatklogo2}{0.5\textwidth}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{sprz/wykres_fali_wielokrotnej}
+    \caption{Zwielokrotniony wykres fali}
+    \label{img:wykres_fali_wielokrotnej}
+\end{figure}
+
+Następnie, do wyemitowania dźwięku doświadczenia niezbędne były urządzenia obsługujące co najmniej dwukrotnie wyższą częstotliwość niż emitowane dźwięki. W tym celu do komputera służącego jako generator dźwięku podłączono wzmacniacz iFi Zen Dac o maksymalnej częstotliwości odtwarzania 384 kHz oraz głośnik ultradźwiękowy Pettersson L400 (10-110 kHz). Do zarejestrowania wyemitowanego dźwięku posłużył mikrofon Pettersson M500-384 o częstotliwości próbkowania 384 kHz.
+
+Program BatSound dołączony do mikrofonu posłużył do wizualizacji zarejestrowanego dźwięku.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{sprz/batsound}
+    \caption{Wykres zarejestrowanego dźwięku zwizualizowany w programie Batsound}
+    \label{img:batsound}
+\end{figure}
+
+Powyższe doświadczenie dowiodło, iż mikrofon Pettersson M500-384 spełnia swoje zadanie. Mikrofon rejestruje dźwięki w zakresie niesłyszalnym dla człowieka i poprawnie wizualizuje zarejestrowane nagranie.
+
+\subsection{Zebranie nagrań nietoperzy}
+
+\chapter{Struktura produktu}
+
+Struktura wytworzonego produktu została przedstawiona w podziale na poszczególne komponenty.
+
+\section{Architektura systemu}
+
+Na poniższych modelach przedstawiono najważniejsze elementy logiczne, urządzenia wejścia-wyjścia oraz obieg informacji w systemie (\ref{img:model_architektury}). W celu ułatwienia zrozumienia osadzenia systemu w rzeczywistości, architekturę zobrazowano również w postaci graficznej, łącznie z widokiem interfejsu (\ref{img:reprezentacja_graficzna}). 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{sprz/model_architektury}
+    \caption{Logiczny model architektury systemu}
+    \label{img:model_architektury}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{sprz/reprezentacja_graficzna}
+    \caption{Logiczny model architektury systemu}
+    \label{img:reprezentacja_graficzna}
+\end{figure}
+
+\section{Hardware}
+
+\section{Platforma pobierająca i przetwarzająca nagrania z mikrofonu ultradźwięków}
+
+\section{Model sieci neuronowej}
+
+\section{Baza danych}
+
+\section{Aplikacja użytkownika}
+
+\chapter{Realizacja sieci neuronowej}
+
+\section{Przygotowanie danych}
+
+\subsection{Czyszczenie}
+
+\subsection{Dobór typu spektogramu}
+
+\subsection{Cięcie}
+
+\subsection{Augmentacja}
+
+\section{Dobór sieci neuronowej}
+
+\subsection{Przegląd literatury}
+
+\subsection{Konsultacje}
+
+\section{Dobór parametrów sieci neuronowej}
+
+\subsection{Funkcje aktywacji}
+
+\subsection{Funkcja błędu}
+
+\subsection{Optymalizatory}
+
+\subsection{Regularyzacja}
+
+\subsection{Parametry warstw sieci}
+
+\subsection{Transfer learning}
+
+\section{Skuteczność sieci neuronowej}
+
+\subsection{Macierz pomyłek}
+
+\subsection{Metryki}
+
+\subsection{Learning rate}
+
+\chapter{Realizacja interfejsu użytkownika i bazy danych}
+
+\section{Implementacja interfejsu użytkownika}
+
+\section{Implementacja bazy danych}
+
+\chapter{Testowanie}
+
+\section{Testy terenowe produktu}
+
+\section{Testy oprogramowania}
+
+\subsection{Testy jednostkowe}
+
+\subsection{Testy integracyjne}
+
+\subsection{Testy funkcjonalne}
+
+\subsection{Testy akceptacyjne}
+
+\chapter{Przyszłość produktu i komercjalizacja}
+
+\chapter{Podsumowanie}
+
+\chapter{Wkład własny}
+
+\section{Juliusz Orłowski}
+
+\subsection{Wytworzenie sztucznego głosu nietoperza}
+
+\subsection{Interfejs użytkownika}
+
+\subsection{Baza danych}
+
+\subsection{Książka projektu}
+
+\section{Jakub Prucnal}
+
+\subsection{Interfejs użytkownika}
+
+\subsection{Baza danych}
+
+\subsection{Przygotowanie danych do modelu}
+
+\subsection{Model sieci neuronowej}
+
+\subsection{Książka projektu}
+
+\section{Magdalena Wybraniec}
+
+\subsection{Zebranie nagrań nietoperzy}
+
+\subsection{Interfejs użytkownika}
+
+\subsection{Baza danych}
+
+\subsection{Konsultacje chiropterologiczne}
+
+\subsection{Przygotowanie danych do modelu}
+
+\subsection{Model sieci neuronowej}
+
+\subsection{Książka projektu}
+
+\chapter{Załączniki}
+
+\section{Dokument założeń wstępnych}
+
+\section{Specyfikacja wymagań systemowych}
+
+\section{Diagram przypadków użycia}
 
 \chapter{Karty udziałowca}
 
