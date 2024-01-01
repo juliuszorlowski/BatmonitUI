@@ -1,5 +1,6 @@
 \documentclass{sprz}
 \usepackage[backend=bibtex,style=numeric,sorting=none]{biblatex}
+\usepackage{enumitem}
 
 \addbibresource{bibliography.bib}
 
@@ -7,7 +8,7 @@
 \studtype{Zaoczne}
 \title{BatMonit -- system wykrywania nietoperzy na farmach wiatrowych}
 \engtitle{BatMonit -- bat detection system on wind farms}
-\acronym{Batmonit2}
+\acronym{Batmonit}
 \titledate{2021-11-07}
 \supervisor{dr Puźniakowski Tadeusz}
 \author{Juliusz Orłowski}{s19799}{Aplikacje Internetowe}{Niestacjonarny}
@@ -37,6 +38,7 @@ Aktywność nietoperzy ma miejsce od końca marca do października – w związk
 
 
 \begin{document}
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
 
 \maketitle
 
@@ -287,7 +289,191 @@ Na poniższych modelach przedstawiono najważniejsze elementy logiczne, urządze
 
 \section{Dokument założeń wstępnych}
 
+\begin{documenttable}[]
+  \projectname{Batmonit}
+  \customer{Bioseco S.A.}
+  \contractor{PJATK}
+  \projectteam{
+    \begin{enumerate}
+      \item Juliusz Orłowski
+      \item Jakub Prucnal
+      \item Magdalena Wybraniec
+    \end{enumerate}
+  }
+  \projectlead{
+    \begin{enumerate}
+      \item Dawid Gradolewski
+    \end{enumerate}
+  }
+  \documentname{Dokument Założeń Wstępnych}
+  \documentowner{Jakub Prucnal}
+  \projectsupervisor{dr Tadeusz Puźniakowski}
+\end{documenttable}
+\begin{center}
+  \begin{tabular}{ |p{0.1\linewidth}|p{0.28\linewidth}|p{0.2\linewidth}|p{0.24\linewidth}|p{0.12\linewidth}| }
+    \hline
+    \multicolumn{5}{|c|}{\textbf{Historia dokumentu}} \\
+    \hline
+    \textbf{Wersja} & \textbf{Opis modyfikacji} & \textbf{Rozdział/strona} & \textbf{Autor modyfikacji} & \textbf{Data}\\
+    \hline
+    {1.0} & {Wstępna wersja} & {Całość} & {Magdalena Wybraniec \newline Jakub Prucnal} & {2021-11-21}\\
+    \hline
+    {2.0} & {Rozbudowanie opisu problemu, doprecyzowanie i drobne korekty pozostałych elementów} &
+    {Całość} & {Magdalena Wybraniec} & {2021-12-14}\\
+    \hline
+  \end{tabular}
+\end{center}
+
+\begin{enumerate}[label=\textbf{\arabic*}.]
+  \item \textbf{Opis problemu}
+  
+    Farmy wiatrowe mogą mieć znaczący wpływ na środowisko naturalne, w szczególności nietoperze. Wszystkie gatunki nietoperzy w Polsce są objęte ścisłą ochroną gatunkową i podlegają ochronie prawnej zgodnie z Rozporządzeniem Ministra Środowiska z dnia 16 grudnia 2016 r. w sprawie ochrony gatunkowej zwierząt. Tym samym inwestor realizujący inwestycję wiatrową przestrzegając prawa ochrony przyrody jest zobligowany uzyskać tzw. Decyzję Środowiskową (dalej: DŚ). Zawarte są w niej wszelkie informacje dotyczące:
+    \begin{itemize}
+      \item chiropterofauny danego obszaru zebrane w trakcie rocznego monitoringu przedrealizacyjnego,
+      \item szacowanego wpływu inwestycji na nietoperze,
+      \item działań zapobiegających i minimalizujących ewentualny wpływ inwestycji na nietoperze, tak by spełniała ona założenia dobrych praktyk i przepisy prawa – polskiego i międzynarodowego.
+    \end{itemize}
+
+    Dotychczas przyjętą praktyką w przypadku wykrycia zbyt dużych aktywności nietoperzy w monitoringu przedrealizacyjnym było wpisanie do DŚ obowiązkowych wyłączeń turbin w okresach, w których te zbyt duże aktywności wykryto. Jednak aktywność nietoperzy jest bardzo zmienna i po realizacji inwestycji niekoniecznie nietoperze będą w całych tych okresach aktywne na farmie, a przez to zagrożone. A wyłączenia turbin na całe długie okresy w roku wiążą się z ogromnymi stratami inwestorów. System opracowany w ramach niniejszej pracy inżynierskiej mógłby zapoczątkować nowe standardy na poziomie krajowym, europejskim i światowym, w zakresie niezbędnych działań minimalizujących wpływ wiatraków na nietoperze - zamiast dotychczas stosowanych z góry określonych wyłączeń na długi okres, można by stosować wyłączenia sterowane na bieżąco systemem – turbiny wyłączane by były tylko w czasie, kiedy większe liczby nietoperzy faktycznie się pojawiają.
+
+    Problem ten dotyczy głównie farm lądowych, gdyż na farmach morskich aktywność nietoperzy jest zdecydowanie mniejsza.
+
+    Zaprojektowany w ramach pracy inżynierskiej system ma za zadanie wytworzenie prototypu urządzenia zczytującego głos nietoperzy z mikrofonu ultradźwięków i ich analizę, tak by automatycznie wykrywać wystąpienie przelotu nietoperzy przy użyciu narzędzi sztucznej inteligencji, takich jak machine learning (dalej: ML) lub deep learning (dalej DL).
+
+    Głównym udziałowcem i zarazem pomysłodawcą jest firma BIOSECO, której przedstawicielami są Dawid Gradolewski oraz Damian Dziak. Udziałowcami produktu, który może zostać wytworzony na dalszym etapie na bazie projektu inżynierskiego, są inwestorzy przygotowujący farmy wiatrowe w Polsce i na świecie, takie jak PGE, Energa, RWE, Polenergia, Iberdrola itd., a także twórcy monitoringów chiropterologicznych, Regionalne i Generalna Dyrekcja Ochrony Środowiska - posiadający tę opcję działań minimalizujących w swoim w arsenale.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.8\textwidth]{sprz/rich_picture}
+        \label{img:rich_picture}
+    \end{figure}
+
+  \item \textbf{Cele systemu}
+  
+    System ma na celu zczytywać z mikrofonu ultradźwięki wydawane przez nietoperze, przesyłać je do uprzednio wytrenowanego modelu i sygnalizować, gdy nietoperze się pojawią, podając przy tym wykryty gatunek. Jednocześnie powinien zapisywać sygnały nietoperzy w bazie danych i wizualizować je w interfejsie użytkownika.  System po dopracowaniu i ewentualnej komercjalizacji przeznaczony będzie głównie dla firm posiadających lub zarządzających dużymi farmami wiatrowymi. Korzyści wynikające z zastosowania systemu to: ograniczenie śmiertelności nietoperzy na farmach wiatrowych i możliwość zrealizowania zapisów wynikających z pozwoleń prawnych na realizację konkretnego przedsięwzięcia.
+
+  \item \textbf{Kontekst systemu}
+  
+    System będzie składał się z mikrofonu ultradźwięków wraz z urządzeniem rejestrującym dźwięk (komputerem), do którego będą trafiały wszystkie nagrania, tam analizowane i wystawiające API dla systemu wyłączającego turbinę wiatrową - zamontowane na turbinie wiatrowej.
+
+  \item \textbf{Zakres systemu (funkcjonalność)}
+  
+    Do głównych funkcjonalności systemu będą należały:
+
+    \begin{itemize}
+      \item Rejestracja nagrań,
+      \item Przesyłanie nagrań do urządzenia wewnętrznego, na którym są one przechowywane, analizowane i wstawiane do modelu ML/DL,
+      \item Analiza nagrań z udziałem modelu ML/DL pod kątem występowania nietoperzy i ich gatunków,
+      \item Wizualizacja nagrań nietoperzy w bazie danych poprzez interfejs, wraz z możliwością ich szczegółowego przeglądania.
+    \end{itemize}
+
+  \item \textbf{Wymagania jakościowe i inne}
+  
+    System powinien spełniać następujące wymagania:
+
+    \begin{itemize}
+        \item Przenośność urządzenia zewnętrznego,
+        \item Niezawodne zasilanie urządzenia zewnętrznego,
+        \item Adekwatna do warunków środowiskowych i technologicznych obudowa urządzenia zewnętrznego,
+        \item Niezawodność połączenia pomiędzy zewnętrznym urządzeniem rejestrującym nagrania i urządzeniem przechowującym je,
+        \item Możliwość wystawienia API i wykorzystania przez system wyłączający i włączający turbinę wiatrową.
+    \end{itemize}
+
+  \item \textbf{Wizja konstrukcyjna}
+  
+    Urządzenie zewnętrzne będzie składało się z mikrofonu Pettersson M500-384 (i opcjonalnie z obudową) oraz urządzenia rejestrującego nagranie (np. Raspberry Pi, komputer - do ustalenia), wyposażonego w zasilanie i pamięć. Kod pobierający nagranie z mikrofonu do urządzenia rejestrującego będzie utworzony pierwotnie w Pythonie. Kod modelu ML/DL będzie napisany w Pythonie z użyciem frameworka TensorFlow, PyTorch, lub innego.  
+
+  \item \textbf{Ograniczenia}
+  
+    \begin{itemize}
+      \item Czas trwania projektu jest ograniczony do momentu przekazania książki dyplomowej do dziekanatu uczelni PJATK.
+      \item Ograniczona dostępność nagrań głosów nietoperzy w full-spectrum – możliwa sytuacja, gdy tworzenie projektu będzie odbywało się na podstawie nagrań przetworzonych.
+      \item Aktywność nietoperzy ma miejsce od końca marca do października – w związku z tym brak możliwości nagrywania ich aktywności w trakcie semestru zimowego – a tym samym brak możliwości wykonania prób hardware’u przed kwieniem 2022.
+    \end{itemize}
+
+  \item \textbf{Słownik pojęć}
+  
+    Nagranie full-spectrum – nagranie rejestracji ultradźwięków w pełnym wymiarze
+
+    ML (machine learning, uczenie maszynowe) – obszar sztucznej inteligencji wykorzystujący algorytmy i modele matematyczne, które automatycznie poprawiają się poprzez ekspozycję na dane, w celu prognozowania lub podejmowania decyzji dot. nowo dostarczanych danych
+
+    DL (deep learning) – podzbiór ML wykorzystujący tzw. sieci neuronowe, w której pojedyncze neurony tworzą warstwy i stanowią de facto mnożenie wartości wejściowych z początkowo losowo przypisanymi wagami, gdzie wyniki z poszczególnych wejść są sumowane i przekazywane do tzw. funkcji aktywacji, które decydują czy i jakie wyniki przekazać do kolejnej warstwy neuronów.
+
+\end{enumerate}
+
 \section{Specyfikacja wymagań systemowych}
+
+\begin{documenttable}[]
+  \projectname{Batmonit}
+  \customer{Bioseco S.A.}
+  \contractor{PJATK}
+  \projectteam{
+    \begin{enumerate}
+      \item Juliusz Orłowski
+      \item Jakub Prucnal
+      \item Magdalena Wybraniec
+    \end{enumerate}
+  }
+  \projectlead{
+    \begin{enumerate}
+      \item Dawid Gradolewski
+    \end{enumerate}
+  }
+  \documentname{Specyfikacja Wymagań Systemowych}
+  \documentowner{Jakub Prucnal}
+  \projectsupervisor{dr Tadeusz Puźniakowski}
+\end{documenttable}
+\begin{center}
+  \begin{tabular}{ |p{0.1\linewidth}|p{0.28\linewidth}|p{0.2\linewidth}|p{0.24\linewidth}|p{0.12\linewidth}| }
+    \hline
+    \multicolumn{5}{|c|}{\textbf{Historia dokumentu}} \\
+    \hline
+    \textbf{Wersja} & \textbf{Opis modyfikacji} & \textbf{Rozdział/strona} & \textbf{Autor modyfikacji} & \textbf{Data}\\
+    \hline
+    {1.0} & {Wstępna wersja} & {Całość} & {Jakub Prucnal} & {2021-12-05}\\
+    \hline
+    {2.0} & {Całość niektórych punktów, poprawki reszty} & {punkty 2, 2.1, 2.3} & {Magdalena Wybraniec} & {2021-12-19}\\
+    \hline
+  \end{tabular}
+\end{center}
+
+\begin{enumerate}[label=\textbf{\arabic*}.]
+  \item \textbf{Wprowadzenie – o dokumencie}
+    \begin{enumerate}[label=\textbf{\arabic*}.]
+      \item \textbf{Cel dokumentu}
+      
+        Zdefiniowanie wymagań na podstawie analizy otoczenia projektu oraz analizę potrzeb klienta.
+
+      \item \textbf{Zakres dokumentu}
+      
+        Określenie udziałowców, zdefiniowanie wymagań, analiza otoczenia projektu.
+
+      \item \textbf{Dokumenty powiązane}
+      
+        Karta Projektu (KP)
+        Dokument Założeń Wstępnych (DZW)
+        Rich Picture
+
+      \item \textbf{Odbiorcy}
+      
+        \begin{itemize}
+          \item Opiekun projektu Tadeusz Puźniakowski,
+          \item Zespół projektowy,
+          \item Przedstawiciele zleceniodawcy: Dawid Gradolewski oraz Damian Dziak
+          \item Zleceniobiorca
+        \end{itemize}  
+
+      \item \textbf{Słownik pojęć}
+      
+        Nagranie full-spectrum – nagranie rejestracji ultradźwięków w pełnym wymiarze
+        ML (machine learning, uczenie maszynowe) – obszar sztucznej inteligencji wykorzystujący algorytmy i modele matematyczne, które automatycznie poprawiają się poprzez ekspozycję na dane, w celu prognozowania lub podejmowania decyzji dot. nowo dostarczanych danych 
+        DL (deep learning) – podzbiór ML wykorzystujący tzw. sieci neuronowe, w której pojedyncze neurony tworzą warstwy i stanowią de facto mnożenie wartości wejściowych z początkowo losowo przypisanymi wagami, gdzie wyniki z poszczególnych wejść są sumowane i przekazywane do tzw. funkcji aktywacji, które decydują czy i jakie wyniki przekazać do kolejnej warstwy neuronów.      
+
+    \end{enumerate}
+  \item \textbf{Projekt w kontekście}
+  \item \textbf{Wymagania}
+  \item \textbf{Odwołania do literatury}
+\end{enumerate}
 
 \section{Diagram przypadków użycia}
 

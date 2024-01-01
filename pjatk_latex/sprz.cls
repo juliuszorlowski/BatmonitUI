@@ -147,9 +147,41 @@
 \endtable
 }
 
+\newenvironment{documenttable}[1][]{%
+	\setkeys{pjatk}{#1}% Setting default key values
+	\newcommand{\projectname}[1]{{\textbf{Numer zlecenia oraz nazwa i akronim projektu:} \newline ##1}&}
+	\newcommand{\customer}[1]{{\textbf{Zleceniodawca:} \newline ##1}&}
+	\newcommand{\contractor}[1]{{\textbf{Zleceniobiorca:} \newline ##1}\\ \hline}
+	\newcommand{\projectteam}[1]{{\textbf{Zespół projektowy:} ##1}&}
+	\newcommand{\projectlead}[1]{{\textbf{Kierownik projektu:} ##1}&
+	\raisebox{-\totalheight}{\includegraphics[width=\linewidth]{sprz/logo_pjatk}}\\ \hline}
+	\newcommand{\documentname}[1]{{\textbf{Nazwa dokumentu:} \newline ##1}&}
+	\newcommand{\documentowner}[1]{{\textbf{Odpowiedzialny za dokument:} \newline ##1}&}
+	\newcommand{\projectsupervisor}[1]{{\textbf{Opiekun projektu:} \newline ##1}\\ \hline}
+	\begin{tabular}{ |p{0.4\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}| }
+		\hline
+		}{%
+	\end{tabular}
+}
 
-
-
+\newenvironment{documenthistory}[1][]{%
+	\setkeys{pjatk}{#1}% Setting default key values
+	\newcommand{\projectname}[1]{{\textbf{Numer zlecenia oraz nazwa i akronim projektu:} \newline ##1}&}
+	\newcommand{\customer}[1]{{\textbf{Zleceniodawca:} \newline ##1}&}
+	\newcommand{\contractor}[1]{{\textbf{Zleceniobiorca:} \newline ##1}\\ \hline}
+	\newcommand{\projectteam}[1]{{\textbf{Zespół projektowy:} ##1}&}
+	\newcommand{\projectlead}[1]{{\textbf{Kierownik projektu:} ##1}&
+	\raisebox{-\totalheight}{\includegraphics[width=\linewidth]{sprz/logo_pjatk}}\\ \hline}
+	\newcommand{\documentname}[1]{{\textbf{Nazwa dokumentu:} \newline ##1}&}
+	\newcommand{\documentowner}[1]{{\textbf{Odpowiedzialny za dokument:} \newline ##1}&}
+	\newcommand{\projectsupervisor}[1]{{\textbf{Opiekun projektu:} \newline ##1}\\ \hline}
+	\begin{tabular}{ |p{0.4\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}| }
+		\hline
+		  \multicolumn{5}{|c|}{\textbf{Historia dokumentu}} \\
+		\hline
+		}{%
+	\end{tabular}
+}
 
 \newcommand{\generalrequirement}[7]{
 	\begin{table}[h]
