@@ -167,7 +167,7 @@ Na poniższych modelach przedstawiono najważniejsze elementy logiczne, urządze
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{sprz/reprezentacja_graficzna}
-    \caption{Logiczny model architektury systemu}
+    \caption{Graficzna reprezentacja architektury systemu}
     \label{img:reprezentacja_graficzna}
 \end{figure}
 
@@ -439,7 +439,7 @@ Na poniższych modelach przedstawiono najważniejsze elementy logiczne, urządze
 
 \begin{enumerate}[label=\textbf{\arabic*}.]
   \item \textbf{Wprowadzenie – o dokumencie}
-    \begin{enumerate}[label=\textbf{\arabic*}.]
+    \begin{enumerate}[font=\bfseries]
       \item \textbf{Cel dokumentu}
       
         Zdefiniowanie wymagań na podstawie analizy otoczenia projektu oraz analizę potrzeb klienta.
@@ -471,93 +471,258 @@ Na poniższych modelach przedstawiono najważniejsze elementy logiczne, urządze
 
     \end{enumerate}
   \item \textbf{Projekt w kontekście}
+    \begin{enumerate}[font=\bfseries]
+      \item \textbf{Kontekst biznesowy}
+      
+        \begin{figure}[h]
+          \centering
+          \includegraphics[width=0.8\textwidth]{sprz/rich_picture}
+          \label{img:rich_picture}
+        \end{figure}
+
+      \item \textbf{Udziałowcy}
+      
+        \begin{stakeholder}[label={},caption={Klient}][]
+          \id{UNB 01}
+          \name{Klient}
+          \descr{Firma Bioseco}
+          \type{Nieożywiony, bezpośredni}
+          \viewpoint{Techniczny, ekonomiczny, operatora systemu}
+          \limitations{Brak ograniczeń, jest głównym udziałowcem}
+          \requ{}
+        \end{stakeholder}
+        \begin{stakeholder}[label={},caption={Zespół projektowy}]
+          \id{UOB 01}
+          \name{Zespół projektowy}
+          \descr{Zespół deweloperów, którzy tworzą projekt}
+          \type{Ożywiony, bezpośredni}
+          \viewpoint{Techniczny, wytwórczy}
+          \limitations{Nie specyfikuje finansów}
+          \requ{}
+        \end{stakeholder}
+        \begin{stakeholder}[label={},caption={Opiekun projektu}]
+          \id{UOP 01}
+          \name{Opiekun projektu}
+          \descr{dr Tadeusz Puźniakowski}
+          \type{Ożywiony, pośredni}
+          \viewpoint{Techniczny}
+          \limitations{Nie specyfikuje finansów}
+          \requ{}
+        \end{stakeholder}
+        \begin{stakeholder}[label={},caption={Dostarczyciele nagrań nietoperzy}]
+          \id{UOP 02}
+          \name{Dostarczyciele nagrań nietoperzy}
+          \descr{Tribio Sp. z o.o.}
+          \type{Ożywiony, pośredni}
+          \viewpoint{Ekonomiczny, merytoryczny}
+          \limitations{Brak wpływu na aspekty techniczne oprogramowania}
+          \requ{}
+        \end{stakeholder}
+        \begin{stakeholder}[label={},caption={Klienci klienta}]
+          \id{UNP 01}
+          \name{Klienci klienta}
+          \descr{Klienci firmy Bioseco, którzy przesyłają zapytania o produkt do wykrywania nietoperzy}
+          \type{Nieożywiony, pośredni}
+          \viewpoint{Ekonomiczny, operatora systemu}
+          \limitations{Brak wpływu na aspekty techniczne}
+          \requ{}
+        \end{stakeholder}
+        \begin{stakeholder}[label={},caption={Regulacje prawne}]
+          \id{UNP 02}
+          \name{Regulacje prawne}
+          \descr{Regulacje prawne wynikające z prawa ochrony przyrody i prawda dotyczącego ocen oddziaływania na środowisko}
+          \type{Nieożywiony, pośredni}
+          \viewpoint{Legislacyjny}
+          \limitations{Nie specyfikuje finansów}
+          \requ{}
+        \end{stakeholder}
+        \clearpage
+
+      \item \textbf{Klienci}
+      
+        Klienci wewnętrzni:
+        \begin{itemize}
+          \item Dziekan
+          \item Promotor
+        \end{itemize}
+
+        Klienci zewnętrzni:
+        \begin{itemize}
+          \item Przedstawiciele Bioseco
+          \item Przedstawiciele klientów Bioseco potrzebujący urządzenia do wykrywania nietoperzy na farmach wiatrowych by sprostać wymogom prawa ochrony przyrody
+          \item Firma Pettersson, producent użytego detektora, wzmacniacza i ich oprogramowania,
+          \item Firma Tribio, główny dostawca nagrań nietoperzy do modelu DL
+        \end{itemize}
+
+      \item \textbf{Charakterystyka użytkowników}
+
+        \textbf{Administrator} będzie zajmować się testowaniem systemu i zgrywaniem bazy danych uzyskanych w trakcie gdy system jest włączony. Liczebność tego użytkownika znajduje się w przedziale od 1 do 5.
+
+        \textbf{Zwykły użytkownik} będzie zajmował się przeglądaniem i analizą danych z nagrań. Liczebność tego użytkownika znajduje się w przedziale od 1 do 20.
+
+    \end{enumerate}
+
   \item \textbf{Wymagania}
+  
+    W niniejszym rozdziale wymienia i opisuje się wymagania narzucone przez klienta - Bioseco, przedstawicieli Uczelni – Dziekana i Promotora, a także przez aktualne standardy prawne dotyczące ochrony przyrody oraz aktualne standardy sprzętowe dotyczące nagrywania i identyfikacji nietoperzy.
+
+    \begin{enumerate}[font=\bfseries]
+      \item \textbf{Wymagania ogólne i dziedzinowe}
+      
+        \begin{requirementstab}[label={tab:requirements:general},caption={Baza danych nagrań głosów nietoperzy}]
+          \id{WO 01}
+          \priority{M}
+          \name{Baza danych nagrań głosów nietoperzy}
+          \descr{Zebranie lub pozyskanie bazy danych głosów nietoperzy oraz jej przygotowanie, która posłuży do stworzenia modelu rozpoznawania wystąpienia nietoperza i/lub gatunku nietoperza.}
+          \sholder{UOB 01, UOP 01, UNB 01}
+          \reqrelated{WO 03}
+        \end{requirementstab}
+        \begin{requirementstab}[label={tab:requirements:general},caption={Ekologia}]
+          \id{WO 02}
+          \priority{M}
+          \name{Ekologia}
+          \descr{System ma chronić nietoperze przed szkodliwym działaniem farm wiatrowych na ich populację}
+          \sholder{UNB 01, UNP 01, UNP 02}
+          \reqrelated{WO 03}
+        \end{requirementstab}
+        \begin{requirementstab}[label={tab:requirements:general},caption={Normy prawa}]
+          \id{WO 03}
+          \priority{M}
+          \name{Normy prawa ochrony przyrody i prawa dotyczącego ocen oddziaływania na środowisko}
+          \descr{System poprzez swoją przyszłą funkcjonalność wyłączania turbiny będzie stanowił alternatywę dla jedynego obecnie rodzaju działań minimalizujących wpływ turbin na nietoperze, czyli 3 lat monitoringu porealizacyjnego i adekwatnych do jego wyników, narzuconych z góry okresowych wyłączeń turbin, co przyniesie znaczne oszczędności dla deweloperów farm wiatrowych.}
+          \sholder{UNP 02}
+          \reqrelated{WO 02}
+        \end{requirementstab}
+        \begin{requirementstab}[label={tab:requirements:general},caption={System rozpoznawania gatunków nietoperzy}]
+          \id{WO 04}
+          \priority{S}
+          \name{System rozpoznawania gatunków nietoperzy}
+          \descr{System do rozpoznawania gatunków nietoperzy jest kosztowny, stworzenie go będzie oprogramowaniem, który przyniesie dodatkowe zyski.}
+          \sholder{UOB 01, UNB01}
+          \reqrelated{}
+        \end{requirementstab}
+        \clearpage
+
+      \item \textbf{Wymagania funkcjonalne}
+      
+        \begin{requirementstab}[label={tab:requirements:func1},caption={System przygotowania i normalizacji danych}]
+          \id{WF01}
+          \priority{M}
+          \name{System przygotowania i normalizacji danych}
+          \descr{Stworzenie potrzebnych funkcji w programie do oddzielenia odstających próbek i przygotowanie bazy danych do uczenia maszynowego oraz/lub uczenia sieci neuronowych}
+          \acceptcrit{Baza danych uczących model oddzielona od próbek odstających i przystosowana do zadanego zadania.}
+          \inputdata{}
+          \preconditions{}
+          \postconditions{}
+          \exceptions{}
+          \implementation{}
+          \sholder{UOB 01}
+          \reqrelated{}
+        \end{requirementstab}
+        \begin{requirementstab}[label={tab:requirements:func1},caption={System rozpoznawania wystąpienia nietoperza}]
+          \id{WF02}
+          \priority{M}
+          \name{System rozpoznawania wystąpienia nietoperza}
+          \descr{Opracowanie algorytmu uczenia maszynowego oraz rozpoznawania wystąpienia nietoperza na żywo poprzez śledzenie sygnałów uzyskanych za pomocą urządzenia do detekcji.}
+          \acceptcrit{Wytrenowany model do rozpoznawania wystąpienia nietoperzy.}
+          \inputdata{}
+          \preconditions{}
+          \postconditions{}
+          \exceptions{}
+          \implementation{}
+          \sholder{UNB 01, UNP 01}
+          \reqrelated{}
+        \end{requirementstab}
+        \begin{requirementstab}[label={tab:requirements:func1},caption={System uczenia sieci neuronowej}]
+          \id{WF03}
+          \priority{C}
+          \name{System uczenia sieci neuronowej}
+          \descr{Opracowanie systemu do uczenia sieci neuronowej rozpoznawania gatunków nietoperzy.}
+          \acceptcrit{Stworzony algorytm do tworzenia modelu do rozpoznawania gatunku nietoperza}
+          \inputdata{}
+          \preconditions{}
+          \postconditions{}
+          \exceptions{}
+          \implementation{}
+          \sholder{UOB 01, UOP 01}
+          \reqrelated{}
+        \end{requirementstab}
+        \begin{requirementstab}[label={tab:requirements:func1},caption={System rozpoznawania gatunku nietoperza}]
+          \id{WF04}
+          \priority{S}
+          \name{System rozpoznawania gatunku nietoperza}
+          \descr{Opracowanie systemu do rozpoznawania gatunku nietoperza za pomocą detektora.}
+          \acceptcrit{Stworzenie modelu oraz połączenie go z urządzeniem do rozpoznawania nietoperzy.}
+          \inputdata{}
+          \preconditions{}
+          \postconditions{}
+          \exceptions{}
+          \implementation{}
+          \sholder{UOB 01}
+          \reqrelated{}
+        \end{requirementstab}
+        \begin{requirementstab}[label={tab:requirements:func1},caption={Interfejs do wizualizacji danych}]
+          \id{WF05}
+          \priority{M}
+          \name{Interfejs do wizualizacji danych}
+          \descr{Stworzenie interfejsu do przeglądania danych pobieranych z bazy danych i wizualizacja tych danych.}
+          \acceptcrit{Stworzony interfejs działający i spełniający swoją funkcję.}
+          \inputdata{}
+          \preconditions{}
+          \postconditions{}
+          \exceptions{}
+          \implementation{}
+          \sholder{UOB 01}
+          \reqrelated{}
+        \end{requirementstab}
+        \clearpage
+
+      \item \textbf{Interfejs z otoczeniem}
+      
+        \begin{requirementstab}[label={tab:requirements:func1},caption={System wyłączający wiatraki}]
+          \id{WF01}
+          \priority{M}
+          \name{System wyłączający wiatraki}
+          \descr{Połączenie systemu wykrycia nietoperza z systemem wyłączającym wiatraki}
+          \acceptcrit{Stworzenie punktu styku, który będzie jako output dawać sygnał do systemu wyłączającego wiatraki.}
+          \inputdata{}
+          \preconditions{}
+          \postconditions{}
+          \exceptions{}
+          \implementation{}
+          \sholder{UNB 01, UNP 01}
+          \reqrelated{}
+        \end{requirementstab}
+        \begin{requirementstab}[label={tab:requirements:func1},caption={Baza danych}]
+          \id{WF02}
+          \priority{M}
+          \name{Baza danych}
+          \descr{Połączenie system z bazą danych, która będzie zbierać dane wystąpienia nietoperza}
+          \acceptcrit{Stworzenie punktu styku, który będzie jako output dawać sygnał do systemu wyłączającego wiatraki.}
+          \inputdata{}
+          \preconditions{}
+          \postconditions{}
+          \exceptions{}
+          \implementation{}
+          \sholder{UOP 01, UNB 01}
+          \reqrelated{}
+        \end{requirementstab}
+        \clearpage
+
+      \item \textbf{Wymagania pozafunkcjonalne}
+      
+
+
+      \item \textbf{Wymagania na środowisko docelowe}
+      
+
+
+    \end{enumerate}
+
   \item \textbf{Odwołania do literatury}
 \end{enumerate}
 
 \section{Diagram przypadków użycia}
-
-\chapter{Karty udziałowca}
-
-
-\begin{stakeholder}[label={tab:stakeholder:someholder},caption={Przykładowy opis udzialowca}]
-    \id{jednoznaczny symbol np. UOB 01, UOB 02 ... dla udziałowców ożywionych bezpośrednich, UNP 01... dla nieożywionych pośrednich itd.}
-    \name{nazwa udziałowca}
-    \descr{opis udziałowca}
-    \type{ożywiony/nieożywiony, bezpośredni/pośredni}
-    \viewpoint{z jakiej perspektywy patrzy udziałowiec np. technicznej, ekonomicznej, operatora systemu itp.}
-    \limitations{ograniczenia udziałowca np. administrator nie powinien specyfikować wymagań finansowych}
-    \requ{tu tylko symbole wymagań wyspecyfikowanych w rozdziale 3}
-\end{stakeholder}
-
-\chapter{Wymagania wszelakie}
-
-Na tabeli \ref{tab:requirements:general} pokazano jak można definiować wymagania ogólne lub dziedzinowe.
-
-\begin{requirementstab}[label={tab:requirements:general},caption={Przykładowe wymaganie ogólne lub dziedzinowe}]
-    \id{jednoznaczny symbol np. WO1, WO2 .. }
-    \priority{ważność wymagania, np. wg skali MoSCoW: M – must (musi być) S – should (powinno być) C – could (może być) W – won't (nie będzie – nie będzie implementowane w danym wydaniu, ale może być rozpatrzone w przyszłości )}
-    \name{krótki opis}
-    \descr{opis szczegółowy, należy dążyć do tego, żeby wszystkie znane na ten moment szczegóły wymagania zostały wydobyte i wyspecyfikowane}
-    \sholder{nazwa udziałowca, który podał wymaganie}
-    \reqrelated{wymagania zależne i uszczegóławiające – odesłanie poprzez identyfikator}
-\end{requirementstab}
-
-Teraz czas na wymagania funkcjonalne, na przykład \ref{tab:requirements:func1}
-
-\begin{requirementstab}[label={tab:requirements:func1},caption={Pryzkładowa tabela z wymaganiami na interfejs z otoczeniem}]
-    \id{jednoznaczny symbol np. FO1, FO2 .. }
-    \priority{ważność wymagania, np. wg skali MoSCoW: M – must (musi być) S – should (powinno być) C – could (może być) W – won't (nie będzie – nie będzie implementowane w danym wydaniu, ale może być rozpatrzone w przyszłości )}
-    \name{krótki opis}
-    \descr{opis szczegółowy, należy dążyć do tego, żeby wszystkie znane na ten moment szczegóły wymagania zostały wydobyte i wyspecyfikowane
-
-    Można zastosować opis jak w User Story
-    \begin{itemize}
-        \item Jako.. (konkretny użytkownik systemu)
-        \item chcę... (pożądana cecha lub problem, który trzeba rozwiązać)
-        \item bo wtedy/ponieważ… (korzyść płynąca z ukończenia story)
-    \end{itemize}
-    }
-    \acceptcrit{Warunki Satysfakcji (Szczegóły dodane na potrzeby  testów akceptacyjnych)}
-    \inputdata{uzupełniane w trakcie sprintu – dane wejściowe, związane z wymaganiem}
-    \preconditions{ uzupełniane w trakcie sprintu – warunki, które muszą być prawdziwe przed wywołaniem operacji}
-    \postconditions{ uzupełniane w trakcie sprintu – warunki, które muszą być prawdziwe po wywołaniu operacji}
-    \exceptions{ uzupełniane w trakcie sprintu – niepożądane sytuacje i sposoby ich obsługi}
-    \implementation{ uzupełniane w trakcie sprintu – opis sposobu realizacji}
-    \sholder{nazwa udziałowca, który podał wymaganie}
-    \reqrelated{wymagania zależne i uszczegóławiające – odesłanie poprzez identyfikator}
-\end{requirementstab}
-
-
-Natomiast tabela \ref{tab:requirements:env1} pokazuje wymagania na interfejs z otoczeniem.
-
-\begin{requirementstab}[label={tab:requirements:env1},caption={Pryzkładowa tabela z wymaganiami na interfejs z otoczeniem}]
-    \id{jednoznaczny symbol np. IO1, IO2 .. }
-    \priority{ważność wymagania, np. wg skali MoSCoW: M – must (musi być) S – should (powinno być) C – could (może być) W – won't (nie będzie – nie będzie implementowane w danym wydaniu, ale może być rozpatrzone w przyszłości )}
-    \name{krótki opis}
-    \descr{opis szczegółowy, należy dążyć do tego, żeby wszystkie znane na ten moment szczegóły wymagania zostały wydobyte i wyspecyfikowane}
-    \acceptcrit{Warunki Satysfakcji (Szczegóły dodane na potrzeby  testów akceptacyjnych)}
-    \inputdata{uzupełniane w trakcie sprintu – dane wejściowe, związane z wymaganiem}
-    \preconditions{ uzupełniane w trakcie sprintu – warunki, które muszą być prawdziwe przed wywołaniem operacji}
-    \postconditions{ uzupełniane w trakcie sprintu – warunki, które muszą być prawdziwe po wywołaniu operacji}
-    \exceptions{ uzupełniane w trakcie sprintu – niepożądane sytuacje i sposoby ich obsługi}
-    \implementation{ uzupełniane w trakcie sprintu – opis sposobu realizacji}
-    \sholder{nazwa udziałowca, który podał wymaganie}
-    \reqrelated{wymagania zależne i uszczegóławiające – odesłanie poprzez identyfikator}
-\end{requirementstab}
-
-Tabela dotycząca wymagań pozafunkcjonalnych \ref{tab:requirements:nonfunc1} jest także widoczne.
-
-\begin{requirementstab}[label={tab:requirements:nonfunc1},caption={Pryzkładowa tabela z wymaganiami pozafunkcjonalnymi}]
-    \id{jednoznaczny symbol np. NFO1, NFO2 .. }
-    \priority{ważność wymagania, np. wg skali MoSCoW: M – must (musi być) S – should (powinno być) C – could (może być) W – won't (nie będzie – nie będzie implementowane w danym wydaniu, ale może być rozpatrzone w przyszłości )}
-    \name{krótki opis}
-    \descr{opis szczegółowy, należy dążyć do tego, żeby wszystkie znane na ten moment szczegóły wymagania zostały wydobyte i wyspecyfikowane}
-    \acceptcrit{Warunki Satysfakcji (Szczegóły dodane na potrzeby  testów akceptacyjnych)}
-    \sholder{nazwa udziałowca, który podał wymaganie}
-    \reqrelated{wymagania zależne i uszczegóławiające – odesłanie poprzez identyfikator}
-\end{requirementstab}
-
 
 \printbibliography[title={Bibliografia}, heading=bibintoc]
 
