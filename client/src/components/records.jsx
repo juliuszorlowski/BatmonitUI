@@ -15,7 +15,7 @@ class Records extends Component {
     turbines: [],
     species: [],
     currentPage: 1,
-    pageSize: 8,
+    pageSize: 10,
     selectedSpecies: null,
     selectedTurbine: null,
     searchQuery: "",

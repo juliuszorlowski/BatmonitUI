@@ -24,17 +24,19 @@ export default function RecordsTable({ records, sortColumn, onSort }) {
       <tbody>
         {records.map((record) => (
           <tr key={record.id}>
-            <td>
-              <Link to={`/records/${record.id}`}>{record.id}</Link>
-            </td>
+            <td>{record.id}</td>
             <td>{record.date}</td>
             <td>{record.turbine.name}</td>
             <td>{record.bat === true ? "YES" : "NO"}</td>
             <td>{record.species.name}</td>
             <td>{record.turbineStopSignal === true ? "YES" : "NO"}</td>
             <td>{record.verification === true ? "YES" : "NO"}</td>
-            <td>{record.audio}</td>
-            <td>{record.spectrogram}</td>
+            <td>
+              <Link to={`/records/${record.id}`}>{record.audio}</Link>
+            </td>
+            <td>
+              <Link to={`/records/${record.id}`}>{record.spectrogram}</Link>
+            </td>
           </tr>
         ))}
       </tbody>
