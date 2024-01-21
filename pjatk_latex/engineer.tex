@@ -176,10 +176,70 @@ Na poniższych modelach przedstawiono najważniejsze elementy logiczne, urządze
 \section{Platforma pobierająca i przetwarzająca nagrania z mikrofonu ultradźwięków}
 
 \section{Model sieci neuronowej}
-
-\section{Baza danych}
+\clearpage
 
 \section{Aplikacja użytkownika}
+
+Aplikacja użytkownika służy użytkownikowi do przeglądania rekordów tworzonych przez model na podstawie zarejestrowanych nagrań. Do celu nawigacji po aplikacji służy pasek menu w górnej części ekranu, który zawiera odnośniki do poszczególnych widoków.
+
+Widok rejestracji (\ref{img:app_register}) pozwala na zarejestrowanie nowego użytkownika. Po dokonaniu rejestracji nowy użytkownik automatycznie zostaje zalogowany. Po zalogowaniu w pasku menu pojawia się przycisk \textit{Logout} służący do wylogowania aktualnie zalogowanego użytkownika.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/app_register}
+  \caption{Widok rejestracji użytkownika}
+  \label{img:app_register}
+\end{figure}
+\clearpage
+
+Do celu zalogowania istniejącego już użytkownika służy widok logowania (\ref{img:app_login}).
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/app_login}
+  \caption{Widok logowania użytkownika}
+  \label{img:app_login}
+\end{figure}
+\clearpage
+
+Linki \textit{Login} i \textit{Register} są widoczne w pasku menu tylko w razie, gdy żaden użytkownik nie jest zalogowany.
+
+Użytkownicy dzielą się na użytkowników zwykłych oraz na użytkowników z prawami administracyjnymi. W razie zalogowania użytkownika o zwykłych prawach obok przycisku \textit{Logout} pojawia się przycisk z podaną przy logowaniu nazwą użytkownika (\ref{img:app_menu_regular_user}).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/app_menu_regular_user}
+  \caption{Widok menu dla zwykłego użytkownika}
+  \label{img:app_menu_regular_user}
+\end{figure}
+\clearpage
+
+W przypadku zalogowania użytkownika z prawami administracyjnymi w pasku menu widoczny jest również przycisk \textit{Users} do widoku listy wszystkich istniejących użytkowników (\ref{img:app_users}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/app_users}
+  \caption{Widok listy użytkowników}
+  \label{img:app_users}
+\end{figure}
+\clearpage
+
+Widok rekordów (\ref{img:app_records} dzieli się na komponenty odpowiedzialne za filtrowanie wyników w górnej części oraz tabelę wyników w dolnej części.
+
+W górnej części widoku rekordów znajduje się panel filtrów z listą wszystkich gatunków nietoperzy. Kliknięcie na któryś z wymienionych gatunków filtruje listę rekordów i wyświetla tylko rekordy zawierające wybrany gatunek. Domyślny wybór fitrowania to \textit{All}, czyli wyświetlanie wszystkich rekordów.
+
+Poniżej panelu filtrów znajduje się komunikat podsumowujący liczbę istniejących w bazie danych rekordów według aktualnie wybranych kryteriów. W razie braku rekordów do wyświetlenia, w tym miejscu znajduje się komunikat o tej treści.
+
+Pod komunikatem znajduje się okno wyszukiwania, które przyjmuje dane wejściowe od użytkownika i pozwala na wyszukiwanie po zawartości tabeli \textit{Date}.
+
+W nagłówku tabeli zawierającej listę rekordów według aktualnych kryteriów filtrowania znajdują się nazwy poszczególnych kolumn odpowiadających nazwom kolumn w bazie danych. Kliknięcie na nazwię kolumny sortuje wyniki po zawartości tej kolumny w kolejności rosnącej lub malejącej, zaś ponowne kliknięcie odwraca kolejność na przeciwną.
+
+Pod tabelą rekordów znajdują się przyciski paginacji, które pozwalając podzielić listę rekordów na osobne strony i wyświetlić zawartość kolejnych stron. Ilość przycisków stron generowana jest dynamicznie w zależności od ilości rekordów spełniających wybrane kryteria wyszukiwania oraz ilości rekordów wyświetlanych na jednej stronie.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/app_records}
+  \caption{Widok listy rekordów}
+  \label{img:app_records}
+\end{figure}
 
 \chapter{Realizacja sieci neuronowej}
 
@@ -221,11 +281,330 @@ Na poniższych modelach przedstawiono najważniejsze elementy logiczne, urządze
 
 \subsection{Learning rate}
 
-\chapter{Realizacja interfejsu użytkownika i bazy danych}
+\chapter{Implementacja aplikacji użytkownika}
 
-\section{Implementacja interfejsu użytkownika}
+Aplikacja użytkownika służy do zbierania i zapisywania w bazie danych rekordów tworzonych na podstawie decyzji modelu sieci neuronowej, które następnie pozwala wyświetlić na liście z możliwością filtrowania i sortowania ich. W skład aplikacji wchodzą: baza danych, serwer oraz interfejs użytkownika.
 
-\section{Implementacja bazy danych}
+Centralną rolę pełni serwer, który pośredniczy w komunikacji z bazą danych i przyjmuje komunikację ze strony modelu sztucznej inteligencji oraz interfejsu użytkownika. Komunikacja ta realizowana jest poprzez interfejs API (application programming interface).
+
+\section{Baza danych}
+
+Wybrana przez autorów projektu technologia bazy danych to MySQL. Jest to jeden z najbardziej rozpowszechnionych systemów relacyjnych baz danych. Do jego zalet należy szeroka obsługa platform i architektur.
+
+Baza danych zawiera tabele records, turbines, species oraz users. Tabela users gromadzi dane zarejestrowanych użytkowników i nie ma relacji z pozostałymi tabelami (\ref{img:db_diagram}).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/db_diagram}
+  \caption{Diagram bazy danych}
+  \label{img:db_diagram}
+\end{figure}
+\clearpage
+
+\section{NodeJS}
+
+Serwer aplikacji został napisany w technologii NodeJS \cite{nodejs}. Technologia ta charakteryzuje się relatywnie niskim prógiem wejścia do tworzenia oprogramowania i otwiera programistom pracującym nad frontendem w języku Javascript na wykorzystanie swojej więdzy w tym języku przy pracy w backendzie. Jednocześnie na ujednolicenie pod względem języka oprogramowania części backendowej i frontendowej. Dzięki temu dobrze nadaje się do zastosowania w niniejszym projekcie.
+
+NodeJS to wieloplatformowe środowisko składające się z V8 (silnika Javascript firmy Google), pętli zdarzeń obsługiwanej przez bibliotekę libUV oraz interfejsu do obsługi niskpoziomowego wejścia-wyjścia.
+
+Do zalet NodeJS należy:
+\begin{enumerate}
+  \item \textbf{Asynchroniczność.} Poprzez nieblokującą obsługę wejścia-wyjścia służy do tworzenia wysoce skalowalnych rozwiązań serwerowych przy maksymalizacji wykorzystania procesora i pamięci.
+  \item \textbf{Wysoka skalowalność.} Pętla zdarzeń pozwala uniknąć tworzenia wielowątkowych rozwiązań. Procesy mogą być uruchamiane współbieżnie lub równolegle. Wywołanie zwrotne (ang. callback) sygnalizuje następnie powodzenie lub niepowodzenie zadania.
+  \item \textbf{Duża popularność.} Dostępne są tysiące bibliotek o otwartym kodzie źródłowym tworzonych przez środowisko NodeJS.
+\end{enumerate}
+
+\section{Biblioteki}
+
+W projekcie użyto następujących otwartych bibliotek, które dostarczyły szeregu funkcjonalności i skróciły czas jego tworzenia:
+\begin{itemize}
+  \item Sequelize
+  \item Express
+  \item Jest
+  \item Supertest
+  \item Joi
+  \item Jsonwebtoken
+\end{itemize}
+
+\subsection{Sequelize}
+
+Do komunikacji z bazą danych wykorzystano bibliotekę Sequelize \cite{sequelize}. Sequelize to narzędzie mapowania obiektowo-relacyjnego (ang. ORM - Object-Relational Mapping), które pełni rolę "pomostu" pomiędzy aplikacją obiektową a relacyjną bazą danych.
+Do zalet ORM należą:
+\begin{itemize}
+  \item odwzorowanie tabel relacyjnej bazy danych na obiekty w obiektowym języku programowania wykorzystanym w aplikacji
+  \item wykonywanie operacji na danych w bazie danych jak na obiektach języka programowania
+  \item uniknięcie nadmiarowego kodu
+  \item wykorzystanie tego samego kodu aplikacji w komunikacji z różnymi bazami danych
+  \item tworzenie zapytań dla wielu tabel
+  \item przyspieszenie i uproszczenie procesu wytworzenia aplikacji
+\end{itemize}
+
+Biblioteka ta pozwoliła na wyeliminowanie w kodzie potrzeby formułowania zapytań w języku SQL, które jest trudne w utrzymaniu z punktu widzenia programisty i podatne na błędy w treści zapytań. Serwer posiada zdefiniowany model odpowiadający każdej tabeli w bazie danych. Na podstawie modelu biblioteka Sequelize ma informacje potrzebne do stworzenia zapytania w języku SQL. Listing \ref{lst:Sequelize_Record.create} przedstawia przykład przekazania szeregu zmiennych w celu zapisania ich jako nowy rekord w bazie danych.
+
+\begin{lstlisting}[language=Java,caption={Przykład tworzenia rekordu z pomocą biblioteki Sequelize}, label={lst:Sequelize_Record.create}]
+  const record = await Record.create({
+    date,
+    turbineId,
+    bat,
+    speciesId,
+    turbineStopSignal,
+    verification,
+    audio,
+    spectrogram,
+  });
+\end{lstlisting}
+
+Biblioteka Sequelize oferuje wbudowaną walidację zapytań po zdefiniowanych w modelu typach danych. Istnieje również możliwość tworzenia niestandardowych komunikatów w razie błędu wykrytego przez walidację, co ukazuje listing \ref{lst:Sequelize_validate}.
+
+\begin{lstlisting}[language=Java,caption={Przykład niestandardowego komunikatu walidacji}, label={lst:Sequelize_validate}]
+  Record.init(
+    {
+      date: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Record must have a date" },
+          notEmpty: { msg: "Date must not be empty" },
+        },
+      },
+    }
+  );
+\end{lstlisting}
+
+Iteracyjne tworzenie projektu programistycznego z relacyjną bazą danych niesie ze sobą duże ryzyko wprowadzenia zmian do bazy danych, które uszkodziłyby jej strukturę i mogłyby doprowadzić do utraty danych. Takie błędne zmiany są trudne to rozpoznania i usunięcia. Biblioteka Sequelize wychodzi na przeciw potrzebie minimalizacji ryzyka przy zmianach w bazie danych poprzez uwzględnianie ich wewnątrz migracji, podobnie do rozwiązań stosowanych w środowisku korporacyjnym (takich jak Hibernate/Liquibase w projektach w języku Java).
+
+Migracja Sequelize jest to funkcja Javascript zawierająca metodę \textit{up} zawierającą kod zmieniający bazę danych oraz metodę \textit{down} specyfikujący kod odwracający zmiany z metody \textit{up}. Migracja jest zawarta wewnątrz pojedynczego pliku o unikalnej nazwie zawierającej datę utworzenia i opis wprowadzanych zmian. Pliki takie biblioteka Sequelize pozwala tworzyć poleceniem w konsoli. Ideą zastosowania migracji jest stworzenie tym sposobem systemu kontroli wersji dla zmian w bazie danych. Każde zmiany w bazie danych powinny zostać poprzedzone utworzeniem pliku migracji i wypełnieniem obu metod. W razie wystąpienia problemów z bazą danych biblioteka Sequelize pozwala za pomocą konsoli na cofanie się w historii zmian i przywrócenie poprzedniego stanu. Przykład migracji ukazuje listing \ref{lst:Sequelize_migration}.
+
+\begin{lstlisting}[language=Java,caption={Przykład pliku migracji}, label={lst:Sequelize_migration}]
+  module.exports = {
+    async up(queryInterface, DataTypes) {
+      await queryInterface.createTable("records", {
+        id: {
+          allowNull: false,
+          autoIncrement: true,
+          primaryKey: true,
+          type: DataTypes.INTEGER,
+        },
+      });
+    },
+    async down(queryInterface, DataTypes) {
+      await queryInterface.dropTable("records");
+    },
+  };
+\end{lstlisting}
+
+O ile zmiany w strukturze tabel bazy danych zarządzane są przez migracje, biblioteka Sequelize daje również możliwość masowego zapełniania bazy danych danymi. Jest to szczególnie przydatne przy procesie implementacji. Pozwala na przyspieszenie i zautomatyzowanie procesu operowania danymi testowymi oraz eliminuje potrzebę bezpośredniego wykonywania zapytań w narzędziu zarządzającym bazą danych (jak np. MySQL Workbench). Do tego celu służą pliki seeder, które w istocie są podobne do migracji, lecz w metodach \textit{up} i \textit{down} należy zawierać kod operujący na danych, nie zaś na strukturze tabel bazy danych. Przykład migracji ukazuje listing \ref{lst:Sequelize_seeder}.
+
+\begin{lstlisting}[language=Java,caption={Przykład pliku seeder}, label={lst:Sequelize_seeder}]
+  module.exports = {
+    async up(queryInterface, Sequelize) {
+      await queryInterface.bulkInsert(
+        "turbines",
+        [
+          {
+            name: "9c.25.be.01.01.0b",
+            createdAt: "2022-07-27 21:04:11",
+            updatedAt: "2022-07-27 21:04:11",
+          },
+        ],
+        {}
+      );
+    },
+  
+    async down(queryInterface, Sequelize) {
+      await queryInterface.bulkDelete("turbines", null, {});
+    },
+  };
+\end{lstlisting}
+
+\subsection{Express}
+
+Serwer w NodeJS do komunikacji z modelem w celu stworzenia rekordów oraz pośredniczenia z interfejsem użytkownika w odczytywaniu zapisanych rekordów wykorzystuje interfejsu API stworzonego z pomocą biblioteki Express \cite{express}.
+
+Biblioteka Express to szablon (ang. framework) dostarczający mechanizmy do:
+\begin{itemize}
+  \item pisania zapytań HTTP dla różnych ścieżek URL (ang. Uniform Resource Locator)
+  \item generowania widoków przez wstawianie danych do modelu
+  \item definiowania ogólnych ustawień w aplikacji, jak np. port wykorzystywany do połączenia lub model wykorzystywany do renderowania odpowiedzi
+  \item dodawania na dowolnym etapie przetwarzania zapytania wywołania oprogramowania pośredniczącego (ang. middleware)
+\end{itemize}
+
+Biblioteka Express pozwoliła na uporządkowanie i czytelne rozmieszczenie zaprogramowanych interfejsów API w imię zasady pojedynczej odpowiedzialności.
+
+\subsection{Joi}
+
+Do walidacji treści wpisywanej przez użytkownika aplikacji przy rejestracji lub logowaniu posłużyła biblioteka Joi. Dostarcza ona wygodny i czytelny szablon tworzenia warunków walidacyjnych. W razie ich niespełnienia przez walidowaną treść któregoś z warunków, zwracany jest błąd o określonej treści. W odróżnieniu od walidacji oferowanej przez bibliotekę Sequelize, Joi pozwala na walidację bardziej wysokopoziomową i nie jest wiązana modelem tworzącym bazę danych.
+
+Listing \ref{lst:Joi} przedstawia wykorzystanie biblioteki Joi wewnątrz funkcji pośredniczącej do potwierdzania toższamości użytkownika.
+
+\begin{lstlisting}[language=Java,caption={Przykład wykorzystania Joi}, label={lst:Joi}]
+  function validate(req) {
+    const schema = Joi.object({
+      email: Joi.string().min(5).max(255).required().email(),
+      password: Joi.string().min(5).max(255).required(),
+    });
+  
+    return schema.validate(req);
+  }
+\end{lstlisting}
+
+\subsection{Jsonwebtoken}
+
+Biblioteka Jsonwebtoken dostarcza metody to generowania i walidowania tzw. tokenów, czyli zaszyfrowanych kluczy. Po udanym logowaniu użytkownika generowany i przesyłany wewnątrz odpowiedzi jest token. Następnie token ten przechowywany jest przez przeglądarkę i dodawany do kolejnych zapytań w komunikacji między interfejsem użytkownika a serwerem poprzez interfejs API. Serwer sprawdza za każdym razem, czy przychodzące zapytanie posiada właściwy token, a w przeciwnym wypadku odmawia przesłania odpowiedzi.
+
+\subsection{Jest}
+
+Za szablon do pisania testów jednostkowych (ang. unit test) posłużyła biblioteka Jest. Jest to popularna biblioteka do testowania rozwiązań w języku Javascript, dostarczająca szablony pisania testów i metody asercji. Dodatkowo biblioteka ta dostarcza narzędzia do analizy i wygenerowania raportu procentowego stopnia pokrycia testami (ang. test coverage) całego kody aplikacji. Pozwala w ten sposób łatwo ustalić, które części aplikacji wymagają jeszcze utworzenia testów. Rysunek (\ref{img:test_coverage}) ukazuje przykładowy raport pokrycia testami.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/test_coverage}
+  \caption{Przykładowy raport pokrycia testami}
+  \label{img:test_coverage}
+\end{figure}
+
+Listing \ref{lst:Jest_unit_test} przedstawia przykład testu jednostkowego z wykorzystaniem biblioteki Jest.
+
+Metoda \textit{describe} pozwala podzielić testy na zestawy odpowiadające konkretnej funcjonalności. Metoda \textit{it} definiuje pojedynczy przypadek testowy, a sama jej nazwa czytana w języku angielskim nakierowuje na zgodne z konwencją nazywanie przypadku testowego w formie słownego opisu spodzewanego wyniku.
+
+\begin{lstlisting}[language=Java,caption={Test jednostkowy z wykorzystaniem Jest}, label={lst:Jest_unit_test}]
+  describe("auth middleware", () => {
+    it("should populate req.user with the payload of a valid JWT", () => {
+      const user = {
+        uuid: new DataTypes.UUIDV4(),
+        name: "Username",
+        isAdmin: true,
+      };
+      const token = generateAuthToken(user);
+      const req = {
+        header: jest.fn().mockReturnValue(token),
+      };
+      const res = {};
+      const next = jest.fn();
+  
+      auth(req, res, next);
+  
+      expect(req.user).toMatchObject(user);
+    });
+  });
+\end{lstlisting}
+
+\subsection{Supertest}
+
+Biblioteka Supertest w połączeniu z biblioteką Jest posłużyła do utworzenia testów integracyjnych. W projekcie posłużyła ona do testowania działania interfejsów API.
+
+Listing \ref{lst:Supertest} przedstawia przykład testu integracyjego z wykorzystaniem biblioteki Jest. Dostarczana przez bibliotekę Jest metoda \textit{beforeEach} zawiera kod wykonywany przed każdym przypadkiem testowym, zaś metoda \textit{afterEach} po każdym przypadku testowym.
+
+\begin{lstlisting}[language=Java,caption={Test integracyjny z wykorzystaniem Supertest i Jest}, label={lst:Supertest}]
+  describe("/api/records", () => {
+    beforeEach(async () => {
+      server = require("../../index");
+    });
+    afterEach(async () => {
+      await server.close();
+      await Record.truncate();
+    });
+  
+    describe("GET /", () => {
+      it("should return all records", async () => {
+        const res = await request(server).get("/api/records");
+  
+        expect(res.status).toBe(200);
+      });
+    });
+  });
+\end{lstlisting}
+
+\section{ReactJS}
+
+Interfejs użytkownika został napisany w języku Javascript przy wykorzystaniu biblioteki ReactJS, jednej z najbardziej popularnych bibliotek do tworzenia interfejsów graficznych.
+
+Stosowanie biblioteki ReactJS oferuje wiele korzyści:
+\begin{enumerate}
+  \item \textbf{Tworzenie dynamicznych aplikacji internetowych.} Wymaga napisania mniejszej ilości kodu i oferuje więcej funkcjonalności w odróżnieniu do pracy z samym językiem Javascript.
+  \item \textbf{Lepsza wydajność.} Wykorzystując wirtualny DOM (ang. Document Object Model) pozwala na porównywanie poprzedniego stanu każdego komponentu i odświeżanie tylko tych komponentów, które uległy zmianie, w przeciwieństwie do odświeżania wszystkich komponentów. Dzięki temu aplikacje stworzone w ReactJS są bardziej responsywne, szybciej się ładują. Na przykład, ReactJS pozwala na proste korzystanie w tworzonym interfejsie graficznym z asynchroniczności, w której reakcja na akcję użytkownika może być natychmiastowa, a komponent oczekujący na dane nie wstrzymuje aplikacji i wyświetli je, kiedy tylko je otrzyma.
+  \item \textbf{Komponenty wielokrotnego użytku.} Aplikacja w ReactJS składa się z wielu komponentów. Każdy z nich posiada logikę, która może zostać wielokrotnie wykorzystana w innym miejscu aplikacji, co pozwala na skrócenie czasu tworzenia aplikacji. Ponadto, podział na komponenty pozwala na funkcjonalne uporządkowanie kodu i poprawienie jego czytelności.
+  \item \textbf{Jednokierunkowy przepływ danych.} ReactJS przestrzega jednokierunkowego przepływu danych. Oznacza to, że dane są przekazywane tylko w dół hierarchii od komponentów nadrzędnych do dziedziczących. Widok aplikacji jest rezultatem stanu danych. Stan danych zmienia się pod wpływem akcji. Gdy następują akcje, stan zostaje odświeżony. W rezultacie łatwiejsze staje się unikanie oraz poszukiwanie błędów w kodzie.
+  \item \textbf{Szybsze wdrożenie się.} ReactJS pozwala mniej doświadczonym programistom na relatywnie szybki start przy tworzeniu zaawansowanych dynamicznych aplikacji.
+  \item \textbf{Ciągły rozwój i popularność.} ReactJS z uwagi na swoją popularność posiada dużą społeczność użytkowników, co skutkuje szeroką dostęnością materiałów edukacyjnych oraz bogatym wsparciem technicznym.
+\end{enumerate}
+
+W okresie powstawania niniejszej aplikacji nastąpiły zmiany w obowiązujących trendach odnośnie rodzaju wykorzystywanych komponentów. Z początku w środowisku ReactJS panowała tendencja do stosowania komponentów klasowych \ref{lst:class_component}, czyli programowania obiektowo w sposób zaczerpnięty z obiektowych języków programowania, takich jak np. Java. Komponent klasowy jest klasą dziedziczącą po klasie Component. Posiada stan, akcje, które wpływają na stan, oraz metody cyklu życia (ang. lifecycle methods). Metody cyklu życia zawierają kod, który ma się wykonać przy uruchomieniu (componentDidMount), odświeżeniu (componentDidUpdate) lub zamknięciu (componentWillUnmount) komponentu.
+
+\begin{lstlisting}[language=Java,caption={Przykład komponentu klasowego}, label={lst:class_component}]
+  class Records extends Component {
+    state = {
+      records: [],
+      turbines: [],
+      species: [],
+      currentPage: 1,
+      pageSize: 8,
+      selectedSpecies: null,
+      selectedTurbine: null,
+      searchQuery: "",
+      sortColumn: { path: "title", order: "asc" },
+    };
+  
+    async populateSpecies() {
+      const { data } = await getSpecies();
+      const species = [{ id: "", name: "All" }, ...data];
+      this.setState({ species });
+    }
+
+    async componentDidMount() {
+      await this.populateSpecies();
+      await this.populateTurbines();
+      await this.populateRecords();
+    }
+  }
+\end{lstlisting}
+
+Do zastosowań nie wymagających śledzenia stanu komponentu służył bezstanowy komponent funkcjonalny \ref{lst:stateless_functional_component}, który w zasadzie zwraca tylko kod JSX będący wykorzystaniem znaczników HTML wewnątrz kodu Javascript. Jest to wygodne rozwiązanie do minimalistycznego i czytelnego programowania widoków, szczególnie do wykorzystania w wielu miejscach z innymi danymi przekazanymi do komponentu w formie argumentów.
+
+\begin{lstlisting}[language=Java,caption={Przykład bezstanowego komponentu funcjonalnego}, label={lst:stateless_functional_component}]
+  const input = ({ name, label, error, ...rest }) => {
+    return (
+      <div className="form-group">
+        <label htmlFor={name}>{label}</label>
+        <input {...rest} name={name} id={name} className="form-control" />
+        {error && <div className="alert alert-danger">{error}</div>}
+      </div>
+    );
+  }
+\end{lstlisting}
+
+W ReactJS wraz z wersją 16.8 wprowadzono możliwość śledzenia stanu wewnątrz komponentów funkcjonalnych \ref{lst:functional_component}. Sprawiło to, że komponenty funkcjonalne stały się równoważne do komponentów klasowych pod względem oferowanych funkcjonalności, lecz zachowały dotychczasową przewagę pod względem prostoty do wykorzystania i czytelności kodu. W komponencie funkcjonalnym metoda useEffect pełni funkcję metod cyklu życia komponentu klasowego. Stan komponentu przechowywany jest w zmiennych. Każdej zmiennej stanu komponentu odpowiada według konwencji metoda o tej samem nazwie z przedrostkiem \textit{set}, która pełni funkcję settera. Stan początkowy zmiennych stanu inicjowany jest przez metodę useState.
+
+\begin{lstlisting}[language=Java,caption={Przykład komponentu funcjonalnego}, label={lst:functional_component}]
+  export default function Species() {
+    const [species, setSpecies] = useState([]);
+    const [selectedSpecies, setSelectedSpecies] = useState([]);
+  
+    useEffect(() => {
+      async function fetchData() {
+        const { data } = await getSpecies();
+        const species = [{ id: "", name: "All" }, ...data];
+        setSpecies(species);
+      }
+      fetchData();
+    }, []);
+  
+    function handleSpeciesSelect(species) {
+      setSelectedSpecies(species);
+    }
+  }
+\end{lstlisting}
+
+Z uwagi na wspomniane zalety komponentów funcjonalnych posiadających stan obecnie zalecane jest stosowanie komponentów funkcjonalnych zamiast klasowych w nowych projektach pisanych w ReactJS. Dostępne są również dobrze opisane materiały pomagające w migracji istniejącego kodu do komponentów funkcjonalnych \cite{react-component}.
+
+%github
+%clickup
+%Wykaz skrótów i pojęć
+%przypadki testowe
+%pełen podział pracy w projekcie
+%Wykaz rysunków
+%Wykaz tabel
+%Wykaz listingów
 
 \chapter{Testowanie}
 
