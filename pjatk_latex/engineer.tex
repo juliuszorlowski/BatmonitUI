@@ -16,24 +16,50 @@
 \author{Magdalena Wybraniec}{s19798}{Sztuczna Inteligencja}{Niestacjonarny}
 \consultant{Dawid Gradolewski}
 \consultant{Damian Dziak}
-\projectgoals{Projekt typu R\&D, ma na celu wytworzenie systemu softwarowego pobierającego i analizującego dźwięk pochodzący z mikrofonu ultradźwięków oraz rozpoznającego pojawienie się nietoperzy, zapisujący nagrania w bazie danych i wizualizujący je w interfejsie - panelu administratora. Dodatkowo celem będzie przygotowanie analizy odległości i kątów z jakiej mikrofon rejestruje głos nietoperza i adekwatnie – zaproponowanie liczby i rozstawienia urządzeń nasłuchowych, tak aby pokryć kąt 360 stopni wokół turbiny na farmie wiatrowej.}
-\productsandservices{System wykrywający nietoperze z nagrań ultradźwięków, możliwy do połączenia z systemem wyłączania turbiny}
+\projectgoals{Projekt typu R\&D, ma na celu przygotowanie systemu 
+składającego się z dostępnego na rynku mikrofonu ultradźwięków 
+odpowiedniego do zastosowania na turbinie wiatrowej oraz 
+wytworzenienie oprogramowania pobierającego i analizującego dźwięk 
+pochodzący z mikrofonu oraz rozpoznającego pojawienie się nietoperzy,
+ zapisujący nagrania w bazie danych i wizualizujący je w interfejsie 
+ - panelu administratora. Dodatkowo celem będzie przygotowanie 
+ analizy odległości i kątów z jakiej mikrofon rejestruje głos 
+ nietoperzy i adekwatnie – zaproponowanie liczby i rozstawienia 
+ urządzeń nasłuchowych, tak aby pokryć kąt 360 stopni wokół turbiny 
+ na farmie wiatrowej.}
+\productsandservices{System rejestrujący i wykrywający nietoperze 
+z nagrań ultradźwięków, możliwy do połączenia z systemem wyłączania 
+turbiny}
 \mainfunctionalities{
 \begin{itemize}
-\item{Mikrofon ultradźwiękowy wraz z oprogramowaniem nagrywającym dźwięk}
-\item{Urządzenie do którego nagrania są przesyłane i przechowywane oraz automatycznie analizowane w poszukiwaniu na nim nietoperza}
-\item{Baza danych do której trafiają przeanalizowane nagrania}
+\item{Mikrofon ultradźwiękowy wraz z oprogramowaniem nagrywającym 
+dźwięk}
+\item{Urządzenie, do którego nagrania są przesyłane i w którym są 
+przechowywane oraz automatycznie analizowane w poszukiwaniu na nim 
+nietoperza}
+\item{Baza danych, do której trafiają przeanalizowane nagrania}
 \item{Interfejs wizualizujący nagrania}
 \end{itemize}
 }
-\successmeasure{Oprogramowanie wykrywające i rozpoznające pojawienie się nietoperzy oraz wytworzenie urządzenia do rejestracji ultradźwięków. Dokonana analiza ulokowania urządzeń rejestrujących na wiatraku oraz jej akceptacja przez konsultanta z firmy BIOSECO.}
+\successmeasure{Oprogramowanie wykrywające i rozpoznające pojawienie 
+się nietoperzy oraz wytworzenie lub dobranie z dostępnych na rynku 
+urządzenia do rejestracji ultradźwięków. Dokonana analiza ulokowania 
+urządzeń rejestrujących 
+na wiatraku oraz jej akceptacja przez konsultanta z firmy Bioseco.}
 \projlimitations{
-Czas trwania projektu jest ograniczony do momentu przekazania książki dyplomowej do dziekanatu uczelni PJATK.
-Ograniczona dostępność nagrań głosów nietoperzy w full-spectrum – możliwa sytuacja gdy tworzenie projektu będzie odbywało się na podstawie nagrań przetworzonych.
-Aktywność nietoperzy ma miejsce od końca marca do października – w związku z tym brak możliwości nagrywania ich aktywności w trakcie semestru zimowego – a tym samym brak możliwości wykonania prób hardware’u przed kwieniem 2022.
+Czas trwania projektu jest ograniczony do momentu przekazania książki 
+dyplomowej do dziekanatu uczelni PJATK.
+Ograniczona dostępność nagrań głosów nietoperzy typu full-spectrum – 
+możliwa sytuacja gdy tworzenie projektu będzie odbywało się na 
+podstawie nagrań przetworzonych. Aktywność nietoperzy ma miejsce od 
+końca marca do października – w związku z tym brak 
+możliwości nagrywania ich aktywności w trakcie semestru zimowego – 
+a tym samym brak możliwości wykonania prób hardware’u przed kwietniem 
+2024.
 }
 \date{\today}
 \nabstract{TODO}
+
 
 
 
@@ -49,27 +75,96 @@ Aktywność nietoperzy ma miejsce od końca marca do października – w związk
 
 \chapter{Wstęp}\label{ch:wstep}
 
-U podłoża rozwoju alternatywnych źródeł elektryczności leży uczynienie branży energetycznej bardziej „zieloną”, aby życie przyszłych pokoleń było przynajmniej tak samo dobre, jak nasze jest dzisiaj. W poszukiwaniu rozwiązań, które zabezpieczają społeczności w dobie globalnego ocieplenia,  zrównoważony rozwój stał się rdzeniem idei alternatywnych źródeł energii. Druga część historii posiada jednak swą ciemną stronę – wiele danych naukowych wskazuje na znaczący niekorzystny wpływ farm wiatrowych na przyrodę, a zwłaszcza nietoperze. A są one ważnym elementem bioróżnorodności i poszukiwanego zrównoważonego rozwoju. Autorzy pracy dyplomowej w kooperacji z firmą Bioseco wypracowali oparty o sztuczną inteligencję system, który w przypadku dalszego jego rozwijania, zmniejszy śmiertelność nietoperzy na farmach wiatrowych i pomoże utrzymać branży wiatrowej miano ekologicznej. Chiropterologom zaś oraz urzędnikom oceniającym projekty wiatrowe pod kątem realizacji przyrodniczych norm prawnych, zapewni dodatkowe narzędzia minimalizacji wpływu farm na nietoperze.
+U podłoża rozwoju alternatywnych źródeł elektryczności leży uczynienie 
+branży energetycznej bardziej „zieloną”, aby życie przyszłych pokoleń 
+było przynajmniej tak samo dobre, jak nasze jest dzisiaj. W 
+poszukiwaniu rozwiązań, które zabezpieczają społeczności w dobie 
+globalnego 
+ocieplenia,  zrównoważony rozwój stał się rdzeniem idei alternatywnych 
+źródeł energii. Druga 
+część historii posiada jednak swą ciemną stronę – wiele danych 
+naukowych wskazuje na znaczący 
+niekorzystny wpływ farm wiatrowych na przyrodę, a zwłaszcza 
+nietoperze \cite{Wytyczne}. A są one ważnym elementem bioróżnorodności i 
+poszukiwanego zrównoważonego rozwoju. Autorzy pracy dyplomowej 
+w kooperacji z firmą Bioseco wypracowali oparty o sztuczną 
+inteligencję system, który w przypadku dalszego jego rozwijania, 
+zmniejszy śmiertelność nietoperzy na farmach wiatrowych 
+i pomoże utrzymać branży wiatrowej miano ekologicznej. 
+Chiropterologom zaś oraz urzędnikom oceniającym projekty wiatrowe 
+pod kątem realizacji przyrodniczych norm prawnych, zapewni 
+dodatkowe narzędzia minimalizacji wpływu farm na nietoperze.
 
 \section{Cele projektu}
 
 W ramach sformułowanego tematu wyszczególniono następujące cele badawcze i programistyczne:
 
 \begin{itemize}
-\item{realizację działającego produktu o minimalnym zestawie funkcjonalności (ang: Minimal Viable Product, dalej: MVP) rejestrującego i identyfikującego nietoperze oraz wysyłającego sygnał wyłączenia – docelowo do systemu turbiny wiatrowej – składającego się z części sprzętowej i oprogramowania: modelu konwolucyjnych sieci neuronowych (ang: convoluted neural network, dalej CNN) oraz z aplikacji użytkownika oraz bazy danych,}
-\item{opracowanie koncepcji liczby i układu mikrofonów ultradźwięków docelowego produktu poprzez przeprowadzenie badań terenowych i laboratoryjnych w zakresie zasięgu pracy testowanego sprzętu, tak by cały system pokrywał obszar 360 stopni dookoła turbiny wiatrowej, w odległości do około 100 m,}
-\item{opracowanie modelu sieci neuronowych uzyskującego przynajmniej 90\% skuteczności w identyfikacji nietoperzy - borowca wielkiego Nyctalus noctula i karlików Pipistrellus sp., głównych ofiar kolizji z turbinami wiatrowymi,}
-\item{przyczynienie się do rozwiązania realnego problemu występującego w obszarze branży energetyki wiatrowej oraz ochrony przyrody,}
-\item{rozpoczęcie współpracy z Bioseco Sp. z o.o. w celu zaprezentowania umiejętności studentów firmie oraz ich szybszego rozwijania dzięki kontaktowi z realnymi problemami biznesowymi, merytorycznymi, produkcyjnymi i wdrożeniowymi, rozwiązywanymi aktualnie przed doświadczony zespół specjalistów firmy.}
-\end{itemize}
+  \item{realizację działającego produktu o minimalnym zestawie 
+  funkcjonalności (ang: Minimal Viable Product, dalej: MVP) 
+  rejestrującego i wykrywającego nietoperze oraz wysyłającego sygnał 
+  wyłączenia – docelowo do systemu turbiny wiatrowej – składającego się 
+  z części sprzętowej i oprogramowania: aplikacji użytkwnika i bazy danych
+  oraz modelu konwolucyjnych sieci neuronowych (ang: convoluted neural 
+  network, dalej CNN) oraz z aplikacji użytkownika i bazy danych,}
+  \item{opracowanie koncepcji liczby i układu mikrofonów ultradźwięków 
+  docelowego produktu poprzez przeprowadzenie badań terenowych w zakresie
+   zasięgu pracy testowanego sprzętu, tak by cały system pokrywał obszar 
+   360 stopni dookoła turbiny wiatrowej, w odległości do około 100 m,}
+  \item{opracowanie modelu sieci neuronowych uzyskującego przynajmniej 
+  75\% skuteczności w identyfikacji nietoperzy - borowca wielkiego 
+  Nyctalus noctula i karlików Pipistrellus sp., głównych ofiar kolizji 
+  z turbinami wiatrowymi,}
+  \item{przyczynienie się do rozwiązania realnego problemu występującego 
+  w obszarze branży energetyki wiatrowej oraz ochrony przyrody,}
+  \item{rozpoczęcie współpracy z Bioseco Sp. z o.o. w celu 
+  zaprezentowania umiejętności studentów firmie oraz ich szybszego 
+  rozwijania dzięki kontaktowi z realnymi problemami biznesowymi, 
+  merytorycznymi, produkcyjnymi i wdrożeniowymi, rozwiązywanymi 
+  aktualnie przed doświadczony zespół specjalistów firmy.}
+  \end{itemize}
+  
 
 \chapter{Podłoże projektu}
 
 \section{Geneza problemu}
 
-Lądowe farmy wiatrowe mogą mieć znaczący wpływ na środowisko naturalne, w szczególności na nietoperze. Wszystkie gatunki nietoperzy w Polsce są objęte ścisłą ochroną gatunkową i podlegają ochronie prawnej zgodnie z Rozporządzeniem Ministra Środowiska z dnia 16 grudnia 2016 r. w sprawie ochrony gatunkowej zwierząt \cite{Rozporządzenie}. Tym samym inwestor realizujący inwestycję wiatrową przestrzegając prawa ochrony przyrody jest zobligowany uzyskać tzw. Decyzję Środowiskową (dalej: DŚ). Zawarte są w niej wszelkie informacje dotyczące: chiropterofauny danego obszaru, szacowanego wpływu inwestycji na nietoperze, działań zapobiegających i minimalizujących ewentualny wpływ inwestycji na nietoperze, tak by spełniała ona założenia dobrych praktyk i przepisy prawa – polskiego i międzynarodowego. 
+Lądowe farmy wiatrowe mogą mieć znaczący wpływ na środowisko 
+naturalne, w szczególności na nietoperze \cite{Wytyczne}. Wszystkie 
+gatunki nietoperzy 
+w Polsce są objęte ścisłą ochroną gatunkową i podlegają ochronie 
+prawnej zgodnie z Rozporządzeniem Ministra Środowiska z dnia 16 
+grudnia 2016 r. w sprawie ochrony gatunkowej zwierząt 
+\cite{Rozporządzenie}. Tym samym inwestor realizujący inwestycję 
+wiatrową przestrzegając prawa ochrony przyrody jest zobligowany 
+uzyskać tzw. Decyzję Środowiskową (dalej: DŚ). Zawarte są w niej 
+wszelkie informacje dotyczące: chiropterofauny danego obszaru, 
+szacowanego wpływu inwestycji na nietoperze, działań zapobiegających 
+i minimalizujących ewentualny wpływ inwestycji na nietoperze, tak by 
+spełniała ona założenia dobrych praktyk i przepisy prawa – polskiego 
+i międzynarodowego. 
 
-Dotychczas przyjętą praktyką w przypadku wykrycia zbyt dużych aktywności nietoperzy w monitoringu przedrealizacyjnym było wpisanie do DŚ obowiązkowych wyłączeń turbin w okresach, w których te zbyt duże aktywności wykryto \cite{Wytyczne}. Jednak dynamika użytkowania przestrzeni przez nietoperze jest bardzo zmienna i po realizacji inwestycji ssaki te mogą mieć bardzo zróżnicowaną aktywność i w całych wyznaczonych okresach nie muszą być zagrożone. A wyłączenia turbin na długie okresy w roku wiążą się z ogromnymi stratami inwestorów. System opracowany w ramach niniejszej pracy inżynierskiej może zapoczątkować nowe standardy na poziomie krajowym, europejskim i światowym, w zakresie niezbędnych działań minimalizujących wpływ siłowni na nietoperze – zamiast dotychczas stosowanych, z góry określonych wyłączeń na długi okres, mogłyby być wykorzystywane wyłączenia sterowane na bieżąco przez system – turbiny zatrzymywane byłyby tylko w czasie, kiedy większe liczebności nietoperzy faktycznie się pojawiają.
+Dotychczas przyjętą praktyką w przypadku wykrycia zbyt dużych 
+aktywności nietoperzy w monitoringu przedrealizacyjnym było wpisanie 
+do DŚ obowiązkowych wyłączeń turbin w okresach, w których te zbyt duże 
+aktywności wykryto \cite{Wytyczne}. Dzieje się tak między innymi dlatego, 
+że nie istniał wcześniej system wykrywający nietoperze w czasie 
+rzeczywistym, w którym akcja, taka jak wyłączenie turbiny mogła być podjęta 
+o bieżące aktywności nietoperzy, warunki pogodowe i inne. 
+Tymczasem dynamika użytkowania 
+przestrzeni przez nietoperze jest bardzo zmienna w czasie i po realizacji 
+inwestycji ssaki te w całych wyznaczonych okresach nie muszą być zagrożone. 
+A wyłączenia 
+turbin na długie okresy w roku wiążą się z ogromnymi stratami 
+inwestorów. System zaproponowany w ramach niniejszej pracy inżynierskiej 
+może przyczynić się do wspierania rozwoju nowych standardów na poziomie 
+krajowym, europejskim i światowym, w zakresie niezbędnych działań 
+minimalizujących wpływ farm wiatrowych na nietoperze. Zamiast dotychczas 
+stosowanych, z góry określonych wyłączeń na długi okres przy określonej 
+prędkości wiatru, mogłyby być wykorzystywane wyłączenia sterowane na bieżąco 
+przez system – turbiny 
+zatrzymywane byłyby tylko w czasie, kiedy większe liczebności nietoperzy 
+faktycznie się pojawiają.
 
 \section{Aktualne rozwiązania konkurencyjne}
 
@@ -77,7 +172,46 @@ Intensywny rozwój sieci neuronowych oraz internetu rzeczy (ang: IoT) przyczyni�
 
 \section{IoT}
 
-\section{Sieci neuronowe}
+Mimo, że brak jest jednej definicji tego terminu, 
+i w części publikacji nacisk kładziony jest na różne elementy tego 
+paradygmatu \cite{iot-gov}, bardzo dobrej definicji dostarcza Kavin Ashton, 
+uważany z ojca sformułowania "Internet of Things". Jest to "otwarta i 
+kompleksowa sieć inteligentnych obiektów, które mają zdolność do 
+samoorganizacji, udostępniania 
+informacji, danych i zasobów, reagowania i działania w obliczu sytuacji
+i zmian w otoczeniu" \cite{Ashton2002}. Definicję tę można uzupełnić tą 
+sformułowaną przez IEEE jako sieć elementów - każdy wyposażony w czujniki - 
+które są podłączone do internetu \cite{IEEE-iot}.
+
+\section{Sensory akustyczne}
+
+\section{Sieci neuronowe i uczenie głębokie}
+Obecnie sieci neuronowe są bardzo ważną częścią świata nowoczesnych 
+technologii i znajdują liczne zastosowania w obszarach autoamatyzujących 
+wiele procesów takich jak analiza i diagnostyka medyczna \cite{diabetes}, 
+wykrywanie oszustw finansowych \cite{laundring}, rekomendacje sprzedażowe 
+\cite{fashion}, sterowanie procesów przemysłowych \cite{irigation} i wiele innych.
+
+Uczenie głębokie jest podzbiorem sztucznej inteligencji. W procesie uczenia
+głębokiego posiadając zbiór z odpowiednio zidentyfikowanymi elementami wykonujemy
+serię nieliniowych przekształceń, tak aby otrzymana funkcja rozdzieliła zbiór 
+niezidentyfikowanych elementów w taki sposób, by w każdej kategorii znalazły się 
+tylko elementy danej klasy.
+
+Struktura matematyczno-programistyczna, służąca do wytworzenia funkcji
+klasyfikującej elementy zbioru, to właśnie sieć neuronowa. Zamysł konstrukcji
+sieci neuronowej został zainspirowany budową ludzkiego mózgu. Składa się ona
+z połączonych ze sobą warstw wielu neuronów. Każdy neuron składa się z 
+wartości początkowej, wagi i funkcji aktywacji, wszystkie te wartości są 
+wartościami matematycznymi. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/neuron}
+  \caption{Model neuronu. Źródło: \cite{neuron}}
+  \label{img:neuron}
+\end{figure} 
+
 
 \section{Kooperacja z Bioseco S.A.}
 
