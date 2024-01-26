@@ -315,7 +315,7 @@ Program BatSound dołączony do mikrofonu posłużył do wizualizacji zarejestro
 Powyższe doświadczenie dowiodło, iż mikrofon Pettersson M500-384 spełnia swoje zadanie. Mikrofon rejestruje dźwięki w zakresie niesłyszalnym dla człowieka i poprawnie wizualizuje zarejestrowane nagranie.
 
 \subsection{Wytworzenie sztucznych głosów nietoprzy do testów terenowych mikrofonu}
-W identyczny sposób jak głosy nietoprzy do wstępnych testów sprzętu przygotowano też dźwięki do testów terenowych. Dźwięki miały częstotliwości: 16-20 kHz, 25-35 kHz, 37-40 kHz i 40-48 kHz. Poszczególne dźwięki zostały zaprojektowane tak, aby reprezentować zakresy częstotliwości najczęściej występujących grup nietoperzy, a jednocześnie nie nakładajły się na siebie – dzięki czemu można je było łatwo rozróżnić w wynikach. Poszczególne zakresy częstotliwości odpowiadają następującym gatunkom:
+W identyczny sposób jak głosy nietoprzy do wstępnych testów sprzętu przygotowano też dźwięki do testów terenowych. Dźwięki miały częstotliwości: 16-20 kHz, 25-35 kHz, 37-40 kHz i 40-48 kHz. Poszczególne dźwięki zostały zaprojektowane tak, aby reprezentować zakresy częstotliwości najczęściej występujących grup nietoperzy, a jednocześnie nie nakładały się na siebie – dzięki czemu można je było łatwo rozróżnić w wynikach. Poszczególne zakresy częstotliwości odpowiadają następującym gatunkom:
 
 \begin{itemize}
   \item{16-20 kHz – borowiec, borowiaczek,}
@@ -350,16 +350,75 @@ System SMART firmy Wildlife Acoustics został zainstalowany na jednej z farm wia
 \end{figure} 
 
 \section{Konfiguracja sieciowa}
+Konfiguracja sieciowa systemu SMART została zrezlizowana przez Bioseco. SMART został połączony poprzez Ethernet do skrzynki zasilająco-sieciowej Bioseco zainstalowanej w turbinie wiatrowej, poprzez którą system podłączony jest światłowodem do Internetu. Port sieciowy udostępniony z turbiny skonfigurowany jest w taki sposób, aby poprzez VPN w sieci Bioseco możliwy był dostęp do danych z mikrofonu.
 
 \section{Konsultacje z Wildlife Acoustics}
+Konsultacje z firmą Wildlife Acoustics obejmowały takie elementy jak:
+\begin{itemize}
+  \item{lokalizacja mikrofonu na turbinie wiatrowej (wieża/gondola),}
+  \item{lokalizacja kontrolera na turbinie wiatrowej (wieża/gondola),}
+  \item{liczba mikrofonów,}
+  \item{sposób montażu.}
+\end{itemize}
+
+W celu poprawnego zaadresowaniu powyższych elementów należało uwzględnić następujące aspekty:
+
+\begin{itemize}
+  \item{wysokość przelotów nietoperzy, których dotyczy problem śmiertelności,}
+  \item{możliwości technologiczne sprzętu, np. najdłuższa możliwa długość kabla Ethernet łączącego mikrofon z kontrolerem,}
+  \item{możliwość wytwarzania echa przez elemeny turbiny bądź w wyniku nieprawidłowego montażu mikrofonu, co może powodować nieprawidłowości w rejestracji głosów nietoperzy,}
+  \item{możliwość lokalizacji sprzętu w turbinie z punktu widzenia deweloperów farm wiatrowych, np. problem lokalizacji źródła zasilania w gondoli,}
+  \item {możliwości technologiczne montażu w różnych częściach turbiny i problem dostępu do sprzętu w przypadku jego konserwacji czy naprawy,}
+  \item {wyniki testów terenowych przeprowadzonych w ramach niniejszej pracy dyplomowej.}
+\end{itemize}
+
+
+\section{Metodyka testów}
+Sztucznie przygotowane dźwięki emitowano w kilku konfiguracjach, składających się z różnych odległości, kątów względem mikrofonu i częstotliwości. Dźwięki o częstotliwościach: 16-20 kHz, 25-35 kHz, 37-40 kHz i 40-48 kHz odtwarzane były w odległościach 7, 20, 40, 60, 80, 100 i 120 m od mikrofonu. Dźwięki odtwarzane były w czterech liniach przebiegających pod kątami 0\textdegree, 30\textdegree, 60\textdegree i 90\textdegree w stosunku do przodu mikrofonu. Dźwięki odtwarzane były z zestawu głośnika ultradźwiękowego Pettersson L400 oraz laptopa z kartą dźwiękową w konfiguracji umożliwiającej odtwarzanie dźwięków o wysokiej częstotliwości (16-bit, 48 kHz). Dzwięki odtwarzane były w możliwie najwyższym natężeniu. Każdy dźwięk był emitowany w określonej odległości i pod określonym kątem od trzech do sześciu razy, w większości przypadków trzy razy.
+
 
 \section{Realizacja testów w terenie}
+Badania przeprowadzono w dniu 8 września 2023 roku zgodnie z przedstawioną powyżej metodyką w następujących warunkach atmosferycznych: 26\textdegree C, zachmurzenie – 10\%, prędkość wiatru – 2-4 m/s, kierunek wiatru – NE, wilgotność – 40\% (\ref{img:fieldtests}).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/fieldtests.png}
+  \caption{Testy terenowe systemu SMART z użyciem głośnika Pettersson L400 i laptopa. Źródło: Bioseco}
+  \label{img:fieldtests}
+\end{figure} 
 
 \section{Wyniki testów}
+Każda częstotliwość w każdej odległości i pod każdym kątem od mikrofonu została wyemitowana trzykrotnie (w większości przypadków) (\ref{img:angles}). Jeżeli wykryto co najmniej jedno z tych odtworzeń, dźwięk przy tych ustawieniach odległości i kąta uznawano za wykryty.
+\clearpage
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/angles.png}
+  \caption{Zilustrowanie konfiguracji odległości i kątów od przodu mikrofonu, pod jakimi odtwarzane były dźwięki o poszczególnych częstotliwościach. Źródło: Google Maps}
+  \label{img:angles}
+\end{figure} 
+
+Poniższe wykresy ilustrują odległości detekcji dźwięku w poszczególnych konfiguracjach odległości i kąta, w podziale na poszczególne częstotliwości.
+\clearpage
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{sprz/detectability.png}
+  \caption{Odległości detekcji dla poszczególnych częstotliwości i kątów od przodu mikrofonu.}
+  \label{img:detectability}
+\end{figure} 
+
+Na podstawie tych wyników można zauważyć następujące prawidłowości:
+\begin{itemize}
+  \item{Odległość detekcji ultradźwięków jest największa dla najniższych częstotliwości i maleje wraz ze wzrostem częstotliwości. Maksymalna odległość dotyczy częstotliwości 16-20 kHz i wynosi do 60 m, a najmniejsza odległość dla częstotliwości 37-48 kHz i wynosi do 20 m. Oznacza to, że gatunki takie jak borowiec i borowiaczek są wykrywane z odległości do 60 m, a karliki i inne nietoperze o wysokiej częstotliwości z maksymalnie 20 m.,}
+  \item{Gdyby progi odległości były mniejsze, odległości wykrywania byłyby dokładniejsze i w większości przypadków wyższe,}
+  \item{Częstotliwości 16-35 kHz są wykrywane równie dobrze, gdy dźwięki emitowane są pod kątem od 0\textdegree do 60\textdegree, wykrywalność zmniejsza się o 20-33\%, gdy dźwięki są emitowane pod kątem 90\textdegree,}
+  \item{Dla wyższych częstotliwości – 37-48 kHz, większe znaczenie może mieć kąt padania dźwięku, gdyż w przypadku kątów 30\textdegree i 60\textdegree odległość detekcji zmniejsza się o ponad 50\% w porównaniu do kąta 0\textdegree. Niemniej jednak w przypadku częstotliwości 37-40 kHz przy 90\textdegree wykrywalność jest taka sama jak przy kącie 0\textdegree, dlatego wnioski nie są do końca jednoznaczne. Nie badano także odległości 10 i 15 m, co w tym przypadku mogłoby znacząco poprawić uzyskiwane pokrycie odległości.}
+\end{itemize}
 
 \section{Propozycja liczby i rozmieszczenia mikrofonów}
+W celu przygotowania planu liczby i rozmieszczenia mikrofonów na turbinie wiatrowej wykorzystano informacje z konslutacji z firmą Wildife Acoustics oraz testów ternowych przeprowadzonych w ramach niniejszej pracy.
 
-\chapter{Struktura produktu}
+\chapter{Struktura systemu}
 
 Struktura wytworzonego produktu została przedstawiona w podziale na poszczególne komponenty.
 
@@ -815,6 +874,11 @@ Z uwagi na wspomniane zalety komponentów funcjonalnych posiadających stan obec
 %Wykaz rysunków
 %Wykaz tabel
 %Wykaz listingów
+
+\chapter{System w działaniu}
+
+\section{Pobieranie i przekazanie danych z mikrofonu do aplikacji}
+\section{Przekazanie danych z mikrofonu do identyfikacji gatunku}
 
 \chapter{Testowanie}
 
