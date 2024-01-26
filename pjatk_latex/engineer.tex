@@ -212,8 +212,10 @@ wartościami matematycznymi.
   \label{img:neuron}
 \end{figure} 
 
-
 \section{Kooperacja z Bioseco S.A.}
+Bioseco S.A. jest innowacyjną polską firmą technologiczną z siedzibą w Gdańsku, która opracowała systemy wizyjne wykorzystujące sztuczną inteligencję do ochrony zwierząt, głównie ptaków, na farmach wiatrowych i lotniskach. System opracowany i rozwijany jest w kierunku maksymalizacji ochrony zwierząt i minimalizacji strat produkcji. W związku z tym, że aktualnie większość klientów stanowią operatorzy farm wiatrowych, a obok problemu śmiertelności ptaków, drugim najważniejszym przyrodniczym problemem jest śmiertelność nietoperzy, w planach firmy znalazła się również eksploracja tego tematu i możliwość rozwoju technologii do ochrony nietoperzy. Jedna z osób z zespołu inżynierskiego posiada już wiedzę dziedzinową z zakresu zainteresowań Bioseco S.A. Po pomyślnych konsultacjach z firmą przygotowano temat i zakres współpracy spełniający wymogi pracy dyplomowej a jednocześnie zakres zainteresowań przedsiębiorcy.
+
+ 
 
 \chapter{Metody pracy}
 
@@ -235,19 +237,50 @@ wartościami matematycznymi.
 
 \section{Analiza zagrożeń}
 
-\chapter{Prace badawczo-rozwojowe i projektowanie}
+\chapter{Prace badawczo-rozwojowe - projektowanie}
 
 \section{Konsultacje z Bioseco S.A.}
+W ramach kooperacji z Bioseco S.A. przeprowadzono spotkania wspomagające zespół inżynierski w procesie wytwórczym, udostępniono większość niezbędnego sprzętu oraz wiedzę z zakresu prowadzenia badań ternowych i opracowania danych, wytwarzania oprogramowania i działania dedykowanych sprzętów. Zrealizowano konfigurację sieciową udostępnionego sprzętu, tak aby umżliwić zdalny dostęp do danych z mikrofonu ultradźwieków. Zainstalowano również testowo mikrofon ultradźwięków na turbinie wiatrowej.
 
-\section{Konsultacje chiropterologiczne}
+\section{Konsultacje chiropterologiczne i detektorowe}
+W początkowej fazie przygotowania projektu przeprowadzono konsultacje chiropterologiczne obejmujące: pozyskanie zidentyfikowanych nagrań nietoperzy, typu nagrań jakich nalezy użyć do uczenia głębokiego, rodzaju rejestratorów ultradźwięków jakie mogą być wykorzystane na turbinie wiatrowej w rozwiązaniu końcowym. Konsultacje te przeprowadzono z najlepszymi polskimi chiropterologami oraz polskim, niemieckim i amerykańskim wytwórcą detektorów. Chiropterolodzy, z którymi przeprowadzono kolsultacje to: Aneta Zapart, Konrad Bidziński i Joanna Furmankiewicz. Firmy wytwarzające detektory, z którymi prowadzono kosultacje to: Animal Sound Labs, EcoObs, Wildlife Acoustics.
 
 \section{Mikrofon ultradźwięków spełniający wymogi końcowego produktu}
+W procesie definiowania cech sprzętu jakie powinien posiadać mikrofon i rejestrator ultrdźwięków wyszczególniono następujące cechy:
+  \begin{itemize}
+    \item{możliwie najwyższa jakość rejestrowanych ultradźwięków,}
+    \item{możliwie największa odległość rejestrowanych ultradźwięków,}
+    \item{wodoodporność,}
+    \item{możliwość sprzętowa do integracji ze sprzętem i oprogramowaniem umożliwiającym pobieranie danych w czasie rzeczywistym.}
+  \end{itemize}
+
+W początkowym okresie prac nad systemem nie istniał mikrofon spełniające wszystkie powyższe kryteria. W mikrofonie otrzymanym początkowo z Bioseco brakowało wodoodporności. W detektorze Batcorder firmy EcoObs i mikrofonie SMM-U2 Wildlife Acoustics brakowało bezpośredniej możliwości podłączenia do urządzenia typu Raspberry Pi i nieograniczonego dostępu do danych. Wykonano próby współpracy z Animal Sound Labs, podczas których używając dostępnych najlepszych mikrofonów posiadanych przez firmę oraz projektując odpowiednią drogę analogowo-cyfrową z możliwością połączenia przez USB do urządzenia typu Raspberry Pi miał powstać odpowiedni mikrofon, jednak próby te zakończyły się niepowodzeniem z uwagi na ograniczenia czasowe Animal Sound Labs w zaproponowanym terminie. W tym czasie na rynku pojawiło się nowe urządzenie firmy Wildlife Acoustics - system SMART, który dostarczył wszystkich niezbędnych elementów, jakie wymagane były od sprzętu do realizacji niniejszej pracy dyplomowej (\ref{img:smart}). 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/smart.png}
+  \caption{System SMART firmy Wildlife Acoustics. Źródło: Wildlife Acoustics}
+  \label{img:smart}
+\end{figure} 
 
 \section{Odtwarzanie ultradźwięków}
+Do wyemitowania ultradźwięków niezbędne są urządzenia obsługujące co najmniej dwukrotnie wyższą częstotliwość niż emitowane dźwięki. Wynika to z twierdzenia Nyquista-Shannona, zgodnie z którym częstotliwość próbkowania z sygnału ciągłego ("analogowego") na dyskretny ("cyfrowy")musi być co najmniej dwukrotnie wyższa od najwyższej składowej widma sygnału aby sygnał został odtworzony poprawnie i nie dochodziło do zjawiska aliasingu \cite{probkowanie}. W zależności od możliwości karty dźwiękowej w komputerze użytym jako generator ultradźwięków, należy bądź ustawić maksymalną wartość próbkowania karty, bądź podłączyć wzmacniacz zwiększający maksymalną częstotliwość odtwarzania.
+
+Do wstępnych testów poprawności działania sprzętu użyto wzmacniacza iFi Zen Dac o maksymalnej częstotliwości odtwarzania 384 kHz, a do testów terenowych mikrofonu - laptopa DELL G3 z maksymalną częstotliwością próbkowania karty dźwiękowej ustawioną na 96 kHz.
 
 \section{Głosy nietoperzy typu full-spectrum}
+Dźwięk typu full-spectrum, to rodzaj nagrania i analizy spektralnej dźwięku, w którym ujęte jest pełne spektrum nagrywanych częstotliwości. W odróżnieniu np. od nagrań typu zero-crossing posidają dużo więcej informacji o dźwięku, co przedstawiono na ilustracji (\ref{img:fullspectrum}). Z tego powodu nagrania takie są najlepsze do analizy gatunków nietoperzy, a wykorzystanie tego typu nagrań może dać najlepsze efekty w treningu sieci neuronowej oraz predykcji gatunków.
 
-\subsection{Wytworzenie sztucznego głosu nietoperza w programie Audacity}
+Tego typu nagrania generowane są tylko przez część detektorów ultradźwięków - tylko przez najnowocześniejsze rekordery, co wpłynęło na zmniejszenie liczby potencjalnych źródeł nagrań do treningu sieni neuronowej.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/fullspectrum.png}
+  \caption{Porównanie dźwięku typu full-spectrum (po lewej) z dźwiękiem typu zero-crossing (po prawej). Źródło: \cite{fullspectrum}}
+  \label{img:fullspectrum}
+\end{figure} 
+
+\subsection{Wytworzenie sztucznych głosów nietoprzy do wstępnych testów sprzętu}
 
 W celu przetestowania działania sprzętu rejestrującego i oprogramowania przetwarzającego zarejestrowane dźwięki, przeprowadzono doświadczenie polegające na sztucznym wytworzeniu dźwięków, które imitowały by głos nietoperza.
 Pierwszym etapem było wygenerowanie w programie Audacity sinusoidalnej fali dźwiękowej z początkową częstotliwością 51 kHz i końcową częstotliwością 42 kHz, amplitudą początkową 0 i amplitudą końcową 1, interpolacją logarytmiczną oraz czasem trwania 25 ms (\ref{img:wykres_fali}).
@@ -281,7 +314,50 @@ Program BatSound dołączony do mikrofonu posłużył do wizualizacji zarejestro
 
 Powyższe doświadczenie dowiodło, iż mikrofon Pettersson M500-384 spełnia swoje zadanie. Mikrofon rejestruje dźwięki w zakresie niesłyszalnym dla człowieka i poprawnie wizualizuje zarejestrowane nagranie.
 
+\subsection{Wytworzenie sztucznych głosów nietoprzy do testów terenowych mikrofonu}
+W identyczny sposób jak głosy nietoprzy do wstępnych testów sprzętu przygotowano też dźwięki do testów terenowych. Dźwięki miały częstotliwości: 16-20 kHz, 25-35 kHz, 37-40 kHz i 40-48 kHz. Poszczególne dźwięki zostały zaprojektowane tak, aby reprezentować zakresy częstotliwości najczęściej występujących grup nietoperzy, a jednocześnie nie nakładajły się na siebie – dzięki czemu można je było łatwo rozróżnić w wynikach. Poszczególne zakresy częstotliwości odpowiadają następującym gatunkom:
+
+\begin{itemize}
+  \item{16-20 kHz – borowiec, borowiaczek,}
+  \item{25-35 kHz – mroczek posrebrzany, mroczek późny, mroczek pozłocisty i kilka gatunków z rodzaju Myotis,}
+  \item{37-40 kHz – karlik większy i kilka gatunków z rodzaju Myotis}
+  \item{40-48 kHz – karlik większy i karlik malutki.}
+\end{itemize}
+
+Większość z tych nietoperzy to gatunki szczególnie narażone na kolizje z turbinami wiatrowymi, to jest: borowiec, borowiaczek, karliki czy mroczek posrebrzany.
+
 \subsection{Zebranie nagrań nietoperzy}
+Zebranie nagrań nietoperzy odpowiedniego typu i odpowiedniej ich liczby rodziło kilka problemów:
+\begin{itemize}
+  \item{nagrania typu full-spectrum pochądzą z najnowoczesniejszych detektorów, które nie są używane przez wsystkich chiropterologów, więc ogranicza to grupę osób posiadających takie nagrania,}
+  \item{nagrania powinny pochodzić ze środowiska podobnego do lokalizacji turbin wiatrowych, najlepiej z turbiny wiatrowej z uwagi na podobne składy gatunkowe nietoperzy jakie napotykane będę przez urzadzenie po wdrożeniu, a więc powinny pochodzić z monitoringu porealizacyjnego, który prowadzony jest w Polsce przez niewielką grupę chiropterologów, co zmniejsza liczbę osób posiadających takie nagrania}
+  \item{nagrań musi być możliwie dużo, do celów skutecznego treningu sieci neuronowej}
+  \item{kwestie związane z własnością, potencjalne koszty i związane z tym negocjacje.}
+\end{itemize}
+
+Po trwających kilka miesięcy poszukiwaniach osób mogących udostępnić takie nagrania, negocjacjach warunków przekazania nagrań oraz samym procesie przekazywania nagrań, udało się pozyskać 71,7 GB danych, w tym 18 412 nagrań zawierających odgłosy nietoperzy oraz inne dźwięki, takie jak szumy pochodzące z otoczenia.
+
+\chapter{Prace badawczo-rozwojowe - testy terenowe}
+
+\section{Montaż systemu SMART na turbinie wiatrowej}
+System SMART firmy Wildlife Acoustics został zainstalowany na jednej z farm wiatrowych, na których operuje firma Bioseco S.A. 14 lipca 2023 (\ref{img:smart-installed}). 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/smart-installed.png}
+  \caption{System SMART firmy Wildlife Acoustics zainstalowany na turbinie wiatrowej. Źródło: Bioseco}
+  \label{img:smart-installed}
+\end{figure} 
+
+\section{Konfiguracja sieciowa}
+
+\section{Konsultacje z Wildlife Acoustics}
+
+\section{Realizacja testów w terenie}
+
+\section{Wyniki testów}
+
+\section{Propozycja liczby i rozmieszczenia mikrofonów}
 
 \chapter{Struktura produktu}
 
