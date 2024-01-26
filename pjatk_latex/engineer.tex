@@ -222,18 +222,77 @@ Bioseco S.A. jest innowacyjną polską firmą technologiczną z siedzibą w Gda�
 \section{Proces wytwórczy}
 
 \subsection{Przyjęte podejście}
+Zastosowano podejście hybrydowe: Water-Scrum-Fall. Prace rozpoczęto od przygotowania wymagań systemowych, analiz i wstępnego projektu systemu. W kolejnej fazie wytwarzania oprogramowania zastosowano metodę programowania zwinnego w oparciu o plany i dokumentację z pierwszego etapu, korygowane na bieżąco przy każdej itereacji. W ostateniej fazie, po zakończeniu etapu zwinnego, przewidziano testy systemowe i integracyjne.
 
 \subsection{Organizacja zespołu}
+Grupa inżynierska była samoorganizującym się zespołem. Część funkcji była silniej przypisana do konkretnych członków grupy:
+Juliusz Orłowski - Software Developer, Jakub Prucnal - AI Developer, Software Engineer, Magdalena Wybraniec - Product Owner, Project Manager, specjalista dziedzinowy. 
 
 \subsection{Charakterystyka przyrostów}
 
-\section{Srodowisko technologiczne}
+\section{Środowisko technologiczne}
 
 \subsection{Technologie}
+Sprzęt wykorzystany do realizacji ostatecznego rozwiązania to system SMART firmy Wildlife Acoustics. Pozostałe najważniejsze sprzęty wykorzystane do realizacji projektu to głośnik ultradźwiękowy Pettersson L400 i laptop DELL G3.
+
+Model sieci neuronowej napisany został w języku Python z wykorzysteniem bibliotek PyTorch i TorchAudio.
+
+Baza danych została przygotowana w MySQL.
+
+Interfejs użytkownika został napisany w języku JavaScript z uzyciem biblioteki ReactJS. Serwer aplikacji został napisany w technologii NodeJS. Użyto również szeregu bibliotek wspomagających tworzenie aplikacji, bazy danych i testów: Sequelize, Express, Jest, Supertest, Joi, Jsonwebtoken. 
+
 
 \subsection{Infrastuktura techniczna}
+Na infrastrukturę techniczną, która umożliwiła realizację kluczowych elementów projektu dyplomowego składały się:
+\begin{itemize}
+  \item{Internet,}
+  \item{sieć lokalna LAN firmy Bioseco,}
+  \item{sieć światłowodowa turbiny wiatrowej,}
+  \item{sprzęt komputerowy prywatny i służbowy,}
+  \item{przęt do rejestracji nietoperzy (mikrofony ultradźwięków oraz system SMART),}
+  \item{przęt do odtwarzania głosów nietoperzy (głośnik ultradźwiękowy Pettersson L400),}
+  \end{itemize}\
+  \newline
+
 
 \subsection{Infrastuktura komunikacyjna i dokumentacja}
+Kominikacja w ramach projektu odbywała się pomiędzy następującymi jednostkami:
+\begin{itemize}
+  \item{w obrębie grupy,}
+  \item{pomiędzy grupą i Promotorem,}
+  \item{pomiędzy grupą i Konsultantami.}
+  \end{itemize}\
+  \newline
+
+Komunikacja w obrębie grupy inżynierskiej oraz pomiędzy grupą i Konsultantami z Bioseco S.A. i pozostałymi specjalistami odbywała się z wykorzystaniem wielu mediów:
+\begin{itemize}
+  \item{osobiście - spotkania w ramach zajęć na Uczelni,}
+  \item{osobiście - spotkania poza zajęciami na Uczelni,}
+  \item{osobiście - spotkania w ramach konsultacji,}
+  \item{osobiście - spotkania w ramach pracy w Bioseco S.A.,}
+  \item{aplikację Teams,}
+  \item{aplikację Zoom,}
+  \item{aplikację ClickUp,}
+  \item{grupę w aplikacji WhatssApp,}
+  \item{mailowo poprzez maile uczelniane, prywatne i służbowe}
+  \item{telefonicznie.}
+  \end{itemize}\
+  \newline
+
+  Komunikacja pomiędzy grupą inżynierską a Promotorem odbywała się poprzez następujące media:
+\begin{itemize}
+  \item{osobiście - spotkania w ramach zajęć na Uczelni,}
+  \item{aplikację Teams,}
+  \item{mailowo poprzez maile uczelniane.}
+  \end{itemize}\
+  \newline
+
+Dokumentacja prowadzona była w:
+\begin{itemize}
+  \item{repozytorium na GitHub,}
+  \item{aplikacji Teams,}
+  \item{aplikacji ClickUp.}
+  \end{itemize}
 
 \section{Analiza zagrożeń}
 
@@ -899,8 +958,6 @@ Z uwagi na wspomniane zalety komponentów funcjonalnych posiadających stan obec
 \subsection{Testy integracyjne}
 
 \subsection{Testy funkcjonalne}
-
-\subsection{Testy akceptacyjne}
 
 \chapter{Przyszłość produktu i komercjalizacja}
 
