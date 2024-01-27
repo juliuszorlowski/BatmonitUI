@@ -477,46 +477,6 @@ Kluczowe zasoby sprzętowe rozwiązania, to system SMART firmy Wildlife Acoustic
 \section{Model sieci neuronowej}
 Do treningu i predykcji gatunków nietoperzy użyta został sieć konwolucyjna składająca się z czterech bloków konwolucyjnych (z warstwą konwolucyjną, funkcją aktywacji ReLU i warstwą max-pooling), warstwy spłaszczającej do przestrzeni jednowymiarowej (warstwa flatten), warstwy fully-connected (w PyTorch nazywaną "linear") oraz ostatniej warstwy softmax, pozwalającej na uzyskanie wartości prawdopodobieństw przynależności nagrania do danej klasy (gatunku nieoperza).
 
-Parametry pierwszej warstwy konwolucyjnej:
-\begin{itemize}
-  \item{liczba kanałów na wejściu - 1}
-  \item{liczba kanałów na wyjściu (i liczba filtrów) - 16,}
-  \item{rozmiar filtra ("kernel size") - 3,}
-  \item {przsunięcie filtra ("stride") - 1,}
-  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
-\end{itemize}
-
-
-Parametry drugiej warstwy konwolucyjnej:
-Warstwa konwolucyjna
-\begin{itemize}
-  \item{liczba kanałów na wejściu - 16}
-  \item{liczba kanałów na wyjściu (i liczba filtrów) - 32,}
-  \item{rozmiar filtra ("kernel size") - 3,}
-  \item {przsunięcie filtra ("stride") - 1,}
-  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
-\end{itemize}
-
-
-Parametry trzeciej warstwy konwolucyjnej:
-\begin{itemize}
-  \item{liczba kanałów na wejściu - 32}
-  \item{liczba kanałów na wyjściu (i liczba filtrów) - 64,}
-  \item{rozmiar filtra ("kernel size") - 3,}
-  \item {przsunięcie filtra ("stride") - 1,}
-  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
-\end{itemize}
-
-Parametry czwartej warstwy konwolucyjnej:
-\begin{itemize}
-  \item{liczba kanałów na wejściu - 64}
-  \item{liczba kanałów na wyjściu (i liczba filtrów) - 128,}
-  \item{rozmiar filtra ("kernel size") - 3,}
-  \item {przsunięcie filtra ("stride") - 1,}
-  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
-\end{itemize}
-
-
 W każdej z warstw konwolucyjnych zastosowano funkcję aktywacji ReLU i warstwę max-pooling o filtrze w rozmiarze 2 ("stride").
 \clearpage
 
@@ -586,34 +546,89 @@ Pod tabelą rekordów znajdują się przyciski paginacji, które pozwalając pod
 \chapter{Realizacja sieci neuronowej}
 
 \section{Przygotowanie danych}
-
-\subsection{Czyszczenie}
+Przygotowanie danych obejmowało podpisanie nagrań zgodnie z wykazem gatunków nietoperzy przypisanych do danych nagrań, które znajdowały się w pliku CSV.
 
 \subsection{Dobór typu spektogramu}
+Do treningu użyto dźwięków przetworzonych na obrazy. Rozważano użycie zwykłego spektrogramu i mel-spectrogramu, jednak zdecydowano się na użycie zwykłego spectrogramu, ponieważ dawał on lepszy obraz. W przypadku bardzo delikatnych głosów nietoperzy na mel-spectrogramie pulsy były często niewidoczne.
 
 \subsection{Cięcie}
-
-\subsection{Augmentacja}
+W celu uzyskania jednolitych wielkości danych na wejściu wszystkie nagrania pociąto na odcinki dwusekundowe. W przypadku gdy ostatni element był krótszy niż dwie sekundy uzupełniano tę część zerami.
 
 \section{Dobór sieci neuronowej}
+Po przeglądzie literatury, konsultacjach z ekspertami oraz weryfikacji zasobów czasowych zdecydowano się ostatecznie na użycie konwolucyjnej sieci neuronowej jako sieci przystępnej w implementacji a jdnocześnie potencjalnie dającej dobre wyniki.
 
 \subsection{Przegląd literatury}
 
-\subsection{Konsultacje}
 
 \section{Dobór parametrów sieci neuronowej}
 
+\subsection{Parametry warstw sieci}
+Sieć konwolucyjna składa się z czterech bloków konwolucyjnych (z warstwą konwolucyjną, funkcją aktywacji ReLU i warstwą max-pooling), warstwy spłaszczającej do przestrzeni jednowymiarowej (warstwa "flatten"), warstwy fully-connected (w PyTorch nazywaną "linear") oraz ostatniej warstwy softmax, pozwalającej na uzyskanie wartości prawdopodobieństw przynależności nagrania do danej klasy (gatunku nieoperza).
+
+Parametry pierwszej warstwy konwolucyjnej:
+\begin{itemize}
+  \item{liczba kanałów na wejściu - 1}
+  \item{liczba kanałów na wyjściu (i liczba filtrów) - 16,}
+  \item{rozmiar filtra ("kernel size") - 3,}
+  \item {przsunięcie filtra ("stride") - 1,}
+  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
+\end{itemize}
+
+
+Parametry drugiej warstwy konwolucyjnej:
+Warstwa konwolucyjna
+\begin{itemize}
+  \item{liczba kanałów na wejściu - 16}
+  \item{liczba kanałów na wyjściu (i liczba filtrów) - 32,}
+  \item{rozmiar filtra ("kernel size") - 3,}
+  \item {przsunięcie filtra ("stride") - 1,}
+  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
+\end{itemize}
+
+
+Parametry trzeciej warstwy konwolucyjnej:
+\begin{itemize}
+  \item{liczba kanałów na wejściu - 32}
+  \item{liczba kanałów na wyjściu (i liczba filtrów) - 64,}
+  \item{rozmiar filtra ("kernel size") - 3,}
+  \item {przsunięcie filtra ("stride") - 1,}
+  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
+\end{itemize}
+
+Parametry czwartej warstwy konwolucyjnej:
+\begin{itemize}
+  \item{liczba kanałów na wejściu - 64}
+  \item{liczba kanałów na wyjściu (i liczba filtrów) - 128,}
+  \item{rozmiar filtra ("kernel size") - 3,}
+  \item {przsunięcie filtra ("stride") - 1,}
+  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
+\end{itemize}
+
+
+W każdej z warstw konwolucyjnych zastosowano funkcję aktywacji ReLU i warstwę max-pooling o filtrze w rozmiarze 2 ("stride").
+
 \subsection{Funkcje aktywacji}
+Funkcja aktywacji używana jest do obliczania wartości neuronów w warstwach wyjściowych.
+
+W warstwach konwolucyjnych jako funkcji aktywacji użyto funkcji ReLU. (Rectified Linear Unit). Jest to najczęściej używana faunkcja aktywacji w warstwach ukrytych. Do jej zalet należą szybkość i nieliniowość.
+
+W ostatniej warstwie użyto funkcji aktywacji softmax. Przekształca ona wartości uzyskiwane na wyjściu tak, aby ich suma była równa 1, dzięki czemu dobrze modeluje prawdopodobieństwo. Jest to najczęsciej wykorzystywana funkcja w warstwach wyjściowych.
 
 \subsection{Funkcja błędu}
+Funkcja ta jest często używana w sieciach neuronowych w problemach klasyfikacji. Określa ona jak dobrze model przewiduje klasy - im mniejsza wartość funkcji błędu, tym większa dokładnosć modelu. Podczas uczenia się sieci dąży się do zmniejszania wartości fukcji błędu. W sieci neuronowej użytej w niniejszej pracy wykorzystano funkcję entropii krzyżowej.
 
 \subsection{Optymalizatory}
+Optymalizator jest to funkcja lub algorytm decydująca o tym jak zmienić wagi sieci na podstawie funkcji błędu, tak aby zmniejszyć wartość tej funkcji. Optymalizator wływa na to jak szybko sieć będzie się uczyć poprzez zmianę jej parametrów oraz jak będzie sieć poradzi sobie z problemami takimi jak utknięcie w lokalnym minimum. W sieci neuronowej przedstawionej w niniejszej pracy wykorzystano optymalizator Adam (Adaptive Moment Estimation). Optymalizotor ten jest najczęsciej wykorzystywanym i dającym najczęściej najlepsze wyniki.
 
-\subsection{Regularyzacja}
+\section{Konstrukcja sieci neuronowej}
 
-\subsection{Parametry warstw sieci}
+\subsection{Konwersja dźwięków na spektrogramy}
 
-\subsection{Transfer learning}
+\subsection{Ładowanie danych}
+
+\subsection{Trenowanie na zbiorze treningowym}
+
+\subsection{Przewidywanie wyniku na zbiorze testowym}
 
 \section{Skuteczność sieci neuronowej}
 
