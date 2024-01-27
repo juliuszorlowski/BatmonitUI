@@ -491,7 +491,6 @@ Widok rejestracji (\ref{img:app_register}) pozwala na zarejestrowanie nowego uż
   \caption{Widok rejestracji użytkownika}
   \label{img:app_register}
 \end{figure}
-\clearpage
 
 Do celu zalogowania istniejącego już użytkownika służy widok logowania (\ref{img:app_login}).
 \begin{figure}[h]
@@ -512,7 +511,6 @@ Użytkownicy dzielą się na użytkowników zwykłych oraz na użytkowników z p
   \caption{Widok menu dla zwykłego użytkownika}
   \label{img:app_menu_regular_user}
 \end{figure}
-\clearpage
 
 W przypadku zalogowania użytkownika z prawami administracyjnymi w pasku menu widoczny jest również przycisk \textit{Users} do widoku listy wszystkich istniejących użytkowników (\ref{img:app_users}.
 
@@ -522,9 +520,8 @@ W przypadku zalogowania użytkownika z prawami administracyjnymi w pasku menu wi
   \caption{Widok listy użytkowników}
   \label{img:app_users}
 \end{figure}
-\clearpage
 
-Widok rekordów (\ref{img:app_records} dzieli się na komponenty odpowiedzialne za filtrowanie wyników w górnej części oraz tabelę wyników w dolnej części.
+Widok rekordów (\ref{img:app_records}) dzieli się na komponenty odpowiedzialne za filtrowanie wyników w górnej części oraz tabelę wyników w dolnej części.
 
 W górnej części widoku rekordów znajduje się panel filtrów z listą wszystkich gatunków nietoperzy. Kliknięcie na któryś z wymienionych gatunków filtruje listę rekordów i wyświetla tylko rekordy zawierające wybrany gatunek. Domyślny wybór fitrowania to \textit{All}, czyli wyświetlanie wszystkich rekordów.
 
@@ -836,6 +833,7 @@ if __name__ == "__main__":
 Aplikacja użytkownika służy do zbierania i zapisywania w bazie danych rekordów tworzonych na podstawie decyzji modelu sieci neuronowej, które następnie pozwala wyświetlić na liście z możliwością filtrowania i sortowania ich. W skład aplikacji wchodzą: baza danych, serwer oraz interfejs użytkownika.
 
 Centralną rolę pełni serwer, który pośredniczy w komunikacji z bazą danych i przyjmuje komunikację ze strony modelu sztucznej inteligencji oraz interfejsu użytkownika. Komunikacja ta realizowana jest poprzez interfejs API (application programming interface).
+\clearpage
 
 \section{Baza danych}
 
@@ -849,7 +847,6 @@ Baza danych zawiera tabele records, turbines, species oraz users. Tabela users g
   \caption{Diagram bazy danych}
   \label{img:db_diagram}
 \end{figure}
-\clearpage
 
 \section{NodeJS}
 
@@ -870,8 +867,6 @@ W projekcie użyto następujących otwartych bibliotek, które dostarczyły szer
 \begin{itemize}
   \item Sequelize
   \item Express
-  \item Jest
-  \item Supertest
   \item Joi
   \item Jsonwebtoken
 \end{itemize}
@@ -1002,69 +997,6 @@ Listing \ref{lst:Joi} przedstawia wykorzystanie biblioteki Joi wewnątrz funkcji
 
 Biblioteka Jsonwebtoken dostarcza metody to generowania i walidowania tzw. tokenów, czyli zaszyfrowanych kluczy. Po udanym logowaniu użytkownika generowany i przesyłany wewnątrz odpowiedzi jest token. Następnie token ten przechowywany jest przez przeglądarkę i dodawany do kolejnych zapytań w komunikacji między interfejsem użytkownika a serwerem poprzez interfejs API. Serwer sprawdza za każdym razem, czy przychodzące zapytanie posiada właściwy token, a w przeciwnym wypadku odmawia przesłania odpowiedzi.
 
-\subsection{Jest}
-
-Za szablon do pisania testów jednostkowych (ang. unit test) posłużyła biblioteka Jest. Jest to popularna biblioteka do testowania rozwiązań w języku Javascript, dostarczająca szablony pisania testów i metody asercji. Dodatkowo biblioteka ta dostarcza narzędzia do analizy i wygenerowania raportu procentowego stopnia pokrycia testami (ang. test coverage) całego kody aplikacji. Pozwala w ten sposób łatwo ustalić, które części aplikacji wymagają jeszcze utworzenia testów. Rysunek (\ref{img:test_coverage}) ukazuje przykładowy raport pokrycia testami.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.8\textwidth]{sprz/test_coverage}
-  \caption{Przykładowy raport pokrycia testami}
-  \label{img:test_coverage}
-\end{figure}
-
-Listing \ref{lst:Jest_unit_test} przedstawia przykład testu jednostkowego z wykorzystaniem biblioteki Jest.
-
-Metoda \textit{describe} pozwala podzielić testy na zestawy odpowiadające konkretnej funcjonalności. Metoda \textit{it} definiuje pojedynczy przypadek testowy, a sama jej nazwa czytana w języku angielskim nakierowuje na zgodne z konwencją nazywanie przypadku testowego w formie słownego opisu spodzewanego wyniku.
-
-\begin{lstlisting}[language=Java,caption={Test jednostkowy z wykorzystaniem Jest}, label={lst:Jest_unit_test}]
-  describe("auth middleware", () => {
-    it("should populate req.user with the payload of a valid JWT", () => {
-      const user = {
-        uuid: new DataTypes.UUIDV4(),
-        name: "Username",
-        isAdmin: true,
-      };
-      const token = generateAuthToken(user);
-      const req = {
-        header: jest.fn().mockReturnValue(token),
-      };
-      const res = {};
-      const next = jest.fn();
-  
-      auth(req, res, next);
-  
-      expect(req.user).toMatchObject(user);
-    });
-  });
-\end{lstlisting}
-
-\subsection{Supertest}
-
-Biblioteka Supertest w połączeniu z biblioteką Jest posłużyła do utworzenia testów integracyjnych. W projekcie posłużyła ona do testowania działania interfejsów API.
-
-Listing \ref{lst:Supertest} przedstawia przykład testu integracyjego z wykorzystaniem biblioteki Jest. Dostarczana przez bibliotekę Jest metoda \textit{beforeEach} zawiera kod wykonywany przed każdym przypadkiem testowym, zaś metoda \textit{afterEach} po każdym przypadku testowym.
-
-\begin{lstlisting}[language=Java,caption={Test integracyjny z wykorzystaniem Supertest i Jest}, label={lst:Supertest}]
-  describe("/api/records", () => {
-    beforeEach(async () => {
-      server = require("../../index");
-    });
-    afterEach(async () => {
-      await server.close();
-      await Record.truncate();
-    });
-  
-    describe("GET /", () => {
-      it("should return all records", async () => {
-        const res = await request(server).get("/api/records");
-  
-        expect(res.status).toBe(200);
-      });
-    });
-  });
-\end{lstlisting}
-
 \section{ReactJS}
 
 Interfejs użytkownika został napisany w języku Javascript przy wykorzystaniu biblioteki ReactJS, jednej z najbardziej popularnych bibliotek do tworzenia interfejsów graficznych.
@@ -1147,15 +1079,6 @@ W ReactJS wraz z wersją 16.8 wprowadzono możliwość śledzenia stanu wewnątr
 
 Z uwagi na wspomniane zalety komponentów funcjonalnych posiadających stan obecnie zalecane jest stosowanie komponentów funkcjonalnych zamiast klasowych w nowych projektach pisanych w ReactJS. Dostępne są również dobrze opisane materiały pomagające w migracji istniejącego kodu do komponentów funkcjonalnych \cite{react-component}.
 
-%github
-%clickup
-%Wykaz skrótów i pojęć
-%przypadki testowe
-%pełen podział pracy w projekcie
-%Wykaz rysunków
-%Wykaz tabel
-%Wykaz listingów
-
 \chapter{System w działaniu}
 
 \section{Pobieranie i przekazanie danych z mikrofonu do aplikacji}
@@ -1169,7 +1092,66 @@ Z uwagi na wspomniane zalety komponentów funcjonalnych posiadających stan obec
 
 \subsection{Testy jednostkowe}
 
+Za szablon do pisania testów jednostkowych (ang. unit test) posłużyła biblioteka Jest. Jest to popularna biblioteka do testowania rozwiązań w języku Javascript, dostarczająca szablony pisania testów i metody asercji. Dodatkowo biblioteka ta dostarcza narzędzia do analizy i wygenerowania raportu procentowego stopnia pokrycia testami (ang. test coverage) całego kody aplikacji. Pozwala w ten sposób łatwo ustalić, które części aplikacji wymagają jeszcze utworzenia testów. Rysunek (\ref{img:test_coverage}) ukazuje przykładowy raport pokrycia testami.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/test_coverage}
+  \caption{Przykładowy raport pokrycia testami}
+  \label{img:test_coverage}
+\end{figure}
+
+Listing \ref{lst:Jest_unit_test} przedstawia przykład testu jednostkowego z wykorzystaniem biblioteki Jest.
+
+Metoda \textit{describe} pozwala podzielić testy na zestawy odpowiadające konkretnej funcjonalności. Metoda \textit{it} definiuje pojedynczy przypadek testowy, a sama jej nazwa czytana w języku angielskim nakierowuje na zgodne z konwencją nazywanie przypadku testowego w formie słownego opisu spodzewanego wyniku.
+
+\begin{lstlisting}[language=Java,caption={Test jednostkowy z wykorzystaniem Jest}, label={lst:Jest_unit_test}]
+  describe("auth middleware", () => {
+    it("should populate req.user with the payload of a valid JWT", () => {
+      const user = {
+        uuid: new DataTypes.UUIDV4(),
+        name: "Username",
+        isAdmin: true,
+      };
+      const token = generateAuthToken(user);
+      const req = {
+        header: jest.fn().mockReturnValue(token),
+      };
+      const res = {};
+      const next = jest.fn();
+  
+      auth(req, res, next);
+  
+      expect(req.user).toMatchObject(user);
+    });
+  });
+\end{lstlisting}
+
 \subsection{Testy integracyjne}
+
+Biblioteka Supertest w połączeniu z biblioteką Jest posłużyła do utworzenia testów integracyjnych. W projekcie posłużyła ona do testowania działania interfejsów API.
+
+Listing \ref{lst:Supertest} przedstawia przykład testu integracyjego z wykorzystaniem biblioteki Jest. Dostarczana przez bibliotekę Jest metoda \textit{beforeEach} zawiera kod wykonywany przed każdym przypadkiem testowym, zaś metoda \textit{afterEach} po każdym przypadku testowym.
+
+\begin{lstlisting}[language=Java,caption={Test integracyjny z wykorzystaniem Supertest i Jest}, label={lst:Supertest}]
+  describe("/api/records", () => {
+    beforeEach(async () => {
+      server = require("../../index");
+    });
+    afterEach(async () => {
+      await server.close();
+      await Record.truncate();
+    });
+  
+    describe("GET /", () => {
+      it("should return all records", async () => {
+        const res = await request(server).get("/api/records");
+  
+        expect(res.status).toBe(200);
+      });
+    });
+  });
+\end{lstlisting}
 
 \subsection{Testy funkcjonalne}
 
@@ -1652,13 +1634,31 @@ Z uwagi na wspomniane zalety komponentów funcjonalnych posiadających stan obec
 
 \section{Analiza soDIS}
 
+\clearpage
 
+\section{Diagramy sekwencji}
 
-\section{Diagram przypadków użycia}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{sprz/sequence_register}
+  \caption{Diagram sekwencji dla rejestracji}
+  \label{img:sequence_register}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/sequence_login}
+  \caption{Diagram sekwencji dla logowania}
+  \label{img:sequence_login}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/sequence_records}
+  \caption{Diagram sekwencji dla rekordów}
+  \label{img:sequence_records}
+\end{figure}
 
 \printbibliography[title={Bibliografia}, heading=bibintoc]
-
-
-
 
 \end{document}
