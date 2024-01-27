@@ -16,46 +16,20 @@
 \author{Magdalena Wybraniec}{s19798}{Sztuczna Inteligencja}{Niestacjonarny}
 \consultant{Dawid Gradolewski}
 \consultant{Damian Dziak}
-\projectgoals{Projekt typu R\&D, ma na celu przygotowanie systemu 
-składającego się z dostępnego na rynku mikrofonu ultradźwięków 
-odpowiedniego do zastosowania na turbinie wiatrowej oraz 
-wytworzenienie oprogramowania pobierającego i analizującego dźwięk 
-pochodzący z mikrofonu oraz rozpoznającego pojawienie się nietoperzy,
- zapisujący nagrania w bazie danych i wizualizujący je w interfejsie 
- - panelu administratora. Dodatkowo celem będzie przygotowanie 
- analizy odległości i kątów z jakiej mikrofon rejestruje głos 
- nietoperzy i adekwatnie – zaproponowanie liczby i rozstawienia 
- urządzeń nasłuchowych, tak aby pokryć kąt 360 stopni wokół turbiny 
- na farmie wiatrowej.}
-\productsandservices{System rejestrujący i wykrywający nietoperze 
-z nagrań ultradźwięków, możliwy do połączenia z systemem wyłączania 
-turbiny}
+\projectgoals{Projekt typu R\&D, ma na celu przygotowanie systemu składającego się z dostępnego na rynku mikrofonu ultradźwięków odpowiedniego do zastosowania na turbinie wiatrowej oraz wytworzenienie oprogramowania pobierającego i analizującego dźwięk 
+pochodzący z mikrofonu oraz rozpoznającego pojawienie się nietoperzy, zapisujący nagrania w bazie danych i wizualizujący je w interfejsie - panelu administratora. Dodatkowo celem będzie przygotowanie analizy odległości i kątów z jakiej mikrofon rejestruje głos nietoperzy i adekwatnie – zaproponowanie liczby i rozstawienia urządzeń nasłuchowych, tak aby pokryć kąt 360 stopni wokół turbiny na farmie wiatrowej.}
+\productsandservices{System rejestrujący i wykrywający nietoperze z nagrań ultradźwięków, możliwy do połączenia z systemem wyłączania turbiny}
 \mainfunctionalities{
 \begin{itemize}
-\item{Mikrofon ultradźwiękowy wraz z oprogramowaniem nagrywającym 
-dźwięk}
-\item{Urządzenie, do którego nagrania są przesyłane i w którym są 
-przechowywane oraz automatycznie analizowane w poszukiwaniu na nim 
-nietoperza}
+\item{Mikrofon ultradźwiękowy wraz z oprogramowaniem nagrywającym dźwięk}
+\item{Urządzenie, do którego nagrania są przesyłane i w którym są przechowywane oraz automatycznie analizowane w poszukiwaniu na nim nietoperza}
 \item{Baza danych, do której trafiają przeanalizowane nagrania}
 \item{Interfejs wizualizujący nagrania}
 \end{itemize}
 }
-\successmeasure{Oprogramowanie wykrywające i rozpoznające pojawienie 
-się nietoperzy oraz wytworzenie lub dobranie z dostępnych na rynku 
-urządzenia do rejestracji ultradźwięków. Dokonana analiza ulokowania 
-urządzeń rejestrujących 
-na wiatraku oraz jej akceptacja przez konsultanta z firmy Bioseco.}
+\successmeasure{Oprogramowanie wykrywające i rozpoznające pojawienie się nietoperzy oraz wytworzenie lub dobranie z dostępnych na rynku urządzenia do rejestracji ultradźwięków. Dokonana analiza ulokowania urządzeń rejestrujących na wiatraku oraz jej akceptacja przez konsultanta z firmy Bioseco.}
 \projlimitations{
-Czas trwania projektu jest ograniczony do momentu przekazania książki 
-dyplomowej do dziekanatu uczelni PJATK.
-Ograniczona dostępność nagrań głosów nietoperzy typu full-spectrum – 
-możliwa sytuacja gdy tworzenie projektu będzie odbywało się na 
-podstawie nagrań przetworzonych. Aktywność nietoperzy ma miejsce od 
-końca marca do października – w związku z tym brak 
-możliwości nagrywania ich aktywności w trakcie semestru zimowego – 
-a tym samym brak możliwości wykonania prób hardware’u przed kwietniem 
-2024.
+Czas trwania projektu jest ograniczony do momentu przekazania książki dyplomowej do dziekanatu uczelni PJATK. Ograniczona dostępność nagrań głosów nietoperzy typu full-spectrum – możliwa sytuacja gdy tworzenie projektu będzie odbywało się na podstawie nagrań przetworzonych. Aktywność nietoperzy ma miejsce od końca marca do października – w związku z tym brak możliwości nagrywania ich aktywności w trakcie semestru zimowego – a tym samym brak możliwości wykonania prób hardware’u przed kwietniem 2024.
 }
 \date{\today}
 \nabstract{TODO}
@@ -75,53 +49,21 @@ a tym samym brak możliwości wykonania prób hardware’u przed kwietniem
 
 \chapter{Wstęp}\label{ch:wstep}
 
-U podłoża rozwoju alternatywnych źródeł elektryczności leży uczynienie 
-branży energetycznej bardziej „zieloną”, aby życie przyszłych pokoleń 
-było przynajmniej tak samo dobre, jak nasze jest dzisiaj. W 
-poszukiwaniu rozwiązań, które zabezpieczają społeczności w dobie 
-globalnego 
-ocieplenia,  zrównoważony rozwój stał się rdzeniem idei alternatywnych 
-źródeł energii. Druga 
-część historii posiada jednak swą ciemną stronę – wiele danych 
-naukowych wskazuje na znaczący 
-niekorzystny wpływ farm wiatrowych na przyrodę, a zwłaszcza 
-nietoperze \cite{Wytyczne}. A są one ważnym elementem bioróżnorodności i 
-poszukiwanego zrównoważonego rozwoju. Autorzy pracy dyplomowej 
-w kooperacji z firmą Bioseco wypracowali oparty o sztuczną 
-inteligencję system, który w przypadku dalszego jego rozwijania, 
-zmniejszy śmiertelność nietoperzy na farmach wiatrowych 
-i pomoże utrzymać branży wiatrowej miano ekologicznej. 
-Chiropterologom zaś oraz urzędnikom oceniającym projekty wiatrowe 
-pod kątem realizacji przyrodniczych norm prawnych, zapewni 
-dodatkowe narzędzia minimalizacji wpływu farm na nietoperze.
+U podłoża rozwoju alternatywnych źródeł elektryczności leży uczynienie branży energetycznej bardziej „zieloną”, aby życie przyszłych pokoleń było przynajmniej tak samo dobre, jak nasze jest dzisiaj. W poszukiwaniu rozwiązań, które zabezpieczają społeczności w dobie globalnego 
+ocieplenia,  zrównoważony rozwój stał się rdzeniem idei alternatywnych źródeł energii. Druga 
+część historii posiada jednak swą ciemną stronę – wiele danych naukowych wskazuje na znaczący 
+niekorzystny wpływ farm wiatrowych na przyrodę, a zwłaszcza nietoperze \cite{Wytyczne}. A są one ważnym elementem bioróżnorodności i poszukiwanego zrównoważonego rozwoju. Autorzy pracy dyplomowej w kooperacji z firmą Bioseco wypracowali oparty o sztuczną inteligencję system, który w przypadku dalszego jego rozwijania, zmniejszy śmiertelność nietoperzy na farmach wiatrowych i pomoże utrzymać branży wiatrowej miano ekologicznej. Chiropterologom zaś oraz urzędnikom oceniającym projekty wiatrowe pod kątem realizacji przyrodniczych norm prawnych, zapewni dodatkowe narzędzia minimalizacji wpływu farm na nietoperze.
 
 \section{Cele projektu}
 
 W ramach sformułowanego tematu wyszczególniono następujące cele badawcze i programistyczne:
 
 \begin{itemize}
-  \item{realizację działającego produktu o minimalnym zestawie 
-  funkcjonalności (ang: Minimal Viable Product, dalej: MVP) 
-  rejestrującego i wykrywającego nietoperze oraz wysyłającego sygnał 
-  wyłączenia – docelowo do systemu turbiny wiatrowej – składającego się 
-  z części sprzętowej i oprogramowania: aplikacji użytkwnika i bazy danych
-  oraz modelu konwolucyjnych sieci neuronowych (ang: convoluted neural 
-  network, dalej CNN) oraz z aplikacji użytkownika i bazy danych,}
-  \item{opracowanie koncepcji liczby i układu mikrofonów ultradźwięków 
-  docelowego produktu poprzez przeprowadzenie badań terenowych w zakresie
-   zasięgu pracy testowanego sprzętu, tak by cały system pokrywał obszar 
-   360 stopni dookoła turbiny wiatrowej, w odległości do około 100 m,}
-  \item{opracowanie modelu sieci neuronowych uzyskującego przynajmniej 
-  75\% skuteczności w identyfikacji nietoperzy - borowca wielkiego 
-  Nyctalus noctula i karlików Pipistrellus sp., głównych ofiar kolizji 
-  z turbinami wiatrowymi,}
-  \item{przyczynienie się do rozwiązania realnego problemu występującego 
-  w obszarze branży energetyki wiatrowej oraz ochrony przyrody,}
-  \item{rozpoczęcie współpracy z Bioseco Sp. z o.o. w celu 
-  zaprezentowania umiejętności studentów firmie oraz ich szybszego 
-  rozwijania dzięki kontaktowi z realnymi problemami biznesowymi, 
-  merytorycznymi, produkcyjnymi i wdrożeniowymi, rozwiązywanymi 
-  aktualnie przed doświadczony zespół specjalistów firmy.}
+  \item{realizację działającego produktu o minimalnym zestawie funkcjonalności (ang: Minimal Viable Product, dalej: MVP) rejestrującego i wykrywającego nietoperze oraz wysyłającego sygnał wyłączenia – docelowo do systemu turbiny wiatrowej – składającego się z części sprzętowej i oprogramowania: aplikacji użytkwnika i bazy danych oraz modelu konwolucyjnych sieci neuronowych (ang: convoluted neural network, dalej CNN) oraz z aplikacji użytkownika i bazy danych,}
+  \item{opracowanie koncepcji liczby i układu mikrofonów ultradźwięków docelowego produktu poprzez przeprowadzenie badań terenowych w zakresie zasięgu pracy testowanego sprzętu, tak by cały system pokrywał obszar 360 stopni dookoła turbiny wiatrowej, w odległości do około 100 m,}
+  \item{opracowanie modelu sieci neuronowych uzyskującego przynajmniej 75\% skuteczności w identyfikacji nietoperzy - borowca wielkiego Nyctalus noctula i karlików Pipistrellus sp., głównych ofiar kolizji z turbinami wiatrowymi,}
+  \item{przyczynienie się do rozwiązania realnego problemu występującego w obszarze branży energetyki wiatrowej oraz ochrony przyrody,}
+  \item{rozpoczęcie współpracy z Bioseco Sp. z o.o. w celu zaprezentowania umiejętności studentów firmie oraz ich szybszego rozwijania dzięki kontaktowi z realnymi problemami biznesowymi, merytorycznymi, produkcyjnymi i wdrożeniowymi, rozwiązywanymi aktualnie przed doświadczony zespół specjalistów firmy.}
   \end{itemize}
   
 
@@ -129,40 +71,11 @@ W ramach sformułowanego tematu wyszczególniono następujące cele badawcze i p
 
 \section{Geneza problemu}
 
-Lądowe farmy wiatrowe mogą mieć znaczący wpływ na środowisko 
-naturalne, w szczególności na nietoperze \cite{Wytyczne}. Wszystkie 
-gatunki nietoperzy 
-w Polsce są objęte ścisłą ochroną gatunkową i podlegają ochronie 
-prawnej zgodnie z Rozporządzeniem Ministra Środowiska z dnia 16 
-grudnia 2016 r. w sprawie ochrony gatunkowej zwierząt 
-\cite{Rozporządzenie}. Tym samym inwestor realizujący inwestycję 
-wiatrową przestrzegając prawa ochrony przyrody jest zobligowany 
-uzyskać tzw. Decyzję Środowiskową (dalej: DŚ). Zawarte są w niej 
-wszelkie informacje dotyczące: chiropterofauny danego obszaru, 
-szacowanego wpływu inwestycji na nietoperze, działań zapobiegających 
-i minimalizujących ewentualny wpływ inwestycji na nietoperze, tak by 
-spełniała ona założenia dobrych praktyk i przepisy prawa – polskiego 
+Lądowe farmy wiatrowe mogą mieć znaczący wpływ na środowisko naturalne, w szczególności na nietoperze \cite{Wytyczne}. Wszystkie gatunki nietoperzy w Polsce są objęte ścisłą ochroną gatunkową i podlegają ochronie prawnej zgodnie z Rozporządzeniem Ministra Środowiska z dnia 16 grudnia 2016 r. w sprawie ochrony gatunkowej zwierząt \cite{Rozporządzenie}. Tym samym inwestor realizujący inwestycję wiatrową przestrzegając prawa ochrony przyrody jest zobligowany uzyskać tzw. Decyzję Środowiskową (dalej: DŚ). Zawarte są w niej 
+wszelkie informacje dotyczące: chiropterofauny danego obszaru, szacowanego wpływu inwestycji na nietoperze, działań zapobiegających i minimalizujących ewentualny wpływ inwestycji na nietoperze, tak by spełniała ona założenia dobrych praktyk i przepisy prawa – polskiego 
 i międzynarodowego. 
 
-Dotychczas przyjętą praktyką w przypadku wykrycia zbyt dużych 
-aktywności nietoperzy w monitoringu przedrealizacyjnym było wpisanie 
-do DŚ obowiązkowych wyłączeń turbin w okresach, w których te zbyt duże 
-aktywności wykryto \cite{Wytyczne}. Dzieje się tak między innymi dlatego, 
-że nie istniał wcześniej system wykrywający nietoperze w czasie 
-rzeczywistym, w którym akcja, taka jak wyłączenie turbiny mogła być podjęta 
-o bieżące aktywności nietoperzy, warunki pogodowe i inne. 
-Tymczasem dynamika użytkowania 
-przestrzeni przez nietoperze jest bardzo zmienna w czasie i po realizacji 
-inwestycji ssaki te w całych wyznaczonych okresach nie muszą być zagrożone. 
-A wyłączenia 
-turbin na długie okresy w roku wiążą się z ogromnymi stratami 
-inwestorów. System zaproponowany w ramach niniejszej pracy inżynierskiej 
-może przyczynić się do wspierania rozwoju nowych standardów na poziomie 
-krajowym, europejskim i światowym, w zakresie niezbędnych działań 
-minimalizujących wpływ farm wiatrowych na nietoperze. Zamiast dotychczas 
-stosowanych, z góry określonych wyłączeń na długi okres przy określonej 
-prędkości wiatru, mogłyby być wykorzystywane wyłączenia sterowane na bieżąco 
-przez system – turbiny 
+Dotychczas przyjętą praktyką w przypadku wykrycia zbyt dużych aktywności nietoperzy w monitoringu rzedrealizacyjnym było wpisanie do DŚ obowiązkowych wyłączeń turbin w okresach, w których te zbyt duże aktywności wykryto \cite{Wytyczne}. Dzieje się tak między innymi dlatego, że nie istniał wcześniej system wykrywający nietoperze w czasie rzeczywistym, w którym akcja, taka jak wyłączenie turbiny mogła być podjęta o bieżące aktywności nietoperzy, warunki pogodowe i inne. Tymczasem dynamika użytkowania przestrzeni przez nietoperze jest bardzo zmienna w czasie i po realizacji inwestycji ssaki te w całych wyznaczonych okresach nie muszą być zagrożone. A wyłączenia turbin na długie okresy w roku wiążą się z ogromnymi stratami inwestorów. System zaproponowany w ramach niniejszej pracy inżynierskiej może przyczynić się do wspierania rozwoju nowych standardów na poziomie krajowym, europejskim i światowym, w zakresie niezbędnych działań minimalizujących wpływ farm wiatrowych na nietoperze. Zamiast dotychczas stosowanych, z góry określonych wyłączeń na długi okres przy określonej prędkości wiatru, mogłyby być wykorzystywane wyłączenia sterowane na bieżąco przez system – turbiny 
 zatrzymywane byłyby tylko w czasie, kiedy większe liczebności nietoperzy 
 faktycznie się pojawiają.
 
@@ -182,8 +95,6 @@ informacji, danych i zasobów, reagowania i działania w obliczu sytuacji
 i zmian w otoczeniu" \cite{Ashton2002}. Definicję tę można uzupełnić tą 
 sformułowaną przez IEEE jako sieć elementów - każdy wyposażony w czujniki - 
 które są podłączone do internetu \cite{IEEE-iot}.
-
-\section{Sensory akustyczne}
 
 \section{Sieci neuronowe i uczenie głębokie}
 Obecnie sieci neuronowe są bardzo ważną częścią świata nowoczesnych 
@@ -215,8 +126,6 @@ wartościami matematycznymi.
 \section{Kooperacja z Bioseco S.A.}
 Bioseco S.A. jest innowacyjną polską firmą technologiczną z siedzibą w Gdańsku, która opracowała systemy wizyjne wykorzystujące sztuczną inteligencję do ochrony zwierząt, głównie ptaków, na farmach wiatrowych i lotniskach. System opracowany i rozwijany jest w kierunku maksymalizacji ochrony zwierząt i minimalizacji strat produkcji. W związku z tym, że aktualnie większość klientów stanowią operatorzy farm wiatrowych, a obok problemu śmiertelności ptaków, drugim najważniejszym przyrodniczym problemem jest śmiertelność nietoperzy, w planach firmy znalazła się również eksploracja tego tematu i możliwość rozwoju technologii do ochrony nietoperzy. Jedna z osób z zespołu inżynierskiego posiada już wiedzę dziedzinową z zakresu zainteresowań Bioseco S.A. Po pomyślnych konsultacjach z firmą przygotowano temat i zakres współpracy spełniający wymogi pracy dyplomowej a jednocześnie zakres zainteresowań przedsiębiorcy.
 
- 
-
 \chapter{Metody pracy}
 
 \section{Proces wytwórczy}
@@ -229,6 +138,7 @@ Grupa inżynierska była samoorganizującym się zespołem. Część funkcji by�
 Juliusz Orłowski - Software Developer, Jakub Prucnal - AI Developer, Software Engineer, Magdalena Wybraniec - Product Owner, Project Manager, specjalista dziedzinowy. 
 
 \subsection{Charakterystyka przyrostów}
+TODO
 
 \section{Środowisko technologiczne}
 
@@ -241,7 +151,6 @@ Baza danych została przygotowana w MySQL.
 
 Interfejs użytkownika został napisany w języku JavaScript z uzyciem biblioteki ReactJS. Serwer aplikacji został napisany w technologii NodeJS. Użyto również szeregu bibliotek wspomagających tworzenie aplikacji, bazy danych i testów: Sequelize, Express, Jest, Supertest, Joi, Jsonwebtoken. 
 
-
 \subsection{Infrastuktura techniczna}
 Na infrastrukturę techniczną, która umożliwiła realizację kluczowych elementów projektu dyplomowego składały się:
 \begin{itemize}
@@ -251,9 +160,7 @@ Na infrastrukturę techniczną, która umożliwiła realizację kluczowych eleme
   \item{sprzęt komputerowy prywatny i służbowy,}
   \item{przęt do rejestracji nietoperzy (mikrofony ultradźwięków oraz system SMART),}
   \item{przęt do odtwarzania głosów nietoperzy (głośnik ultradźwiękowy Pettersson L400),}
-  \end{itemize}\
-  \newline
-
+  \end{itemize}
 
 \subsection{Infrastuktura komunikacyjna i dokumentacja}
 Kominikacja w ramach projektu odbywała się pomiędzy następującymi jednostkami:
@@ -261,8 +168,7 @@ Kominikacja w ramach projektu odbywała się pomiędzy następującymi jednostka
   \item{w obrębie grupy,}
   \item{pomiędzy grupą i Promotorem,}
   \item{pomiędzy grupą i Konsultantami.}
-  \end{itemize}\
-  \newline
+  \end{itemize}
 
 Komunikacja w obrębie grupy inżynierskiej oraz pomiędzy grupą i Konsultantami z Bioseco S.A. i pozostałymi specjalistami odbywała się z wykorzystaniem wielu mediów:
 \begin{itemize}
@@ -276,16 +182,14 @@ Komunikacja w obrębie grupy inżynierskiej oraz pomiędzy grupą i Konsultantam
   \item{grupę w aplikacji WhatssApp,}
   \item{mailowo poprzez maile uczelniane, prywatne i służbowe}
   \item{telefonicznie.}
-  \end{itemize}\
-  \newline
+  \end{itemize}
 
   Komunikacja pomiędzy grupą inżynierską a Promotorem odbywała się poprzez następujące media:
 \begin{itemize}
   \item{osobiście - spotkania w ramach zajęć na Uczelni,}
   \item{aplikację Teams,}
   \item{mailowo poprzez maile uczelniane.}
-  \end{itemize}\
-  \newline
+  \end{itemize}
 
 Dokumentacja prowadzona była w:
 \begin{itemize}
@@ -329,6 +233,8 @@ W początkowym okresie prac nad systemem nie istniał mikrofon spełniające wsz
   \caption{System SMART firmy Wildlife Acoustics. Źródło: Wildlife Acoustics}
   \label{img:smart}
 \end{figure} 
+
+Z korzyścią dla ochrony nietoperzy i deweloperów farm wiatrowych, a z pewnymi zagrożeniami dla twórców niniejszej pracy dyplomowej mikrofon został wyprodukowany wraz z tzw. kontrolerem (prostym przemysłowym koputerem), który wyposażony jest w oprogramowanie pobierające dane z mikrofonu i po odpowiedniej konfiguracji sieciowej serwujący dane i prezentujący je w interfejsie użytkownika. Mimo tego, że całe rozwiązanie częściowo odpowiada zakresowi niniejszej pracy dyplomowej, nie jest ono idealne, np. nie posiada bazy danych czy też w dość znacznym stopniu niepoprawnie identyfikuje gatunki nietoperzy. Mimo to, fakt pracy członków zespołu nad podobnym rozwiązaniem, z uwagi na obszerne zajęcie się takim tematem i wdrożenie się w wiele jego aspektów, niesie raczej możliwości i szanse rozwoju tego rozwiązania, niż zagrożenie ze strony konkurencji.
 
 \section{Odtwarzanie ultradźwięków}
 Do wyemitowania ultradźwięków niezbędne są urządzenia obsługujące co najmniej dwukrotnie wyższą częstotliwość niż emitowane dźwięki. Wynika to z twierdzenia Nyquista-Shannona, zgodnie z którym częstotliwość próbkowania z sygnału ciągłego ("analogowego") na dyskretny ("cyfrowy")musi być co najmniej dwukrotnie wyższa od najwyższej składowej widma sygnału aby sygnał został odtworzony poprawnie i nie dochodziło do zjawiska aliasingu \cite{probkowanie}. W zależności od możliwości karty dźwiękowej w komputerze użytym jako generator ultradźwięków, należy bądź ustawić maksymalną wartość próbkowania karty, bądź podłączyć wzmacniacz zwiększający maksymalną częstotliwość odtwarzania.
@@ -407,7 +313,7 @@ Po trwających kilka miesięcy poszukiwaniach osób mogących udostępnić takie
 \chapter{Prace badawczo-rozwojowe - testy terenowe}
 
 \section{Montaż systemu SMART na turbinie wiatrowej}
-System SMART firmy Wildlife Acoustics został zainstalowany na jednej z farm wiatrowych, na których operuje firma Bioseco S.A. 14 lipca 2023 (\ref{img:smart-installed}). 
+System SMART firmy Wildlife Acoustics został zainstalowany na jednej z farm wiatrowych, na których operuje firma Bioseco S.A. przez pracowników firmy. Instalacja miała miejsce 14 lipca 2023 (\ref{img:smart-installed}). 
 
 \begin{figure}[h]
   \centering
@@ -428,7 +334,7 @@ Konsultacje z firmą Wildlife Acoustics obejmowały takie elementy jak:
   \item{sposób montażu.}
 \end{itemize}
 
-W celu poprawnego zaadresowaniu powyższych elementów należało uwzględnić następujące aspekty:
+W celu poprawnego zaadresowania powyższych elementów należało uwzględnić następujące aspekty:
 
 \begin{itemize}
   \item{wysokość przelotów nietoperzy, których dotyczy problem śmiertelności,}
@@ -436,27 +342,19 @@ W celu poprawnego zaadresowaniu powyższych elementów należało uwzględnić n
   \item{możliwość wytwarzania echa przez elemeny turbiny bądź w wyniku nieprawidłowego montażu mikrofonu, co może powodować nieprawidłowości w rejestracji głosów nietoperzy,}
   \item{możliwość lokalizacji sprzętu w turbinie z punktu widzenia deweloperów farm wiatrowych, np. problem lokalizacji źródła zasilania w gondoli,}
   \item {możliwości technologiczne montażu w różnych częściach turbiny i problem dostępu do sprzętu w przypadku jego konserwacji czy naprawy,}
-  \item {wyniki testów terenowych przeprowadzonych w ramach niniejszej pracy dyplomowej.}
+  \item {występowanie badź nie zaleceń władz środowiskowych co do szczegółów montażu podobnych urządzeń na farmach wiatrowych.}
 \end{itemize}
 
+Kluczowe ustalenia z konsultacji są następujące:
+\begin{itemize}
+  \item{lokalizacja mikrofonu na turbinie wiatrowej najlepiej jeśli będzie w gondoli, ale może być również u podstawy wieży,}
+  \item{zaleca się stosowanie dwóch mikrofonów na jednej turbinie, ale możliwy jest montaż jednego mikrofonu, bądź większej ich liczby,}
+  \item{z uwagi na ograniczenia w długości kabla Ethernet, który łączy mikrofon z kontrolerem (do 100 m) oraz fakt, że nowoczesne turbiny wiatrowe posiadają wieże wyższe niż 100 m, mikrofon razem z kontrolerem powinny znajdować się albo w gondoli albo na dole wieży turbiny,}
+  \item{możliwy jest montaż poprzez umieszczenie mikrofonu w otworze wywierconym w gondoli bądź na szczycie gondoli zamocowany do zewnętrznych elementów gondoli.}
+\end{itemize}
 
 \section{Metodyka testów}
-Sztucznie przygotowane dźwięki emitowano w kilku konfiguracjach, składających się z różnych odległości, kątów względem mikrofonu i częstotliwości. Dźwięki o częstotliwościach: 16-20 kHz, 25-35 kHz, 37-40 kHz i 40-48 kHz odtwarzane były w odległościach 7, 20, 40, 60, 80, 100 i 120 m od mikrofonu. Dźwięki odtwarzane były w czterech liniach przebiegających pod kątami 0\textdegree, 30\textdegree, 60\textdegree i 90\textdegree w stosunku do przodu mikrofonu. Dźwięki odtwarzane były z zestawu głośnika ultradźwiękowego Pettersson L400 oraz laptopa z kartą dźwiękową w konfiguracji umożliwiającej odtwarzanie dźwięków o wysokiej częstotliwości (16-bit, 48 kHz). Dzwięki odtwarzane były w możliwie najwyższym natężeniu. Każdy dźwięk był emitowany w określonej odległości i pod określonym kątem od trzech do sześciu razy, w większości przypadków trzy razy.
-
-
-\section{Realizacja testów w terenie}
-Badania przeprowadzono w dniu 8 września 2023 roku zgodnie z przedstawioną powyżej metodyką w następujących warunkach atmosferycznych: 26\textdegree C, zachmurzenie – 10\%, prędkość wiatru – 2-4 m/s, kierunek wiatru – NE, wilgotność – 40\% (\ref{img:fieldtests}).
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.8\textwidth]{sprz/fieldtests.png}
-  \caption{Testy terenowe systemu SMART z użyciem głośnika Pettersson L400 i laptopa. Źródło: Bioseco}
-  \label{img:fieldtests}
-\end{figure} 
-
-\section{Wyniki testów}
-Każda częstotliwość w każdej odległości i pod każdym kątem od mikrofonu została wyemitowana trzykrotnie (w większości przypadków) (\ref{img:angles}). Jeżeli wykryto co najmniej jedno z tych odtworzeń, dźwięk przy tych ustawieniach odległości i kąta uznawano za wykryty.
-\clearpage
+Sztucznie przygotowane dźwięki emitowano w kilku konfiguracjach, składających się z różnych odległości, kątów względem mikrofonu i częstotliwości. Dźwięki o częstotliwościach: 16-20 kHz, 25-35 kHz, 37-40 kHz i 40-48 kHz odtwarzane były w odległościach 7, 20, 40, 60, 80, 100 i 120 m od mikrofonu. Dźwięki odtwarzane były w czterech liniach przebiegających pod kątami 0, 30, 60 i 90 stopni w stosunku do przodu mikrofonu (\ref{img:angles}). Dźwięki odtwarzane były z zestawu głośnika ultradźwiękowego Pettersson L400 oraz laptopa z kartą dźwiękową w konfiguracji umożliwiającej odtwarzanie dźwięków o wysokiej częstotliwości (16-bit, 48 kHz). Dzwięki odtwarzane były w możliwie najwyższym natężeniu. Każdy dźwięk był emitowany w określonej odległości i pod określonym kątem od trzech do sześciu razy, w większości przypadków trzy razy.
 
 \begin{figure}[h]
   \centering
@@ -465,15 +363,51 @@ Każda częstotliwość w każdej odległości i pod każdym kątem od mikrofonu
   \label{img:angles}
 \end{figure} 
 
-Poniższe wykresy ilustrują odległości detekcji dźwięku w poszczególnych konfiguracjach odległości i kąta, w podziale na poszczególne częstotliwości.
-\clearpage
+\section{Realizacja testów w terenie}
+Badania przeprowadzono w dniu 8 września 2023 roku zgodnie z przedstawioną powyżej metodyką w następujących warunkach atmosferycznych: 26 stopni C, zachmurzenie – 10\%, prędkość wiatru – 2-4 m/s, kierunek wiatru – NE, wilgotność – 40\% (\ref{img:fieldtests}).
+
 \begin{figure}[h]
   \centering
-  \includegraphics[width=1.0\textwidth]{sprz/detectability.png}
-  \caption{Odległości detekcji dla poszczególnych częstotliwości i kątów od przodu mikrofonu.}
-  \label{img:detectability}
-\end{figure} 
+  \includegraphics[width=0.8\textwidth]{sprz/fieldtests.png}
+  \caption{Testy terenowe systemu SMART z użyciem głośnika Pettersson L400 i laptopa. Źródło: Bioseco}
+  \label{img:fieldtests}
+\end{figure}
 
+\section{Wyniki testów}
+Każda częstotliwość w każdej odległości i pod każdym kątem od mikrofonu została wyemitowana trzykrotnie (w większości przypadków). W wynikach uwzględniono jaki procent głosów w danej lokalizaci został wykryty, np. jeśli wykryto 2 odtworzenia na 4, to oznaczano wykrycie 50\% dźwięków.
+
+Poniższe wykresy ilustrują odległości detekcji dźwięku w poszczególnych konfiguracjach odległości i kąta, w podziale na poszczególne częstotliwości (\ref{img:angle0}, \ref{img:angle30}, \ref{img:angle60}, \ref{img:angle90}).
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{sprz/angle0.png}
+    \caption{Odległości detekcji dla poszczególnych częstotliwości pod kątem 0\textdegree do przodu mikrofonu.}
+    \label{img:angle0}
+  \end{figure}
+\clearpage
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{sprz/angle30.png}
+    \caption{Odległości detekcji dla poszczególnych częstotliwości pod kątem 30\textdegree do przodu mikrofonu.}
+    \label{img:angle30}
+  \end{figure} 
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{sprz/angle60.png}
+    \caption{Odległości detekcji dla poszczególnych częstotliwości pod kątem 60 do przodu mikrofonu.}
+    \label{img:angle60}
+  \end{figure} 
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{sprz/angle90.png}
+    \caption{Odległości detekcji dla poszczególnych częstotliwości pod kątem 90\textdegree do przodu mikrofonu.}
+    \label{img:angle90}
+  \end{figure}
+
+\newpage
 Na podstawie tych wyników można zauważyć następujące prawidłowości:
 \begin{itemize}
   \item{Odległość detekcji ultradźwięków jest największa dla najniższych częstotliwości i maleje wraz ze wzrostem częstotliwości. Maksymalna odległość dotyczy częstotliwości 16-20 kHz i wynosi do 60 m, a najmniejsza odległość dla częstotliwości 37-48 kHz i wynosi do 20 m. Oznacza to, że gatunki takie jak borowiec i borowiaczek są wykrywane z odległości do 60 m, a karliki i inne nietoperze o wysokiej częstotliwości z maksymalnie 20 m.,}
@@ -484,6 +418,14 @@ Na podstawie tych wyników można zauważyć następujące prawidłowości:
 
 \section{Propozycja liczby i rozmieszczenia mikrofonów}
 W celu przygotowania planu liczby i rozmieszczenia mikrofonów na turbinie wiatrowej wykorzystano informacje z konslutacji z firmą Wildife Acoustics oraz testów ternowych przeprowadzonych w ramach niniejszej pracy.
+
+Z uwagi na dobre pokrycie kąta 180\textdegree przez jeden mikrofon, użycie dwóch mikrofonów na jednej wysokości pokryje kąt 360\textdegree.
+
+Z uwagi na krótkie zasięgi wykrywania nietoperzy mikrofony powiny być zlokalizowane jak najbliżej łopat turbiny, tak by wykrywać aktywność w miejscu, w którym ich obecność może wiązać się z kolizjami, czyli w gondoli lub w dolnym zakresie łopaty. Z punktu widzenia ochrony nietoperzy optymalnym byłby montaż jednego lub dwóch mikrofonów w gondoli, i jednego lub dwóch w dolnym zasięgu łopaty na wieży. Ze względów praktycznych montaż oraz poźniejszy dostęp do mikrofonów na poziomie dolnego zasięgu łopaty będzie drogi z uwagi na konieczny dostęp linowy oraz kłopotliwy z uwagi na brak opracowanego sposobu montażu w tym miejscu. Dlatego na obecnym etapie montaż powinien mieć miejsce w gondoli, bądź poprzez wywiercenie otworu w gondoli bądź montaż na szczycie gondoli na elementach takich jak barierki itp.
+Mikrofon, bądź mikrofony wraz z kontrolerem powinny znajdować się razem w gondoli, gdyż długość kabla Ethernet jakiego można użyć do połączenia mikrofonu z kontrolerem wynosi 100 m, z uwagi na poprawność przesyłu danych. Gdy odległość od gondoli do podstawy wiatraka jest mniejsza niż 100 m, kontroler może znajdować się na dole wieży.
+
+Odległości detekcji nietoperzy są na tyle małe w kontekście ich ochrony przed kolizjami z turbinami wiatrowymi, że klasyczne podejście oparte o system detekcyjno-reakcyjny polegające na wyłączeniu turbiny na podstawie każdego pojedynczego przelotu nie będzie przydatne, lecz konieczne będzie dobranie specyficznego wyzwalacza zatrzymującego i ponownie uruchamiającego turbinę, którym może być np. liczba zarejestrowanych przelotów nietoperzy w określonej jednostce czasu. W wyzwalaczach zatrzymań można użyć dodatkowo warunków środowiskowych, takich jak prędkość wiatru czy występowanie opadów (po połączeniu systemu SMART z systemem SCADA turbiny wiatrowej). Minimalizacje z zastosowaniem ograniczenia pracy turbin w określonych warunkach wiatrowych i opadów są obecnie stosowane w celu ograniczenia śmiertelności na farmach wiatrowych \cite{Wytyczne}
+
 
 \chapter{Struktura systemu}
 
