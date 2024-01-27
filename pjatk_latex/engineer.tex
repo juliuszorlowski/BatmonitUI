@@ -617,18 +617,211 @@ W ostatniej warstwie użyto funkcji aktywacji softmax. Przekształca ona wartoś
 \subsection{Funkcja błędu}
 Funkcja ta jest często używana w sieciach neuronowych w problemach klasyfikacji. Określa ona jak dobrze model przewiduje klasy - im mniejsza wartość funkcji błędu, tym większa dokładnosć modelu. Podczas uczenia się sieci dąży się do zmniejszania wartości fukcji błędu. W sieci neuronowej użytej w niniejszej pracy wykorzystano funkcję entropii krzyżowej.
 
-\subsection{Optymalizatory}
-Optymalizator jest to funkcja lub algorytm decydująca o tym jak zmienić wagi sieci na podstawie funkcji błędu, tak aby zmniejszyć wartość tej funkcji. Optymalizator wływa na to jak szybko sieć będzie się uczyć poprzez zmianę jej parametrów oraz jak będzie sieć poradzi sobie z problemami takimi jak utknięcie w lokalnym minimum. W sieci neuronowej przedstawionej w niniejszej pracy wykorzystano optymalizator Adam (Adaptive Moment Estimation). Optymalizotor ten jest najczęsciej wykorzystywanym i dającym najczęściej najlepsze wyniki.
+\subsection{Optymalizator}
+Optymalizator jest to funkcja lub algorytm decydująca o tym jak zmienić wagi sieci na podstawie funkcji błędu, tak aby zmniejszyć wartość tej funkcji. Optymalizator wływa na to jak szybko sieć będzie się uczyć poprzez zmianę jej parametrów oraz jak poradzi sobie z problemami takimi jak utknięcie w lokalnym minimum. W sieci neuronowej przedstawionej w niniejszej pracy wykorzystano optymalizator Adam (Adaptive Moment Estimation). Optymalizotor ten jest najczęsciej wykorzystywanym i dającym najczęściej najlepsze wyniki.
 
-\section{Konstrukcja sieci neuronowej}
+\section{Architektura sieci neuronowej i modułów związanych z teningiem sieci}
+Sieć neuronowa napisana została w języku Python, z użyciem bilbiotek PyTorch oraz TorchAudio. 
+
+
+PyTorch jest biblioteką oferującą narzędzia do budowy i trenowania sieci neuronowych, zawiera m.in. moduły do tworzenia warstw sieci, funkcji stratu czy optymalizatorów, daje wsparcie do trenowania na kartach graficznych \cite{pytorch}.
+PyTorch jest biblioteką o podobnej popularności co Tensorflow, a w ostatnich latach nawet częściej wykorzystywaną, szczególnie w środowiskach akademickich. Umożliwia ona na większą elastyczność w budowie sieci i ustawieniach jej parametrów. Do zalet takiego rozwiązania należy większy wpływ na kształt i funkcjonowanie sieci, a do wad - dłuższy czas przygotowania oraz wyższy próg wejścia. 
+
+Biblioteka TorchAudio jest częścią ekosystemu PyTorch i służy do obsługi i obróbki plików dźwiękowych. Dostarcza narzędzi pomocnych w ładowaniu danych audio oraz transformacjach takich jak zmiany prędkości czy głośności, przetwarzanie na spectrogramy czy mel-spectrogramy \cite{torchaudio}. 
+
+Sień neuronowa przygotowana w ramach niniejszej pracy dyplomowej składa się z czterech głównych elementów: modułu transformującego dźwięk do spectrogramów, modułu ładującego dane, modułu do treningu oraz modułu do predykcji.
 
 \subsection{Konwersja dźwięków na spektrogramy}
 
+\begin{lstlisting}[language=Python,caption={Implementacja konwersji dźwięku na spektrogram}, label={lst:audio-to-spectrogram}]
+  waveform, sample_rate = torchaudio.load(r'C:\\Users\\Jakub\Documents\\PJATK\\INZ\Batmonit_model\\Chiro_sounds_signed\Audio\\PIPNAT\S4U08639_20210731_234142_PIPNAT.wav')
+  fragments = torch.split(waveform, split_size_or_sections=2*sample_rate, dim=1)
+  
+  specgram = torchaudio.transforms.Spectrogram(
+          )(fragments[1])
+  
+  plt.figure(figsize=(12, 8))
+  plt.imshow(specgram[0].log2(), aspect='auto', origin='lower')
+  plt.show()
+\end{lstlisting}
+
+
 \subsection{Ładowanie danych}
+
+Moduł ładujący dane jest najbardziej rozbudowanym elementem architektury związanej z treningiem sieci. Składa się z wielu funkcji, które zapewniają identyczność parametrów każdego z nagrań, takich jak liczba kanałów czy wielkość obrazu, ....
+
+Główna funkcja tego modułu uruchamia ładowanie danych z uwzględnieniem wszystkich tych elementów.
+
+\begin{lstlisting}[language=Python,caption={Implementacja modułu do ładowania danych}, label={lst:audio-to-spectrogram}]
+  if __name__ == "__main__":
+  ANNOTATIONS_FILE = r"C:\Users\Jakub\Documents\PJATK\INZ\Batmonit_model\Chiro_sounds_signed\Metadata\Annotations.csv"
+  AUDIO_DIR = r"C:\Users\Jakub\Documents\PJATK\INZ\Batmonit_model\Chiro_sounds_signed\Audio"
+  SPECTROGRAM_DIR = r"C:\Users\Jakub\Documents\PJATK\INZ\Batmonit_model\Chiro_sounds_signed\Spectrogram"
+  SAMPLE_RATE = 192000
+  NUM_SAMPLES = 2000000
+
+  if torch.cuda.is_available():
+      device = "cuda"
+  else:
+      device = "cpu"
+  print(f"Using device: {device}")
+
+  spectrogram = torchaudio.transforms.Spectrogram(
+      n_fft=1024,
+      hop_length=1024,
+  )
+  bd = BatsDataset(ANNOTATIONS_FILE,
+                          AUDIO_DIR,
+                          SPECTROGRAM_DIR, 
+                          spectrogram, 
+                          SAMPLE_RATE,
+                          NUM_SAMPLES,
+                          device)
+
+  print(f"There are {len(bd)} samples in the dataset.")
+  signal, label = bd[0]
+  print(signal, label)
+\end{lstlisting}
+
+\subsection{Sień neuronowa}
+
+\begin{lstlisting}[language=Python,caption={Implementacja sieci neuronowej}, label={lst:Sequelize_validate}]
+  class CNNNetwork(nn.Module):
+
+  def __init__(self):
+      super().__init__()
+      self.conv1 = nn.Sequential(
+          nn.Conv2d(
+              in_channels=1, 
+              out_channels=16,  
+              kernel_size=3,  
+              stride=1,
+              padding=2
+          ),
+          nn.ReLU(),
+          nn.MaxPool2d(kernel_size=2)  
+      )
+      self.conv2 = nn.Sequential(
+          nn.Conv2d(
+              in_channels=16,
+              out_channels=32,
+              kernel_size=3,
+              stride=1,
+              padding=2
+          ),
+          nn.ReLU(),
+          nn.MaxPool2d(kernel_size=2)
+      )
+      self.conv3 = nn.Sequential(
+          nn.Conv2d(
+              in_channels=32,
+              out_channels=64,
+              kernel_size=3,
+              stride=1,
+              padding=2
+          ),
+          nn.ReLU(),
+          nn.MaxPool2d(kernel_size=2)
+      )
+      self.conv4 = nn.Sequential(
+          nn.Conv2d(
+              in_channels=64,
+              out_channels=128,
+              kernel_size=3,
+              stride=1,
+              padding=2
+          ),
+          nn.ReLU(),
+          nn.MaxPool2d(kernel_size=2)
+      )
+      self.flatten = nn.Flatten()
+      self.linear = nn.Linear(128*33*13, 14) 
+                                             
+      self.softmax = nn.Softmax(dim=1)
+
+  def forward(self, input_data):
+      x = self.conv1(input_data)
+      x = self.conv2(x)
+      x = self.conv3(x)
+      x = self.conv4(x)
+      x = self.flatten(x)
+      logits = self.linear(x)
+      predictions = self.softmax(logits)
+      return predictions
+
+if __name__ == "__main__":
+  cnn = CNNNetwork()
+\end{lstlisting}
 
 \subsection{Trenowanie na zbiorze treningowym}
 
+\begin{lstlisting}[language=Python,caption={Implementacja modułu do trenowania sieci}, label={lst:train}]
+  if __name__ == "__main__":
+
+  if torch.cuda.is_available():
+      device = "cuda"
+  else:
+      device = "cpu"
+  print(f"Using device: {device}")
+
+  spectrogram = torchaudio.transforms.Spectrogram(
+      n_fft=1024,
+      hop_length=1024,
+  )
+
+  bd = BatsDataset(ANNOTATIONS_FILE,
+                          AUDIO_DIR,
+                          SPECTROGRAM_DIR, 
+                          spectrogram, 
+                          SAMPLE_RATE,
+                          NUM_SAMPLES,
+                          device)
+
+
+  train_data_loader = create_data_loader(bd, batch_size=BATCH_SIZE)
+
+  cnn = CNNNetwork().to(device)
+
+  loss_fn = nn.CrossEntropyLoss()
+  optimiser = torch.optim.Adam(cnn.parameters(), lr=LEARNING_RATE)
+
+  train(cnn, train_data_loader, loss_fn, optimiser, device, EPOCHS)
+
+  torch.save(cnn.state_dict(), MODEL_PATH)
+
+  print("Model trained and stored at feedforwardnet.pth")
+\end{lstlisting}
+
 \subsection{Przewidywanie wyniku na zbiorze testowym}
+
+\begin{lstlisting}[language=Python,caption={Implementacja modułu do trenowania sieci}, label={lst:train}]
+  if __name__ == "__main__":
+
+  cnn = CNNNetwork()
+  state_dict = torch.load(r"C:\Users\Jakub\Documents\PJATK\INZ\Batmonit_model\feedforwardnet.pth", map_location=torch.device('cpu'))
+  cnn.load_state_dict(state_dict)
+
+  spectrogram = torchaudio.transforms.Spectrogram(
+      n_fft=1024,
+      hop_length=1024,
+  )
+
+  bd = BatsDataset(ANNOTATIONS_FILE,
+                          AUDIO_DIR,
+                          SPECTROGRAM_DIR, 
+                          spectrogram, 
+                          SAMPLE_RATE,
+                          NUM_SAMPLES,
+                          "cpu")
+
+  input, target = bd[0][0], bd[0][1]
+  input.unsqueeze_(0)
+
+  predicted, expected = predict(cnn, input, target,
+   class_mapping)
+
+  print(f"Predicted: '{predicted}', expected: '{expected}'")
+\end{lstlisting}
 
 \section{Skuteczność sieci neuronowej}
 
@@ -994,8 +1187,6 @@ Z uwagi na wspomniane zalety komponentów funcjonalnych posiadających stan obec
 
 \subsection{Baza danych}
 
-\subsection{Książka projektu}
-
 \section{Jakub Prucnal}
 
 \subsection{Interfejs użytkownika}
@@ -1005,8 +1196,6 @@ Z uwagi na wspomniane zalety komponentów funcjonalnych posiadających stan obec
 \subsection{Przygotowanie danych do modelu}
 
 \subsection{Model sieci neuronowej}
-
-\subsection{Książka projektu}
 
 \section{Magdalena Wybraniec}
 
@@ -1022,7 +1211,6 @@ Z uwagi na wspomniane zalety komponentów funcjonalnych posiadających stan obec
 
 \subsection{Model sieci neuronowej}
 
-\subsection{Książka projektu}
 
 \chapter{Załączniki}
 
