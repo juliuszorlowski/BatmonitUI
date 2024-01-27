@@ -416,6 +416,8 @@ Na podstawie tych wyników można zauważyć następujące prawidłowości:
   \item{Dla wyższych częstotliwości – 37-48 kHz, większe znaczenie może mieć kąt padania dźwięku, gdyż w przypadku kątów 30\textdegree i 60\textdegree odległość detekcji zmniejsza się o ponad 50\% w porównaniu do kąta 0\textdegree. Niemniej jednak w przypadku częstotliwości 37-40 kHz przy 90\textdegree wykrywalność jest taka sama jak przy kącie 0\textdegree, dlatego wnioski nie są do końca jednoznaczne. Nie badano także odległości 10 i 15 m, co w tym przypadku mogłoby znacząco poprawić uzyskiwane pokrycie odległości.}
 \end{itemize}
 
+Maksymalne odległości detekcji nietoperzy odzywających się w poszczególnych zakresach częstotliwości odpowiadają odległościom obliczonym matematycznie dla tych częstotliwości \cite{agranat}, co pozwala ocenić, że system SMART wykrywa nietoperze z dużą skutecznością.
+
 \section{Propozycja liczby i rozmieszczenia mikrofonów}
 W celu przygotowania planu liczby i rozmieszczenia mikrofonów na turbinie wiatrowej wykorzystano informacje z konslutacji z firmą Wildife Acoustics oraz testów ternowych przeprowadzonych w ramach niniejszej pracy.
 
@@ -429,31 +431,93 @@ Odległości detekcji nietoperzy są na tyle małe w kontekście ich ochrony prz
 
 \chapter{Struktura systemu}
 
-Struktura wytworzonego produktu została przedstawiona w podziale na poszczególne komponenty.
+Struktura wytworzonego systemu została przedstawiona w podziale na poszczególne komponenty.
+
+\section{Schemat połączeń}
+System SMART na turbinie wiatrowej połączony jest do sieci internetowej, gdzie skonfigurowane jest połączenie do sieci Bioseco. Komputer firmowy, na którym skonfigurowane jest połączenie do sieci Bioseco przez VPN łączy się zdalnie z systemem SMART, dzięki czemu możliwy jest dostęp do danych z mikrofonu (\ref{img:system-connection}).
+
+\begin{figure}[h] 
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/system-connection.png}
+  \caption{Schemat połączeń sieciowych pomiędzy systemem SMART i komputerem, na którym uruchomiona jest aplikacja.}
+  \label{img:system-connection}
+\end{figure} 
+
 
 \section{Architektura systemu}
 
-Na poniższych modelach przedstawiono najważniejsze elementy logiczne, urządzenia wejścia-wyjścia oraz obieg informacji w systemie (\ref{img:model_architektury}). W celu ułatwienia zrozumienia osadzenia systemu w rzeczywistości, architekturę zobrazowano również w postaci graficznej, łącznie z widokiem interfejsu (\ref{img:reprezentacja_graficzna}). 
+Na poniższych modelach przedstawiono najważniejsze elementy logiczne, urządzenia wejścia-wyjścia oraz obieg informacji w systemie (\ref{img:architektura_systemu2}). W celu ułatwienia zrozumienia osadzenia systemu w rzeczywistości, architekturę zobrazowano również w postaci graficznej, łącznie z widokiem interfejsu (\ref{img:reprezentacja_graficzna}). 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{sprz/model_architektury}
+    \includegraphics[width=1.0\textwidth]{sprz/architektura_systemu2.png}
     \caption{Logiczny model architektury systemu}
-    \label{img:model_architektury}
+    \label{img:architektura_systemu2}
 \end{figure}
+\clearpage
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{sprz/reprezentacja_graficzna}
+    \includegraphics[width=1.0\textwidth]{sprz/graficzna-reprezentacja-systemu.png}
     \caption{Graficzna reprezentacja architektury systemu}
     \label{img:reprezentacja_graficzna}
 \end{figure}
 
 \section{Hardware}
+Kluczowe zasoby sprzętowe rozwiązania, to system SMART firmy Wildlife Acoustics. Składa się on z mikrofonu ultradźwięków oraz tzw. kontrolera, będącego prostym przemysłowym komputerem. Mikrofon jest połączony z kontrolerem kablem Ethernet, co pozwala na zasilanie mikrofonu oraz przesył danych pomiędzy tymi komponentami. Dane z mikrofonu pobierane są przez oprogramowanie Wildlife Acoustics zainstalowane na kotrolerze i tam też są one gromadzone.
+\clearpage
 
-\section{Platforma pobierająca i przetwarzająca nagrania z mikrofonu ultradźwięków}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/smart2}
+  \caption{system SMART - mikrofon ultradźwięków i kontroler}
+  \label{img:smart2}
+\end{figure}
 
 \section{Model sieci neuronowej}
+Do treningu i predykcji gatunków nietoperzy użyta został sieć konwolucyjna składająca się z czterech bloków konwolucyjnych (z warstwą konwolucyjną, funkcją aktywacji ReLU i warstwą max-pooling), warstwy spłaszczającej do przestrzeni jednowymiarowej (warstwa flatten), warstwy fully-connected (w PyTorch nazywaną "linear") oraz ostatniej warstwy softmax, pozwalającej na uzyskanie wartości prawdopodobieństw przynależności nagrania do danej klasy (gatunku nieoperza).
+
+Parametry pierwszej warstwy konwolucyjnej:
+\begin{itemize}
+  \item{liczba kanałów na wejściu - 1}
+  \item{liczba kanałów na wyjściu (i liczba filtrów) - 16,}
+  \item{rozmiar filtra ("kernel size") - 3,}
+  \item {przsunięcie filtra ("stride") - 1,}
+  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
+\end{itemize}
+
+
+Parametry drugiej warstwy konwolucyjnej:
+Warstwa konwolucyjna
+\begin{itemize}
+  \item{liczba kanałów na wejściu - 16}
+  \item{liczba kanałów na wyjściu (i liczba filtrów) - 32,}
+  \item{rozmiar filtra ("kernel size") - 3,}
+  \item {przsunięcie filtra ("stride") - 1,}
+  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
+\end{itemize}
+
+
+Parametry trzeciej warstwy konwolucyjnej:
+\begin{itemize}
+  \item{liczba kanałów na wejściu - 32}
+  \item{liczba kanałów na wyjściu (i liczba filtrów) - 64,}
+  \item{rozmiar filtra ("kernel size") - 3,}
+  \item {przsunięcie filtra ("stride") - 1,}
+  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
+\end{itemize}
+
+Parametry czwartej warstwy konwolucyjnej:
+\begin{itemize}
+  \item{liczba kanałów na wejściu - 64}
+  \item{liczba kanałów na wyjściu (i liczba filtrów) - 128,}
+  \item{rozmiar filtra ("kernel size") - 3,}
+  \item {przsunięcie filtra ("stride") - 1,}
+  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
+\end{itemize}
+
+
+W każdej z warstw konwolucyjnych zastosowano funkcję aktywacji ReLU i warstwę max-pooling o filtrze w rozmiarze 2 ("stride").
 \clearpage
 
 \section{Aplikacja użytkownika}
