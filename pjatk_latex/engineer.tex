@@ -655,9 +655,19 @@ Identyfikacja gatunków nietoperzy poprzez analizę dźwięków skonwertowanych 
 
 \subsection{Ładowanie danych}
 
-Moduł ładujący dane jest najbardziej rozbudowanym elementem architektury związanej z treningiem sieci. Składa się z wielu funkcji, które zapewniają identyczność parametrów każdego z nagrań, takich jak liczba kanałów czy wielkość obrazu, ....
+Moduł ładujący dane jest najbardziej rozbudowanym elementem architektury związanej z treningiem sieci. Składa się z wielu funkcji, które zapewniają identyczność parametrów każdego z nagrań, takich jak liczba kanałów czy wielkość obrazu. Zawiera również funkcji odpowiedzialne za pobieranie ścieżek plików.
 
-Główna funkcja tego modułu uruchamia ładowanie danych z uwzględnieniem wszystkich tych elementów.
+Poniżej przedstawiono jedną z takich funkcji. Służy ona do konwersji częstotiwości próbkowania, jeśli byłaby ona inna niż założona pierwotnie dla wszystkich nagrań:
+
+\begin{lstlisting}[language=Python,caption={Implementacja konwersji dźwięku na spektrogram}, label={lst:audio-to-spectrogram}]
+  def _resample_if_necessery(self, signal, sr):
+  if sr != self.target_sample_rate:
+      resampler = torchaudio.transforms.Resample(sr, self.target_sample_rate)
+      signal = resampler(signal)
+  return signal
+\end{lstlisting}
+
+Główna funkcja tego modułu uruchamia ładowanie danych z uwzględnieniem wszystkich wyżej wymienionych elementów i przedstawiono ją poniżej:
 
 \begin{lstlisting}[language=Python,caption={Implementacja modułu do ładowania danych}, label={lst:audio-to-spectrogram}]
   if __name__ == "__main__":
@@ -691,6 +701,7 @@ Główna funkcja tego modułu uruchamia ładowanie danych z uwzględnieniem wszy
 \end{lstlisting}
 
 \subsection{Sień neuronowa}
+Kod sieci neuronowej przedstawiono poniżej, a wyjaśnienie zastosowania konkretnych jej elementów, takich jak funkcje aktywacji, funkcja błędu, optymalizator, itd. opisano i wyjaśniono w rozdziale: "Dobór parametrów sieci neuronowej".
 
 \begin{lstlisting}[language=Python,caption={Implementacja sieci neuronowej}, label={lst:Sequelize_validate}]
   class CNNNetwork(nn.Module):
@@ -760,7 +771,10 @@ if __name__ == "__main__":
   cnn = CNNNetwork()
 \end{lstlisting}
 
-\subsection{Trenowanie na zbiorze treningowym}
+\subsection{Trenowanie modelu}
+Moduł związany z trenowaniem sieci neuronowej składał się z funkcji służacej do stworzenia dataloader'a, trenowania pojedynczej epoki oraz treningu kolejnych epok. Wielkość batch'a określono na 128, liczbę epok na 10, a wskaźnik uczenia na 0,001. 
+
+Główną funkcję przedstawiono poniżej:
 
 \begin{lstlisting}[language=Python,caption={Implementacja modułu do trenowania sieci}, label={lst:train}]
   if __name__ == "__main__":
@@ -799,7 +813,10 @@ if __name__ == "__main__":
   print("Model trained and stored at feedforwardnet.pth")
 \end{lstlisting}
 
-\subsection{Przewidywanie wyniku na zbiorze testowym}
+\subsection{Predykcja modelu}
+Moduł służacy do wykonania predykcji zawiera poza główną funkcją dwa elementy - mapowanie klas (gatunków nietoperzy) oraz funkcję służącą do realizacji predykcji, która z użyciem wytrenowanego wcześniej modelu przewiduje gatunki nietoperzy na zbiorze testowym.
+
+Kod głównej funkcji przedstwiono poniżej:
 
 \begin{lstlisting}[language=Python,caption={Implementacja modułu do trenowania sieci}, label={lst:train}]
   if __name__ == "__main__":
@@ -836,7 +853,6 @@ if __name__ == "__main__":
 
 \subsection{Metryki}
 
-\subsection{Learning rate}
 
 \chapter{Implementacja aplikacji użytkownika}
 
