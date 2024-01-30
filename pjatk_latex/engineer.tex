@@ -33,7 +33,9 @@ Czas trwania projektu jest ograniczony do momentu przekazania książki dyplomow
 }
 \date{\today}
 \nabstract{
-  Praca powstała w kooperacji z firmą technologiczną Bioseco S.A., która opracowała i produkuje system kamer ze sztuczną inteligencją do wykrywania ptaków na farmach wiatrowych oraz automatycznie wyłączających turbinę, bądź uruchamiających odstraszacze świetlne lub dźwiękowe w reakcji na określone wyzwalacze, takie jak ptak określonej wielkości w danej odległości od turbiny. Zamysłem kooperacji było przygotowanie przez zespół inżynierski materiałów do implementacji przez firmę podobnego rozwiązania, ale dla innej grupy zwierząt - nietoperzy, w oparciu nie o sensory wizyjne a akustyczne. Zakres niniejszej pracy objął: weryfikację udostępnionego przez Bioseco S.A. mikrofonu ultradźwięków pod kątem możliwości zastosowania na farmach wiatrowych oraz w razie potrzeby zmiany sprzętu - wyszukanie innego mikrofonu, testy terenowe mikrofonu ultradźwięków w kontekście odległości i kątów wykrywania różnych ultradźwięków i przygotowania na tej podstawie planu liczby i lokalizacj takich mikrofonów na turbinie, kolejno opracowanie sposobu pobierania dźwięków z mikrofonu, pozyskanie odpowiednich nagrań nietoperzy do treningu sieci neuronowej, analiza przez sieć neuronową pod kątem występowania gatunków nietoperzy oraz zapisanie informacji w bazie danych i prezentacji wyników w interfejsie użytkownika. W związku z tym, że zakres pracy był rozbudowany interfejs użytkownika oraz sieć neuronową przygotowano w zakresie podstawowym - jako działający prototyp. Niniejsza praca jest typu R\&D, łączy kilka dziedzin informatyki, ale także zawiera elementy wiedzy z zakresu biologii i farm wiatrowych.}
+  Praca powstała w kooperacji z firmą technologiczną Bioseco S.A., która opracowała i produkuje system kamer ze sztuczną inteligencją do wykrywania ptaków na farmach wiatrowych oraz automatycznie wyłączających turbinę, bądź uruchamiających odstraszacze świetlne lub dźwiękowe w reakcji na określone wyzwalacze, takie jak ptak określonej wielkości w danej odległości od turbiny. Zamysłem kooperacji było przygotowanie przez zespół inżynierski materiałów do implementacji przez firmę podobnego rozwiązania, ale dla innej grupy zwierząt - nietoperzy, w oparciu nie o sensory wizyjne a akustyczne. Zakres niniejszej pracy objął: weryfikację udostępnionego przez Bioseco S.A. mikrofonu ultradźwięków pod kątem możliwości zastosowania na farmach wiatrowych oraz w razie potrzeby zmiany sprzętu - wyszukanie innego mikrofonu, testy terenowe mikrofonu ultradźwięków w kontekście odległości i kątów wykrywania różnych ultradźwięków i przygotowania na tej podstawie planu liczby i lokalizacj takich mikrofonów na turbinie, kolejno opracowanie sposobu pobierania dźwięków z mikrofonu, pozyskanie odpowiednich nagrań nietoperzy do treningu sieci neuronowej, analiza przez sieć neuronową pod kątem występowania gatunków nietoperzy oraz zapisanie informacji w bazie danych i prezentacji wyników w interfejsie użytkownika. W związku z tym, że zakres pracy był rozbudowany interfejs użytkownika oraz sieć neuronową przygotowano w zakresie podstawowym - jako działający prototyp. Niniejsza praca jest typu R\&D, łączy kilka dziedzin informatyki, ale także zawiera elementy wiedzy z zakresu biologii i farm wiatrowych.
+  
+  DOPISAĆ O TYM, ŻE W TRAKCIE REALIZACJI PRACY POJAWIŁO SIE NA RYNKU ROZWIĄZANIE, KTÓRE MIELIŚMY WYTWORZYĆ}
 
 
 \begin{document}
@@ -58,7 +60,7 @@ niekorzystny wpływ farm wiatrowych na przyrodę, a zwłaszcza nietoperze \cite{
 W ramach sformułowanego tematu wyszczególniono następujące cele badawcze i programistyczne:
 
 \begin{itemize}
-  \item{realizację działającego produktu o minimalnym zestawie funkcjonalności (ang: Minimal Viable Product, dalej: MVP) rejestrującego i wykrywającego nietoperze oraz wysyłającego sygnał wyłączenia – docelowo do systemu turbiny wiatrowej – składającego się z części sprzętowej i oprogramowania: aplikacji użytkwnika i bazy danych oraz modelu konwolucyjnych sieci neuronowych (ang: convoluted neural network, dalej CNN) oraz z aplikacji użytkownika i bazy danych,}
+  \item{realizację działającego produktu o minimalnym zestawie funkcjonalności (ang: Minimal Viable Product, dalej: MVP) rejestrującego i wykrywającego nietoperze oraz wysyłającego sygnał wyłączenia – docelowo do systemu turbiny wiatrowej – składającego się z części sprzętowej i oprogramowania: aplikacji użytkwnika i bazy danych oraz modelu sieci neuronowych (ang: neural network, dalej NN) oraz z aplikacji użytkownika i bazy danych,}
   \item{opracowanie koncepcji liczby i układu mikrofonów ultradźwięków docelowego produktu poprzez przeprowadzenie badań terenowych w zakresie zasięgu pracy testowanego sprzętu, tak by cały system pokrywał obszar 360 stopni dookoła turbiny wiatrowej, w odległości do około 100 m,}
   \item{opracowanie modelu sieci neuronowych uzyskującego przynajmniej 75\% skuteczności w identyfikacji nietoperzy - borowca wielkiego Nyctalus noctula i karlików Pipistrellus sp., głównych ofiar kolizji z turbinami wiatrowymi,}
   \item{przyczynienie się do rozwiązania realnego problemu występującego w obszarze branży energetyki wiatrowej oraz ochrony przyrody,}
@@ -233,7 +235,7 @@ W początkowym okresie prac nad systemem nie istniał mikrofon spełniające wsz
   \label{img:smart}
 \end{figure} 
 
-Z korzyścią dla ochrony nietoperzy i deweloperów farm wiatrowych, a z pewnymi zagrożeniami dla twórców niniejszej pracy dyplomowej mikrofon został wyprodukowany wraz z tzw. kontrolerem (prostym przemysłowym koputerem), który wyposażony jest w oprogramowanie pobierające dane z mikrofonu i po odpowiedniej konfiguracji sieciowej serwujący dane i prezentujący je w interfejsie użytkownika. Mimo tego, że całe rozwiązanie częściowo odpowiada zakresowi niniejszej pracy dyplomowej, nie jest ono idealne, np. nie posiada bazy danych czy też w dość znacznym stopniu niepoprawnie identyfikuje gatunki nietoperzy. Mimo to, fakt pracy członków zespołu nad podobnym rozwiązaniem, z uwagi na obszerne zajęcie się takim tematem i wdrożenie się w wiele jego aspektów, niesie raczej możliwości i szanse rozwoju tego rozwiązania, niż zagrożenie ze strony konkurencji.
+Z korzyścią dla ochrony nietoperzy i deweloperów farm wiatrowych, a z pewnymi zagrożeniami dla twórców niniejszej pracy dyplomowej mikrofon został wyprodukowany wraz z tzw. kontrolerem (prostym przemysłowym koputerem), który wyposażony jest w oprogramowanie pobierające dane z mikrofonu i po odpowiedniej konfiguracji sieciowej serwujący dane i prezentujący je w interfejsie użytkownika. Mimo tego, że całe rozwiązanie częściowo odpowiada zakresowi niniejszej pracy dyplomowej, nie jest ono idealne, np. nie posiada bazy danych czy też w dość znacznym stopniu niepoprawnie identyfikuje gatunki nietoperzy \cite{kaleidoscope-bias}. Mimo to, fakt pracy członków zespołu nad podobnym rozwiązaniem, z uwagi na obszerne zajęcie się takim tematem i wdrożenie się w wiele jego aspektów, niesie raczej możliwości i szanse rozwoju tego rozwiązania, niż zagrożenie ze strony konkurencji.
 
 \section{Odtwarzanie ultradźwięków}
 Do wyemitowania ultradźwięków niezbędne są urządzenia obsługujące co najmniej dwukrotnie wyższą częstotliwość niż emitowane dźwięki. Wynika to z twierdzenia Nyquista-Shannona, zgodnie z którym częstotliwość próbkowania z sygnału ciągłego ("analogowego") na dyskretny ("cyfrowy")musi być co najmniej dwukrotnie wyższa od najwyższej składowej widma sygnału aby sygnał został odtworzony poprawnie i nie dochodziło do zjawiska aliasingu \cite{probkowanie}. W zależności od możliwości karty dźwiękowej w komputerze użytym jako generator ultradźwięków, należy bądź ustawić maksymalną wartość próbkowania karty, bądź podłączyć wzmacniacz zwiększający maksymalną częstotliwość odtwarzania.
@@ -551,10 +553,19 @@ Do treningu użyto dźwięków przetworzonych na obrazy. Rozważano użycie zwyk
 W celu uzyskania jednolitych wielkości danych na wejściu wszystkie nagrania pociąto na odcinki dwusekundowe. W przypadku gdy ostatni element był krótszy niż dwie sekundy uzupełniano tę część zerami.
 
 \section{Dobór sieci neuronowej}
-Po przeglądzie literatury, konsultacjach z ekspertami oraz weryfikacji zasobów czasowych zdecydowano się ostatecznie na użycie konwolucyjnej sieci neuronowej jako sieci przystępnej w implementacji a jdnocześnie potencjalnie dającej dobre wyniki.
+Po przeglądzie literatury, konsultacjach z ekspertami oraz weryfikacji zasobów czasowych zdecydowano się ostatecznie na użycie konwolucyjnej sieci neuronowej jako sieci przystępnej w implementacji a jEdnocześnie potencjalnie dającej bardzo dobre wyniki.
 
 \subsection{Przegląd literatury}
+Do wyszukania publikacji zawierających opracowania dotyczące automatycznego rozpoznawania nietoperzy użyto wyszukiwarki Google Scholar oraz fraz: "bats automated recognition", "bats machine learning", "bats deep learning".
 
+Do metod automatycznej identyfikacji gatunków nietoperzy wykorzystuje się
+bądź wielowymiarowe metody statystyczne (jak np. analiza dyskryminacyjna czy wielowymiarowa analiza wariancji - MANOVA) \cite{bats-id-statistics}, bądź metody uczenia nadzorowanego \cite{bats-id-supervised} takie jak np.: sieci neuronowe \cite{bats-id-nn}, drzewa decyzyjne i lasy losowe \cite{bats-random-forest}, SVM (ang: Support Vector Machines) \cite{bats-id-svm}.
+
+W przypadku sieci neuronowych, uczenia głębokiego do identyfikacji nietoperzy zaczęto używać dopiero w 2018 roku \cite{bats-id-dl2018}, a większą poplarność sieci głębokie zdobyły od roku 2020 \cite{bats-id-dl2020a}, \cite{bats-id-dl2020b}, lecz publikacje takie są dość nieliczne.
+
+Znaleziono tylko jedną pracę naukową, która wykorzystuje architekturę Transformers do rozpoznawania gatunków nietoperzy \cite{bats-transformers}.
+
+Maksymalne skuteczności poszczególnych metod różnią się między sobą. Dla lasów losowych było to maksymalnie 83,1\% \cite{bats-id-randomforest} sieci neuronowych innych niż transformers było to maksymalnie 89,09\% precyzji \cite{bats-id-dl}, w przypadku modelu Transformers było to 90,2\% \cite{bats-transformers}.
 
 \section{Dobór parametrów sieci neuronowej}
 
@@ -616,11 +627,10 @@ Funkcja ta jest często używana w sieciach neuronowych w problemach klasyfikacj
 \subsection{Optymalizator}
 Optymalizator jest to funkcja lub algorytm decydująca o tym jak zmienić wagi sieci na podstawie funkcji błędu, tak aby zmniejszyć wartość tej funkcji. Optymalizator wływa na to jak szybko sieć będzie się uczyć poprzez zmianę jej parametrów oraz jak poradzi sobie z problemami takimi jak utknięcie w lokalnym minimum. W sieci neuronowej przedstawionej w niniejszej pracy wykorzystano optymalizator Adam (Adaptive Moment Estimation). Optymalizotor ten jest najczęsciej wykorzystywanym i dającym najczęściej najlepsze wyniki.
 
-\section{Architektura sieci neuronowej i modułów związanych z teningiem sieci}
+\section{Architektura sieci neuronowej i modułów związanych z treningiem sieci}
 Sieć neuronowa napisana została w języku Python, z użyciem bilbiotek PyTorch oraz TorchAudio. 
 
-
-PyTorch jest biblioteką oferującą narzędzia do budowy i trenowania sieci neuronowych, zawiera m.in. moduły do tworzenia warstw sieci, funkcji stratu czy optymalizatorów, daje wsparcie do trenowania na kartach graficznych \cite{pytorch}.
+PyTorch jest biblioteką oferującą narzędzia do budowy i trenowania sieci neuronowych, zawiera m.in. moduły do tworzenia warstw sieci, funkcji straty czy optymalizatorów, daje wsparcie do trenowania na kartach graficznych \cite{pytorch}.
 PyTorch jest biblioteką o podobnej popularności co Tensorflow, a w ostatnich latach nawet częściej wykorzystywaną, szczególnie w środowiskach akademickich. Umożliwia ona na większą elastyczność w budowie sieci i ustawieniach jej parametrów. Do zalet takiego rozwiązania należy większy wpływ na kształt i funkcjonowanie sieci, a do wad - dłuższy czas przygotowania oraz wyższy próg wejścia. 
 
 Biblioteka TorchAudio jest częścią ekosystemu PyTorch i służy do obsługi i obróbki plików dźwiękowych. Dostarcza narzędzi pomocnych w ładowaniu danych audio oraz transformacjach takich jak zmiany prędkości czy głośności, przetwarzanie na spectrogramy czy mel-spectrogramy \cite{torchaudio}. 
@@ -628,6 +638,7 @@ Biblioteka TorchAudio jest częścią ekosystemu PyTorch i służy do obsługi i
 Sień neuronowa przygotowana w ramach niniejszej pracy dyplomowej składa się z czterech głównych elementów: modułu transformującego dźwięk do spectrogramów, modułu ładującego dane, modułu do treningu oraz modułu do predykcji.
 
 \subsection{Konwersja dźwięków na spektrogramy}
+Identyfikacja gatunków nietoperzy poprzez analizę dźwięków skonwertowanych do obrazu jest podejściem klasycznym (por. np. \cite{bats-id-dl2020b}). Dlatego jednym z elementów związanych z trenowaniem sieci było przygotowanie modułu konwertującego dźwięk na spectrogramy. Kod modułu przedstawiono poniżej.
 
 \begin{lstlisting}[language=Python,caption={Implementacja konwersji dźwięku na spektrogram}, label={lst:audio-to-spectrogram}]
   waveform, sample_rate = torchaudio.load(r'C:\\Users\\Jakub\Documents\\PJATK\\INZ\Batmonit_model\\Chiro_sounds_signed\Audio\\PIPNAT\S4U08639_20210731_234142_PIPNAT.wav')
