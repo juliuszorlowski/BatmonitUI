@@ -1133,25 +1133,25 @@ Do pobierania danych z mikrofonu użyto polecenia rsync służącego do synchron
 
 Z uwagi na obronę pracy zimą oraz za dnia, kiedy brak jest nietoperzy, a urządzenie jest zainstalowane w terenie, do prezentacji pobierania danych z mikrofonu użyto polecenia pobierającego dane z okresu kiedy nietoperze występowały:
 
-\begin{lstlisting}[language=C,caption={Polecenie rsync pobierające dane z pewnego okresu czasu}, label={lst:functional_component}]
+\begin{lstlisting}[language=Java,caption={Polecenie rsync pobierające dane z pewnego okresu czasu}, label={lst:rsync_command}]
   rsync -cavzhP --include='9c.25.be.01.01.0b_20230908_20*.wav' smart@192.168.3.2:/var/www/html/storage/devices/9c.25.be.01.01.0b/data/wav/ /home/batmonit/batmonit/recordings/
 \end{lstlisting}
 
+\section{Przetwarzanie danych przez Watchdoga}
 
-\section{Przekazanie danych z mikrofonu do identyfikacji gatunku}
+Watchdog jest programem napisanym w języku Python. Stanowi połączenie pomiędzy systemem SMART, a Aplikacją Użytkownika, której przekazuje rekordy zawierające wynik jego pracy.
 
+W pierwszej kolejności Watchdog monitoruje folder nagrań na wypadek pojawienia się nowego nagrania. Pojawienie się nowego pliku wywołuje zdarzenie, które powoduje, że wykonany zostaje kod parsujący nazwę pliku. Nazwa pliku nagrania zapisana jest w formacie, który przedstawia Listing \ref{lst:recording_name}:
 
+\begin{lstlisting}[language=Java,caption={Przykładowa nazwa pliku nagrania}, label={lst:recording_name}]
+  9c.25.be.01.01.0b_20240123_225004_701432.wav
+\end{lstlisting}
 
-\section{Synchronizacja danych pomiędzy systemem SMART a bazą danych i aplikacją}
-Do synchronizacji danych posłużył watchdog, który został zaimplementowany jako mikroserwis, wystawiający API dla NodeJS. Watchdog monitoruje stan folderu opisanego w poprzednim punkcie i w przypadku pojawienia się nowego rekordu do NodeJS trafia plik w formacie JSON z wszelkimi informacjami przechowywanymi przez bazę danych i prezentowanych w interfejsie użytkownika, takimi jak: data, godzina, numer turbiny itd.
+Nazwa pliku podzielona jest na cztery człony odzielone znakiem ”\_” i zakończone rozszerzeniem pliku WAV. Pierwszy człon odnosi się do identyfikatora konkretnego urządzenia SMART. Drugi człon to data nagrania w formacie \verb|YYYYMMDD|. Trzeci człon to czas nagrania w formacie \verb|HHMMSS|. Ostatni człon jest losową sześciocyfrową liczbą. Po wyodrębnieniu powyższych członów zostają one zapisane do zmiennych.
 
- >>>>>>>>>>>>>>>  JAK TO ZAPREZENTOWAĆ  ????
+Następnie Watchdog wykorzystuje model sztucznej inteligencji w celu przanalizowania pliku nagrania. Analiza nadaje odpowiednią wartość zmiennym \verb|bat|, \verb|turbineStopSignal| oraz \verb|verification|.
 
-\section{Przekazanie danych do aplikacji}
-Za pośrednictwem watchdoga dane z systemu SMART trafiają do bazy danych z wykorzystaniem serwera w NodeJS i interfejsu w ReactJS.
-
->>>>>>>>>>>>>>>  JAK TO ZAPREZENTOWAĆ  ????
-
+W kolejnym kroku zapisane zmienne zostają umieszczone wewnątrz obiektu JSON (JavaScript Object Notation). Obiekt JSON za pomocą metody POST zostaje wysłany na adres API serwera. Serwer nasłuchuje na porcie ”http://localhost:3900/api/records” i po pojawieniu się zapytania z obiektem JSON tworzy na jego podstawie rekord w bazie danych.
 
 \chapter{Testowanie}
 
@@ -1462,7 +1462,7 @@ Listing \ref{lst:Supertest} przedstawia przykład testu integracyjego z wykorzys
 
       \item \textbf{Udziałowcy}
       
-        \begin{stakeholder}[label={},caption={Klient}][]
+        \begin{stakeholder}[label={},caption={Klient}]
           \id{UNB 01}
           \name{Klient}
           \descr{Firma Bioseco}
