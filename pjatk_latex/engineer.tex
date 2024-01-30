@@ -1137,19 +1137,27 @@ Z uwagi na obronę pracy zimą oraz za dnia, kiedy brak jest nietoperzy, a urzą
   rsync -cavzhP --include='9c.25.be.01.01.0b_20230908_20*.wav' smart@192.168.3.2:/var/www/html/storage/devices/9c.25.be.01.01.0b/data/wav/ /home/batmonit/batmonit/recordings/
 \end{lstlisting}
 
+
+\section{Przekazanie danych z mikrofonu do identyfikacji gatunku}
+
+
+
 \section{Synchronizacja danych pomiędzy systemem SMART a bazą danych i aplikacją}
 Do synchronizacji danych posłużył watchdog, który został zaimplementowany jako mikroserwis, wystawiający API dla NodeJS. Watchdog monitoruje stan folderu opisanego w poprzednim punkcie i w przypadku pojawienia się nowego rekordu do NodeJS trafia plik w formacie JSON z wszelkimi informacjami przechowywanymi przez bazę danych i prezentowanych w interfejsie użytkownika, takimi jak: data, godzina, numer turbiny itd.
 
  >>>>>>>>>>>>>>>  JAK TO ZAPREZENTOWAĆ  ????
 
-\section{Przekazanie danych daplikacji}
+\section{Przekazanie danych do aplikacji}
+Za pośrednictwem watchdoga dane z systemu SMART trafiają do bazy danych z wykorzystaniem serwera w NodeJS i interfejsu w ReactJS.
 
+>>>>>>>>>>>>>>>  JAK TO ZAPREZENTOWAĆ  ????
 
-\section{Przekazanie danych z mikrofonu do identyfikacji gatunku}
 
 \chapter{Testowanie}
 
-\section{Testy terenowe produktu}
+\section{Testy terenowe systemu SMART}
+Mikrofon ultradźwięków wraz z kontrolerem działały nieprzerwanie od dnia montażu do dnia 30.01.2024. do godz 7:30, rejestrując w tym czasie łącznie 42,44 GB danych, w tym 44 915 plików wav.
+Zdolność mikrofonu do rejestracji sztucznie wytworzonych głosów nietoperzy została zaprezentowana w rozdziale "Prace badawczo-rozwojowe - testy terenowe".
 
 \section{Testy oprogramowania}
 
