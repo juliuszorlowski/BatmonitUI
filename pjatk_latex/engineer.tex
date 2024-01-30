@@ -853,6 +853,17 @@ Kod głównej funkcji przedstwiono poniżej:
 
 \subsection{Metryki}
 
+\chapter{Implementacja mikroserwisu do synchronizacji danych z systemu SMART z bazą danych i aplikacją}
+
+Watchdog został napisany w języku Java. Jego działanie polega na monitoriwaniu folderu, do którego pobierane są dane z systemu SMART i w przypadku pojawienia się nowych danych, wystawienie API dla NodeJS, z wszelkimi informacjami o nowych danych, takimi jak: data, godzina, numer turbiny itd. 
+
+\begin{lstlisting}[language=Java,caption={Implementacja watchdoga do synchronizacji dźwięków z zystemu SMART z bazą danych i aplikacją}, label={lst:watchdog}]
+
+  WATCHDOG DO WKLEJENIA - KUBA POPRAWIA
+
+\end{lstlisting}
+\clearpage
+
 
 \chapter{Implementacja aplikacji użytkownika}
 
@@ -1107,7 +1118,33 @@ Z uwagi na wspomniane zalety komponentów funcjonalnych posiadających stan obec
 
 \chapter{System w działaniu}
 
-\section{Pobieranie i przekazanie danych z mikrofonu do aplikacji}
+\section{Rejestracja dźwięków za pomocą mikrofonu ultradźwięków}
+Rejestracja dźwięków odbywa się od zachodu do wschodu słońca, nieprzerwanie od zamontowania mikrofonu na turbinie 14 lipca 2023 r. Funkcję nagrywania dżwięku od zachodu do wschodu słońca można ustawić w aplikacji dostarczonej łącznie z mikrofonem i zainstalowanej na kontrolerze \ref{img:smart-installed}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/smart-installed.png}
+  \caption{System SMART firmy Wildlife Acoustics zainstalowany na turbinie wiatrowej. Źródło: Bioseco}
+  \label{img:smart-installed}
+\end{figure} 
+
+\section{Pobieranie danych z mikrofonu}
+Do pobierania danych z mikrofonu użyto polecenia rsync służącego do synchronizacji danych pomiędzy dwoma urzadzeniami z systemem linux. Polecenie to wpisywane jest w terminalu urządzenia, do którego pobierane są nagrania.
+
+Z uwagi na obronę pracy zimą oraz za dnia, kiedy brak jest nietoperzy, a urządzenie jest zainstalowane w terenie, do prezentacji pobierania danych z mikrofonu użyto polecenia pobierającego dane z okresu kiedy nietoperze występowały:
+
+\begin{lstlisting}[language=C,caption={Polecenie rsync pobierające dane z pewnego okresu czasu}, label={lst:functional_component}]
+  rsync -cavzhP --include='9c.25.be.01.01.0b_20230908_20*.wav' smart@192.168.3.2:/var/www/html/storage/devices/9c.25.be.01.01.0b/data/wav/ /home/batmonit/batmonit/recordings/
+\end{lstlisting}
+
+\section{Synchronizacja danych pomiędzy systemem SMART a bazą danych i aplikacją}
+Do synchronizacji danych posłużył watchdog, który został zaimplementowany jako mikroserwis, wystawiający API dla NodeJS. Watchdog monitoruje stan folderu opisanego w poprzednim punkcie i w przypadku pojawienia się nowego rekordu do NodeJS trafia plik w formacie JSON z wszelkimi informacjami przechowywanymi przez bazę danych i prezentowanych w interfejsie użytkownika, takimi jak: data, godzina, numer turbiny itd.
+
+ >>>>>>>>>>>>>>>  JAK TO ZAPREZENTOWAĆ  ????
+
+\section{Przekazanie danych daplikacji}
+
+
 \section{Przekazanie danych z mikrofonu do identyfikacji gatunku}
 
 \chapter{Testowanie}
