@@ -1225,6 +1225,68 @@ Listing \ref{lst:Supertest} przedstawia przykład testu integracyjego z wykorzys
 \end{lstlisting}
 
 \subsection{Testy funkcjonalne}
+W ramach testów sprawdzono zgodność sytemu z wymaganiami Klienta Wewnętrznego (Dziekan, Promotor) i Zewnętrznego (przedstawiciele Bioseco S.A., przedstawiciele klientów Bioseco S.A.). Wymagania te zostały wymienione i opisane poniżej.
+
+\subsubsection{Rejestracja ultradźwięków}
+Rejestracja ultradźwięków została przetestowana w trakcie testów terenowych systemu SMART z wykorzystaniem sztucznie wytworzonych ultradźwięków. Zostało to opisane w punktach: "Testy terenowe systemu SMART" oraz "Prace badawczo-rozwojowe - testy terenowe". 
+
+Z testów tych wynika, że system wykrywał większość odtworzonych dźwięków o danej częstotliwości, jeśli dźwięk taki na danej odległości od mikrofonu był wykrywany. Tylko w dwóch przypadkach zarejestrowano 66\% odtworzonych dźwięków (2 na 3 odtworzone dźwięki - obydwa przypadki były dla odległości 40 m i częstotliwości 25-35 kHz, pierwszy dla kąta 30\textdegree, a drugi dla kąta 60\textdegree ), a w jednym przypadku 33\% odtworzonych dźwieków (1 na 3 odtworzone dźwięki, na odległości 20 m od mikrofonu dla częstotliwości 40-48 kHz i przy kącie 0\textdegree).
+
+Ponadto maksymalne odległości detekcji nietoperzy odzywających się w poszczególnych zakresach częstotliwości odpowiadają odległościom obliczonym matematycznie dla tych częstotliwości \cite{agranat}. 
+
+Powyższe dane pozwalają ocenić, że system SMART (mikrofon ultradźwięków wraz z kontrolerem) rejestruje nietoperze z dużą skutecznością, a więc funkcjonalność rejestracji nietoperzy jest zrealizowana.
+
+\subsubsection{Rejestracja ultradźwięków 360\textdegree dookoła turbiny wiatrowej}
+W celu realizacji tej funkcjonalności zostały wykonane dwa elementy - testy terenowe mikrofonu sprawdzające możliwości detekcji ultradźwięków pod różnymi kątami oraz adekwatna do wyników tych testów zaproponowana liczby mikrofonów, która powinna być użyta, aby uzyskać pokrycie 360\textdegree. 
+
+
+Testy terenowe pokazały , że nietoperze są skutecznie wykrywane pod kątem 90\textdegree (Rys. \ref{img:angle0}, \ref{img:angle30}, \ref{img:angle60}, \ref{img:angle90}). Skuteczność wykrywania zmniejsza się pod tym kątem w stosunku do pozostałych kątów o 20 m i spada z 60 m do 40 m dla najniższych częstotliwości (19-20 kHz). Biorąc pod uwagę, że odległości detekcji nietoperzy są na tyle małe w kontekście ich ochrony przed kolizjami z turbinami wiatrowymi, że klasyczne podejście oparte o system detekcyjno-reakcyjny polegające
+na wyłączeniu turbiny na podstawie każdego przelotu nie będzie przydatne i konieczne będzie dobranie specyficznego wyzwalacza zatrzymującego i ponownie uruchamiającego turbinę, takiego jak np. liczba przelotów w jednostce czasu, że odległości wykrywania nietoperzy pod kątem 90\textdegree uzyskane w przeprowadzonych testach można uznać za wystaczające. 
+
+Pokrycie kąta 360\textdegree będzie wobec powyższych wyników zapewnione poprzez montaż dwóch mikrofonów na jednej wysokości, umieszczonych w jednej osi i skierowanych w przeciwnych kierunkach.
+
+Wobec powyższego należy uznać, że funkcjonalność rejestracji ultradźwięków nietoperzy wokół turbiny wiatrowej została zrealizowana.
+
+
+\subsubsection{Rejestracja ultradźwięków w warunkach wymagających wodoodporności}
+System SMART został zaprojektowany przez producenta z przeznaczeniem szczególnie na turbiny wiatrowe, w związku z czym wodoodporność jest jednym z atrybutów mikrofonu wybranego do niniejszej pracy dyplomowej. Dodatkowo mikrofon ten wyposażony jest w innowacyjne w tego typu sprzętach podgrzewanie. Powoduje to, że wilgoć, która może zbierać się na membranie mikrofonu jest odparowywana, co zapewnia dodatkowo możliwie najlepszą jakość rejestrowanego dźwięku \cite{smart-user-guide}. 
+
+
+Funkcjonalność wodoodporności została więc zrealizowana poprzez dobór odpowiedniego sprzętu.
+
+\subsubsection{Pobranie dźwięku z mikrofonu do komputera}
+Funkcja ta została zrealizowana poprzez odpowiednią konfigurację sieciową systemu SMART przez pracowników firmy Bioseco i podłączenie go do lokalnej sieci Bioseco, do której podłączony jest również komputer firmowy, na którym zainstalowany jest system będący przedmiotem niniejszej pracy dyplomowej. Pobranie dźwięku realizowane jest za pośrednictwem narzędzia rsync do folderu na lokalnej maszynie, co zostało przedstawione w punkcie "Pobieranie danych z mikrofonu". 
+
+
+Podczas prób pobierania danych z różnych zakresów czasowych, dane za każdym razem były pobierane poprawnie, w związku z czym funkcjonalność tą należy uznać za zrealizowaną.
+
+\subsubsection{Pobranie dźwięku z komputera do programu analizującego czy nagranie zawiera dźwięk nietoperza}
+Funkcjonalność ta została zrealizowana poprzez Watchdoga zaimplementowanego jako mikroserwis. Watchdog monitoruje folder, do którego trafiają nagrania z systemu SMART i w przypadku pojawienia się nowego nagrania wykorzystuje model sztucznej inteligencji w celu przeanalizowania nagrania. Zostało to szczegółowo opisane w punkcie "Prztwarzanie danych przez Watchdoga". 
+
+
+Podczas prób pobierania danych z różnych zakresów czasowych, dane za każdym razem były pobierane poprawnie, w związku z czym funkcjonalność tą należy uznać za zrealizowaną.
+
+\subsubsection{Rozpoznanie wystąpienia nietoperza/rozpoznanie gatunku nietoperza}
+TODO
+
+\subsubsection{System uczenia sieci neuronowej}
+
+\subsubsection{Interfejs do wizualizacji danych}
+
+
+\subsubsection{Baza danych}
+
+\subsubsection{System do zatrzymywania turbiny wiatrowej}
+
+
+
+
+\subsection{Testy systemowe}
+Sprawdzona została poprawność działania systemu w zintegrowanym środowisku, gdzie zostały one przeprowadzone niemal od początku do końca. Nie były one wykonane w 100\% od początku do końca z uwagi ukończenie pracy w okresie zimowym, kiedy nie są rejestrowane nagrania nietoperzy a jedynie niekiedy nagrania szumów. Z tego powodu testy te zostały podzielone na dwa elementy - poprawność pobierania dźwięków oraz poprawność funkcjonalności od pobrania dźwięku, poprzez identyfikację głosu nietoperza po zapis rekordu w bazie i wizualizacji go w Aplikacji Użytkownika.
+
+
+
+
 
 \chapter{Przyszłość produktu i komercjalizacja}
 
@@ -1704,6 +1766,19 @@ Listing \ref{lst:Supertest} przedstawia przykład testu integracyjego z wykorzys
 \clearpage
 
 \section{Analiza soDIS}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{sprz/sodis1.png}
+  \caption{Analiza zagrożeń w konwencji soDIS}
+  \label{img:sodis1}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{sprz/sodis2.png}
+  \caption{Analiza zagrożeń w konwencji soDIS}
+  \label{img:sodis2}
+\end{figure}
 
 \clearpage
 
