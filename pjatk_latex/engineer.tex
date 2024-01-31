@@ -16,8 +16,7 @@
 \author{Magdalena Wybraniec}{s19798}{Sztuczna Inteligencja}{Niestacjonarny}
 \consultant{Dawid Gradolewski}
 \consultant{Damian Dziak}
-\projectgoals{Projekt typu R\&D, ma na celu przygotowanie systemu składającego się z dostępnego na rynku mikrofonu ultradźwięków odpowiedniego do zastosowania na turbinie wiatrowej oraz wytworzenienie oprogramowania pobierającego i analizującego dźwięk 
-pochodzący z mikrofonu oraz rozpoznającego pojawienie się nietoperzy, zapisujący nagrania w bazie danych i wizualizujący je w interfejsie - panelu administratora. Dodatkowo celem będzie przygotowanie analizy odległości i kątów z jakiej mikrofon rejestruje głos nietoperzy i adekwatnie – zaproponowanie liczby i rozstawienia urządzeń nasłuchowych, tak aby pokryć kąt 360 stopni wokół turbiny na farmie wiatrowej.}
+\projectgoals{Projekt typu R\&D, ma na celu przygotowanie systemu składającego się z dostępnego na rynku mikrofonu ultradźwięków odpowiedniego do zastosowania na turbinie wiatrowej oraz wytworzenie oprogramowania pobierającego i analizującego dźwięk pochodzący z mikrofonu oraz rozpoznającego pojawienie się nietoperzy, zapisujący nagrania w bazie danych i wizualizujący je w interfejsie - panelu administratora. Dodatkowo celem będzie przygotowanie analizy odległości i kątów z jakiej mikrofon rejestruje głos nietoperzy i adekwatnie – zaproponowanie liczby i rozstawienia urządzeń nasłuchowych, tak aby pokryć kąt 360 stopni wokół turbiny na farmie wiatrowej.}
 \productsandservices{System rejestrujący i wykrywający nietoperze z nagrań ultradźwięków, możliwy do połączenia z systemem wyłączania turbiny}
 \mainfunctionalities{
 \begin{itemize}
@@ -33,7 +32,7 @@ Czas trwania projektu jest ograniczony do momentu przekazania książki dyplomow
 }
 \date{\today}
 \nabstract{
-  Praca powstała w kooperacji z firmą technologiczną Bioseco S.A., która opracowała i produkuje system kamer ze sztuczną inteligencją do wykrywania ptaków na farmach wiatrowych oraz automatycznie wyłączających turbinę, bądź uruchamiających odstraszacze świetlne lub dźwiękowe w reakcji na określone wyzwalacze, takie jak ptak określonej wielkości w danej odległości od turbiny. Zamysłem kooperacji było przygotowanie przez zespół inżynierski materiałów do implementacji przez firmę podobnego rozwiązania, ale dla innej grupy zwierząt - nietoperzy, w oparciu nie o sensory wizyjne a akustyczne. Zakres niniejszej pracy objął: weryfikację udostępnionego przez Bioseco S.A. mikrofonu ultradźwięków pod kątem możliwości zastosowania na farmach wiatrowych oraz w razie potrzeby zmiany sprzętu - wyszukanie innego mikrofonu, testy terenowe mikrofonu ultradźwięków w kontekście odległości i kątów wykrywania różnych ultradźwięków i przygotowania na tej podstawie planu liczby i lokalizacj takich mikrofonów na turbinie, kolejno opracowanie sposobu pobierania dźwięków z mikrofonu, pozyskanie odpowiednich nagrań nietoperzy do treningu sieci neuronowej, analiza przez sieć neuronową pod kątem występowania gatunków nietoperzy oraz zapisanie informacji w bazie danych i prezentacji wyników w interfejsie użytkownika. W związku z tym, że zakres pracy był rozbudowany interfejs użytkownika oraz sieć neuronową przygotowano w zakresie podstawowym - jako działający prototyp. Niniejsza praca jest typu R\&D, łączy kilka dziedzin informatyki, ale także zawiera elementy wiedzy z zakresu biologii i farm wiatrowych.
+  Praca powstała w kooperacji z firmą technologiczną Bioseco S.A., która opracowała i produkuje system kamer ze sztuczną inteligencją do wykrywania ptaków na farmach wiatrowych oraz automatycznie wyłączających turbinę, bądź uruchamiających odstraszacze świetlne lub dźwiękowe w reakcji na określone wyzwalacze, takie jak ptak określonej wielkości w danej odległości od turbiny. Zamysłem kooperacji było przygotowanie przez zespół inżynierski materiałów do implementacji przez firmę podobnego rozwiązania, ale dla innej grupy zwierząt - nietoperzy, w oparciu nie o sensory wizyjne a akustyczne. Zakres niniejszej pracy objął: weryfikację udostępnionego przez Bioseco S.A. mikrofonu ultradźwięków pod kątem możliwości zastosowania na farmach wiatrowych oraz w razie potrzeby zmiany sprzętu - wyszukanie innego mikrofonu, testy terenowe mikrofonu ultradźwięków w kontekście odległości i kątów wykrywania różnych ultradźwięków i przygotowania na tej podstawie planu liczby i lokalizacji takich mikrofonów na turbinie, kolejno opracowanie sposobu pobierania dźwięków z mikrofonu, pozyskanie odpowiednich nagrań nietoperzy do treningu sieci neuronowej, analiza przez sieć neuronową pod kątem występowania gatunków nietoperzy oraz zapisanie informacji w bazie danych i prezentacji wyników w interfejsie użytkownika. W związku z tym, że zakres pracy był rozbudowany interfejs użytkownika oraz sieć neuronową przygotowano w zakresie podstawowym - jako działający prototyp. Niniejsza praca jest typu R\&D, łączy kilka dziedzin informatyki, ale także zawiera elementy wiedzy z zakresu biologii i farm wiatrowych.
   
 }
 
@@ -50,17 +49,14 @@ Czas trwania projektu jest ograniczony do momentu przekazania książki dyplomow
 
 \chapter{Wstęp}\label{ch:wstep}
 
-U podłoża rozwoju alternatywnych źródeł elektryczności leży uczynienie branży energetycznej bardziej „zieloną”, aby życie przyszłych pokoleń było przynajmniej tak samo dobre, jak nasze jest dzisiaj. W poszukiwaniu rozwiązań, które zabezpieczają społeczności w dobie globalnego 
-ocieplenia,  zrównoważony rozwój stał się rdzeniem idei alternatywnych źródeł energii. Druga 
-część historii posiada jednak swą ciemną stronę – wiele danych naukowych wskazuje na znaczący 
-niekorzystny wpływ farm wiatrowych na przyrodę, a zwłaszcza nietoperze \cite{Wytyczne}. A są one ważnym elementem bioróżnorodności i poszukiwanego zrównoważonego rozwoju. Autorzy pracy dyplomowej w kooperacji z firmą Bioseco wypracowali oparty o sztuczną inteligencję system, który w przypadku dalszego jego rozwijania, zmniejszy śmiertelność nietoperzy na farmach wiatrowych i pomoże utrzymać branży wiatrowej miano ekologicznej. Chiropterologom zaś oraz urzędnikom oceniającym projekty wiatrowe pod kątem realizacji przyrodniczych norm prawnych, zapewni dodatkowe narzędzia minimalizacji wpływu farm na nietoperze.
+U podłoża rozwoju alternatywnych źródeł elektryczności leży uczynienie branży energetycznej bardziej „zieloną”, aby życie przyszłych pokoleń było przynajmniej tak samo dobre, jak nasze jest dzisiaj. W poszukiwaniu rozwiązań, które zabezpieczają społeczności w dobie globalnego ocieplenia,  zrównoważony rozwój stał się rdzeniem idei alternatywnych źródeł energii. Druga część historii posiada jednak swą ciemną stronę – wiele danych naukowych wskazuje na znaczący niekorzystny wpływ farm wiatrowych na przyrodę, a zwłaszcza nietoperze \cite{Wytyczne}. A są one ważnym elementem bioróżnorodności i poszukiwanego zrównoważonego rozwoju. Autorzy pracy dyplomowej w kooperacji z firmą Bioseco wypracowali oparty o sztuczną inteligencję system, który w przypadku dalszego jego rozwijania, zmniejszy śmiertelność nietoperzy na farmach wiatrowych i pomoże utrzymać branży wiatrowej miano ekologicznej. Chiropterologom zaś oraz urzędnikom oceniającym projekty wiatrowe pod kątem realizacji przyrodniczych norm prawnych, zapewni dodatkowe narzędzia minimalizacji wpływu farm na nietoperze.
 
 \section{Cele projektu}
 
 W ramach sformułowanego tematu wyszczególniono następujące cele badawcze i programistyczne:
 
 \begin{itemize}
-  \item{realizację działającego produktu o minimalnym zestawie funkcjonalności (ang: Minimal Viable Product, dalej: MVP) rejestrującego i wykrywającego nietoperze oraz wysyłającego sygnał wyłączenia – docelowo do systemu turbiny wiatrowej – składającego się z części sprzętowej i oprogramowania: aplikacji użytkwnika i bazy danych oraz modelu sieci neuronowych (ang: neural network, dalej NN) oraz z aplikacji użytkownika i bazy danych,}
+  \item{realizację działającego produktu o minimalnym zestawie funkcjonalności (ang: Minimal Viable Product, dalej: MVP) rejestrującego i wykrywającego nietoperze oraz wysyłającego sygnał wyłączenia – docelowo do systemu turbiny wiatrowej – składającego się z części sprzętowej i oprogramowania: aplikacji użytkownika i bazy danych oraz modelu sieci neuronowych (ang: neural network, dalej NN) oraz z aplikacji użytkownika i bazy danych,}
   \item{opracowanie koncepcji liczby i układu mikrofonów ultradźwięków docelowego produktu poprzez przeprowadzenie badań terenowych w zakresie zasięgu pracy testowanego sprzętu, tak by cały system pokrywał obszar 360 stopni dookoła turbiny wiatrowej, w odległości do około 100 m,}
   \item{opracowanie modelu sieci neuronowych uzyskującego przynajmniej 75\% skuteczności w identyfikacji nietoperzy - borowca wielkiego Nyctalus noctula i karlików Pipistrellus sp., głównych ofiar kolizji z turbinami wiatrowymi,}
   \item{przyczynienie się do rozwiązania realnego problemu występującego w obszarze branży energetyki wiatrowej oraz ochrony przyrody,}
@@ -72,13 +68,10 @@ W ramach sformułowanego tematu wyszczególniono następujące cele badawcze i p
 
 \section{Geneza problemu}
 
-Lądowe farmy wiatrowe mogą mieć znaczący wpływ na środowisko naturalne, w szczególności na nietoperze \cite{Wytyczne}. Wszystkie gatunki nietoperzy w Polsce są objęte ścisłą ochroną gatunkową i podlegają ochronie prawnej zgodnie z Rozporządzeniem Ministra Środowiska z dnia 16 grudnia 2016 r. w sprawie ochrony gatunkowej zwierząt \cite{Rozporządzenie}. Tym samym inwestor realizujący inwestycję wiatrową przestrzegając prawa ochrony przyrody jest zobligowany uzyskać tzw. Decyzję Środowiskową (dalej: DŚ). Zawarte są w niej 
-wszelkie informacje dotyczące: chiropterofauny danego obszaru, szacowanego wpływu inwestycji na nietoperze, działań zapobiegających i minimalizujących ewentualny wpływ inwestycji na nietoperze, tak by spełniała ona założenia dobrych praktyk i przepisy prawa – polskiego 
+Lądowe farmy wiatrowe mogą mieć znaczący wpływ na środowisko naturalne, w szczególności na nietoperze \cite{Wytyczne}. Wszystkie gatunki nietoperzy w Polsce są objęte ścisłą ochroną gatunkową i podlegają ochronie prawnej zgodnie z Rozporządzeniem Ministra Środowiska z dnia 16 grudnia 2016 r. w sprawie ochrony gatunkowej zwierząt \cite{Rozporządzenie}. Tym samym inwestor realizujący inwestycję wiatrową przestrzegając prawa ochrony przyrody jest zobligowany uzyskać tzw. Decyzję Środowiskową (dalej: DŚ). Zawarte są w niej wszelkie informacje dotyczące: chiropterofauny danego obszaru, szacowanego wpływu inwestycji na nietoperze, działań zapobiegających i minimalizujących ewentualny wpływ inwestycji na nietoperze, tak by spełniała ona założenia dobrych praktyk i przepisy prawa – polskiego 
 i międzynarodowego. 
 
-Dotychczas przyjętą praktyką w przypadku wykrycia zbyt dużych aktywności nietoperzy w monitoringu rzedrealizacyjnym było wpisanie do DŚ obowiązkowych wyłączeń turbin w okresach, w których te zbyt duże aktywności wykryto \cite{Wytyczne}. Dzieje się tak między innymi dlatego, że nie istniał wcześniej system wykrywający nietoperze w czasie rzeczywistym, w którym akcja, taka jak wyłączenie turbiny mogła być podjęta o bieżące aktywności nietoperzy, warunki pogodowe i inne. Tymczasem dynamika użytkowania przestrzeni przez nietoperze jest bardzo zmienna w czasie i po realizacji inwestycji ssaki te w całych wyznaczonych okresach nie muszą być zagrożone. A wyłączenia turbin na długie okresy w roku wiążą się z ogromnymi stratami inwestorów. System zaproponowany w ramach niniejszej pracy inżynierskiej może przyczynić się do wspierania rozwoju nowych standardów na poziomie krajowym, europejskim i światowym, w zakresie niezbędnych działań minimalizujących wpływ farm wiatrowych na nietoperze. Zamiast dotychczas stosowanych, z góry określonych wyłączeń na długi okres przy określonej prędkości wiatru, mogłyby być wykorzystywane wyłączenia sterowane na bieżąco przez system – turbiny 
-zatrzymywane byłyby tylko w czasie, kiedy większe liczebności nietoperzy 
-faktycznie się pojawiają.
+Dotychczas przyjętą praktyką w przypadku wykrycia zbyt dużych aktywności nietoperzy w monitoringu przedrealizacyjnym było wpisanie do DŚ obowiązkowych wyłączeń turbin w okresach, w których te zbyt duże aktywności wykryto \cite{Wytyczne}. Dzieje się tak między innymi dlatego, że nie istniał wcześniej system wykrywający nietoperze w czasie rzeczywistym, w którym akcja, taka jak wyłączenie turbiny mogła być podjęta o bieżące aktywności nietoperzy, warunki pogodowe i inne. Tymczasem dynamika użytkowania przestrzeni przez nietoperze jest bardzo zmienna w czasie i po realizacji inwestycji ssaki te w całych wyznaczonych okresach nie muszą być zagrożone. A wyłączenia turbin na długie okresy w roku wiążą się z ogromnymi stratami inwestorów. System zaproponowany w ramach niniejszej pracy inżynierskiej może przyczynić się do wspierania rozwoju nowych standardów na poziomie krajowym, europejskim i światowym, w zakresie niezbędnych działań minimalizujących wpływ farm wiatrowych na nietoperze. Zamiast dotychczas stosowanych, z góry określonych wyłączeń na długi okres przy określonej prędkości wiatru, mogłyby być wykorzystywane wyłączenia sterowane na bieżąco przez system – turbiny zatrzymywane byłyby tylko w czasie, kiedy większe liczebności nietoperzy faktycznie się pojawiają.
 
 \section{Aktualne rozwiązania konkurencyjne}
 
@@ -86,36 +79,14 @@ Intensywny rozwój sieci neuronowych oraz internetu rzeczy (ang: IoT) przyczyni�
 
 \section{IoT}
 
-Mimo, że brak jest jednej definicji tego terminu, 
-i w części publikacji nacisk kładziony jest na różne elementy tego 
-paradygmatu \cite{iot-gov}, bardzo dobrej definicji dostarcza Kavin Ashton, 
-uważany z ojca sformułowania "Internet of Things". Jest to "otwarta i 
-kompleksowa sieć inteligentnych obiektów, które mają zdolność do 
-samoorganizacji, udostępniania 
-informacji, danych i zasobów, reagowania i działania w obliczu sytuacji
-i zmian w otoczeniu" \cite{Ashton2002}. Definicję tę można uzupełnić tą 
-sformułowaną przez IEEE jako sieć elementów - każdy wyposażony w czujniki - 
-które są podłączone do internetu \cite{IEEE-iot}.
+Mimo, że brak jest jednej definicji tego terminu, i w części publikacji nacisk kładziony jest na różne elementy tego paradygmatu \cite{iot-gov}, bardzo dobrej definicji dostarcza Kavin Ashton, uważany z ojca sformułowania "Internet of Things". Jest to "otwarta i kompleksowa sieć inteligentnych obiektów, które mają zdolność do samoorganizacji, udostępniania informacji, danych i zasobów, reagowania i działania w obliczu sytuacji i zmian w otoczeniu" \cite{Ashton2002}. Definicję tę można uzupełnić tą sformułowaną przez IEEE jako sieć elementów - każdy wyposażony w czujniki - które są podłączone do internetu \cite{IEEE-iot}.
 
 \section{Sieci neuronowe i uczenie głębokie}
-Obecnie sieci neuronowe są bardzo ważną częścią świata nowoczesnych 
-technologii i znajdują liczne zastosowania w obszarach autoamatyzujących 
-wiele procesów takich jak analiza i diagnostyka medyczna \cite{diabetes}, 
-wykrywanie oszustw finansowych \cite{laundring}, rekomendacje sprzedażowe 
-\cite{fashion}, sterowanie procesów przemysłowych \cite{irigation} i wiele innych.
+Obecnie sieci neuronowe są bardzo ważną częścią świata nowoczesnych technologii i znajdują liczne zastosowania w obszarach automatyzujących wiele procesów takich jak analiza i diagnostyka medyczna \cite{diabetes}, wykrywanie oszustw finansowych \cite{laundring}, rekomendacje sprzedażowe \cite{fashion}, sterowanie procesów przemysłowych \cite{irigation} i wiele innych.
 
-Uczenie głębokie jest podzbiorem sztucznej inteligencji. W procesie uczenia
-głębokiego posiadając zbiór z odpowiednio zidentyfikowanymi elementami wykonujemy
-serię nieliniowych przekształceń, tak aby otrzymana funkcja rozdzieliła zbiór 
-niezidentyfikowanych elementów w taki sposób, by w każdej kategorii znalazły się 
-tylko elementy danej klasy.
+Uczenie głębokie jest podzbiorem sztucznej inteligencji. W procesie uczenia głębokiego posiadając zbiór z odpowiednio zidentyfikowanymi elementami wykonujemy serię nieliniowych przekształceń, tak aby otrzymana funkcja rozdzieliła zbiór niezidentyfikowanych elementów w taki sposób, by w każdej kategorii znalazły się tylko elementy danej klasy.
 
-Struktura matematyczno-programistyczna, służąca do wytworzenia funkcji
-klasyfikującej elementy zbioru, to właśnie sieć neuronowa. Zamysł konstrukcji
-sieci neuronowej został zainspirowany budową ludzkiego mózgu. Składa się ona
-z połączonych ze sobą warstw wielu neuronów. Każdy neuron składa się z 
-wartości początkowej, wagi i funkcji aktywacji, wszystkie te wartości są 
-wartościami matematycznymi. 
+Struktura matematyczno-programistyczna, służąca do wytworzenia funkcji klasyfikującej elementy zbioru, to właśnie sieć neuronowa. Zamysł konstrukcji sieci neuronowej został zainspirowany budową ludzkiego mózgu. Składa się ona z połączonych ze sobą warstw wielu neuronów. Każdy neuron składa się z wartości początkowej, wagi i funkcji aktywacji, wszystkie te wartości są wartościami matematycznymi. 
 
 \begin{figure}[h]
   \centering
@@ -132,7 +103,7 @@ Bioseco S.A. jest innowacyjną polską firmą technologiczną z siedzibą w Gda�
 \section{Proces wytwórczy}
 
 \subsection{Przyjęte podejście}
-Zastosowano podejście hybrydowe: Water-Scrum-Fall. Prace rozpoczęto od przygotowania wymagań systemowych, analiz i wstępnego projektu systemu. W kolejnej fazie wytwarzania oprogramowania zastosowano metodę programowania zwinnego w oparciu o plany i dokumentację z pierwszego etapu, korygowane na bieżąco przy każdej itereacji. W ostateniej fazie, po zakończeniu etapu zwinnego, przewidziano testy systemowe i integracyjne.
+Zastosowano podejście hybrydowe: Water-Scrum-Fall. Prace rozpoczęto od przygotowania wymagań systemowych, analiz i wstępnego projektu systemu. W kolejnej fazie wytwarzania oprogramowania zastosowano metodę programowania zwinnego w oparciu o plany i dokumentację z pierwszego etapu, korygowane na bieżąco przy każdej iteracji. W ostatniej fazie, po zakończeniu etapu zwinnego, przewidziano testy systemowe i integracyjne.
 
 \subsection{Organizacja zespołu}
 Grupa inżynierska była samoorganizującym się zespołem. Część funkcji była silniej przypisana do konkretnych członków grupy:
@@ -146,13 +117,13 @@ TODO
 \subsection{Technologie}
 Sprzęt wykorzystany do realizacji ostatecznego rozwiązania to system SMART firmy Wildlife Acoustics. Pozostałe najważniejsze sprzęty wykorzystane do realizacji projektu to głośnik ultradźwiękowy Pettersson L400 i laptop DELL G3.
 
-Model sieci neuronowej napisany został w języku Python z wykorzysteniem bibliotek PyTorch i TorchAudio.
+Model sieci neuronowej napisany został w języku Python z wykorzystaniem bibliotek PyTorch i TorchAudio.
 
 Baza danych została przygotowana w MySQL.
 
-Interfejs użytkownika został napisany w języku JavaScript z uzyciem biblioteki ReactJS. Serwer aplikacji został napisany w technologii NodeJS. Użyto również szeregu bibliotek wspomagających tworzenie aplikacji, bazy danych i testów: Sequelize, Express, Jest, Supertest, Joi, Jsonwebtoken. 
+Interfejs użytkownika został napisany w języku JavaScript z użyciem biblioteki ReactJS. Serwer aplikacji został napisany w technologii NodeJS. Użyto również szeregu bibliotek wspomagających tworzenie aplikacji, bazy danych i testów: Sequelize, Express, Jest, Supertest, Joi, Jsonwebtoken. 
 
-\subsection{Infrastuktura techniczna}
+\subsection{Infrastruktura techniczna}
 Na infrastrukturę techniczną, która umożliwiła realizację kluczowych elementów projektu dyplomowego składały się:
 \begin{itemize}
   \item{Internet,}
@@ -163,7 +134,7 @@ Na infrastrukturę techniczną, która umożliwiła realizację kluczowych eleme
   \item{przęt do odtwarzania głosów nietoperzy (głośnik ultradźwiękowy Pettersson L400),}
   \end{itemize}
 
-\subsection{Infrastuktura komunikacyjna i dokumentacja}
+\subsection{Infrastruktura komunikacyjna i dokumentacja}
 Kominikacja w ramach projektu odbywała się pomiędzy następującymi jednostkami:
 \begin{itemize}
   \item{w obrębie grupy,}
@@ -180,7 +151,7 @@ Komunikacja w obrębie grupy inżynierskiej oraz pomiędzy grupą i Konsultantam
   \item{aplikację Teams,}
   \item{aplikację Zoom,}
   \item{aplikację ClickUp,}
-  \item{grupę w aplikacji WhatssApp,}
+  \item{grupę w aplikacji WhatsApp,}
   \item{mailowo poprzez maile uczelniane, prywatne i służbowe}
   \item{telefonicznie.}
   \end{itemize}
@@ -212,13 +183,13 @@ Podsumowaniem szczegółowych rekomendacji umieszczonych w rozdziale - Załączn
 \chapter{Prace badawczo-rozwojowe - projektowanie}
 
 \section{Konsultacje z Bioseco S.A.}
-W ramach kooperacji z Bioseco S.A. przeprowadzono spotkania wspomagające zespół inżynierski w procesie wytwórczym, udostępniono większość niezbędnego sprzętu oraz wiedzę z zakresu prowadzenia badań ternowych i opracowania danych, wytwarzania oprogramowania i działania dedykowanych sprzętów. Zrealizowano konfigurację sieciową udostępnionego sprzętu, tak aby umżliwić zdalny dostęp do danych z mikrofonu ultradźwieków. Zainstalowano również testowo mikrofon ultradźwięków na turbinie wiatrowej.
+W ramach kooperacji z Bioseco S.A. przeprowadzono spotkania wspomagające zespół inżynierski w procesie wytwórczym, udostępniono większość niezbędnego sprzętu oraz wiedzę z zakresu prowadzenia badań terenowych i opracowania danych, wytwarzania oprogramowania i działania dedykowanych sprzętów. Zrealizowano konfigurację sieciową udostępnionego sprzętu, tak aby umożliwić zdalny dostęp do danych z mikrofonu ultradźwięków. Zainstalowano również testowo mikrofon ultradźwięków na turbinie wiatrowej.
 
 \section{Konsultacje chiropterologiczne i detektorowe}
-W początkowej fazie przygotowania projektu przeprowadzono konsultacje chiropterologiczne obejmujące: pozyskanie zidentyfikowanych nagrań nietoperzy, typu nagrań jakich nalezy użyć do uczenia głębokiego, rodzaju rejestratorów ultradźwięków jakie mogą być wykorzystane na turbinie wiatrowej w rozwiązaniu końcowym. Konsultacje te przeprowadzono z najlepszymi polskimi chiropterologami oraz polskim, niemieckim i amerykańskim wytwórcą detektorów. Chiropterolodzy, z którymi przeprowadzono kolsultacje to: Aneta Zapart, Konrad Bidziński i Joanna Furmankiewicz. Firmy wytwarzające detektory, z którymi prowadzono kosultacje to: Animal Sound Labs, EcoObs, Wildlife Acoustics.
+W początkowej fazie przygotowania projektu przeprowadzono konsultacje chiropterologiczne obejmujące: pozyskanie zidentyfikowanych nagrań nietoperzy, typu nagrań jakich należy użyć do uczenia głębokiego, rodzaju rejestratorów ultradźwięków jakie mogą być wykorzystane na turbinie wiatrowej w rozwiązaniu końcowym. Konsultacje te przeprowadzono z najlepszymi polskimi chiropterologami oraz polskim, niemieckim i amerykańskim wytwórcą detektorów. Chiropterolodzy, z którymi przeprowadzono konsultacje to: Aneta Zapart, Konrad Bidziński i Joanna Furmankiewicz. Firmy wytwarzające detektory, z którymi prowadzono konsultacje to: Animal Sound Labs, EcoObs, Wildlife Acoustics.
 
 \section{Mikrofon ultradźwięków spełniający wymogi końcowego produktu}
-W procesie definiowania cech sprzętu jakie powinien posiadać mikrofon i rejestrator ultrdźwięków wyszczególniono następujące cechy:
+W procesie definiowania cech sprzętu jakie powinien posiadać mikrofon i rejestrator ultradźwięków wyszczególniono następujące cechy:
   \begin{itemize}
     \item{możliwie najwyższa jakość rejestrowanych ultradźwięków,}
     \item{możliwie największa odległość rejestrowanych ultradźwięków,}
@@ -235,7 +206,7 @@ W początkowym okresie prac nad systemem nie istniał mikrofon spełniające wsz
   \label{img:smart}
 \end{figure} 
 
-Z korzyścią dla ochrony nietoperzy i deweloperów farm wiatrowych, a z pewnymi zagrożeniami dla twórców niniejszej pracy dyplomowej mikrofon został wyprodukowany wraz z tzw. kontrolerem (prostym przemysłowym koputerem), który wyposażony jest w oprogramowanie pobierające dane z mikrofonu i po odpowiedniej konfiguracji sieciowej serwujący dane i prezentujący je w interfejsie użytkownika. Mimo tego, że całe rozwiązanie częściowo odpowiada zakresowi niniejszej pracy dyplomowej, nie jest ono idealne, np. nie posiada bazy danych czy też w dość znacznym stopniu niepoprawnie identyfikuje gatunki nietoperzy \cite{kaleidoscope-bias}. Mimo to, fakt pracy członków zespołu nad podobnym rozwiązaniem, z uwagi na obszerne zajęcie się takim tematem i wdrożenie się w wiele jego aspektów, niesie raczej możliwości i szanse rozwoju tego rozwiązania, niż zagrożenie ze strony konkurencji.
+Z korzyścią dla ochrony nietoperzy i deweloperów farm wiatrowych, a z pewnymi zagrożeniami dla twórców niniejszej pracy dyplomowej mikrofon został wyprodukowany wraz z tzw. kontrolerem (prostym przemysłowym komputerem), który wyposażony jest w oprogramowanie pobierające dane z mikrofonu i po odpowiedniej konfiguracji sieciowej serwujący dane i prezentujący je w interfejsie użytkownika. Mimo tego, że całe rozwiązanie częściowo odpowiada zakresowi niniejszej pracy dyplomowej, nie jest ono idealne, np. nie posiada bazy danych czy też w dość znacznym stopniu niepoprawnie identyfikuje gatunki nietoperzy \cite{kaleidoscope-bias}. Mimo to, fakt pracy członków zespołu nad podobnym rozwiązaniem, z uwagi na obszerne zajęcie się takim tematem i wdrożenie się w wiele jego aspektów, niesie raczej możliwości i szanse rozwoju tego rozwiązania, niż zagrożenie ze strony konkurencji.
 
 \section{Odtwarzanie ultradźwięków}
 Do wyemitowania ultradźwięków niezbędne są urządzenia obsługujące co najmniej dwukrotnie wyższą częstotliwość niż emitowane dźwięki. Wynika to z twierdzenia Nyquista-Shannona, zgodnie z którym częstotliwość próbkowania z sygnału ciągłego ("analogowego") na dyskretny ("cyfrowy")musi być co najmniej dwukrotnie wyższa od najwyższej składowej widma sygnału aby sygnał został odtworzony poprawnie i nie dochodziło do zjawiska aliasingu \cite{probkowanie}. W zależności od możliwości karty dźwiękowej w komputerze użytym jako generator ultradźwięków, należy bądź ustawić maksymalną wartość próbkowania karty, bądź podłączyć wzmacniacz zwiększający maksymalną częstotliwość odtwarzania.
@@ -243,7 +214,7 @@ Do wyemitowania ultradźwięków niezbędne są urządzenia obsługujące co naj
 Do wstępnych testów poprawności działania sprzętu użyto wzmacniacza iFi Zen Dac o maksymalnej częstotliwości odtwarzania 384 kHz, a do testów terenowych mikrofonu - laptopa DELL G3 z maksymalną częstotliwością próbkowania karty dźwiękowej ustawioną na 96 kHz.
 
 \section{Głosy nietoperzy typu full-spectrum}
-Dźwięk typu full-spectrum, to rodzaj nagrania i analizy spektralnej dźwięku, w którym ujęte jest pełne spektrum nagrywanych częstotliwości. W odróżnieniu np. od nagrań typu zero-crossing posidają dużo więcej informacji o dźwięku, co przedstawiono na ilustracji (\ref{img:fullspectrum}). Z tego powodu nagrania takie są najlepsze do analizy gatunków nietoperzy, a wykorzystanie tego typu nagrań może dać najlepsze efekty w treningu sieci neuronowej oraz predykcji gatunków.
+Dźwięk typu full-spectrum, to rodzaj nagrania i analizy spektralnej dźwięku, w którym ujęte jest pełne spektrum nagrywanych częstotliwości. W odróżnieniu np. od nagrań typu zero-crossing posiadają dużo więcej informacji o dźwięku, co przedstawiono na ilustracji (\ref{img:fullspectrum}). Z tego powodu nagrania takie są najlepsze do analizy gatunków nietoperzy, a wykorzystanie tego typu nagrań może dać najlepsze efekty w treningu sieci neuronowej oraz predykcji gatunków.
 
 Tego typu nagrania generowane są tylko przez część detektorów ultradźwięków - tylko przez najnowocześniejsze rekordery, co wpłynęło na zmniejszenie liczby potencjalnych źródeł nagrań do treningu sieni neuronowej.
 
@@ -254,7 +225,7 @@ Tego typu nagrania generowane są tylko przez część detektorów ultradźwięk
   \label{img:fullspectrum}
 \end{figure} 
 
-\subsection{Wytworzenie sztucznych głosów nietoprzy do wstępnych testów sprzętu}
+\subsection{Wytworzenie sztucznych głosów nietoperzy do wstępnych testów sprzętu}
 
 W celu przetestowania działania sprzętu rejestrującego i oprogramowania przetwarzającego zarejestrowane dźwięki, przeprowadzono doświadczenie polegające na sztucznym wytworzeniu dźwięków, które imitowały by głos nietoperza.
 Pierwszym etapem było wygenerowanie w programie Audacity sinusoidalnej fali dźwiękowej z początkową częstotliwością 51 kHz i końcową częstotliwością 42 kHz, amplitudą początkową 0 i amplitudą końcową 1, interpolacją logarytmiczną oraz czasem trwania 25 ms (\ref{img:wykres_fali}).
@@ -288,8 +259,8 @@ Program BatSound dołączony do mikrofonu posłużył do wizualizacji zarejestro
 
 Powyższe doświadczenie dowiodło, iż mikrofon Pettersson M500-384 spełnia swoje zadanie. Mikrofon rejestruje dźwięki w zakresie niesłyszalnym dla człowieka i poprawnie wizualizuje zarejestrowane nagranie.
 
-\subsection{Wytworzenie sztucznych głosów nietoprzy do testów terenowych mikrofonu}
-W identyczny sposób jak głosy nietoprzy do wstępnych testów sprzętu przygotowano też dźwięki do testów terenowych. Dźwięki miały częstotliwości: 16-20 kHz, 25-35 kHz, 37-40 kHz i 40-48 kHz. Poszczególne dźwięki zostały zaprojektowane tak, aby reprezentować zakresy częstotliwości najczęściej występujących grup nietoperzy, a jednocześnie nie nakładały się na siebie – dzięki czemu można je było łatwo rozróżnić w wynikach. Poszczególne zakresy częstotliwości odpowiadają następującym gatunkom:
+\subsection{Wytworzenie sztucznych głosów nietoperzy do testów terenowych mikrofonu}
+W identyczny sposób jak głosy nietoperzy do wstępnych testów sprzętu przygotowano też dźwięki do testów terenowych. Dźwięki miały częstotliwości: 16-20 kHz, 25-35 kHz, 37-40 kHz i 40-48 kHz. Poszczególne dźwięki zostały zaprojektowane tak, aby reprezentować zakresy częstotliwości najczęściej występujących grup nietoperzy, a jednocześnie nie nakładały się na siebie – dzięki czemu można je było łatwo rozróżnić w wynikach. Poszczególne zakresy częstotliwości odpowiadają następującym gatunkom:
 
 \begin{itemize}
   \item{16-20 kHz – borowiec, borowiaczek,}
@@ -303,8 +274,8 @@ Większość z tych nietoperzy to gatunki szczególnie narażone na kolizje z tu
 \subsection{Zebranie nagrań nietoperzy}
 Zebranie nagrań nietoperzy odpowiedniego typu i odpowiedniej ich liczby rodziło kilka problemów:
 \begin{itemize}
-  \item{nagrania typu full-spectrum pochądzą z najnowoczesniejszych detektorów, które nie są używane przez wsystkich chiropterologów, więc ogranicza to grupę osób posiadających takie nagrania,}
-  \item{nagrania powinny pochodzić ze środowiska podobnego do lokalizacji turbin wiatrowych, najlepiej z turbiny wiatrowej z uwagi na podobne składy gatunkowe nietoperzy jakie napotykane będę przez urzadzenie po wdrożeniu, a więc powinny pochodzić z monitoringu porealizacyjnego, który prowadzony jest w Polsce przez niewielką grupę chiropterologów, co zmniejsza liczbę osób posiadających takie nagrania}
+  \item{nagrania typu full-spectrum pochodzą z najnowocześniejszych detektorów, które nie są używane przez wszystkich chiropterologów, więc ogranicza to grupę osób posiadających takie nagrania,}
+  \item{nagrania powinny pochodzić ze środowiska podobnego do lokalizacji turbin wiatrowych, najlepiej z turbiny wiatrowej z uwagi na podobne składy gatunkowe nietoperzy jakie napotykane będę przez urządzenie po wdrożeniu, a więc powinny pochodzić z monitoringu porealizacyjnego, który prowadzony jest w Polsce przez niewielką grupę chiropterologów, co zmniejsza liczbę osób posiadających takie nagrania}
   \item{nagrań musi być możliwie dużo, do celów skutecznego treningu sieci neuronowej}
   \item{kwestie związane z własnością, potencjalne koszty i związane z tym negocjacje.}
 \end{itemize}
@@ -324,7 +295,7 @@ System SMART firmy Wildlife Acoustics został zainstalowany na jednej z farm wia
 \end{figure} 
 
 \section{Konfiguracja sieciowa}
-Konfiguracja sieciowa systemu SMART została zrezlizowana przez Bioseco. SMART został połączony poprzez Ethernet do skrzynki zasilająco-sieciowej Bioseco zainstalowanej w turbinie wiatrowej, poprzez którą system podłączony jest światłowodem do Internetu. Port sieciowy udostępniony z turbiny skonfigurowany jest w taki sposób, aby poprzez VPN w sieci Bioseco możliwy był dostęp do danych z mikrofonu.
+Konfiguracja sieciowa systemu SMART została zrealizowana przez Bioseco. SMART został połączony poprzez Ethernet do skrzynki zasilająco-sieciowej Bioseco zainstalowanej w turbinie wiatrowej, poprzez którą system podłączony jest światłowodem do Internetu. Port sieciowy udostępniony z turbiny skonfigurowany jest w taki sposób, aby poprzez VPN w sieci Bioseco możliwy był dostęp do danych z mikrofonu.
 
 \section{Konsultacje z Wildlife Acoustics}
 Konsultacje z firmą Wildlife Acoustics obejmowały takie elementy jak:
@@ -340,10 +311,10 @@ W celu poprawnego zaadresowania powyższych elementów należało uwzględnić n
 \begin{itemize}
   \item{wysokość przelotów nietoperzy, których dotyczy problem śmiertelności,}
   \item{możliwości technologiczne sprzętu, np. najdłuższa możliwa długość kabla Ethernet łączącego mikrofon z kontrolerem,}
-  \item{możliwość wytwarzania echa przez elemeny turbiny bądź w wyniku nieprawidłowego montażu mikrofonu, co może powodować nieprawidłowości w rejestracji głosów nietoperzy,}
+  \item{możliwość wytwarzania echa przez elementy turbiny bądź w wyniku nieprawidłowego montażu mikrofonu, co może powodować nieprawidłowości w rejestracji głosów nietoperzy,}
   \item{możliwość lokalizacji sprzętu w turbinie z punktu widzenia deweloperów farm wiatrowych, np. problem lokalizacji źródła zasilania w gondoli,}
   \item {możliwości technologiczne montażu w różnych częściach turbiny i problem dostępu do sprzętu w przypadku jego konserwacji czy naprawy,}
-  \item {występowanie badź nie zaleceń władz środowiskowych co do szczegółów montażu podobnych urządzeń na farmach wiatrowych.}
+  \item {występowanie bądź nie zaleceń władz środowiskowych co do szczegółów montażu podobnych urządzeń na farmach wiatrowych.}
 \end{itemize}
 
 Kluczowe ustalenia z konsultacji są następujące:
@@ -355,7 +326,7 @@ Kluczowe ustalenia z konsultacji są następujące:
 \end{itemize}
 
 \section{Metodyka testów}
-Sztucznie przygotowane dźwięki emitowano w kilku konfiguracjach, składających się z różnych odległości, kątów względem mikrofonu i częstotliwości. Dźwięki o częstotliwościach: 16-20 kHz, 25-35 kHz, 37-40 kHz i 40-48 kHz odtwarzane były w odległościach 7, 20, 40, 60, 80, 100 i 120 m od mikrofonu. Dźwięki odtwarzane były w czterech liniach przebiegających pod kątami 0, 30, 60 i 90 stopni w stosunku do przodu mikrofonu (\ref{img:angles}). Dźwięki odtwarzane były z zestawu głośnika ultradźwiękowego Pettersson L400 oraz laptopa z kartą dźwiękową w konfiguracji umożliwiającej odtwarzanie dźwięków o wysokiej częstotliwości (16-bit, 48 kHz). Dzwięki odtwarzane były w możliwie najwyższym natężeniu. Każdy dźwięk był emitowany w określonej odległości i pod określonym kątem od trzech do sześciu razy, w większości przypadków trzy razy.
+Sztucznie przygotowane dźwięki emitowano w kilku konfiguracjach, składających się z różnych odległości, kątów względem mikrofonu i częstotliwości. Dźwięki o częstotliwościach: 16-20 kHz, 25-35 kHz, 37-40 kHz i 40-48 kHz odtwarzane były w odległościach 7, 20, 40, 60, 80, 100 i 120 m od mikrofonu. Dźwięki odtwarzane były w czterech liniach przebiegających pod kątami 0, 30, 60 i 90 stopni w stosunku do przodu mikrofonu (\ref{img:angles}). Dźwięki odtwarzane były z zestawu głośnika ultradźwiękowego Pettersson L400 oraz laptopa z kartą dźwiękową w konfiguracji umożliwiającej odtwarzanie dźwięków o wysokiej częstotliwości (16-bit, 48 kHz). Dżwięki odtwarzane były w możliwie najwyższym natężeniu. Każdy dźwięk był emitowany w określonej odległości i pod określonym kątem od trzech do sześciu razy, w większości przypadków trzy razy.
 
 \begin{figure}[h]
   \centering
@@ -420,11 +391,11 @@ Na podstawie tych wyników można zauważyć następujące prawidłowości:
 Maksymalne odległości detekcji nietoperzy odzywających się w poszczególnych zakresach częstotliwości odpowiadają odległościom obliczonym matematycznie dla tych częstotliwości \cite{agranat}, co pozwala ocenić, że system SMART wykrywa nietoperze z dużą skutecznością.
 
 \section{Propozycja liczby i rozmieszczenia mikrofonów}
-W celu przygotowania planu liczby i rozmieszczenia mikrofonów na turbinie wiatrowej wykorzystano informacje z konslutacji z firmą Wildife Acoustics oraz testów ternowych przeprowadzonych w ramach niniejszej pracy.
+W celu przygotowania planu liczby i rozmieszczenia mikrofonów na turbinie wiatrowej wykorzystano informacje z konsultacji z firmą Wildife Acoustics oraz testów terenowych przeprowadzonych w ramach niniejszej pracy.
 
 Z uwagi na dobre pokrycie kąta 180\textdegree przez jeden mikrofon, użycie dwóch mikrofonów na jednej wysokości pokryje kąt 360\textdegree.
 
-Z uwagi na krótkie zasięgi wykrywania nietoperzy mikrofony powiny być zlokalizowane jak najbliżej łopat turbiny, tak by wykrywać aktywność w miejscu, w którym ich obecność może wiązać się z kolizjami, czyli w gondoli lub w dolnym zakresie łopaty. Z punktu widzenia ochrony nietoperzy optymalnym byłby montaż jednego lub dwóch mikrofonów w gondoli, i jednego lub dwóch w dolnym zasięgu łopaty na wieży. Ze względów praktycznych montaż oraz poźniejszy dostęp do mikrofonów na poziomie dolnego zasięgu łopaty będzie drogi z uwagi na konieczny dostęp linowy oraz kłopotliwy z uwagi na brak opracowanego sposobu montażu w tym miejscu. Dlatego na obecnym etapie montaż powinien mieć miejsce w gondoli, bądź poprzez wywiercenie otworu w gondoli bądź montaż na szczycie gondoli na elementach takich jak barierki itp.
+Z uwagi na krótkie zasięgi wykrywania nietoperzy mikrofony powinny być zlokalizowane jak najbliżej łopat turbiny, tak by wykrywać aktywność w miejscu, w którym ich obecność może wiązać się z kolizjami, czyli w gondoli lub w dolnym zakresie łopaty. Z punktu widzenia ochrony nietoperzy optymalnym byłby montaż jednego lub dwóch mikrofonów w gondoli, i jednego lub dwóch w dolnym zasięgu łopaty na wieży. Ze względów praktycznych montaż oraz późniejszy dostęp do mikrofonów na poziomie dolnego zasięgu łopaty będzie drogi z uwagi na konieczny dostęp linowy oraz kłopotliwy z uwagi na brak opracowanego sposobu montażu w tym miejscu. Dlatego na obecnym etapie montaż powinien mieć miejsce w gondoli, bądź poprzez wywiercenie otworu w gondoli bądź montaż na szczycie gondoli na elementach takich jak barierki itp.
 Mikrofon, bądź mikrofony wraz z kontrolerem powinny znajdować się razem w gondoli, gdyż długość kabla Ethernet jakiego można użyć do połączenia mikrofonu z kontrolerem wynosi 100 m, z uwagi na poprawność przesyłu danych. Gdy odległość od gondoli do podstawy wiatraka jest mniejsza niż 100 m, kontroler może znajdować się na dole wieży.
 
 Odległości detekcji nietoperzy są na tyle małe w kontekście ich ochrony przed kolizjami z turbinami wiatrowymi, że klasyczne podejście oparte o system detekcyjno-reakcyjny polegające na wyłączeniu turbiny na podstawie każdego pojedynczego przelotu nie będzie przydatne, lecz konieczne będzie dobranie specyficznego wyzwalacza zatrzymującego i ponownie uruchamiającego turbinę, którym może być np. liczba zarejestrowanych przelotów nietoperzy w określonej jednostce czasu. W wyzwalaczach zatrzymań można użyć dodatkowo warunków środowiskowych, takich jak prędkość wiatru czy występowanie opadów (po połączeniu systemu SMART z systemem SCADA turbiny wiatrowej). Minimalizacje z zastosowaniem ograniczenia pracy turbin w określonych warunkach wiatrowych i opadów są obecnie stosowane w celu ograniczenia śmiertelności na farmach wiatrowych \cite{Wytyczne}
@@ -465,7 +436,7 @@ Na poniższych modelach przedstawiono najważniejsze elementy logiczne, urządze
 \end{figure}
 
 \section{Hardware}
-Kluczowe zasoby sprzętowe rozwiązania, to system SMART firmy Wildlife Acoustics. Składa się on z mikrofonu ultradźwięków oraz tzw. kontrolera, będącego prostym przemysłowym komputerem. Mikrofon jest połączony z kontrolerem kablem Ethernet, co pozwala na zasilanie mikrofonu oraz przesył danych pomiędzy tymi komponentami. Dane z mikrofonu pobierane są przez oprogramowanie Wildlife Acoustics zainstalowane na kotrolerze i tam też są one gromadzone.
+Kluczowe zasoby sprzętowe rozwiązania, to system SMART firmy Wildlife Acoustics. Składa się on z mikrofonu ultradźwięków oraz tzw. kontrolera, będącego prostym przemysłowym komputerem. Mikrofon jest połączony z kontrolerem kablem Ethernet, co pozwala na zasilanie mikrofonu oraz przesył danych pomiędzy tymi komponentami. Dane z mikrofonu pobierane są przez oprogramowanie Wildlife Acoustics zainstalowane na kontrolerze i tam też są one gromadzone.
 \clearpage
 
 \begin{figure}[h]
@@ -476,7 +447,7 @@ Kluczowe zasoby sprzętowe rozwiązania, to system SMART firmy Wildlife Acoustic
 \end{figure}
 
 \section{Model sieci neuronowej}
-Do treningu i predykcji gatunków nietoperzy użyta został sieć konwolucyjna składająca się z czterech bloków konwolucyjnych (z warstwą konwolucyjną, funkcją aktywacji ReLU i warstwą max-pooling), warstwy spłaszczającej do przestrzeni jednowymiarowej (warstwa flatten), warstwy fully-connected (w PyTorch nazywaną "linear") oraz ostatniej warstwy softmax, pozwalającej na uzyskanie wartości prawdopodobieństw przynależności nagrania do danej klasy (gatunku nieoperza).
+Do treningu i predykcji gatunków nietoperzy użyta został sieć konwolucyjna składająca się z czterech bloków konwolucyjnych (z warstwą konwolucyjną, funkcją aktywacji ReLU i warstwą max-pooling), warstwy spłaszczającej do przestrzeni jednowymiarowej (warstwa flatten), warstwy fully-connected (w PyTorch nazywaną "linear") oraz ostatniej warstwy softmax, pozwalającej na uzyskanie wartości prawdopodobieństw przynależności nagrania do danej klasy (gatunku nietoperza).
 
 W każdej z warstw konwolucyjnych zastosowano funkcję aktywacji ReLU i warstwę max-pooling o filtrze w rozmiarze 2 ("stride").
 \clearpage
@@ -524,13 +495,13 @@ W przypadku zalogowania użytkownika z prawami administracyjnymi w pasku menu wi
 
 Widok rekordów (\ref{img:app_records}) dzieli się na komponenty odpowiedzialne za filtrowanie wyników w górnej części oraz tabelę wyników w dolnej części.
 
-W górnej części widoku rekordów znajduje się panel filtrów z listą wszystkich gatunków nietoperzy. Kliknięcie na któryś z wymienionych gatunków filtruje listę rekordów i wyświetla tylko rekordy zawierające wybrany gatunek. Domyślny wybór fitrowania to \textit{All}, czyli wyświetlanie wszystkich rekordów.
+W górnej części widoku rekordów znajduje się panel filtrów z listą wszystkich gatunków nietoperzy. Kliknięcie na któryś z wymienionych gatunków filtruje listę rekordów i wyświetla tylko rekordy zawierające wybrany gatunek. Domyślny wybór filtrowania to \textit{All}, czyli wyświetlanie wszystkich rekordów.
 
 Poniżej panelu filtrów znajduje się komunikat podsumowujący liczbę istniejących w bazie danych rekordów według aktualnie wybranych kryteriów. W razie braku rekordów do wyświetlenia, w tym miejscu znajduje się komunikat o tej treści.
 
 Pod komunikatem znajduje się okno wyszukiwania, które przyjmuje dane wejściowe od użytkownika i pozwala na wyszukiwanie po zawartości tabeli \textit{Date}.
 
-W nagłówku tabeli zawierającej listę rekordów według aktualnych kryteriów filtrowania znajdują się nazwy poszczególnych kolumn odpowiadających nazwom kolumn w bazie danych. Kliknięcie na nazwię kolumny sortuje wyniki po zawartości tej kolumny w kolejności rosnącej lub malejącej, zaś ponowne kliknięcie odwraca kolejność na przeciwną.
+W nagłówku tabeli zawierającej listę rekordów według aktualnych kryteriów filtrowania znajdują się nazwy poszczególnych kolumn odpowiadających nazwom kolumn w bazie danych. Kliknięcie na nazwie kolumny sortuje wyniki po zawartości tej kolumny w kolejności rosnącej lub malejącej, zaś ponowne kliknięcie odwraca kolejność na przeciwną.
 
 Pod tabelą rekordów znajdują się przyciski paginacji, które pozwalając podzielić listę rekordów na osobne strony i wyświetlić zawartość kolejnych stron. Ilość przycisków stron generowana jest dynamicznie w zależności od ilości rekordów spełniających wybrane kryteria wyszukiwania oraz ilości rekordów wyświetlanych na jednej stronie.
 
@@ -546,14 +517,14 @@ Pod tabelą rekordów znajdują się przyciski paginacji, które pozwalając pod
 \section{Przygotowanie danych}
 Przygotowanie danych obejmowało podpisanie nagrań zgodnie z wykazem gatunków nietoperzy przypisanych do danych nagrań, które znajdowały się w pliku CSV.
 
-\subsection{Dobór typu spektogramu}
+\subsection{Dobór typu spectogramu}
 Do treningu użyto dźwięków przetworzonych na obrazy. Rozważano użycie zwykłego spektrogramu i mel-spectrogramu, jednak zdecydowano się na użycie zwykłego spectrogramu, ponieważ dawał on lepszy obraz. W przypadku bardzo delikatnych głosów nietoperzy na mel-spectrogramie pulsy były często niewidoczne.
 
 \subsection{Cięcie}
-W celu uzyskania jednolitych wielkości danych na wejściu wszystkie nagrania pociąto na odcinki dwusekundowe. W przypadku gdy ostatni element był krótszy niż dwie sekundy uzupełniano tę część zerami.
+W celu uzyskania jednolitych wielkości danych na wejściu wszystkie nagrania pocięto na odcinki dwusekundowe. W przypadku gdy ostatni element był krótszy niż dwie sekundy uzupełniano tę część zerami.
 
 \section{Dobór sieci neuronowej}
-Po przeglądzie literatury, konsultacjach z ekspertami oraz weryfikacji zasobów czasowych zdecydowano się ostatecznie na użycie konwolucyjnej sieci neuronowej jako sieci przystępnej w implementacji a jEdnocześnie potencjalnie dającej bardzo dobre wyniki.
+Po przeglądzie literatury, konsultacjach z ekspertami oraz weryfikacji zasobów czasowych zdecydowano się ostatecznie na użycie konwolucyjnej sieci neuronowej jako sieci przystępnej w implementacji a jednocześnie potencjalnie dającej bardzo dobre wyniki.
 
 \subsection{Przegląd literatury}
 Do wyszukania publikacji zawierających opracowania dotyczące automatycznego rozpoznawania nietoperzy użyto wyszukiwarki Google Scholar oraz fraz: "bats automated recognition", "bats machine learning", "bats deep learning".
@@ -561,7 +532,7 @@ Do wyszukania publikacji zawierających opracowania dotyczące automatycznego ro
 Do metod automatycznej identyfikacji gatunków nietoperzy wykorzystuje się
 bądź wielowymiarowe metody statystyczne (jak np. analiza dyskryminacyjna czy wielowymiarowa analiza wariancji - MANOVA) \cite{bats-id-statistics}, bądź metody uczenia nadzorowanego \cite{bats-id-supervised} takie jak np.: sieci neuronowe \cite{bats-id-nn}, drzewa decyzyjne i lasy losowe \cite{bats-random-forest}, SVM (ang: Support Vector Machines) \cite{bats-id-svm}.
 
-W przypadku sieci neuronowych, uczenia głębokiego do identyfikacji nietoperzy zaczęto używać dopiero w 2018 roku \cite{bats-id-dl2018}, a większą poplarność sieci głębokie zdobyły od roku 2020 \cite{bats-id-dl2020a}, \cite{bats-id-dl2020b}, lecz publikacje takie są dość nieliczne.
+W przypadku sieci neuronowych, uczenia głębokiego do identyfikacji nietoperzy zaczęto używać dopiero w 2018 roku \cite{bats-id-dl2018}, a większą popularność sieci głębokie zdobyły od roku 2020 \cite{bats-id-dl2020a}, \cite{bats-id-dl2020b}, lecz publikacje takie są dość nieliczne.
 
 Znaleziono tylko jedną pracę naukową, która wykorzystuje architekturę Transformers do rozpoznawania gatunków nietoperzy \cite{bats-transformers}.
 
@@ -570,14 +541,14 @@ Maksymalne skuteczności poszczególnych metod różnią się między sobą. Dla
 \section{Dobór parametrów sieci neuronowej}
 
 \subsection{Parametry warstw sieci}
-Sieć konwolucyjna składa się z czterech bloków konwolucyjnych (z warstwą konwolucyjną, funkcją aktywacji ReLU i warstwą max-pooling), warstwy spłaszczającej do przestrzeni jednowymiarowej (warstwa "flatten"), warstwy fully-connected (w PyTorch nazywaną "linear") oraz ostatniej warstwy softmax, pozwalającej na uzyskanie wartości prawdopodobieństw przynależności nagrania do danej klasy (gatunku nieoperza).
+Sieć konwolucyjna składa się z czterech bloków konwolucyjnych (z warstwą konwolucyjną, funkcją aktywacji ReLU i warstwą max-pooling), warstwy spłaszczającej do przestrzeni jednowymiarowej (warstwa "flatten"), warstwy fully-connected (w PyTorch nazywaną "linear") oraz ostatniej warstwy softmax, pozwalającej na uzyskanie wartości prawdopodobieństw przynależności nagrania do danej klasy (gatunku nietoperza).
 
 Parametry pierwszej warstwy konwolucyjnej:
 \begin{itemize}
   \item{liczba kanałów na wejściu - 1}
   \item{liczba kanałów na wyjściu (i liczba filtrów) - 16,}
   \item{rozmiar filtra ("kernel size") - 3,}
-  \item {przsunięcie filtra ("stride") - 1,}
+  \item {przesunięcie filtra ("stride") - 1,}
   \item{uzupełnienie skrajnych wartości ("padding") - 2.}
 \end{itemize}
 
@@ -588,7 +559,7 @@ Warstwa konwolucyjna
   \item{liczba kanałów na wejściu - 16}
   \item{liczba kanałów na wyjściu (i liczba filtrów) - 32,}
   \item{rozmiar filtra ("kernel size") - 3,}
-  \item {przsunięcie filtra ("stride") - 1,}
+  \item {przesunięcie filtra ("stride") - 1,}
   \item{uzupełnienie skrajnych wartości ("padding") - 2.}
 \end{itemize}
 
@@ -598,7 +569,7 @@ Parametry trzeciej warstwy konwolucyjnej:
   \item{liczba kanałów na wejściu - 32}
   \item{liczba kanałów na wyjściu (i liczba filtrów) - 64,}
   \item{rozmiar filtra ("kernel size") - 3,}
-  \item {przsunięcie filtra ("stride") - 1,}
+  \item {przesunięcie filtra ("stride") - 1,}
   \item{uzupełnienie skrajnych wartości ("padding") - 2.}
 \end{itemize}
 
@@ -607,7 +578,7 @@ Parametry czwartej warstwy konwolucyjnej:
   \item{liczba kanałów na wejściu - 64}
   \item{liczba kanałów na wyjściu (i liczba filtrów) - 128,}
   \item{rozmiar filtra ("kernel size") - 3,}
-  \item {przsunięcie filtra ("stride") - 1,}
+  \item {przesunięcie filtra ("stride") - 1,}
   \item{uzupełnienie skrajnych wartości ("padding") - 2.}
 \end{itemize}
 
@@ -617,18 +588,18 @@ W każdej z warstw konwolucyjnych zastosowano funkcję aktywacji ReLU i warstwę
 \subsection{Funkcje aktywacji}
 Funkcja aktywacji używana jest do obliczania wartości neuronów w warstwach wyjściowych.
 
-W warstwach konwolucyjnych jako funkcji aktywacji użyto funkcji ReLU. (Rectified Linear Unit). Jest to najczęściej używana faunkcja aktywacji w warstwach ukrytych. Do jej zalet należą szybkość i nieliniowość.
+W warstwach konwolucyjnych jako funkcji aktywacji użyto funkcji ReLU. (Rectified Linear Unit). Jest to najczęściej używana funkcja aktywacji w warstwach ukrytych. Do jej zalet należą szybkość i nieliniowość.
 
 W ostatniej warstwie użyto funkcji aktywacji softmax. Przekształca ona wartości uzyskiwane na wyjściu tak, aby ich suma była równa 1, dzięki czemu dobrze modeluje prawdopodobieństwo. Jest to najczęsciej wykorzystywana funkcja w warstwach wyjściowych.
 
 \subsection{Funkcja błędu}
-Funkcja ta jest często używana w sieciach neuronowych w problemach klasyfikacji. Określa ona jak dobrze model przewiduje klasy - im mniejsza wartość funkcji błędu, tym większa dokładnosć modelu. Podczas uczenia się sieci dąży się do zmniejszania wartości fukcji błędu. W sieci neuronowej użytej w niniejszej pracy wykorzystano funkcję entropii krzyżowej.
+Funkcja ta jest często używana w sieciach neuronowych w problemach klasyfikacji. Określa ona jak dobrze model przewiduje klasy - im mniejsza wartość funkcji błędu, tym większa dokładność modelu. Podczas uczenia się sieci dąży się do zmniejszania wartości funkcji błędu. W sieci neuronowej użytej w niniejszej pracy wykorzystano funkcję entropii krzyżowej.
 
 \subsection{Optymalizator}
-Optymalizator jest to funkcja lub algorytm decydująca o tym jak zmienić wagi sieci na podstawie funkcji błędu, tak aby zmniejszyć wartość tej funkcji. Optymalizator wływa na to jak szybko sieć będzie się uczyć poprzez zmianę jej parametrów oraz jak poradzi sobie z problemami takimi jak utknięcie w lokalnym minimum. W sieci neuronowej przedstawionej w niniejszej pracy wykorzystano optymalizator Adam (Adaptive Moment Estimation). Optymalizotor ten jest najczęsciej wykorzystywanym i dającym najczęściej najlepsze wyniki.
+Optymalizator jest to funkcja lub algorytm decydująca o tym jak zmienić wagi sieci na podstawie funkcji błędu, tak aby zmniejszyć wartość tej funkcji. Optymalizator wpływa na to jak szybko sieć będzie się uczyć poprzez zmianę jej parametrów oraz jak poradzi sobie z problemami takimi jak utknięcie w lokalnym minimum. W sieci neuronowej przedstawionej w niniejszej pracy wykorzystano optymalizator Adam (Adaptive Moment Estimation). Optymalizator ten jest najczęściej wykorzystywanym i dającym najczęściej najlepsze wyniki.
 
 \section{Architektura sieci neuronowej i modułów związanych z treningiem sieci}
-Sieć neuronowa napisana została w języku Python, z użyciem bilbiotek PyTorch oraz TorchAudio. 
+Sieć neuronowa napisana została w języku Python, z użyciem biblbiotek PyTorch oraz TorchAudio. 
 
 PyTorch jest biblioteką oferującą narzędzia do budowy i trenowania sieci neuronowych, zawiera m.in. moduły do tworzenia warstw sieci, funkcji straty czy optymalizatorów, daje wsparcie do trenowania na kartach graficznych \cite{pytorch}.
 PyTorch jest biblioteką o podobnej popularności co Tensorflow, a w ostatnich latach nawet częściej wykorzystywaną, szczególnie w środowiskach akademickich. Umożliwia ona na większą elastyczność w budowie sieci i ustawieniach jej parametrów. Do zalet takiego rozwiązania należy większy wpływ na kształt i funkcjonowanie sieci, a do wad - dłuższy czas przygotowania oraz wyższy próg wejścia. 
@@ -657,7 +628,7 @@ Identyfikacja gatunków nietoperzy poprzez analizę dźwięków skonwertowanych 
 
 Moduł ładujący dane jest najbardziej rozbudowanym elementem architektury związanej z treningiem sieci. Składa się z wielu funkcji, które zapewniają identyczność parametrów każdego z nagrań, takich jak liczba kanałów czy wielkość obrazu. Zawiera również funkcji odpowiedzialne za pobieranie ścieżek plików.
 
-Poniżej przedstawiono jedną z takich funkcji. Służy ona do konwersji częstotiwości próbkowania, jeśli byłaby ona inna niż założona pierwotnie dla wszystkich nagrań:
+Poniżej przedstawiono jedną z takich funkcji. Służy ona do konwersji częstotliwości próbkowania, jeśli byłaby ona inna niż założona pierwotnie dla wszystkich nagrań:
 
 \begin{lstlisting}[language=Python,caption={Implementacja konwersji dźwięku na spektrogram}, label={lst:audio-to-spectrogram}]
   def _resample_if_necessery(self, signal, sr):
@@ -772,7 +743,7 @@ if __name__ == "__main__":
 \end{lstlisting}
 
 \subsection{Trenowanie modelu}
-Moduł związany z trenowaniem sieci neuronowej składał się z funkcji służacej do stworzenia dataloader'a, trenowania pojedynczej epoki oraz treningu kolejnych epok. Wielkość batch'a określono na 128, liczbę epok na 10, a wskaźnik uczenia na 0,001. 
+Moduł związany z trenowaniem sieci neuronowej składał się z funkcji służącej do stworzenia dataloader'a, trenowania pojedynczej epoki oraz treningu kolejnych epok. Wielkość batch'a określono na 128, liczbę epok na 10, a wskaźnik uczenia na 0,001.
 
 Główną funkcję przedstawiono poniżej:
 
@@ -814,9 +785,9 @@ Główną funkcję przedstawiono poniżej:
 \end{lstlisting}
 
 \subsection{Predykcja modelu}
-Moduł służacy do wykonania predykcji zawiera poza główną funkcją dwa elementy - mapowanie klas (gatunków nietoperzy) oraz funkcję służącą do realizacji predykcji, która z użyciem wytrenowanego wcześniej modelu przewiduje gatunki nietoperzy na zbiorze testowym.
+Moduł służący do wykonania predykcji zawiera poza główną funkcją dwa elementy - mapowanie klas (gatunków nietoperzy) oraz funkcję służącą do realizacji predykcji, która z użyciem wytrenowanego wcześniej modelu przewiduje gatunki nietoperzy na zbiorze testowym.
 
-Kod głównej funkcji przedstwiono poniżej:
+Kod głównej funkcji przedstawiono poniżej:
 
 \begin{lstlisting}[language=Python,caption={Implementacja modułu do trenowania sieci}, label={lst:train}]
   if __name__ == "__main__":
@@ -855,9 +826,9 @@ Kod głównej funkcji przedstwiono poniżej:
 
 \chapter{Implementacja mikroserwisu do synchronizacji danych z systemu SMART z bazą danych i aplikacją}
 
-Watchdog został napisany w języku Java. Jego działanie polega na monitoriwaniu folderu, do którego pobierane są dane z systemu SMART i w przypadku pojawienia się nowych danych, wystawienie API dla NodeJS, z wszelkimi informacjami o nowych danych, takimi jak: data, godzina, numer turbiny itd. 
+Watchdog został napisany w języku Java. Jego działanie polega na monitorowaniu folderu, do którego pobierane są dane z systemu SMART i w przypadku pojawienia się nowych danych, wystawienie API dla NodeJS, z wszelkimi informacjami o nowych danych, takimi jak: data, godzina, numer turbiny itd. 
 
-\begin{lstlisting}[language=Java,caption={Implementacja watchdoga do synchronizacji dźwięków z zystemu SMART z bazą danych i aplikacją}, label={lst:watchdog}]
+\begin{lstlisting}[language=Java,caption={Implementacja watchdoga do synchronizacji dźwięków z systemu SMART z bazą danych i aplikacją}, label={lst:watchdog}]
 
   WATCHDOG DO WKLEJENIA - KUBA POPRAWIA
 
@@ -876,7 +847,7 @@ Centralną rolę pełni serwer, który pośredniczy w komunikacji z bazą danych
 
 Wybrana przez autorów projektu technologia bazy danych to MySQL. Jest to jeden z najbardziej rozpowszechnionych systemów relacyjnych baz danych. Do jego zalet należy szeroka obsługa platform i architektur.
 
-Baza danych zawiera tabele records, turbines, species oraz users. Tabela users gromadzi dane zarejestrowanych użytkowników i nie ma relacji z pozostałymi tabelami (\ref{img:db_diagram}).
+Baza danych zawiera tabele \verb|records|, \verb|turbines|, \verb|species| oraz \verb|users|. Tabela\verb|users| gromadzi dane zarejestrowanych użytkowników i nie ma relacji z pozostałymi tabelami (\ref{img:db_diagram}).
 
 \begin{figure}[h]
   \centering
@@ -887,9 +858,9 @@ Baza danych zawiera tabele records, turbines, species oraz users. Tabela users g
 
 \section{NodeJS}
 
-Serwer aplikacji został napisany w technologii NodeJS \cite{nodejs}. Technologia ta charakteryzuje się relatywnie niskim prógiem wejścia do tworzenia oprogramowania i otwiera programistom pracującym nad frontendem w języku Javascript na wykorzystanie swojej więdzy w tym języku przy pracy w backendzie. Jednocześnie na ujednolicenie pod względem języka oprogramowania części backendowej i frontendowej. Dzięki temu dobrze nadaje się do zastosowania w niniejszym projekcie.
+Serwer aplikacji został napisany w technologii NodeJS \cite{nodejs}. Technologia ta charakteryzuje się relatywnie niskim progiem wejścia do tworzenia oprogramowania i otwiera programistom pracującym nad frontendem w języku Javascript na wykorzystanie swojej wiedzy w tym języku przy pracy w backendzie. Jednocześnie na ujednolicenie pod względem języka oprogramowania części backendowej i frontendowej. Dzięki temu dobrze nadaje się do zastosowania w niniejszym projekcie.
 
-NodeJS to wieloplatformowe środowisko składające się z V8 (silnika Javascript firmy Google), pętli zdarzeń obsługiwanej przez bibliotekę libUV oraz interfejsu do obsługi niskpoziomowego wejścia-wyjścia.
+NodeJS to wieloplatformowe środowisko składające się z V8 (silnika Javascript firmy Google), pętli zdarzeń obsługiwanej przez bibliotekę libUV oraz interfejsu do obsługi niskopoziomowego wejścia-wyjścia.
 
 Do zalet NodeJS należy:
 \begin{enumerate}
@@ -1017,7 +988,7 @@ Biblioteka Express pozwoliła na uporządkowanie i czytelne rozmieszczenie zapro
 
 Do walidacji treści wpisywanej przez użytkownika aplikacji przy rejestracji lub logowaniu posłużyła biblioteka Joi. Dostarcza ona wygodny i czytelny szablon tworzenia warunków walidacyjnych. W razie ich niespełnienia przez walidowaną treść któregoś z warunków, zwracany jest błąd o określonej treści. W odróżnieniu od walidacji oferowanej przez bibliotekę Sequelize, Joi pozwala na walidację bardziej wysokopoziomową i nie jest wiązana modelem tworzącym bazę danych.
 
-Listing \ref{lst:Joi} przedstawia wykorzystanie biblioteki Joi wewnątrz funkcji pośredniczącej do potwierdzania toższamości użytkownika.
+Listing \ref{lst:Joi} przedstawia wykorzystanie biblioteki Joi wewnątrz funkcji pośredniczącej do potwierdzania tożsamości użytkownika.
 
 \begin{lstlisting}[language=Java,caption={Przykład wykorzystania Joi}, label={lst:Joi}]
   function validate(req) {
@@ -1045,7 +1016,7 @@ Stosowanie biblioteki ReactJS oferuje wiele korzyści:
   \item \textbf{Komponenty wielokrotnego użytku.} Aplikacja w ReactJS składa się z wielu komponentów. Każdy z nich posiada logikę, która może zostać wielokrotnie wykorzystana w innym miejscu aplikacji, co pozwala na skrócenie czasu tworzenia aplikacji. Ponadto, podział na komponenty pozwala na funkcjonalne uporządkowanie kodu i poprawienie jego czytelności.
   \item \textbf{Jednokierunkowy przepływ danych.} ReactJS przestrzega jednokierunkowego przepływu danych. Oznacza to, że dane są przekazywane tylko w dół hierarchii od komponentów nadrzędnych do dziedziczących. Widok aplikacji jest rezultatem stanu danych. Stan danych zmienia się pod wpływem akcji. Gdy następują akcje, stan zostaje odświeżony. W rezultacie łatwiejsze staje się unikanie oraz poszukiwanie błędów w kodzie.
   \item \textbf{Szybsze wdrożenie się.} ReactJS pozwala mniej doświadczonym programistom na relatywnie szybki start przy tworzeniu zaawansowanych dynamicznych aplikacji.
-  \item \textbf{Ciągły rozwój i popularność.} ReactJS z uwagi na swoją popularność posiada dużą społeczność użytkowników, co skutkuje szeroką dostęnością materiałów edukacyjnych oraz bogatym wsparciem technicznym.
+  \item \textbf{Ciągły rozwój i popularność.} ReactJS z uwagi na swoją popularność posiada dużą społeczność użytkowników, co skutkuje szeroką dostępnością materiałów edukacyjnych oraz bogatym wsparciem technicznym.
 \end{enumerate}
 
 W okresie powstawania niniejszej aplikacji nastąpiły zmiany w obowiązujących trendach odnośnie rodzaju wykorzystywanych komponentów. Z początku w środowisku ReactJS panowała tendencja do stosowania komponentów klasowych \ref{lst:class_component}, czyli programowania obiektowo w sposób zaczerpnięty z obiektowych języków programowania, takich jak np. Java. Komponent klasowy jest klasą dziedziczącą po klasie Component. Posiada stan, akcje, które wpływają na stan, oraz metody cyklu życia (ang. lifecycle methods). Metody cyklu życia zawierają kod, który ma się wykonać przy uruchomieniu (componentDidMount), odświeżeniu (componentDidUpdate) lub zamknięciu (componentWillUnmount) komponentu.
@@ -1080,7 +1051,7 @@ W okresie powstawania niniejszej aplikacji nastąpiły zmiany w obowiązujących
 
 Do zastosowań nie wymagających śledzenia stanu komponentu służył bezstanowy komponent funkcjonalny \ref{lst:stateless_functional_component}, który w zasadzie zwraca tylko kod JSX będący wykorzystaniem znaczników HTML wewnątrz kodu Javascript. Jest to wygodne rozwiązanie do minimalistycznego i czytelnego programowania widoków, szczególnie do wykorzystania w wielu miejscach z innymi danymi przekazanymi do komponentu w formie argumentów.
 
-\begin{lstlisting}[language=Java,caption={Przykład bezstanowego komponentu funcjonalnego}, label={lst:stateless_functional_component}]
+\begin{lstlisting}[language=Java,caption={Przykład bezstanowego komponentu funkcjonalnego}, label={lst:stateless_functional_component}]
   const input = ({ name, label, error, ...rest }) => {
     return (
       <div className="form-group">
@@ -1094,7 +1065,7 @@ Do zastosowań nie wymagających śledzenia stanu komponentu służył bezstanow
 
 W ReactJS wraz z wersją 16.8 wprowadzono możliwość śledzenia stanu wewnątrz komponentów funkcjonalnych \ref{lst:functional_component}. Sprawiło to, że komponenty funkcjonalne stały się równoważne do komponentów klasowych pod względem oferowanych funkcjonalności, lecz zachowały dotychczasową przewagę pod względem prostoty do wykorzystania i czytelności kodu. W komponencie funkcjonalnym metoda useEffect pełni funkcję metod cyklu życia komponentu klasowego. Stan komponentu przechowywany jest w zmiennych. Każdej zmiennej stanu komponentu odpowiada według konwencji metoda o tej samem nazwie z przedrostkiem \textit{set}, która pełni funkcję settera. Stan początkowy zmiennych stanu inicjowany jest przez metodę useState.
 
-\begin{lstlisting}[language=Java,caption={Przykład komponentu funcjonalnego}, label={lst:functional_component}]
+\begin{lstlisting}[language=Java,caption={Przykład komponentu funkcjonalnego}, label={lst:functional_component}]
   export default function Species() {
     const [species, setSpecies] = useState([]);
     const [selectedSpecies, setSelectedSpecies] = useState([]);
@@ -1114,12 +1085,12 @@ W ReactJS wraz z wersją 16.8 wprowadzono możliwość śledzenia stanu wewnątr
   }
 \end{lstlisting}
 
-Z uwagi na wspomniane zalety komponentów funcjonalnych posiadających stan obecnie zalecane jest stosowanie komponentów funkcjonalnych zamiast klasowych w nowych projektach pisanych w ReactJS. Dostępne są również dobrze opisane materiały pomagające w migracji istniejącego kodu do komponentów funkcjonalnych \cite{react-component}.
+Z uwagi na wspomniane zalety komponentów funkcjonalnych posiadających stan obecnie zalecane jest stosowanie komponentów funkcjonalnych zamiast klasowych w nowych projektach pisanych w ReactJS. Dostępne są również dobrze opisane materiały pomagające w migracji istniejącego kodu do komponentów funkcjonalnych \cite{react-component}.
 
 \chapter{System w działaniu}
 
 \section{Rejestracja dźwięków za pomocą mikrofonu ultradźwięków}
-Rejestracja dźwięków odbywa się od zachodu do wschodu słońca, nieprzerwanie od zamontowania mikrofonu na turbinie 14 lipca 2023 r. Funkcję nagrywania dżwięku od zachodu do wschodu słońca można ustawić w aplikacji dostarczonej łącznie z mikrofonem i zainstalowanej na kontrolerze \ref{img:smart-installed}
+Rejestracja dźwięków odbywa się od zachodu do wschodu słońca, nieprzerwanie od zamontowania mikrofonu na turbinie 14 lipca 2023 r. Funkcję nagrywania dźwięku od zachodu do wschodu słońca można ustawić w aplikacji dostarczonej łącznie z mikrofonem i zainstalowanej na kontrolerze \ref{img:smart-installed}
 
 \begin{figure}[h]
   \centering
@@ -1129,7 +1100,7 @@ Rejestracja dźwięków odbywa się od zachodu do wschodu słońca, nieprzerwani
 \end{figure} 
 
 \section{Pobieranie danych z mikrofonu}
-Do pobierania danych z mikrofonu użyto polecenia rsync służącego do synchronizacji danych pomiędzy dwoma urzadzeniami z systemem linux. Polecenie to wpisywane jest w terminalu urządzenia, do którego pobierane są nagrania.
+Do pobierania danych z mikrofonu użyto polecenia \verb|rsync| służącego do synchronizacji danych pomiędzy dwoma urządzeniami z systemem Linux. Polecenie to wpisywane jest w terminalu urządzenia, do którego pobierane są nagrania.
 
 Z uwagi na obronę pracy zimą oraz za dnia, kiedy brak jest nietoperzy, a urządzenie jest zainstalowane w terenie, do prezentacji pobierania danych z mikrofonu użyto polecenia pobierającego dane z okresu kiedy nietoperze występowały:
 
@@ -1147,7 +1118,7 @@ W pierwszej kolejności Watchdog monitoruje folder nagrań na wypadek pojawienia
   9c.25.be.01.01.0b_20240123_225004_701432.wav
 \end{lstlisting}
 
-Nazwa pliku podzielona jest na cztery człony odzielone znakiem ”\_” i zakończone rozszerzeniem pliku WAV. Pierwszy człon odnosi się do identyfikatora konkretnego urządzenia SMART. Drugi człon to data nagrania w formacie \verb|YYYYMMDD|. Trzeci człon to czas nagrania w formacie \verb|HHMMSS|. Ostatni człon jest losową sześciocyfrową liczbą. Po wyodrębnieniu powyższych członów zostają one zapisane do zmiennych.
+Nazwa pliku podzielona jest na cztery człony oddzielone znakiem ”\_” i zakończone rozszerzeniem pliku WAV. Pierwszy człon odnosi się do identyfikatora konkretnego urządzenia SMART. Drugi człon to data nagrania w formacie \verb|YYYYMMDD|. Trzeci człon to czas nagrania w formacie \verb|HHMMSS|. Ostatni człon jest losową sześciocyfrową liczbą. Po wyodrębnieniu powyższych członów zostają one zapisane do zmiennych.
 
 Następnie Watchdog wykorzystuje model sztucznej inteligencji w celu przanalizowania pliku nagrania. Analiza nadaje odpowiednią wartość zmiennym \verb|bat|, \verb|turbineStopSignal| oraz \verb|verification|.
 
@@ -1156,7 +1127,7 @@ W kolejnym kroku zapisane zmienne zostają umieszczone wewnątrz obiektu JSON (J
 \chapter{Testowanie}
 
 \section{Testy terenowe systemu SMART}
-Mikrofon ultradźwięków wraz z kontrolerem działały nieprzerwanie od dnia montażu do dnia 30.01.2024. do godz 7:30, rejestrując w tym czasie łącznie 42,44 GB danych, w tym 44 915 plików wav.
+Mikrofon ultradźwięków wraz z kontrolerem działały nieprzerwanie od dnia montażu do dnia 30.01.2024. do godz. 7:30, rejestrując w tym czasie łącznie 42,44 GB danych, w tym 44 915 plików WAV.
 Zdolność mikrofonu do rejestracji sztucznie wytworzonych głosów nietoperzy została zaprezentowana w rozdziale "Prace badawczo-rozwojowe - testy terenowe".
 
 \section{Testy oprogramowania}
@@ -1174,7 +1145,7 @@ Za szablon do pisania testów jednostkowych (ang. unit test) posłużyła biblio
 
 Listing \ref{lst:Jest_unit_test} przedstawia przykład testu jednostkowego z wykorzystaniem biblioteki Jest.
 
-Metoda \textit{describe} pozwala podzielić testy na zestawy odpowiadające konkretnej funcjonalności. Metoda \textit{it} definiuje pojedynczy przypadek testowy, a sama jej nazwa czytana w języku angielskim nakierowuje na zgodne z konwencją nazywanie przypadku testowego w formie słownego opisu spodzewanego wyniku.
+Metoda \textit{describe} pozwala podzielić testy na zestawy odpowiadające konkretnej funkcjonalności. Metoda \textit{it} definiuje pojedynczy przypadek testowy, a sama jej nazwa czytana w języku angielskim nakierowuje na zgodne z konwencją nazywanie przypadku testowego w formie słownego opisu spodziewanego wyniku.
 
 \begin{lstlisting}[language=Java,caption={Test jednostkowy z wykorzystaniem Jest}, label={lst:Jest_unit_test}]
   describe("auth middleware", () => {
@@ -1202,7 +1173,7 @@ Metoda \textit{describe} pozwala podzielić testy na zestawy odpowiadające konk
 
 Biblioteka Supertest w połączeniu z biblioteką Jest posłużyła do utworzenia testów integracyjnych. W projekcie posłużyła ona do testowania działania interfejsów API.
 
-Listing \ref{lst:Supertest} przedstawia przykład testu integracyjego z wykorzystaniem biblioteki Jest. Dostarczana przez bibliotekę Jest metoda \textit{beforeEach} zawiera kod wykonywany przed każdym przypadkiem testowym, zaś metoda \textit{afterEach} po każdym przypadku testowym.
+Listing \ref{lst:Supertest} przedstawia przykład testu integracyjnego z wykorzystaniem biblioteki Jest. Dostarczana przez bibliotekę Jest metoda \textit{beforeEach} zawiera kod wykonywany przed każdym przypadkiem testowym, zaś metoda \textit{afterEach} po każdym przypadku testowym.
 
 \begin{lstlisting}[language=Java,caption={Test integracyjny z wykorzystaniem Supertest i Jest}, label={lst:Supertest}]
   describe("/api/records", () => {
@@ -1241,7 +1212,7 @@ W celu realizacji tej funkcjonalności zostały wykonane dwa elementy - testy te
 
 
 Testy terenowe pokazały , że nietoperze są skutecznie wykrywane pod kątem 90\textdegree (Rys. \ref{img:angle0}, \ref{img:angle30}, \ref{img:angle60}, \ref{img:angle90}). Skuteczność wykrywania zmniejsza się pod tym kątem w stosunku do pozostałych kątów o 20 m i spada z 60 m do 40 m dla najniższych częstotliwości (19-20 kHz). Biorąc pod uwagę, że odległości detekcji nietoperzy są na tyle małe w kontekście ich ochrony przed kolizjami z turbinami wiatrowymi, że klasyczne podejście oparte o system detekcyjno-reakcyjny polegające
-na wyłączeniu turbiny na podstawie każdego przelotu nie będzie przydatne i konieczne będzie dobranie specyficznego wyzwalacza zatrzymującego i ponownie uruchamiającego turbinę, takiego jak np. liczba przelotów w jednostce czasu, że odległości wykrywania nietoperzy pod kątem 90\textdegree uzyskane w przeprowadzonych testach można uznać za wystaczające. 
+na wyłączeniu turbiny na podstawie każdego przelotu nie będzie przydatne i konieczne będzie dobranie specyficznego wyzwalacza zatrzymującego i ponownie uruchamiającego turbinę, takiego jak np. liczba przelotów w jednostce czasu, że odległości wykrywania nietoperzy pod kątem 90\textdegree uzyskane w przeprowadzonych testach można uznać za wystarczające. 
 
 Pokrycie kąta 360\textdegree będzie wobec powyższych wyników zapewnione poprzez montaż dwóch mikrofonów na jednej wysokości, umieszczonych w jednej osi i skierowanych w przeciwnych kierunkach.
 
@@ -1255,13 +1226,13 @@ System SMART został zaprojektowany przez producenta z przeznaczeniem szczególn
 Funkcjonalność wodoodporności została więc zrealizowana poprzez dobór odpowiedniego sprzętu.
 
 \subsubsection{Pobranie dźwięku z mikrofonu do komputera}
-Funkcja ta została zrealizowana poprzez odpowiednią konfigurację sieciową systemu SMART przez pracowników firmy Bioseco i podłączenie go do lokalnej sieci Bioseco, do której podłączony jest również komputer firmowy, na którym zainstalowany jest system będący przedmiotem niniejszej pracy dyplomowej. Pobranie dźwięku realizowane jest za pośrednictwem narzędzia rsync do folderu na lokalnej maszynie, co zostało przedstawione w punkcie "Pobieranie danych z mikrofonu". 
+Funkcja ta została zrealizowana poprzez odpowiednią konfigurację sieciową systemu SMART przez pracowników firmy Bioseco i podłączenie go do lokalnej sieci Bioseco, do której podłączony jest również komputer firmowy, na którym zainstalowany jest system będący przedmiotem niniejszej pracy dyplomowej. Pobranie dźwięku realizowane jest za pośrednictwem narzędzia \verb|rsync| do folderu na lokalnej maszynie, co zostało przedstawione w punkcie "Pobieranie danych z mikrofonu". 
 
 
 Podczas prób pobierania danych z różnych zakresów czasowych, dane za każdym razem były pobierane poprawnie, w związku z czym funkcjonalność tą należy uznać za zrealizowaną.
 
 \subsubsection{Pobranie dźwięku z komputera do programu analizującego czy nagranie zawiera dźwięk nietoperza}
-Funkcjonalność ta została zrealizowana poprzez Watchdoga zaimplementowanego jako mikroserwis. Watchdog monitoruje folder, do którego trafiają nagrania z systemu SMART i w przypadku pojawienia się nowego nagrania wykorzystuje model sztucznej inteligencji w celu przeanalizowania nagrania. Zostało to szczegółowo opisane w punkcie "Prztwarzanie danych przez Watchdoga". 
+Funkcjonalność ta została zrealizowana poprzez Watchdoga zaimplementowanego jako mikroserwis. Watchdog monitoruje folder, do którego trafiają nagrania z systemu SMART i w przypadku pojawienia się nowego nagrania wykorzystuje model sztucznej inteligencji w celu przeanalizowania nagrania. Zostało to szczegółowo opisane w punkcie "Przetwarzanie danych przez Watchdoga". 
 
 
 Podczas prób pobierania danych z różnych zakresów czasowych, dane za każdym razem były pobierane poprawnie, w związku z czym funkcjonalność tą należy uznać za zrealizowaną.
@@ -1280,14 +1251,14 @@ TODO
 Realizacja interfejsu do wizualizacji danych została przedstawiona szczegółowo w rozdziale "Implementacja aplikacji użytkownika". Aplikacja użytkownika służy do zbierania i zapisywania w bazie danych rekordów tworzonych na podstawie decyzji modelu sieci neuronowej, które następnie pozwala wyświetlić na liście z możliwością filtrowania i sortowania ich. W skład aplikacji wchodzą: baza danych, serwer oraz interfejs użytkownika. 
 
 
-Wszystkie próby wizualizacji danych po pobraniu dźwięków z mikrofonu powodowały zapis do bazy danych i wyświetlenie w aplikacji użytkownika. Ponadto zaimplementowane zostały testy jednostkowe oraz integracyjne z wykorzystaniem biliotek Jest oraz Supertest a do Do walidacji treści wpisywanej przez użytkownika aplikacji przy rejestracji lub logowaniu posłużyła biblioteka Joi, wykorzystanie tych elementów pomogły zapewnić poprawność funkcjonowania tej części oprogramowania.
+Wszystkie próby wizualizacji danych po pobraniu dźwięków z mikrofonu powodowały zapis do bazy danych i wyświetlenie w aplikacji użytkownika. Ponadto zaimplementowane zostały testy jednostkowe oraz integracyjne z wykorzystaniem bibliotek Jest oraz Supertest, a do do walidacji treści wpisywanej przez użytkownika aplikacji przy rejestracji lub logowaniu posłużyła biblioteka Joi, wykorzystanie tych elementów pomogły zapewnić poprawność funkcjonowania tej części oprogramowania.
 
 W związku z powyższym funkcjonalność tę można uznać za zrealizowaną.
 
 \subsubsection{Baza danych}
 Baza danych została napisana w MySQL a do komunikacji serwera z bazą użyto biblioteki Sequelize. Realizacja tej funkcjonalności została przedstawiona szczegółowo w rozdziale "Implementacja aplikacji użytkownika" w punktach: "Baza danych" i "Sequelize". 
 
-Wszystkie próby zapisu danych po pobraniu dźwięków z mikrofonu powodowały zapis do bazy danych. Ponadto zaimplementowane zostały testy jednostkowe oraz integracyjne z wykorzystaniem biliotek Jest oraz Supertest, które zapewniły wysoką jakość oprogramowania.
+Wszystkie próby zapisu danych po pobraniu dźwięków z mikrofonu powodowały zapis do bazy danych. Ponadto zaimplementowane zostały testy jednostkowe oraz integracyjne z wykorzystaniem bibliotek Jest oraz Supertest, które zapewniły wysoką jakość oprogramowania.
 
 \subsubsection{System do zatrzymywania turbiny wiatrowej}
 Realizacja tej funkcjonalności została zaniechana w trakcie realizacji pracy dyplomowej z uwagi na ograniczony sens praktyczny takiej funkcjonalności przygotowywanej jako rozwiązania ogólnego. Realizacja zatrzymań turbin jest specjalnością firmy Bioseco S.A. (Źródło: Bioseco) i w przypadku każdego z operatorów i każdego typu turbiny wygląda ona zupełnie inaczej. Funkcjonalność taka może być zrealizowana na kilka sposobów, np. poprzez modyfikację rejestrów w protokole MODBUS czy poprzez OPC-UA. Jednak w związku z tym, że jest to funkcjonalność wybitnie specyficzna dla konkretnego klienta i wymagająca żmudnego procesu komunikacji, przygotowań i uzgodnień z operatorem turbiny a kolejno implementacji rozwiązania, realizacja systemu zatrzymania turbiny wiatrowej jako elementu przedmiotowej pracy dyplomowej została zaniechana.
@@ -1314,16 +1285,16 @@ Wszystkie wykonane próby zakończyły się poprawną realizacją wszystkich ele
 
 \chapter{Przyszłość produktu i komercjalizacja}
 
-Praca nad rozwiązaniem objętym niniejszym dyplomem zbiegła się w czasie z dwoma istotnymi wydarzeniami, czy też procesami, które znacząco wływają na przyszły kształt i możliwość komercjalizacji produktu. Były to: wprowadzenie na rynek przez firmę Wildlife Acoustics systemu SMART, który w części odpowiadał zakresowi pracy dyplomowej oraz gwałtowny rozwój sztucznej inteligencji i aplikacji jej w różnych dziedzinach życia, w tym w automatycznej identyfikacji nietoperzy.
+Praca nad rozwiązaniem objętym niniejszym dyplomem zbiegła się w czasie z dwoma istotnymi wydarzeniami, czy też procesami, które znacząco wpływają na przyszły kształt i możliwość komercjalizacji produktu. Były to: wprowadzenie na rynek przez firmę Wildlife Acoustics systemu SMART, który w części odpowiadał zakresowi pracy dyplomowej oraz gwałtowny rozwój sztucznej inteligencji i aplikacji jej w różnych dziedzinach życia, w tym w automatycznej identyfikacji nietoperzy.
 
-W związku z wytworzeniem przez firmę Wildife Acoustics dość zaawansowanego rozwiązania jakim jest sytem SMART, można było albo wykorzystać to rozwiązanie i poprawić oraz dostosować funkcjonowowanie niektórych jego elementów lub też skupić się na wytworzeniu autorskiego rozwiązania. Zarówno w trakcie konsultacji w Bioseco S.A. jak i konsultacji z prowadzącymi przedmioty związane z pracą dyplomową, zdecydowano się na wykorzystanie systemu SMART jako rozwiązania zdecydowanie szybszego w implementacji na farmach wiatrowych, co odpowiadało na potrzeby zarówno Klienta Zewnętrznego (Bioseco S.A. i klienci firmy) oczekującego szybkiego wdrożenia rozwiązania do ochrony nietoperzy, jak i Klienta Wewnętrznego (Dziekan, Promotor) wymagającego sprawnego ukończenia pracy dyplomowej.
+W związku z wytworzeniem przez firmę Wildife Acoustics dość zaawansowanego rozwiązania jakim jest system SMART, można było albo wykorzystać to rozwiązanie i poprawić oraz dostosować funkcjonowanie niektórych jego elementów lub też skupić się na wytworzeniu autorskiego rozwiązania. Zarówno w trakcie konsultacji w Bioseco S.A. jak i konsultacji z prowadzącymi przedmioty związane z pracą dyplomową, zdecydowano się na wykorzystanie systemu SMART jako rozwiązania zdecydowanie szybszego w implementacji na farmach wiatrowych, co odpowiadało na potrzeby zarówno Klienta Zewnętrznego (Bioseco S.A. i klienci firmy) oczekującego szybkiego wdrożenia rozwiązania do ochrony nietoperzy, jak i Klienta Wewnętrznego (Dziekan, Promotor) wymagającego sprawnego ukończenia pracy dyplomowej.
 Ponadto należy zauważyć, że firma Wildlife Acoustics posiada 20-letnie doświadczenie w konstrukcji mikrofonów ultradźwięków oraz jest autorem oprogramowania do automatycznej identyfikacji nietoperzy. Było to dodatkowym czynnikiem, który spowodował raczej wybór tego rozwiązania, niż rozpoczynanie podobnej drogi co firma Wildlife Acoustics i jej podobne wiele lat temu.
 
-System SMART składa się z mikrofonu ultradźwięków i kontrolera będącego prostym komputerem przemysłowym, który serwuje aplikację udostępniającą dane z mikrofonu, po uprzedniej odpowiedniej konfiguracji sieciowej. Taka dość zaawansowana konstrukcja rozwiązania spowodowała trudność dla mało doświadczonego zespołu inżynierskiego z ograniczonymi zasobami czasowymi w dotarciu do surowych danych płynących z mikrofonu. Z tego powodu wykorzystano nagrania, które zostały już zarejestrowane na kontrolerze i dopiero te dźwięki pobierano i poddawano analizie pod kątem gatunków nietoperzy i dalszej wizualizacji w aplikacji użytkownika. Prostota takiego rozwiązania odpowiadała zasadniczo celom i zakresowi pracy inzynierskiej, która nie miała doprowadzić do zaprojektowania rozwiązania gotowego do aplikacji na turbinach, a raczej jego prototyp. Rozwiązanie takie z uwagi na swą niegeneryczność, nie będzie stosowane w rozwiązaniu końcowym. Mimo to przynajmniej dwa elementy zrealizowane w ramach niniejszej pracy dyplomowej po dalszym dostosowaniu mają znaczny potencjał komercjalizacji. Do tych elementów należą bardziej zaawansowana pod kątem konstrukcyjnym aplikacja użytkownika w stosunku do aplikacji Wildlife Acoustics, zawierająca bazę danych oraz model sieci neuronowych z większym potencjałem do zwiększania dokładności identyfikacji gatunków nietoperzy. Aktualne poziomy dokładności identyfikacji nietoperzy przez tego typu oprogramowanie są mieszczą się bowiem przykładowo w przedziałach: 28-82\% \cite{kaleidoscope-accuracy} czy 40-80\% \cite{kaleidoscope-bias}. Wykazuje się również, że nowsze oprogramowanie do automatycznej identyfikacji nie przynosi poprawy jeśli chodzi o dokładność oznaczeń. Jest to istotna nisza dla twórców niniejszej pracy dyplomowej z szansą na komercjalizację.
+System SMART składa się z mikrofonu ultradźwięków i kontrolera będącego prostym komputerem przemysłowym, który serwuje aplikację udostępniającą dane z mikrofonu, po uprzedniej odpowiedniej konfiguracji sieciowej. Taka dość zaawansowana konstrukcja rozwiązania spowodowała trudność dla mało doświadczonego zespołu inżynierskiego z ograniczonymi zasobami czasowymi w dotarciu do surowych danych płynących z mikrofonu. Z tego powodu wykorzystano nagrania, które zostały już zarejestrowane na kontrolerze i dopiero te dźwięki pobierano i poddawano analizie pod kątem gatunków nietoperzy i dalszej wizualizacji w aplikacji użytkownika. Prostota takiego rozwiązania odpowiadała zasadniczo celom i zakresowi pracy inżynierskiej, która nie miała doprowadzić do zaprojektowania rozwiązania gotowego do aplikacji na turbinach, a raczej jego prototyp. Rozwiązanie takie z uwagi na swą niegeneryczność, nie będzie stosowane w rozwiązaniu końcowym. Mimo to przynajmniej dwa elementy zrealizowane w ramach niniejszej pracy dyplomowej po dalszym dostosowaniu mają znaczny potencjał komercjalizacji. Do tych elementów należą bardziej zaawansowana pod kątem konstrukcyjnym aplikacja użytkownika w stosunku do aplikacji Wildlife Acoustics, zawierająca bazę danych oraz model sieci neuronowych z większym potencjałem do zwiększania dokładności identyfikacji gatunków nietoperzy. Aktualne poziomy dokładności identyfikacji nietoperzy przez tego typu oprogramowanie są mieszczą się bowiem przykładowo w przedziałach: 28-82\% \cite{kaleidoscope-accuracy} czy 40-80\% \cite{kaleidoscope-bias}. Wykazuje się również, że nowsze oprogramowanie do automatycznej identyfikacji nie przynosi poprawy jeśli chodzi o dokładność oznaczeń. Jest to istotna nisza dla twórców niniejszej pracy dyplomowej z szansą na komercjalizację.
 
-Dobrej jakości współpraca zapoczątkowana z firmą Wildlife Acoustics niesie możliwości kooperacji we wdrożeniu alternatywnych sposobów serwowania danych, w tym użycie własnego klasyfikatora. Sama firma umożliwia korzystanie z udostępnionych poleceń linux w celu dostępu i autorskiej manipulacji danymi \cite{smart-linux-guide}.
+Dobrej jakości współpraca zapoczątkowana z firmą Wildlife Acoustics niesie możliwości kooperacji we wdrożeniu alternatywnych sposobów serwowania danych, w tym użycie własnego klasyfikatora. Sama firma umożliwia korzystanie z udostępnionych poleceń Linux w celu dostępu i autorskiej manipulacji danymi \cite{smart-linux-guide}.
 
-Aplikacja serwowana przez kontroler, mimo wielu ciekawych i potrzebnych w kontekście wykorzystania systemu SMART na farmach wiatrowych funkcjonalności nie posiada bazy danych. Brak bazy danch wpływa m.in. na brak możliwości precyzyjnego filtrowania danych, w tym danych pobieranych poprzez aplikację do plików csv, nie ma też łatwej mozliwości przygotowania raportów z aktywności nietoperzy na farmie wiatrowej. Wykorzystanie w tym celu aplikacji, jaka została przygotowania w niniejszej pracy dyplomowej takich możliwości dostarcza. Jednak uprzednio aplikacja musiałaby być prawdopodobnie zintegrowana z aktualnym ekosystemem programistycznycm firmy Bioseco. W obecnej postaci nie jest więc produktem gotowym do wdrożenia. Jednak z uwagi na zaznajomienie się twórców pracy z wieloma zagadnieniami związanymi z tworzeniem tego typu oprogramowania oraz zagadnieniami dziedzinowymi szansa na komercjalizację interfejsu użytkownika z bazą danych wytworzonymi w oparciu o system przygotowany w nieniejszej pracy, jest bardzo wysoka. 
+Aplikacja serwowana przez kontroler, mimo wielu ciekawych i potrzebnych w kontekście wykorzystania systemu SMART na farmach wiatrowych funkcjonalności nie posiada bazy danych. Brak bazy danch wpływa m.in. na brak możliwości precyzyjnego filtrowania danych, w tym danych pobieranych poprzez aplikację do plików CSV, nie ma też łatwej możliwości przygotowania raportów z aktywności nietoperzy na farmie wiatrowej. Wykorzystanie w tym celu aplikacji, jaka została przygotowania w niniejszej pracy dyplomowej takich możliwości dostarcza. Jednak uprzednio aplikacja musiałaby być prawdopodobnie zintegrowana z aktualnym ekosystemem programistycznym firmy Bioseco. W obecnej postaci nie jest więc produktem gotowym do wdrożenia. Jednak z uwagi na zaznajomienie się twórców pracy z wieloma zagadnieniami związanymi z tworzeniem tego typu oprogramowania oraz zagadnieniami dziedzinowymi szansa na komercjalizację interfejsu użytkownika z bazą danych wytworzonymi w oparciu o system przygotowany w niniejszej pracy, jest bardzo wysoka. 
 
 \chapter{Podsumowanie}
 W niniejszej pracy dyplomowej udało się zrealizować wszystkie wymagania systemowe zdefiniowane w początkowej fazie przygotowania projektu. Jedno z wymagań zostało zaniechane w trakcie implementacji systemu i konsultacji z Bioseco S.A. i była nim implementacja zatrzymań turbiny wiatrowej, czego powody wyjaśniono w punkcie "Testy funkcjonalne" (System do zatrzymywania turbiny wiatrowej). 
@@ -1517,7 +1488,7 @@ Osiągnięte zostały kluczowe cele projektu - przyczynienie się do rozwiązani
     \begin{itemize}
       \item Czas trwania projektu jest ograniczony do momentu przekazania książki dyplomowej do dziekanatu uczelni PJATK.
       \item Ograniczona dostępność nagrań głosów nietoperzy w full-spectrum – możliwa sytuacja, gdy tworzenie projektu będzie odbywało się na podstawie nagrań przetworzonych.
-      \item Aktywność nietoperzy ma miejsce od końca marca do października – w związku z tym brak możliwości nagrywania ich aktywności w trakcie semestru zimowego – a tym samym brak możliwości wykonania prób hardware’u przed kwieniem 2022.
+      \item Aktywność nietoperzy ma miejsce od końca marca do października – w związku z tym brak możliwości nagrywania ich aktywności w trakcie semestru zimowego – a tym samym brak możliwości wykonania prób hardware’u przed kwietniem 2022.
     \end{itemize}
 
   \item \textbf{Słownik pojęć}
