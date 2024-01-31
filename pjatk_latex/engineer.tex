@@ -1269,24 +1269,48 @@ Podczas prób pobierania danych z różnych zakresów czasowych, dane za każdym
 \subsubsection{Rozpoznanie wystąpienia nietoperza/rozpoznanie gatunku nietoperza}
 TODO
 
+
 \subsubsection{System uczenia sieci neuronowej}
+Realizacja i wyniki sieci neuronowej zostały przedstawiono szczegółowo w rozdziale "Realizacja sieci neuronowej"
+
+
+TODO
 
 \subsubsection{Interfejs do wizualizacji danych}
+Realizacja interfejsu do wizualizacji danych została przedstawiona szczegółowo w rozdziale "Implementacja aplikacji użytkownika". Aplikacja użytkownika służy do zbierania i zapisywania w bazie danych rekordów tworzonych na podstawie decyzji modelu sieci neuronowej, które następnie pozwala wyświetlić na liście z możliwością filtrowania i sortowania ich. W skład aplikacji wchodzą: baza danych, serwer oraz interfejs użytkownika. 
 
+
+Wszystkie próby wizualizacji danych po pobraniu dźwięków z mikrofonu powodowały zapis do bazy danych i wyświetlenie w aplikacji użytkownika. Ponadto zaimplementowane zostały testy jednostkowe oraz integracyjne z wykorzystaniem biliotek Jest oraz Supertest a do Do walidacji treści wpisywanej przez użytkownika aplikacji przy rejestracji lub logowaniu posłużyła biblioteka Joi, wykorzystanie tych elementów pomogły zapewnić poprawność funkcjonowania tej części oprogramowania.
+
+W związku z powyższym funkcjonalność tę można uznać za zrealizowaną.
 
 \subsubsection{Baza danych}
+Baza danych została napisana w MySQL a do komunikacji serwera z bazą użyto biblioteki Sequelize. Realizacja tej funkcjonalności została przedstawiona szczegółowo w rozdziale "Implementacja aplikacji użytkownika" w punktach: "Baza danych" i "Sequelize". 
+
+Wszystkie próby zapisu danych po pobraniu dźwięków z mikrofonu powodowały zapis do bazy danych. Ponadto zaimplementowane zostały testy jednostkowe oraz integracyjne z wykorzystaniem biliotek Jest oraz Supertest, które zapewniły wysoką jakość oprogramowania.
 
 \subsubsection{System do zatrzymywania turbiny wiatrowej}
-
-
+Realizacja tej funkcjonalności została zaniechana w trakcie realizacji pracy dyplomowej z uwagi na ograniczony sens praktyczny takiej funkcjonalności przygotowywanej jako rozwiązania ogólnego. Realizacja zatrzymań turbin jest specjalnością firmy Bioseco S.A. (Źródło: Bioseco) i w przypadku każdego z operatorów i każdego typu turbiny wygląda ona zupełnie inaczej. Funkcjonalność taka może być zrealizowana na kilka sposobów, np. poprzez modyfikację rejestrów w protokole MODBUS czy poprzez OPC-UA. Jednak w związku z tym, że jest to funkcjonalność wybitnie specyficzna dla konkretnego klienta i wymagająca żmudnego procesu komunikacji, przygotowań i uzgodnień z operatorem turbiny a kolejno implementacji rozwiązania, realizacja systemu zatrzymania turbiny wiatrowej jako elementu przedmiotowej pracy dyplomowej została zaniechana.
 
 
 \subsection{Testy systemowe}
-Sprawdzona została poprawność działania systemu w zintegrowanym środowisku, gdzie zostały one przeprowadzone niemal od początku do końca. Nie były one wykonane w 100\% od początku do końca z uwagi ukończenie pracy w okresie zimowym, kiedy nie są rejestrowane nagrania nietoperzy a jedynie niekiedy nagrania szumów. Z tego powodu testy te zostały podzielone na dwa elementy - poprawność pobierania dźwięków oraz poprawność funkcjonalności od pobrania dźwięku, poprzez identyfikację głosu nietoperza po zapis rekordu w bazie i wizualizacji go w Aplikacji Użytkownika.
+Sprawdzona została poprawność działania systemu w zintegrowanym środowisku, gdzie zostały one przeprowadzone od początku do końca. Zweryfikowano poprawność pobierania dźwięków oraz poprawność funkcjonalności od pobrania dźwięku, poprzez identyfikację głosu nietoperza po zapis rekordu w bazie i wizualizacji go w Aplikacji użytkownika.
+
+Testy systemowe polegały na kilkukrotnym wykonaniu serii czynności:
+
+\begin{itemize}
+  \item uruchomieniu aplikacji poprzez uruchomienie modułów clienta, serwera oraz parsera danych,
+  \item zalogowaniu jako administrator bądź zwykły użytkownik,
+  \item uruchomieniu pobierania nagrań z pewnego okresu z systemu SMART,
+  \item realizacji filtrowania danych po różnych datach,
+  \item wylogowaniu.
+\end{itemize}
+
+Podczas każdego z uruchomień kontrolowano realizację zapisu do bazy danych i aplikacji oraz przypisywanie nagraniom wartości w zakresie gatunków nietoperzy.
+W każdej z z prób zliczano liczbę pobranych nagrań i liczbę nagrań zapisanych do bazy danych i prezentowanych w aplikacji.
 
 
-
-
+Wszystkie wykonane próby zakończyły się poprawną realizacją wszystkich elementów.
 
 \chapter{Przyszłość produktu i komercjalizacja}
 
