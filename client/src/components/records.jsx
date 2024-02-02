@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SearchBox from "./searchBox";
 import RecordsTable from "./recordsTable";
-import ListGroup from "./common/listGroup";
+import Dropdown from "./common/dropdown";
 import Pagination from "./common/pagination";
 import { getRecords } from "../services/recordService";
 import { getTurbines } from "../services/turbineService";
@@ -116,24 +116,24 @@ class Records extends Component {
 
     return (
       <div>
+        <p>Showing {totalCount} records in the database.</p>
         <div className="row">
-          <div className="col-3">
-            <ListGroup
+          <div className="col-2">
+            <Dropdown
+              title="Filter by species"
               items={this.state.species}
-              selectedItem={this.state.selectedSpecies}
               onItemSelect={this.handleSpeciesSelect}
             />
           </div>
-          <div className="col-3">
-            <ListGroup
+          <div className="col-2">
+            <Dropdown
+              title="Filter by turbines"
               items={this.state.turbines}
-              selectedItem={this.state.selectedTurbine}
               onItemSelect={this.handleTurbineSelect}
             />
           </div>
         </div>
         <div>
-          <p>Showing {totalCount} records in the database.</p>
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
           <RecordsTable
             records={records}
