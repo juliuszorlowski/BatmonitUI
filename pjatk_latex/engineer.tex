@@ -174,6 +174,20 @@ Dokumentacja prowadzona była w:
 
 Do głównych zagrożeń projektu należą \textit{de facto} te związane z ograniczonymi zasobami czasowymi oraz wiedzą i doświadczeniem, gdyż wpływa to łatwość/trudność poradzenia sobie z pozostałymi zagrożeniami. Pozostają jeszcze zagrożenie losowe, które jeśli wystąpią mogą sprawić, że możliwość realizacji projektu zmieni się diametralnie.
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{sprz/sodis1.png}
+  \caption{Analiza zagrożeń w konwencji soDIS}
+  \label{img:sodis1}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{sprz/sodis2.png}
+  \caption{Analiza zagrożeń w konwencji soDIS}
+  \label{img:sodis2}
+\end{figure}
+
 \subsection{Wpływ na realizację projektu}
 Wpływ zagrożeń opisanych w niniejszym dokumencie jest potencjalnie wysoki, dlatego że projekt jest rozbudowany, innowacyjny, i powstaje na studiach zaocznych, w związku z czym zespół projektowy obłożony jest znaczną ilością dodatkowych obowiązków pozaszkolnych, a także pozbawiony jest dużego doświadczenia w realizacji tego typu projektów.
 
@@ -400,6 +414,317 @@ Mikrofon, bądź mikrofony wraz z kontrolerem powinny znajdować się razem w go
 
 Odległości detekcji nietoperzy są na tyle małe w kontekście ich ochrony przed kolizjami z turbinami wiatrowymi, że klasyczne podejście oparte o system detekcyjno-reakcyjny polegające na wyłączeniu turbiny na podstawie każdego pojedynczego przelotu nie będzie przydatne, lecz konieczne będzie dobranie specyficznego wyzwalacza zatrzymującego i ponownie uruchamiającego turbinę, którym może być np. liczba zarejestrowanych przelotów nietoperzy w określonej jednostce czasu. W wyzwalaczach zatrzymań można użyć dodatkowo warunków środowiskowych, takich jak prędkość wiatru czy występowanie opadów (po połączeniu systemu SMART z systemem SCADA turbiny wiatrowej). Minimalizacje z zastosowaniem ograniczenia pracy turbin w określonych warunkach wiatrowych i opadów są obecnie stosowane w celu ograniczenia śmiertelności na farmach wiatrowych \cite{Wytyczne}
 
+\chapter{Realizacja sieci neuronowej}
+
+\section{Przygotowanie danych}
+Przygotowanie danych obejmowało podpisanie nagrań zgodnie z wykazem gatunków nietoperzy przypisanych do danych nagrań, które znajdowały się w pliku CSV.
+
+\subsection{Dobór typu spectogramu}
+Do treningu użyto dźwięków przetworzonych na obrazy. Rozważano użycie zwykłego spektrogramu i mel-spectrogramu, jednak zdecydowano się na użycie zwykłego spectrogramu, ponieważ dawał on lepszy obraz. W przypadku bardzo delikatnych głosów nietoperzy na mel-spectrogramie pulsy były często niewidoczne.
+
+\subsection{Cięcie}
+W celu uzyskania jednolitych wielkości danych na wejściu wszystkie nagrania pocięto na odcinki dwusekundowe. W przypadku gdy ostatni element był krótszy niż dwie sekundy uzupełniano tę część zerami.
+
+\section{Dobór sieci neuronowej}
+Po przeglądzie literatury, konsultacjach z ekspertami oraz weryfikacji zasobów czasowych zdecydowano się ostatecznie na użycie konwolucyjnej sieci neuronowej jako sieci przystępnej w implementacji a jednocześnie potencjalnie dającej bardzo dobre wyniki.
+
+\subsection{Przegląd literatury}
+Do wyszukania publikacji zawierających opracowania dotyczące automatycznego rozpoznawania nietoperzy użyto wyszukiwarki Google Scholar oraz fraz: "bats automated recognition", "bats machine learning", "bats deep learning".
+
+Do metod automatycznej identyfikacji gatunków nietoperzy wykorzystuje się
+bądź wielowymiarowe metody statystyczne (jak np. analiza dyskryminacyjna czy wielowymiarowa analiza wariancji - MANOVA) \cite{bats-id-statistics}, bądź metody uczenia nadzorowanego \cite{bats-id-supervised} takie jak np.: sieci neuronowe \cite{bats-id-nn}, drzewa decyzyjne i lasy losowe \cite{bats-random-forest}, SVM (ang: Support Vector Machines) \cite{bats-id-svm}.
+
+W przypadku sieci neuronowych, uczenia głębokiego do identyfikacji nietoperzy zaczęto używać dopiero w 2018 roku \cite{bats-id-dl2018}, a większą popularność sieci głębokie zdobyły od roku 2020 \cite{bats-id-dl2020a}, \cite{bats-id-dl2020b}, lecz publikacje takie są dość nieliczne.
+
+Znaleziono tylko jedną pracę naukową, która wykorzystuje architekturę Transformers do rozpoznawania gatunków nietoperzy \cite{bats-transformers}.
+
+Maksymalne skuteczności poszczególnych metod różnią się między sobą. Dla lasów losowych było to maksymalnie 83,1\% \cite{bats-id-randomforest} sieci neuronowych innych niż transformers było to maksymalnie 89,09\% precyzji \cite{bats-id-dl}, w przypadku modelu Transformers było to 90,2\% \cite{bats-transformers}.
+
+\section{Dobór parametrów sieci neuronowej}
+
+\subsection{Parametry warstw sieci}
+Sieć konwolucyjna składa się z czterech bloków konwolucyjnych (z warstwą konwolucyjną, funkcją aktywacji ReLU i warstwą max-pooling), warstwy spłaszczającej do przestrzeni jednowymiarowej (warstwa "flatten"), warstwy fully-connected (w PyTorch nazywaną "linear") oraz ostatniej warstwy softmax, pozwalającej na uzyskanie wartości prawdopodobieństw przynależności nagrania do danej klasy (gatunku nietoperza).
+
+Parametry pierwszej warstwy konwolucyjnej:
+\begin{itemize}
+  \item{liczba kanałów na wejściu - 1}
+  \item{liczba kanałów na wyjściu (i liczba filtrów) - 16,}
+  \item{rozmiar filtra ("kernel size") - 3,}
+  \item {przesunięcie filtra ("stride") - 1,}
+  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
+\end{itemize}
+
+
+Parametry drugiej warstwy konwolucyjnej:
+Warstwa konwolucyjna
+\begin{itemize}
+  \item{liczba kanałów na wejściu - 16}
+  \item{liczba kanałów na wyjściu (i liczba filtrów) - 32,}
+  \item{rozmiar filtra ("kernel size") - 3,}
+  \item {przesunięcie filtra ("stride") - 1,}
+  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
+\end{itemize}
+
+
+Parametry trzeciej warstwy konwolucyjnej:
+\begin{itemize}
+  \item{liczba kanałów na wejściu - 32}
+  \item{liczba kanałów na wyjściu (i liczba filtrów) - 64,}
+  \item{rozmiar filtra ("kernel size") - 3,}
+  \item {przesunięcie filtra ("stride") - 1,}
+  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
+\end{itemize}
+
+Parametry czwartej warstwy konwolucyjnej:
+\begin{itemize}
+  \item{liczba kanałów na wejściu - 64}
+  \item{liczba kanałów na wyjściu (i liczba filtrów) - 128,}
+  \item{rozmiar filtra ("kernel size") - 3,}
+  \item {przesunięcie filtra ("stride") - 1,}
+  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
+\end{itemize}
+
+
+W każdej z warstw konwolucyjnych zastosowano funkcję aktywacji ReLU i warstwę max-pooling o filtrze w rozmiarze 2 ("stride").
+
+\subsection{Funkcje aktywacji}
+Funkcja aktywacji używana jest do obliczania wartości neuronów w warstwach wyjściowych.
+
+W warstwach konwolucyjnych jako funkcji aktywacji użyto funkcji ReLU. (Rectified Linear Unit). Jest to najczęściej używana funkcja aktywacji w warstwach ukrytych. Do jej zalet należą szybkość i nieliniowość.
+
+W ostatniej warstwie użyto funkcji aktywacji softmax. Przekształca ona wartości uzyskiwane na wyjściu tak, aby ich suma była równa 1, dzięki czemu dobrze modeluje prawdopodobieństwo. Jest to najczęsciej wykorzystywana funkcja w warstwach wyjściowych.
+
+\subsection{Funkcja błędu}
+Funkcja ta jest często używana w sieciach neuronowych w problemach klasyfikacji. Określa ona jak dobrze model przewiduje klasy - im mniejsza wartość funkcji błędu, tym większa dokładność modelu. Podczas uczenia się sieci dąży się do zmniejszania wartości funkcji błędu. W sieci neuronowej użytej w niniejszej pracy wykorzystano funkcję entropii krzyżowej.
+
+\subsection{Optymalizator}
+Optymalizator jest to funkcja lub algorytm decydująca o tym jak zmienić wagi sieci na podstawie funkcji błędu, tak aby zmniejszyć wartość tej funkcji. Optymalizator wpływa na to jak szybko sieć będzie się uczyć poprzez zmianę jej parametrów oraz jak poradzi sobie z problemami takimi jak utknięcie w lokalnym minimum. W sieci neuronowej przedstawionej w niniejszej pracy wykorzystano optymalizator Adam (Adaptive Moment Estimation). Optymalizator ten jest najczęściej wykorzystywanym i dającym najczęściej najlepsze wyniki.
+
+\section{Architektura sieci neuronowej i modułów związanych z treningiem sieci}
+Sieć neuronowa napisana została w języku Python, z użyciem biblbiotek PyTorch oraz TorchAudio. 
+
+PyTorch jest biblioteką oferującą narzędzia do budowy i trenowania sieci neuronowych, zawiera m.in. moduły do tworzenia warstw sieci, funkcji straty czy optymalizatorów, daje wsparcie do trenowania na kartach graficznych \cite{pytorch}.
+PyTorch jest biblioteką o podobnej popularności co Tensorflow, a w ostatnich latach nawet częściej wykorzystywaną, szczególnie w środowiskach akademickich. Umożliwia ona na większą elastyczność w budowie sieci i ustawieniach jej parametrów. Do zalet takiego rozwiązania należy większy wpływ na kształt i funkcjonowanie sieci, a do wad - dłuższy czas przygotowania oraz wyższy próg wejścia. 
+
+Biblioteka TorchAudio jest częścią ekosystemu PyTorch i służy do obsługi i obróbki plików dźwiękowych. Dostarcza narzędzi pomocnych w ładowaniu danych audio oraz transformacjach takich jak zmiany prędkości czy głośności, przetwarzanie na spectrogramy czy mel-spectrogramy \cite{torchaudio}. 
+
+Sień neuronowa przygotowana w ramach niniejszej pracy dyplomowej składa się z czterech głównych elementów: modułu transformującego dźwięk do spectrogramów, modułu ładującego dane, modułu do treningu oraz modułu do predykcji.
+
+\subsection{Konwersja dźwięków na spektrogramy}
+Identyfikacja gatunków nietoperzy poprzez analizę dźwięków skonwertowanych do obrazu jest podejściem klasycznym (por. np. \cite{bats-id-dl2020b}). Dlatego jednym z elementów związanych z trenowaniem sieci było przygotowanie modułu konwertującego dźwięk na spectrogramy. Kod modułu przedstawiono poniżej w Listingu \ref{lst:audio-to-spectrogram}.
+
+\begin{lstlisting}[language=Python,caption={Implementacja konwersji dźwięku na spektrogram}, label={lst:audio-to-spectrogram}]
+  waveform, sample_rate = torchaudio.load(r'C:\\Users\\Jakub\Documents\\PJATK\\INZ\Batmonit_model\\Chiro_sounds_signed\Audio\\PIPNAT\S4U08639_20210731_234142_PIPNAT.wav')
+  fragments = torch.split(waveform, split_size_or_sections=2*sample_rate, dim=1)
+  
+  specgram = torchaudio.transforms.Spectrogram(
+          )(fragments[1])
+  
+  plt.figure(figsize=(12, 8))
+  plt.imshow(specgram[0].log2(), aspect='auto', origin='lower')
+  plt.show()
+\end{lstlisting}
+
+
+\subsection{Ładowanie danych}
+
+Moduł ładujący dane jest najbardziej rozbudowanym elementem architektury związanej z treningiem sieci. Składa się z wielu funkcji, które zapewniają identyczność parametrów każdego z nagrań, takich jak liczba kanałów czy wielkość obrazu. Zawiera również funkcji odpowiedzialne za pobieranie ścieżek plików.
+
+Poniżej w Listingu \ref{lst:audio-to-spectrogram} przedstawiono jedną z takich funkcji. Służy ona do konwersji częstotliwości próbkowania, jeśli byłaby ona inna niż założona pierwotnie dla wszystkich nagrań.
+
+\begin{lstlisting}[language=Python,caption={Implementacja konwersji dźwięku na spektrogram}, label={lst:audio-to-spectrogram}]
+  def _resample_if_necessery(self, signal, sr):
+  if sr != self.target_sample_rate:
+      resampler = torchaudio.transforms.Resample(sr, self.target_sample_rate)
+      signal = resampler(signal)
+  return signal
+\end{lstlisting}
+
+Główna funkcja tego modułu uruchamia ładowanie danych z uwzględnieniem wszystkich wyżej wymienionych elementów i przedstawiono ją poniżej w Listingu \ref{lst:audio-to-spectrogram}.
+
+\begin{lstlisting}[language=Python,caption={Implementacja modułu do ładowania danych}, label={lst:audio-to-spectrogram}]
+  if __name__ == "__main__":
+  ANNOTATIONS_FILE = r"C:\Users\Jakub\Documents\PJATK\INZ\Batmonit_model\Chiro_sounds_signed\Metadata\Annotations.csv"
+  AUDIO_DIR = r"C:\Users\Jakub\Documents\PJATK\INZ\Batmonit_model\Chiro_sounds_signed\Audio"
+  SPECTROGRAM_DIR = r"C:\Users\Jakub\Documents\PJATK\INZ\Batmonit_model\Chiro_sounds_signed\Spectrogram"
+  SAMPLE_RATE = 192000
+  NUM_SAMPLES = 2000000
+
+  if torch.cuda.is_available():
+      device = "cuda"
+  else:
+      device = "cpu"
+  print(f"Using device: {device}")
+
+  spectrogram = torchaudio.transforms.Spectrogram(
+      n_fft=1024,
+      hop_length=1024,
+  )
+  bd = BatsDataset(ANNOTATIONS_FILE,
+                          AUDIO_DIR,
+                          SPECTROGRAM_DIR, 
+                          spectrogram, 
+                          SAMPLE_RATE,
+                          NUM_SAMPLES,
+                          device)
+
+  print(f"There are {len(bd)} samples in the dataset.")
+  signal, label = bd[0]
+  print(signal, label)
+\end{lstlisting}
+
+\subsection{Sień neuronowa}
+Kod sieci neuronowej przedstawiono poniżej w Listingu \ref{lst:Sequelize_validate}, a wyjaśnienie zastosowania konkretnych jej elementów, takich jak funkcje aktywacji, funkcja błędu, optymalizator, itd. opisano i wyjaśniono w rozdziale: "Dobór parametrów sieci neuronowej". Implementację sieci neuronowej przedstawia Listing \ref{lst:neural_network_implementation}.
+
+\begin{lstlisting}[language=Python,caption={Implementacja sieci neuronowej}, label={lst:neural_network_implementation}]
+  class CNNNetwork(nn.Module):
+
+  def __init__(self):
+      super().__init__()
+      self.conv1 = nn.Sequential(
+          nn.Conv2d(
+              in_channels=1, 
+              out_channels=16,  
+              kernel_size=3,  
+              stride=1,
+              padding=2
+          ),
+          nn.ReLU(),
+          nn.MaxPool2d(kernel_size=2)  
+      )
+      self.conv2 = nn.Sequential(
+          nn.Conv2d(
+              in_channels=16,
+              out_channels=32,
+              kernel_size=3,
+              stride=1,
+              padding=2
+          ),
+          nn.ReLU(),
+          nn.MaxPool2d(kernel_size=2)
+      )
+      self.conv3 = nn.Sequential(
+          nn.Conv2d(
+              in_channels=32,
+              out_channels=64,
+              kernel_size=3,
+              stride=1,
+              padding=2
+          ),
+          nn.ReLU(),
+          nn.MaxPool2d(kernel_size=2)
+      )
+      self.conv4 = nn.Sequential(
+          nn.Conv2d(
+              in_channels=64,
+              out_channels=128,
+              kernel_size=3,
+              stride=1,
+              padding=2
+          ),
+          nn.ReLU(),
+          nn.MaxPool2d(kernel_size=2)
+      )
+      self.flatten = nn.Flatten()
+      self.linear = nn.Linear(128*33*13, 14) 
+                                             
+      self.softmax = nn.Softmax(dim=1)
+
+  def forward(self, input_data):
+      x = self.conv1(input_data)
+      x = self.conv2(x)
+      x = self.conv3(x)
+      x = self.conv4(x)
+      x = self.flatten(x)
+      logits = self.linear(x)
+      predictions = self.softmax(logits)
+      return predictions
+
+if __name__ == "__main__":
+  cnn = CNNNetwork()
+\end{lstlisting}
+
+\subsection{Trenowanie modelu}
+Moduł związany z trenowaniem sieci neuronowej składał się z funkcji służącej do stworzenia dataloader'a, trenowania pojedynczej epoki oraz treningu kolejnych epok. Wielkość batch'a określono na 128, liczbę epok na 10, a wskaźnik uczenia na 0,001.
+
+Główną funkcję przedstawiono w Listingu \ref{lst:train} poniżej.
+
+\begin{lstlisting}[language=Python,caption={Implementacja modułu do trenowania sieci}, label={lst:train}]
+  if __name__ == "__main__":
+
+  if torch.cuda.is_available():
+      device = "cuda"
+  else:
+      device = "cpu"
+  print(f"Using device: {device}")
+
+  spectrogram = torchaudio.transforms.Spectrogram(
+      n_fft=1024,
+      hop_length=1024,
+  )
+
+  bd = BatsDataset(ANNOTATIONS_FILE,
+                          AUDIO_DIR,
+                          SPECTROGRAM_DIR, 
+                          spectrogram, 
+                          SAMPLE_RATE,
+                          NUM_SAMPLES,
+                          device)
+
+
+  train_data_loader = create_data_loader(bd, batch_size=BATCH_SIZE)
+
+  cnn = CNNNetwork().to(device)
+
+  loss_fn = nn.CrossEntropyLoss()
+  optimiser = torch.optim.Adam(cnn.parameters(), lr=LEARNING_RATE)
+
+  train(cnn, train_data_loader, loss_fn, optimiser, device, EPOCHS)
+
+  torch.save(cnn.state_dict(), MODEL_PATH)
+
+  print("Model trained and stored at feedforwardnet.pth")
+\end{lstlisting}
+
+\subsection{Predykcja modelu}
+Moduł służący do wykonania predykcji zawiera poza główną funkcją dwa elementy - mapowanie klas (gatunków nietoperzy) oraz funkcję służącą do realizacji predykcji, która z użyciem wytrenowanego wcześniej modelu przewiduje gatunki nietoperzy na zbiorze testowym.
+
+Kod głównej funkcji przedstawiono w Listingu \ref{lst:predict} poniżej.
+
+\begin{lstlisting}[language=Python,caption={Implementacja modułu do trenowania sieci}, label={lst:predict}]
+  if __name__ == "__main__":
+
+  cnn = CNNNetwork()
+  state_dict = torch.load(r"C:\Users\Jakub\Documents\PJATK\INZ\Batmonit_model\feedforwardnet.pth", map_location=torch.device('cpu'))
+  cnn.load_state_dict(state_dict)
+
+  spectrogram = torchaudio.transforms.Spectrogram(
+      n_fft=1024,
+      hop_length=1024,
+  )
+
+  bd = BatsDataset(ANNOTATIONS_FILE,
+                          AUDIO_DIR,
+                          SPECTROGRAM_DIR, 
+                          spectrogram, 
+                          SAMPLE_RATE,
+                          NUM_SAMPLES,
+                          "cpu")
+
+  input, target = bd[0][0], bd[0][1]
+  input.unsqueeze_(0)
+
+  predicted, expected = predict(cnn, input, target,
+   class_mapping)
+
+  print(f"Predicted: '{predicted}', expected: '{expected}'")
+\end{lstlisting}
+
+\section{Skuteczność sieci neuronowej}
+
+\subsection{Macierz pomyłek}
+
+\subsection{Metryki}
 
 \chapter{Struktura systemu}
 
@@ -512,318 +837,6 @@ Pod tabelą rekordów znajdują się przyciski paginacji, które pozwalając pod
   \label{img:app_records}
 \end{figure}
 
-\chapter{Realizacja sieci neuronowej}
-
-\section{Przygotowanie danych}
-Przygotowanie danych obejmowało podpisanie nagrań zgodnie z wykazem gatunków nietoperzy przypisanych do danych nagrań, które znajdowały się w pliku CSV.
-
-\subsection{Dobór typu spectogramu}
-Do treningu użyto dźwięków przetworzonych na obrazy. Rozważano użycie zwykłego spektrogramu i mel-spectrogramu, jednak zdecydowano się na użycie zwykłego spectrogramu, ponieważ dawał on lepszy obraz. W przypadku bardzo delikatnych głosów nietoperzy na mel-spectrogramie pulsy były często niewidoczne.
-
-\subsection{Cięcie}
-W celu uzyskania jednolitych wielkości danych na wejściu wszystkie nagrania pocięto na odcinki dwusekundowe. W przypadku gdy ostatni element był krótszy niż dwie sekundy uzupełniano tę część zerami.
-
-\section{Dobór sieci neuronowej}
-Po przeglądzie literatury, konsultacjach z ekspertami oraz weryfikacji zasobów czasowych zdecydowano się ostatecznie na użycie konwolucyjnej sieci neuronowej jako sieci przystępnej w implementacji a jednocześnie potencjalnie dającej bardzo dobre wyniki.
-
-\subsection{Przegląd literatury}
-Do wyszukania publikacji zawierających opracowania dotyczące automatycznego rozpoznawania nietoperzy użyto wyszukiwarki Google Scholar oraz fraz: "bats automated recognition", "bats machine learning", "bats deep learning".
-
-Do metod automatycznej identyfikacji gatunków nietoperzy wykorzystuje się
-bądź wielowymiarowe metody statystyczne (jak np. analiza dyskryminacyjna czy wielowymiarowa analiza wariancji - MANOVA) \cite{bats-id-statistics}, bądź metody uczenia nadzorowanego \cite{bats-id-supervised} takie jak np.: sieci neuronowe \cite{bats-id-nn}, drzewa decyzyjne i lasy losowe \cite{bats-random-forest}, SVM (ang: Support Vector Machines) \cite{bats-id-svm}.
-
-W przypadku sieci neuronowych, uczenia głębokiego do identyfikacji nietoperzy zaczęto używać dopiero w 2018 roku \cite{bats-id-dl2018}, a większą popularność sieci głębokie zdobyły od roku 2020 \cite{bats-id-dl2020a}, \cite{bats-id-dl2020b}, lecz publikacje takie są dość nieliczne.
-
-Znaleziono tylko jedną pracę naukową, która wykorzystuje architekturę Transformers do rozpoznawania gatunków nietoperzy \cite{bats-transformers}.
-
-Maksymalne skuteczności poszczególnych metod różnią się między sobą. Dla lasów losowych było to maksymalnie 83,1\% \cite{bats-id-randomforest} sieci neuronowych innych niż transformers było to maksymalnie 89,09\% precyzji \cite{bats-id-dl}, w przypadku modelu Transformers było to 90,2\% \cite{bats-transformers}.
-
-\section{Dobór parametrów sieci neuronowej}
-
-\subsection{Parametry warstw sieci}
-Sieć konwolucyjna składa się z czterech bloków konwolucyjnych (z warstwą konwolucyjną, funkcją aktywacji ReLU i warstwą max-pooling), warstwy spłaszczającej do przestrzeni jednowymiarowej (warstwa "flatten"), warstwy fully-connected (w PyTorch nazywaną "linear") oraz ostatniej warstwy softmax, pozwalającej na uzyskanie wartości prawdopodobieństw przynależności nagrania do danej klasy (gatunku nietoperza).
-
-Parametry pierwszej warstwy konwolucyjnej:
-\begin{itemize}
-  \item{liczba kanałów na wejściu - 1}
-  \item{liczba kanałów na wyjściu (i liczba filtrów) - 16,}
-  \item{rozmiar filtra ("kernel size") - 3,}
-  \item {przesunięcie filtra ("stride") - 1,}
-  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
-\end{itemize}
-
-
-Parametry drugiej warstwy konwolucyjnej:
-Warstwa konwolucyjna
-\begin{itemize}
-  \item{liczba kanałów na wejściu - 16}
-  \item{liczba kanałów na wyjściu (i liczba filtrów) - 32,}
-  \item{rozmiar filtra ("kernel size") - 3,}
-  \item {przesunięcie filtra ("stride") - 1,}
-  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
-\end{itemize}
-
-
-Parametry trzeciej warstwy konwolucyjnej:
-\begin{itemize}
-  \item{liczba kanałów na wejściu - 32}
-  \item{liczba kanałów na wyjściu (i liczba filtrów) - 64,}
-  \item{rozmiar filtra ("kernel size") - 3,}
-  \item {przesunięcie filtra ("stride") - 1,}
-  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
-\end{itemize}
-
-Parametry czwartej warstwy konwolucyjnej:
-\begin{itemize}
-  \item{liczba kanałów na wejściu - 64}
-  \item{liczba kanałów na wyjściu (i liczba filtrów) - 128,}
-  \item{rozmiar filtra ("kernel size") - 3,}
-  \item {przesunięcie filtra ("stride") - 1,}
-  \item{uzupełnienie skrajnych wartości ("padding") - 2.}
-\end{itemize}
-
-
-W każdej z warstw konwolucyjnych zastosowano funkcję aktywacji ReLU i warstwę max-pooling o filtrze w rozmiarze 2 ("stride").
-
-\subsection{Funkcje aktywacji}
-Funkcja aktywacji używana jest do obliczania wartości neuronów w warstwach wyjściowych.
-
-W warstwach konwolucyjnych jako funkcji aktywacji użyto funkcji ReLU. (Rectified Linear Unit). Jest to najczęściej używana funkcja aktywacji w warstwach ukrytych. Do jej zalet należą szybkość i nieliniowość.
-
-W ostatniej warstwie użyto funkcji aktywacji softmax. Przekształca ona wartości uzyskiwane na wyjściu tak, aby ich suma była równa 1, dzięki czemu dobrze modeluje prawdopodobieństwo. Jest to najczęsciej wykorzystywana funkcja w warstwach wyjściowych.
-
-\subsection{Funkcja błędu}
-Funkcja ta jest często używana w sieciach neuronowych w problemach klasyfikacji. Określa ona jak dobrze model przewiduje klasy - im mniejsza wartość funkcji błędu, tym większa dokładność modelu. Podczas uczenia się sieci dąży się do zmniejszania wartości funkcji błędu. W sieci neuronowej użytej w niniejszej pracy wykorzystano funkcję entropii krzyżowej.
-
-\subsection{Optymalizator}
-Optymalizator jest to funkcja lub algorytm decydująca o tym jak zmienić wagi sieci na podstawie funkcji błędu, tak aby zmniejszyć wartość tej funkcji. Optymalizator wpływa na to jak szybko sieć będzie się uczyć poprzez zmianę jej parametrów oraz jak poradzi sobie z problemami takimi jak utknięcie w lokalnym minimum. W sieci neuronowej przedstawionej w niniejszej pracy wykorzystano optymalizator Adam (Adaptive Moment Estimation). Optymalizator ten jest najczęściej wykorzystywanym i dającym najczęściej najlepsze wyniki.
-
-\section{Architektura sieci neuronowej i modułów związanych z treningiem sieci}
-Sieć neuronowa napisana została w języku Python, z użyciem biblbiotek PyTorch oraz TorchAudio. 
-
-PyTorch jest biblioteką oferującą narzędzia do budowy i trenowania sieci neuronowych, zawiera m.in. moduły do tworzenia warstw sieci, funkcji straty czy optymalizatorów, daje wsparcie do trenowania na kartach graficznych \cite{pytorch}.
-PyTorch jest biblioteką o podobnej popularności co Tensorflow, a w ostatnich latach nawet częściej wykorzystywaną, szczególnie w środowiskach akademickich. Umożliwia ona na większą elastyczność w budowie sieci i ustawieniach jej parametrów. Do zalet takiego rozwiązania należy większy wpływ na kształt i funkcjonowanie sieci, a do wad - dłuższy czas przygotowania oraz wyższy próg wejścia. 
-
-Biblioteka TorchAudio jest częścią ekosystemu PyTorch i służy do obsługi i obróbki plików dźwiękowych. Dostarcza narzędzi pomocnych w ładowaniu danych audio oraz transformacjach takich jak zmiany prędkości czy głośności, przetwarzanie na spectrogramy czy mel-spectrogramy \cite{torchaudio}. 
-
-Sień neuronowa przygotowana w ramach niniejszej pracy dyplomowej składa się z czterech głównych elementów: modułu transformującego dźwięk do spectrogramów, modułu ładującego dane, modułu do treningu oraz modułu do predykcji.
-
-\subsection{Konwersja dźwięków na spektrogramy}
-Identyfikacja gatunków nietoperzy poprzez analizę dźwięków skonwertowanych do obrazu jest podejściem klasycznym (por. np. \cite{bats-id-dl2020b}). Dlatego jednym z elementów związanych z trenowaniem sieci było przygotowanie modułu konwertującego dźwięk na spectrogramy. Kod modułu przedstawiono poniżej.
-
-\begin{lstlisting}[language=Python,caption={Implementacja konwersji dźwięku na spektrogram}, label={lst:audio-to-spectrogram}]
-  waveform, sample_rate = torchaudio.load(r'C:\\Users\\Jakub\Documents\\PJATK\\INZ\Batmonit_model\\Chiro_sounds_signed\Audio\\PIPNAT\S4U08639_20210731_234142_PIPNAT.wav')
-  fragments = torch.split(waveform, split_size_or_sections=2*sample_rate, dim=1)
-  
-  specgram = torchaudio.transforms.Spectrogram(
-          )(fragments[1])
-  
-  plt.figure(figsize=(12, 8))
-  plt.imshow(specgram[0].log2(), aspect='auto', origin='lower')
-  plt.show()
-\end{lstlisting}
-
-
-\subsection{Ładowanie danych}
-
-Moduł ładujący dane jest najbardziej rozbudowanym elementem architektury związanej z treningiem sieci. Składa się z wielu funkcji, które zapewniają identyczność parametrów każdego z nagrań, takich jak liczba kanałów czy wielkość obrazu. Zawiera również funkcji odpowiedzialne za pobieranie ścieżek plików.
-
-Poniżej przedstawiono jedną z takich funkcji. Służy ona do konwersji częstotliwości próbkowania, jeśli byłaby ona inna niż założona pierwotnie dla wszystkich nagrań:
-
-\begin{lstlisting}[language=Python,caption={Implementacja konwersji dźwięku na spektrogram}, label={lst:audio-to-spectrogram}]
-  def _resample_if_necessery(self, signal, sr):
-  if sr != self.target_sample_rate:
-      resampler = torchaudio.transforms.Resample(sr, self.target_sample_rate)
-      signal = resampler(signal)
-  return signal
-\end{lstlisting}
-
-Główna funkcja tego modułu uruchamia ładowanie danych z uwzględnieniem wszystkich wyżej wymienionych elementów i przedstawiono ją poniżej:
-
-\begin{lstlisting}[language=Python,caption={Implementacja modułu do ładowania danych}, label={lst:audio-to-spectrogram}]
-  if __name__ == "__main__":
-  ANNOTATIONS_FILE = r"C:\Users\Jakub\Documents\PJATK\INZ\Batmonit_model\Chiro_sounds_signed\Metadata\Annotations.csv"
-  AUDIO_DIR = r"C:\Users\Jakub\Documents\PJATK\INZ\Batmonit_model\Chiro_sounds_signed\Audio"
-  SPECTROGRAM_DIR = r"C:\Users\Jakub\Documents\PJATK\INZ\Batmonit_model\Chiro_sounds_signed\Spectrogram"
-  SAMPLE_RATE = 192000
-  NUM_SAMPLES = 2000000
-
-  if torch.cuda.is_available():
-      device = "cuda"
-  else:
-      device = "cpu"
-  print(f"Using device: {device}")
-
-  spectrogram = torchaudio.transforms.Spectrogram(
-      n_fft=1024,
-      hop_length=1024,
-  )
-  bd = BatsDataset(ANNOTATIONS_FILE,
-                          AUDIO_DIR,
-                          SPECTROGRAM_DIR, 
-                          spectrogram, 
-                          SAMPLE_RATE,
-                          NUM_SAMPLES,
-                          device)
-
-  print(f"There are {len(bd)} samples in the dataset.")
-  signal, label = bd[0]
-  print(signal, label)
-\end{lstlisting}
-
-\subsection{Sień neuronowa}
-Kod sieci neuronowej przedstawiono poniżej, a wyjaśnienie zastosowania konkretnych jej elementów, takich jak funkcje aktywacji, funkcja błędu, optymalizator, itd. opisano i wyjaśniono w rozdziale: "Dobór parametrów sieci neuronowej".
-
-\begin{lstlisting}[language=Python,caption={Implementacja sieci neuronowej}, label={lst:Sequelize_validate}]
-  class CNNNetwork(nn.Module):
-
-  def __init__(self):
-      super().__init__()
-      self.conv1 = nn.Sequential(
-          nn.Conv2d(
-              in_channels=1, 
-              out_channels=16,  
-              kernel_size=3,  
-              stride=1,
-              padding=2
-          ),
-          nn.ReLU(),
-          nn.MaxPool2d(kernel_size=2)  
-      )
-      self.conv2 = nn.Sequential(
-          nn.Conv2d(
-              in_channels=16,
-              out_channels=32,
-              kernel_size=3,
-              stride=1,
-              padding=2
-          ),
-          nn.ReLU(),
-          nn.MaxPool2d(kernel_size=2)
-      )
-      self.conv3 = nn.Sequential(
-          nn.Conv2d(
-              in_channels=32,
-              out_channels=64,
-              kernel_size=3,
-              stride=1,
-              padding=2
-          ),
-          nn.ReLU(),
-          nn.MaxPool2d(kernel_size=2)
-      )
-      self.conv4 = nn.Sequential(
-          nn.Conv2d(
-              in_channels=64,
-              out_channels=128,
-              kernel_size=3,
-              stride=1,
-              padding=2
-          ),
-          nn.ReLU(),
-          nn.MaxPool2d(kernel_size=2)
-      )
-      self.flatten = nn.Flatten()
-      self.linear = nn.Linear(128*33*13, 14) 
-                                             
-      self.softmax = nn.Softmax(dim=1)
-
-  def forward(self, input_data):
-      x = self.conv1(input_data)
-      x = self.conv2(x)
-      x = self.conv3(x)
-      x = self.conv4(x)
-      x = self.flatten(x)
-      logits = self.linear(x)
-      predictions = self.softmax(logits)
-      return predictions
-
-if __name__ == "__main__":
-  cnn = CNNNetwork()
-\end{lstlisting}
-
-\subsection{Trenowanie modelu}
-Moduł związany z trenowaniem sieci neuronowej składał się z funkcji służącej do stworzenia dataloader'a, trenowania pojedynczej epoki oraz treningu kolejnych epok. Wielkość batch'a określono na 128, liczbę epok na 10, a wskaźnik uczenia na 0,001.
-
-Główną funkcję przedstawiono poniżej:
-
-\begin{lstlisting}[language=Python,caption={Implementacja modułu do trenowania sieci}, label={lst:train}]
-  if __name__ == "__main__":
-
-  if torch.cuda.is_available():
-      device = "cuda"
-  else:
-      device = "cpu"
-  print(f"Using device: {device}")
-
-  spectrogram = torchaudio.transforms.Spectrogram(
-      n_fft=1024,
-      hop_length=1024,
-  )
-
-  bd = BatsDataset(ANNOTATIONS_FILE,
-                          AUDIO_DIR,
-                          SPECTROGRAM_DIR, 
-                          spectrogram, 
-                          SAMPLE_RATE,
-                          NUM_SAMPLES,
-                          device)
-
-
-  train_data_loader = create_data_loader(bd, batch_size=BATCH_SIZE)
-
-  cnn = CNNNetwork().to(device)
-
-  loss_fn = nn.CrossEntropyLoss()
-  optimiser = torch.optim.Adam(cnn.parameters(), lr=LEARNING_RATE)
-
-  train(cnn, train_data_loader, loss_fn, optimiser, device, EPOCHS)
-
-  torch.save(cnn.state_dict(), MODEL_PATH)
-
-  print("Model trained and stored at feedforwardnet.pth")
-\end{lstlisting}
-
-\subsection{Predykcja modelu}
-Moduł służący do wykonania predykcji zawiera poza główną funkcją dwa elementy - mapowanie klas (gatunków nietoperzy) oraz funkcję służącą do realizacji predykcji, która z użyciem wytrenowanego wcześniej modelu przewiduje gatunki nietoperzy na zbiorze testowym.
-
-Kod głównej funkcji przedstawiono poniżej:
-
-\begin{lstlisting}[language=Python,caption={Implementacja modułu do trenowania sieci}, label={lst:train}]
-  if __name__ == "__main__":
-
-  cnn = CNNNetwork()
-  state_dict = torch.load(r"C:\Users\Jakub\Documents\PJATK\INZ\Batmonit_model\feedforwardnet.pth", map_location=torch.device('cpu'))
-  cnn.load_state_dict(state_dict)
-
-  spectrogram = torchaudio.transforms.Spectrogram(
-      n_fft=1024,
-      hop_length=1024,
-  )
-
-  bd = BatsDataset(ANNOTATIONS_FILE,
-                          AUDIO_DIR,
-                          SPECTROGRAM_DIR, 
-                          spectrogram, 
-                          SAMPLE_RATE,
-                          NUM_SAMPLES,
-                          "cpu")
-
-  input, target = bd[0][0], bd[0][1]
-  input.unsqueeze_(0)
-
-  predicted, expected = predict(cnn, input, target,
-   class_mapping)
-
-  print(f"Predicted: '{predicted}', expected: '{expected}'")
-\end{lstlisting}
-
-\section{Skuteczność sieci neuronowej}
-
-\subsection{Macierz pomyłek}
-
-\subsection{Metryki}
-
 \chapter{Implementacja mikroserwisu do synchronizacji danych z systemu SMART z bazą danych i aplikacją}
 
 Watchdog został napisany w języku Java. Jego działanie polega na monitorowaniu folderu, do którego pobierane są dane z systemu SMART i w przypadku pojawienia się nowych danych, wystawienie API dla NodeJS, z wszelkimi informacjami o nowych danych, takimi jak: data, godzina, numer turbiny itd. 
@@ -879,7 +892,7 @@ W projekcie użyto następujących otwartych bibliotek, które dostarczyły szer
   \item Jsonwebtoken
 \end{itemize}
 
-\subsection{Sequelize}
+\subsection*{Sequelize}
 
 Do komunikacji z bazą danych wykorzystano bibliotekę Sequelize \cite{sequelize}. Sequelize to narzędzie mapowania obiektowo-relacyjnego (ang. ORM - Object-Relational Mapping), które pełni rolę "pomostu" pomiędzy aplikacją obiektową a relacyjną bazą danych.
 Do zalet ORM należą:
@@ -970,7 +983,7 @@ O ile zmiany w strukturze tabel bazy danych zarządzane są przez migracje, bibl
   };
 \end{lstlisting}
 
-\subsection{Express}
+\subsection*{Express}
 
 Serwer w NodeJS do komunikacji z modelem w celu stworzenia rekordów oraz pośredniczenia z interfejsem użytkownika w odczytywaniu zapisanych rekordów wykorzystuje interfejsu API stworzonego z pomocą biblioteki Express \cite{express}.
 
@@ -984,7 +997,7 @@ Biblioteka Express to szablon (ang. framework) dostarczający mechanizmy do:
 
 Biblioteka Express pozwoliła na uporządkowanie i czytelne rozmieszczenie zaprogramowanych interfejsów API w imię zasady pojedynczej odpowiedzialności.
 
-\subsection{Joi}
+\subsection*{Joi}
 
 Do walidacji treści wpisywanej przez użytkownika aplikacji przy rejestracji lub logowaniu posłużyła biblioteka Joi. Dostarcza ona wygodny i czytelny szablon tworzenia warunków walidacyjnych. W razie ich niespełnienia przez walidowaną treść któregoś z warunków, zwracany jest błąd o określonej treści. W odróżnieniu od walidacji oferowanej przez bibliotekę Sequelize, Joi pozwala na walidację bardziej wysokopoziomową i nie jest wiązana modelem tworzącym bazę danych.
 
@@ -1001,7 +1014,7 @@ Listing \ref{lst:Joi} przedstawia wykorzystanie biblioteki Joi wewnątrz funkcji
   }
 \end{lstlisting}
 
-\subsection{Jsonwebtoken}
+\subsection*{Jsonwebtoken}
 
 Biblioteka Jsonwebtoken dostarcza metody to generowania i walidowania tzw. tokenów, czyli zaszyfrowanych kluczy. Po udanym logowaniu użytkownika generowany i przesyłany wewnątrz odpowiedzi jest token. Następnie token ten przechowywany jest przez przeglądarkę i dodawany do kolejnych zapytań w komunikacji między interfejsem użytkownika a serwerem poprzez interfejs API. Serwer sprawdza za każdym razem, czy przychodzące zapytanie posiada właściwy token, a w przeciwnym wypadku odmawia przesłania odpowiedzi.
 
@@ -1086,43 +1099,6 @@ W ReactJS wraz z wersją 16.8 wprowadzono możliwość śledzenia stanu wewnątr
 \end{lstlisting}
 
 Z uwagi na wspomniane zalety komponentów funkcjonalnych posiadających stan obecnie zalecane jest stosowanie komponentów funkcjonalnych zamiast klasowych w nowych projektach pisanych w ReactJS. Dostępne są również dobrze opisane materiały pomagające w migracji istniejącego kodu do komponentów funkcjonalnych \cite{react-component}.
-
-\chapter{System w działaniu}
-
-\section{Rejestracja dźwięków za pomocą mikrofonu ultradźwięków}
-Rejestracja dźwięków odbywa się od zachodu do wschodu słońca, nieprzerwanie od zamontowania mikrofonu na turbinie 14 lipca 2023 r. Funkcję nagrywania dźwięku od zachodu do wschodu słońca można ustawić w aplikacji dostarczonej łącznie z mikrofonem i zainstalowanej na kontrolerze \ref{img:smart-installed}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.8\textwidth]{sprz/smart-installed.png}
-  \caption{System SMART firmy Wildlife Acoustics zainstalowany na turbinie wiatrowej. Źródło: Bioseco}
-  \label{img:smart-installed}
-\end{figure} 
-
-\section{Pobieranie danych z mikrofonu}
-Do pobierania danych z mikrofonu użyto polecenia \verb|rsync| służącego do synchronizacji danych pomiędzy dwoma urządzeniami z systemem Linux. Polecenie to wpisywane jest w terminalu urządzenia, do którego pobierane są nagrania.
-
-Z uwagi na obronę pracy zimą oraz za dnia, kiedy brak jest nietoperzy, a urządzenie jest zainstalowane w terenie, do prezentacji pobierania danych z mikrofonu użyto polecenia pobierającego dane z okresu kiedy nietoperze występowały:
-
-\begin{lstlisting}[language=Java,caption={Polecenie rsync pobierające dane z pewnego okresu czasu}, label={lst:rsync_command}]
-  rsync -cavzhP --include='9c.25.be.01.01.0b_20230908_20*.wav' smart@192.168.3.2:/var/www/html/storage/devices/9c.25.be.01.01.0b/data/wav/ /home/batmonit/batmonit/recordings/
-\end{lstlisting}
-
-\section{Przetwarzanie danych przez Watchdoga}
-
-Watchdog jest programem napisanym w języku Python. Stanowi połączenie pomiędzy systemem SMART, a Aplikacją Użytkownika, której przekazuje rekordy zawierające wynik jego pracy.
-
-W pierwszej kolejności Watchdog monitoruje folder nagrań na wypadek pojawienia się nowego nagrania. Pojawienie się nowego pliku wywołuje zdarzenie, które powoduje, że wykonany zostaje kod parsujący nazwę pliku. Nazwa pliku nagrania zapisana jest w formacie, który przedstawia Listing \ref{lst:recording_name}:
-
-\begin{lstlisting}[language=Java,caption={Przykładowa nazwa pliku nagrania}, label={lst:recording_name}]
-  9c.25.be.01.01.0b_20240123_225004_701432.wav
-\end{lstlisting}
-
-Nazwa pliku podzielona jest na cztery człony oddzielone znakiem ”\_” i zakończone rozszerzeniem pliku WAV. Pierwszy człon odnosi się do identyfikatora konkretnego urządzenia SMART. Drugi człon to data nagrania w formacie \verb|YYYYMMDD|. Trzeci człon to czas nagrania w formacie \verb|HHMMSS|. Ostatni człon jest losową sześciocyfrową liczbą. Po wyodrębnieniu powyższych członów zostają one zapisane do zmiennych.
-
-Następnie Watchdog wykorzystuje model sztucznej inteligencji w celu przanalizowania pliku nagrania. Analiza nadaje odpowiednią wartość zmiennym \verb|bat|, \verb|turbineStopSignal| oraz \verb|verification|.
-
-W kolejnym kroku zapisane zmienne zostają umieszczone wewnątrz obiektu JSON (JavaScript Object Notation). Obiekt JSON za pomocą metody POST zostaje wysłany na adres API serwera. Serwer nasłuchuje na porcie ”http://localhost:3900/api/records” i po pojawieniu się zapytania z obiektem JSON tworzy na jego podstawie rekord w bazie danych.
 
 \chapter{Testowanie}
 
@@ -1283,32 +1259,6 @@ W każdej z z prób zliczano liczbę pobranych nagrań i liczbę nagrań zapisan
 
 Wszystkie wykonane próby zakończyły się poprawną realizacją wszystkich elementów.
 
-\chapter{Przyszłość produktu i komercjalizacja}
-
-Praca nad rozwiązaniem objętym niniejszym dyplomem zbiegła się w czasie z dwoma istotnymi wydarzeniami, czy też procesami, które znacząco wpływają na przyszły kształt i możliwość komercjalizacji produktu. Były to: wprowadzenie na rynek przez firmę Wildlife Acoustics systemu SMART, który w części odpowiadał zakresowi pracy dyplomowej oraz gwałtowny rozwój sztucznej inteligencji i aplikacji jej w różnych dziedzinach życia, w tym w automatycznej identyfikacji nietoperzy.
-
-W związku z wytworzeniem przez firmę Wildife Acoustics dość zaawansowanego rozwiązania jakim jest system SMART, można było albo wykorzystać to rozwiązanie i poprawić oraz dostosować funkcjonowanie niektórych jego elementów lub też skupić się na wytworzeniu autorskiego rozwiązania. Zarówno w trakcie konsultacji w Bioseco S.A. jak i konsultacji z prowadzącymi przedmioty związane z pracą dyplomową, zdecydowano się na wykorzystanie systemu SMART jako rozwiązania zdecydowanie szybszego w implementacji na farmach wiatrowych, co odpowiadało na potrzeby zarówno Klienta Zewnętrznego (Bioseco S.A. i klienci firmy) oczekującego szybkiego wdrożenia rozwiązania do ochrony nietoperzy, jak i Klienta Wewnętrznego (Dziekan, Promotor) wymagającego sprawnego ukończenia pracy dyplomowej.
-Ponadto należy zauważyć, że firma Wildlife Acoustics posiada 20-letnie doświadczenie w konstrukcji mikrofonów ultradźwięków oraz jest autorem oprogramowania do automatycznej identyfikacji nietoperzy. Było to dodatkowym czynnikiem, który spowodował raczej wybór tego rozwiązania, niż rozpoczynanie podobnej drogi co firma Wildlife Acoustics i jej podobne wiele lat temu.
-
-System SMART składa się z mikrofonu ultradźwięków i kontrolera będącego prostym komputerem przemysłowym, który serwuje aplikację udostępniającą dane z mikrofonu, po uprzedniej odpowiedniej konfiguracji sieciowej. Taka dość zaawansowana konstrukcja rozwiązania spowodowała trudność dla mało doświadczonego zespołu inżynierskiego z ograniczonymi zasobami czasowymi w dotarciu do surowych danych płynących z mikrofonu. Z tego powodu wykorzystano nagrania, które zostały już zarejestrowane na kontrolerze i dopiero te dźwięki pobierano i poddawano analizie pod kątem gatunków nietoperzy i dalszej wizualizacji w aplikacji użytkownika. Prostota takiego rozwiązania odpowiadała zasadniczo celom i zakresowi pracy inżynierskiej, która nie miała doprowadzić do zaprojektowania rozwiązania gotowego do aplikacji na turbinach, a raczej jego prototyp. Rozwiązanie takie z uwagi na swą niegeneryczność, nie będzie stosowane w rozwiązaniu końcowym. Mimo to przynajmniej dwa elementy zrealizowane w ramach niniejszej pracy dyplomowej po dalszym dostosowaniu mają znaczny potencjał komercjalizacji. Do tych elementów należą bardziej zaawansowana pod kątem konstrukcyjnym aplikacja użytkownika w stosunku do aplikacji Wildlife Acoustics, zawierająca bazę danych oraz model sieci neuronowych z większym potencjałem do zwiększania dokładności identyfikacji gatunków nietoperzy. Aktualne poziomy dokładności identyfikacji nietoperzy przez tego typu oprogramowanie są mieszczą się bowiem przykładowo w przedziałach: 28-82\% \cite{kaleidoscope-accuracy} czy 40-80\% \cite{kaleidoscope-bias}. Wykazuje się również, że nowsze oprogramowanie do automatycznej identyfikacji nie przynosi poprawy jeśli chodzi o dokładność oznaczeń. Jest to istotna nisza dla twórców niniejszej pracy dyplomowej z szansą na komercjalizację.
-
-Dobrej jakości współpraca zapoczątkowana z firmą Wildlife Acoustics niesie możliwości kooperacji we wdrożeniu alternatywnych sposobów serwowania danych, w tym użycie własnego klasyfikatora. Sama firma umożliwia korzystanie z udostępnionych poleceń Linux w celu dostępu i autorskiej manipulacji danymi \cite{smart-linux-guide}.
-
-Aplikacja serwowana przez kontroler, mimo wielu ciekawych i potrzebnych w kontekście wykorzystania systemu SMART na farmach wiatrowych funkcjonalności nie posiada bazy danych. Brak bazy danch wpływa m.in. na brak możliwości precyzyjnego filtrowania danych, w tym danych pobieranych poprzez aplikację do plików CSV, nie ma też łatwej możliwości przygotowania raportów z aktywności nietoperzy na farmie wiatrowej. Wykorzystanie w tym celu aplikacji, jaka została przygotowania w niniejszej pracy dyplomowej takich możliwości dostarcza. Jednak uprzednio aplikacja musiałaby być prawdopodobnie zintegrowana z aktualnym ekosystemem programistycznym firmy Bioseco. W obecnej postaci nie jest więc produktem gotowym do wdrożenia. Jednak z uwagi na zaznajomienie się twórców pracy z wieloma zagadnieniami związanymi z tworzeniem tego typu oprogramowania oraz zagadnieniami dziedzinowymi szansa na komercjalizację interfejsu użytkownika z bazą danych wytworzonymi w oparciu o system przygotowany w niniejszej pracy, jest bardzo wysoka. 
-
-\chapter{Podsumowanie}
-W niniejszej pracy dyplomowej udało się zrealizować wszystkie wymagania systemowe zdefiniowane w początkowej fazie przygotowania projektu. Jedno z wymagań zostało zaniechane w trakcie implementacji systemu i konsultacji z Bioseco S.A. i była nim implementacja zatrzymań turbiny wiatrowej, czego powody wyjaśniono w punkcie "Testy funkcjonalne" (System do zatrzymywania turbiny wiatrowej). 
-
-
-Z sukcesem udało się zrozumieć całość tego interdyscyplinarnego problemu, który ma rozwiązywać zaprojektowany w pracy dyplomowej system oraz wytworzyć wszystkie jego komponenty. Nie udało się wytworzyć pobierania dźwięku z mikrofonu jako rozwiązania generycznego, czyli z wszystkimi elementami oprogramowania znajdującymi się na jednostce obliczeniowej zaimplementowanej przez zespół inżynierski. 
-
-
-Udało się wdrożyć jedno z najnowocześniejszych podejść w automatycznej identyfikacji nietoperzy, jakim jest uczenie głębokie, które zaczęto stosować realnie dopiero na rok przed rozpoczęciem niniejszej pracy, a które daje bardzo dobre rezultaty w automatycznej identyfikacji gatunków nietoperzy.
-
-Sukcesem jest również przezwyciężenie wszelkich trudności powstałych w trakcie trwania projektu, utrzymanie składu grupy inżynierskiej i skuteczna finalizacja pracy w zmiennych warunkach osobistych członków zespołu oraz przy złożeniu się niekorzystnych czynników losowych.
-
-Osiągnięte zostały kluczowe cele projektu - przyczynienie się do rozwiązania realnego problemu istniejącego na rynku z możliwością komercjalizacji elementów wytworzonego systemu. 
-
 \chapter{Wkład własny}
 
 \section{Juliusz Orłowski}
@@ -1377,6 +1327,62 @@ Osiągnięte zostały kluczowe cele projektu - przyczynienie się do rozwiązani
   \item
   \item
 \end{enumerate}
+
+\chapter{System w działaniu}
+
+\section{Rejestracja dźwięków za pomocą mikrofonu ultradźwięków}
+Rejestracja dźwięków odbywa się od zachodu do wschodu słońca, nieprzerwanie od zamontowania mikrofonu na turbinie 14 lipca 2023 r. Funkcję nagrywania dźwięku od zachodu do wschodu słońca można ustawić w aplikacji dostarczonej łącznie z mikrofonem i zainstalowanej na kontrolerze (Rys. \ref{img:smart-installed}).
+
+\section{Pobieranie danych z mikrofonu}
+Do pobierania danych z mikrofonu użyto polecenia \verb|rsync| służącego do synchronizacji danych pomiędzy dwoma urządzeniami z systemem Linux. Polecenie to wpisywane jest w terminalu urządzenia, do którego pobierane są nagrania (Listing \ref{lst:rsync_command}).
+
+Z uwagi na obronę pracy zimą oraz za dnia, kiedy brak jest nietoperzy, a urządzenie jest zainstalowane w terenie, do prezentacji pobierania danych z mikrofonu użyto polecenia pobierającego dane z okresu kiedy nietoperze występowały.
+
+\begin{lstlisting}[language=Java,caption={Polecenie rsync pobierające dane z pewnego okresu czasu}, label={lst:rsync_command}]
+  rsync -cavzhP --include='9c.25.be.01.01.0b_20230908_20*.wav' smart@192.168.3.2:/var/www/html/storage/devices/9c.25.be.01.01.0b/data/wav/ /home/batmonit/batmonit/recordings/
+\end{lstlisting}
+
+\section{Przetwarzanie danych przez Watchdoga}
+
+Watchdog jest programem napisanym w języku Python. Stanowi połączenie pomiędzy systemem SMART, a Aplikacją Użytkownika, której przekazuje rekordy zawierające wynik jego pracy.
+
+W pierwszej kolejności Watchdog monitoruje folder nagrań na wypadek pojawienia się nowego nagrania. Pojawienie się nowego pliku wywołuje zdarzenie, które powoduje, że wykonany zostaje kod parsujący nazwę pliku. Nazwa pliku nagrania zapisana jest w formacie, który przedstawia Listing \ref{lst:recording_name}.
+
+\begin{lstlisting}[language=Java,caption={Przykładowa nazwa pliku nagrania}, label={lst:recording_name}]
+  9c.25.be.01.01.0b_20240123_225004_701432.wav
+\end{lstlisting}
+
+Nazwa pliku podzielona jest na cztery człony oddzielone znakiem ”\_” i zakończone rozszerzeniem pliku WAV. Pierwszy człon odnosi się do identyfikatora konkretnego urządzenia SMART. Drugi człon to data nagrania w formacie \verb|YYYYMMDD|. Trzeci człon to czas nagrania w formacie \verb|HHMMSS|. Ostatni człon jest losową sześciocyfrową liczbą. Po wyodrębnieniu powyższych członów zostają one zapisane do zmiennych.
+
+Następnie Watchdog wykorzystuje model sztucznej inteligencji w celu przanalizowania pliku nagrania. Analiza nadaje odpowiednią wartość zmiennym \verb|bat|, \verb|turbineStopSignal| oraz \verb|verification|.
+
+W kolejnym kroku zapisane zmienne zostają umieszczone wewnątrz obiektu JSON (JavaScript Object Notation). Obiekt JSON za pomocą metody POST zostaje wysłany na adres API serwera. Serwer nasłuchuje na porcie ”http://localhost:3900/api/records” i po pojawieniu się zapytania z obiektem JSON tworzy na jego podstawie rekord w bazie danych.
+
+\chapter{Przyszłość produktu i komercjalizacja}
+
+Praca nad rozwiązaniem objętym niniejszym dyplomem zbiegła się w czasie z dwoma istotnymi wydarzeniami, czy też procesami, które znacząco wpływają na przyszły kształt i możliwość komercjalizacji produktu. Były to: wprowadzenie na rynek przez firmę Wildlife Acoustics systemu SMART, który w części odpowiadał zakresowi pracy dyplomowej oraz gwałtowny rozwój sztucznej inteligencji i aplikacji jej w różnych dziedzinach życia, w tym w automatycznej identyfikacji nietoperzy.
+
+W związku z wytworzeniem przez firmę Wildife Acoustics dość zaawansowanego rozwiązania jakim jest system SMART, można było albo wykorzystać to rozwiązanie i poprawić oraz dostosować funkcjonowanie niektórych jego elementów lub też skupić się na wytworzeniu autorskiego rozwiązania. Zarówno w trakcie konsultacji w Bioseco S.A. jak i konsultacji z prowadzącymi przedmioty związane z pracą dyplomową, zdecydowano się na wykorzystanie systemu SMART jako rozwiązania zdecydowanie szybszego w implementacji na farmach wiatrowych, co odpowiadało na potrzeby zarówno Klienta Zewnętrznego (Bioseco S.A. i klienci firmy) oczekującego szybkiego wdrożenia rozwiązania do ochrony nietoperzy, jak i Klienta Wewnętrznego (Dziekan, Promotor) wymagającego sprawnego ukończenia pracy dyplomowej.
+Ponadto należy zauważyć, że firma Wildlife Acoustics posiada 20-letnie doświadczenie w konstrukcji mikrofonów ultradźwięków oraz jest autorem oprogramowania do automatycznej identyfikacji nietoperzy. Było to dodatkowym czynnikiem, który spowodował raczej wybór tego rozwiązania, niż rozpoczynanie podobnej drogi co firma Wildlife Acoustics i jej podobne wiele lat temu.
+
+System SMART składa się z mikrofonu ultradźwięków i kontrolera będącego prostym komputerem przemysłowym, który serwuje aplikację udostępniającą dane z mikrofonu, po uprzedniej odpowiedniej konfiguracji sieciowej. Taka dość zaawansowana konstrukcja rozwiązania spowodowała trudność dla mało doświadczonego zespołu inżynierskiego z ograniczonymi zasobami czasowymi w dotarciu do surowych danych płynących z mikrofonu. Z tego powodu wykorzystano nagrania, które zostały już zarejestrowane na kontrolerze i dopiero te dźwięki pobierano i poddawano analizie pod kątem gatunków nietoperzy i dalszej wizualizacji w aplikacji użytkownika. Prostota takiego rozwiązania odpowiadała zasadniczo celom i zakresowi pracy inżynierskiej, która nie miała doprowadzić do zaprojektowania rozwiązania gotowego do aplikacji na turbinach, a raczej jego prototyp. Rozwiązanie takie z uwagi na swą niegeneryczność, nie będzie stosowane w rozwiązaniu końcowym. Mimo to przynajmniej dwa elementy zrealizowane w ramach niniejszej pracy dyplomowej po dalszym dostosowaniu mają znaczny potencjał komercjalizacji. Do tych elementów należą bardziej zaawansowana pod kątem konstrukcyjnym aplikacja użytkownika w stosunku do aplikacji Wildlife Acoustics, zawierająca bazę danych oraz model sieci neuronowych z większym potencjałem do zwiększania dokładności identyfikacji gatunków nietoperzy. Aktualne poziomy dokładności identyfikacji nietoperzy przez tego typu oprogramowanie są mieszczą się bowiem przykładowo w przedziałach: 28-82\% \cite{kaleidoscope-accuracy} czy 40-80\% \cite{kaleidoscope-bias}. Wykazuje się również, że nowsze oprogramowanie do automatycznej identyfikacji nie przynosi poprawy jeśli chodzi o dokładność oznaczeń. Jest to istotna nisza dla twórców niniejszej pracy dyplomowej z szansą na komercjalizację.
+
+Dobrej jakości współpraca zapoczątkowana z firmą Wildlife Acoustics niesie możliwości kooperacji we wdrożeniu alternatywnych sposobów serwowania danych, w tym użycie własnego klasyfikatora. Sama firma umożliwia korzystanie z udostępnionych poleceń Linux w celu dostępu i autorskiej manipulacji danymi \cite{smart-linux-guide}.
+
+Aplikacja serwowana przez kontroler, mimo wielu ciekawych i potrzebnych w kontekście wykorzystania systemu SMART na farmach wiatrowych funkcjonalności nie posiada bazy danych. Brak bazy danch wpływa m.in. na brak możliwości precyzyjnego filtrowania danych, w tym danych pobieranych poprzez aplikację do plików CSV, nie ma też łatwej możliwości przygotowania raportów z aktywności nietoperzy na farmie wiatrowej. Wykorzystanie w tym celu aplikacji, jaka została przygotowania w niniejszej pracy dyplomowej takich możliwości dostarcza. Jednak uprzednio aplikacja musiałaby być prawdopodobnie zintegrowana z aktualnym ekosystemem programistycznym firmy Bioseco. W obecnej postaci nie jest więc produktem gotowym do wdrożenia. Jednak z uwagi na zaznajomienie się twórców pracy z wieloma zagadnieniami związanymi z tworzeniem tego typu oprogramowania oraz zagadnieniami dziedzinowymi szansa na komercjalizację interfejsu użytkownika z bazą danych wytworzonymi w oparciu o system przygotowany w niniejszej pracy, jest bardzo wysoka. 
+
+\chapter{Podsumowanie}
+W niniejszej pracy dyplomowej udało się zrealizować wszystkie wymagania systemowe zdefiniowane w początkowej fazie przygotowania projektu. Jedno z wymagań zostało zaniechane w trakcie implementacji systemu i konsultacji z Bioseco S.A. i była nim implementacja zatrzymań turbiny wiatrowej, czego powody wyjaśniono w punkcie "Testy funkcjonalne" (System do zatrzymywania turbiny wiatrowej). 
+
+
+Z sukcesem udało się zrozumieć całość tego interdyscyplinarnego problemu, który ma rozwiązywać zaprojektowany w pracy dyplomowej system oraz wytworzyć wszystkie jego komponenty. Nie udało się wytworzyć pobierania dźwięku z mikrofonu jako rozwiązania generycznego, czyli z wszystkimi elementami oprogramowania znajdującymi się na jednostce obliczeniowej zaimplementowanej przez zespół inżynierski. 
+
+
+Udało się wdrożyć jedno z najnowocześniejszych podejść w automatycznej identyfikacji nietoperzy, jakim jest uczenie głębokie, które zaczęto stosować realnie dopiero na rok przed rozpoczęciem niniejszej pracy, a które daje bardzo dobre rezultaty w automatycznej identyfikacji gatunków nietoperzy.
+
+Sukcesem jest również przezwyciężenie wszelkich trudności powstałych w trakcie trwania projektu, utrzymanie składu grupy inżynierskiej i skuteczna finalizacja pracy w zmiennych warunkach osobistych członków zespołu oraz przy złożeniu się niekorzystnych czynników losowych.
+
+Osiągnięte zostały kluczowe cele projektu - przyczynienie się do rozwiązania realnego problemu istniejącego na rynku z możliwością komercjalizacji elementów wytworzonego systemu. 
 
 
 \chapter{Załączniki}
@@ -1815,22 +1821,6 @@ Osiągnięte zostały kluczowe cele projektu - przyczynienie się do rozwiązani
 
   \item \textbf{Odwołania do literatury}
 \end{enumerate}
-\clearpage
-
-\section{Analiza soDIS}
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=1.0\textwidth]{sprz/sodis1.png}
-  \caption{Analiza zagrożeń w konwencji soDIS}
-  \label{img:sodis1}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=1.0\textwidth]{sprz/sodis2.png}
-  \caption{Analiza zagrożeń w konwencji soDIS}
-  \label{img:sodis2}
-\end{figure}
 
 \clearpage
 
