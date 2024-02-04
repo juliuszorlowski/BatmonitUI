@@ -33,7 +33,6 @@ Czas trwania projektu jest ograniczony do momentu przekazania książki dyplomow
 \date{\today}
 \nabstract{
   Praca powstała w kooperacji z firmą technologiczną Bioseco S.A., która opracowała i produkuje system kamer ze sztuczną inteligencją do wykrywania ptaków na farmach wiatrowych oraz automatycznie wyłączających turbinę, bądź uruchamiających odstraszacze świetlne lub dźwiękowe w reakcji na określone wyzwalacze, takie jak ptak określonej wielkości w danej odległości od turbiny. Zamysłem kooperacji było przygotowanie przez zespół inżynierski materiałów do implementacji przez firmę podobnego rozwiązania, ale dla innej grupy zwierząt - nietoperzy, w oparciu nie o sensory wizyjne a akustyczne. Zakres niniejszej pracy objął: weryfikację udostępnionego przez Bioseco S.A. mikrofonu ultradźwięków pod kątem możliwości zastosowania na farmach wiatrowych oraz w razie potrzeby zmiany sprzętu - wyszukanie innego mikrofonu, testy terenowe mikrofonu ultradźwięków w kontekście odległości i kątów wykrywania różnych ultradźwięków i przygotowania na tej podstawie planu liczby i lokalizacji takich mikrofonów na turbinie, kolejno opracowanie sposobu pobierania dźwięków z mikrofonu, pozyskanie odpowiednich nagrań nietoperzy do treningu sieci neuronowej, analiza przez sieć neuronową pod kątem występowania gatunków nietoperzy oraz zapisanie informacji w bazie danych i prezentacji wyników w interfejsie użytkownika. W związku z tym, że zakres pracy był rozbudowany interfejs użytkownika oraz sieć neuronową przygotowano w zakresie podstawowym - jako działający prototyp. Niniejsza praca jest typu R\&D, łączy kilka dziedzin informatyki, ale także zawiera elementy wiedzy z zakresu biologii i farm wiatrowych.
-  
 }
 
 
@@ -103,14 +102,22 @@ Bioseco S.A. jest innowacyjną polską firmą technologiczną z siedzibą w Gda�
 \section{Proces wytwórczy}
 
 \subsection{Przyjęte podejście}
-Zastosowano podejście hybrydowe: Water-Scrum-Fall. Prace rozpoczęto od przygotowania wymagań systemowych, analiz i wstępnego projektu systemu. W kolejnej fazie wytwarzania oprogramowania zastosowano metodę programowania zwinnego w oparciu o plany i dokumentację z pierwszego etapu, korygowane na bieżąco przy każdej iteracji. W ostatniej fazie, po zakończeniu etapu zwinnego, przewidziano testy systemowe i integracyjne.
+Zastosowano podejście hybrydowe: Water-Scrum-Fall \cite{water-scrum-fall1} \cite{water-scrum-fall2} \cite{water-scrum-fall3}. Prace rozpoczęto od przygotowania wymagań systemowych, analiz i wstępnego projektu systemu. W kolejnej fazie wytwarzania oprogramowania zastosowano metodę programowania zwinnego w oparciu o plany i dokumentację z pierwszego etapu, korygowane na bieżąco przy każdej iteracji. W ostatniej fazie, po zakończeniu etapu zwinnego, przewidziano testy systemowe i integracyjne. Schemat metodyki wytwarzania oprogramowania przedstawiono poniżej.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/water-scrum-fall.png}
+  \caption{Graficzna prezentacja metodyki Water-Scrum-Fall. Źródło: \cite{water-scrum-fall1}}
+  \label{img:water-scrum-fall}
+\end{figure}
 
 \subsection{Organizacja zespołu}
 Grupa inżynierska była samoorganizującym się zespołem. Część funkcji była silniej przypisana do konkretnych członków grupy:
-Juliusz Orłowski - Software Developer, Jakub Prucnal - AI Developer, Software Engineer, Magdalena Wybraniec - Product Owner, Project Manager, specjalista dziedzinowy. 
+Juliusz Orłowski - Software Developer, Jakub Prucnal - AI Developer, Software Engineer, Magdalena Wybraniec - Product Owner, Project Manager, specjalista dziedzinowy, AI Developer. 
 
 \subsection{Charakterystyka przyrostów}
-TODO
+
+\subsubsection{Water}
 
 \section{Środowisko technologiczne}
 
