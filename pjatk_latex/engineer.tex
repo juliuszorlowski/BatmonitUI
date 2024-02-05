@@ -932,29 +932,29 @@ W pierwszej kolejności Watchdog monitoruje folder nagrań na wypadek pojawienia
 
 \begin{lstlisting}[language=Python,caption={Funkcja służąca do monitorowania folderu z nagraniami}, label={lst:watch_directory}]
   def watch_directory():
-    from watchdog.events import FileSystemEventHandler
-    from watchdog.observers import Observer
+  from watchdog.events import FileSystemEventHandler
+  from watchdog.observers import Observer
 
-    class MyHandler(FileSystemEventHandler):
-        def on_created(self, event):
-            if event.is_directory:
-                return
-            file_name = os.path.basename(event.src_path)
-            print(f'Utworzono plik: {file_name}')
-            record = NewRecord(file_name)
-            create_record(vars(record))
+  class MyHandler(FileSystemEventHandler):
+      def on_created(self, event):
+          if event.is_directory:
+              return
+          file_name = os.path.basename(event.src_path)
+          print(f'Utworzono plik: {file_name}')
+          record = NewRecord(file_name)
+          create_record(vars(record))
 
-    event_handler = MyHandler()
-    observer = Observer()
-    observer.schedule(event_handler, PATH, recursive=True)
-    observer.start()
-    print("Watchdog is watching...")
-    try:
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        observer.stop()
-    observer.join()
+  event_handler = MyHandler()
+  observer = Observer()
+  observer.schedule(event_handler, PATH, recursive=True)
+  observer.start()
+  print("Watchdog is watching...")
+  try:
+      while True:
+          time.sleep(1)
+  except KeyboardInterrupt:
+      observer.stop()
+  observer.join()
   \end{lstlisting}
 
 Pojawienie się nowego pliku wywołuje zdarzenie, które powoduje, że wykonany zostaje kod parsujący nazwę pliku. Nazwa pliku nagrania zapisana jest w formacie, który przedstawia Listing \ref{lst:recording_name}.
