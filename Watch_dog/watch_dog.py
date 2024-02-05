@@ -21,7 +21,6 @@ def watch_directory():
             print(f'Utworzono plik: {file_name}')
             record = NewRecord(file_name)
             create_record(vars(record))
-            # print_record(vars(record))
 
     event_handler = MyHandler()
     observer = Observer()
@@ -38,9 +37,8 @@ def watch_directory():
 class NewRecord():
     def __init__(self, file_name) -> None:
         self.audio = f"../recordings/{file_name}"
-        self.sonogram = "/spectrograms/TODO" #TODO
         _, self.date, self.name = self._process_new_file(file_name)
-        self.speciesId = 3 #TODO inference(self.audio_path)
+        self.speciesId = 3 
         self.verification = 1
         self.turbineStopSignal = 1
         self.bat = 1
@@ -48,7 +46,7 @@ class NewRecord():
         
 
     def _process_new_file(self, file_name):
-        # file name is created in form: turbineId_date_time_idRecord
+
         DATA = file_name.split("_")
         turbine_id = DATA[0]
         timestamp = self._create_timestamp(DATA[1], DATA[2])
@@ -67,19 +65,10 @@ def start_server_with_watchdog():
     watch_thread.start()
     __hug__.http.serve(port=3800)
 
-# @hug.post()
 def create_record(data):
     url = "http://localhost:3900/api/records"
     print(data)
     response = requests.post(url, json=data)
-    # print("Record sent successfully!", output_json)
-    # return output_json, hug.HTTP_200
-
-# @hug.get('/api/records')
-# def print_record(output_json: hug.types.json):
-#     print("Record printed successfully!")
-#     return output_json, hug.HTTP_OK
 
 if __name__ == '__main__':
-    # start_server_with_watchdog()
     watch_directory()

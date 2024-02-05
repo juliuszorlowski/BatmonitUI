@@ -16,7 +16,7 @@
 \author{Magdalena Wybraniec}{s19798}{Sztuczna Inteligencja}{Niestacjonarny}
 \consultant{Dawid Gradolewski}
 \consultant{Damian Dziak}
-\projectgoals{Projekt typu R\&D, ma na celu przygotowanie systemu składającego się z dostępnego na rynku mikrofonu ultradźwięków odpowiedniego do zastosowania na turbinie wiatrowej oraz wytworzenie oprogramowania pobierającego i analizującego dźwięk pochodzący z mikrofonu oraz rozpoznającego pojawienie się nietoperzy, zapisujący nagrania w bazie danych i wizualizujący je w interfejsie - panelu administratora. Dodatkowo celem będzie przygotowanie analizy odległości i kątów z jakiej mikrofon rejestruje głos nietoperzy i adekwatnie – zaproponowanie liczby i rozstawienia urządzeń nasłuchowych, tak aby pokryć kąt 360 stopni wokół turbiny na farmie wiatrowej.}
+\projectgoals{Projekt typu R\&D, ma na celu implementację systemu składającego się z dostępnego na rynku mikrofonu ultradźwięków odpowiedniego do zastosowania na turbinie wiatrowej oraz oprogramowania pobierającego i analizującego dźwięk pochodzący z mikrofonu oraz rozpoznającego pojawienie się nietoperzy, zapisujący nagrania w bazie danych i wizualizujący je w interfejsie - panelu administratora. Dodatkowo celem będzie przygotowanie analizy odległości i kątów z jakiej mikrofon rejestruje głos nietoperzy i adekwatnie – zaproponowanie liczby i rozstawienia urządzeń nasłuchowych, tak aby pokryć kąt 360 stopni wokół turbiny na farmie wiatrowej.}
 \productsandservices{System rejestrujący i wykrywający nietoperze z nagrań ultradźwięków, możliwy do połączenia z systemem wyłączania turbiny}
 \mainfunctionalities{
 \begin{itemize}
@@ -63,6 +63,13 @@ W ramach sformułowanego tematu wyszczególniono następujące cele badawcze i p
   \end{itemize}
   
 
+\chapter{Słownik pojęć}
+\subsubsection {Nagranie full-spectrum} nagranie rejestracji ultradźwięków w pełnym wymiarze
+\subsubsection {ML} (machine learning, uczenie maszynowe) – obszar sztucznej inteligencji wykorzystujący algorytmy i modele matematyczne, które automatycznie poprawiają się poprzez ekspozycję na dane, w celu prognozowania lub podejmowania decyzji dot. nowo dostarczanych danych 
+\subsubsection {DL} (deep learning) – podzbiór ML wykorzystujący tzw. sieci neuronowe, w której pojedyncze neurony tworzą warstwy i stanowią de facto mnożenie wartości wejściowych z początkowo losowo przypisanymi wagami, gdzie wyniki z poszczególnych wejść są sumowane i przekazywane do tzw. funkcji aktywacji, które decydują czy i jakie wyniki przekazać do kolejnej warstwy neuronów. 
+\subsubsection {AI}
+
+
 \chapter{Podłoże projektu}
 
 \section{Geneza problemu}
@@ -74,6 +81,15 @@ Dotychczas przyjętą praktyką w przypadku wykrycia zbyt dużych aktywności ni
 \section{Aktualne rozwiązania konkurencyjne}
 
 Intensywny rozwój sieci neuronowych oraz internetu rzeczy (ang: IoT) przyczynił się do powstania podobnych rozwiązań. Na rynku światowym istnieją zbliżone pod kątem funkcjonalnym systemy, takie jak: DTBat i Fleximouse.
+
+W poniższym zestawieniu przedstawiono dostępne podobne rozwiązania (\ref{img:konkurencja}).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/konkurencja}
+  \caption{Zestawienie i porównanie podobnych rozwiązań.}
+  \label{img:konkurencja}
+\end{figure} 
 
 \section{IoT}
 
@@ -138,7 +154,7 @@ Po weryfikacji poprawności działania systemu SMART rozpoczęto implementację 
 
 \begin{itemize}
   \item{marzec 2023 - nauka NodeJS, React, PyTorch i sieci neuronowych, konsultacje z Bioseco S.A. i Animal Sound Labs w sprawie możliwego do zastosowania mikofonu ultradźwięków, wybór mikrofonu możliwego do zastosowania w MVP (mikrofon dostosowany przez firmę Animal Sound Labs wraz z zaprojektowaną przez Animal Sound Labs drogą analogowo-cyfrową, dostosowane do zakresu MVP),}
-  \item{kwiecień 2023 - nauka NodeJS, React, PyTorch i sieci neuronowych, konsultacje z Bioseco S.A. i EcoObs w sprawie możliwego do zastosowania mikofonu ultradźwięków, wybór kolejnych mikrofonów możliwych do zastosowania w MVP (Batcorder GSM firmy EcoObs, SM-U2 firmy Wildlife Acoustics),}
+  \item{kwiecień 2023 - nauka NodeJS, React, PyTorch i sieci neuronowych, konsultacje z Bioseco S.A. i EcoObs w sprawie możliwego do zastosowania mikofonu ultradźwięków, wybór kolejnych mikrofonów możliwych do zastosowania w MVP (Batcorder GSM firmy EcoObs, SMM-U2 firmy Wildlife Acoustics),}
   \item{maj 2023 - nauka NodeJS, React, PyTorch, nauka i konsultacje w sprawie możliwych do wykorzystania architektur sieci neuronowych (z Aleksandrem Obuchowskim), ostateczne wybranie mikrofonu ultradźwięków do MVP (system SMART firmy Wildlife Acoustics), przygotowanie szczegółowego planu testów terenowych mikrofonu (konsultacje z pracownikami Bioseco S.A.) w tym wytworzenie sztucznych głosów nietoperzy,}
   \item{czerwiec 2023 - opracowanie fizycznego i sieciowego podłączenia systemu SMART na turbinie wiatrowej (wraz z pracownikami Bioseco S.A.),}
   \item{lipiec 2023 - konfiguracja sieciowa i podłączenie systemu SMART na turbinie wiatrowej (zrealizowane przez pracowników Bioseco S.A.), kontrola poprawności działania systemu SMART,}
@@ -222,7 +238,7 @@ Dokumentacja prowadzona była w:
 
 \section{Analiza zagrożeń}
 
-Do głównych zagrożeń projektu należą \textit{de facto} te związane z ograniczonymi zasobami czasowymi oraz wiedzą i doświadczeniem, gdyż wpływa to łatwość/trudność poradzenia sobie z pozostałymi zagrożeniami. Pozostają jeszcze zagrożenie losowe, które jeśli wystąpią mogą sprawić, że możliwość realizacji projektu zmieni się diametralnie.
+Do głównych zagrożeń projektu należą \textit{de facto} te związane z ograniczonymi zasobami czasowymi oraz ograniczoną wiedzą i doświadczeniem. Pozostają jeszcze zagrożenie losowe, takie jak np. choroby, które jeśli wystąpią mogą sprawić, że możliwość realizacji projektu zmieni się diametralnie.
 
 \begin{figure}[h]
   \centering
@@ -242,7 +258,7 @@ Do głównych zagrożeń projektu należą \textit{de facto} te związane z ogra
 Wpływ zagrożeń opisanych w niniejszym dokumencie jest potencjalnie wysoki, dlatego że projekt jest rozbudowany, innowacyjny, i powstaje na studiach zaocznych, w związku z czym zespół projektowy obłożony jest znaczną ilością dodatkowych obowiązków pozaszkolnych, a także pozbawiony jest dużego doświadczenia w realizacji tego typu projektów.
 
 \subsection{Rekomendacje i rozwiązania}
-Podsumowaniem szczegółowych rekomendacji umieszczonych w tabeli - "Analiza zagrożeń w konwencji soDIS - są zwłaszcza konsultacje ze specjalistami w wybranych dziedzinach, pomoc ze strony Bioseco S.A. w szczególności w rozmowach partnerskich związanych z pozyskaniem nagrań nietoperzy oraz zapewnianiem nowego sprzętu do eksperymentów, ciągła weryfikacja wymagań na system, wzajemne wsparcie i wsparcie bliskich, techniki relaksacyjne, sport.
+Podsumowaniem szczegółowych rekomendacji umieszczonych w tabeli - "Analiza zagrożeń w konwencji soDIS - są zwłaszcza konsultacje ze specjalistami w wybranych dziedzinach i pomoc ze strony Bioseco S.A.,  w szczególności w rozmowach partnerskich związanych z pozyskaniem nagrań nietoperzy oraz zapewnieniu nowego sprzętu do eksperymentów. Ponadto kluczowymi zaleceniami do minimalizacji zagrożeń są: ciągła weryfikacja wymagań na system, wzajemne wsparcie i wsparcie bliskich oraz sport.
 
 \chapter{Prace badawcze - projektowanie}
 
@@ -263,7 +279,7 @@ W procesie definiowania cech sprzętu jakie powinien posiadać mikrofon i rejest
     \item{możliwość sprzętowa do integracji ze sprzętem i oprogramowaniem umożliwiającym pobieranie danych w czasie rzeczywistym.}
   \end{itemize}
 
-W początkowym okresie prac nad systemem nie istniał mikrofon spełniające wszystkie powyższe kryteria. W mikrofonie otrzymanym początkowo z Bioseco brakowało wodoodporności. W detektorze Batcorder firmy EcoObs i mikrofonie SMM-U2 Wildlife Acoustics brakowało bezpośredniej możliwości podłączenia do urządzenia typu Raspberry Pi i nieograniczonego dostępu do danych. Wykonano próby współpracy z Animal Sound Labs, podczas których używając dostępnych najlepszych mikrofonów posiadanych przez firmę oraz projektując odpowiednią drogę analogowo-cyfrową z możliwością połączenia przez USB do urządzenia typu Raspberry Pi miał powstać odpowiedni mikrofon, jednak próby te zakończyły się niepowodzeniem z uwagi na ograniczenia czasowe Animal Sound Labs w zaproponowanym terminie. W tym czasie na rynku pojawiło się nowe urządzenie firmy Wildlife Acoustics - system SMART, który dostarczył wszystkich niezbędnych elementów, jakie wymagane były od sprzętu do realizacji niniejszej pracy dyplomowej (\ref{img:smart}). 
+W początkowym okresie prac nad systemem nie istniał mikrofon spełniające wszystkie powyższe kryteria. W mikrofonie otrzymanym początkowo z Bioseco brakowało wodoodporności. W detektorze Batcorder firmy EcoObs i mikrofonie SMM-U2 Wildlife Acoustics brakowało bezpośredniej możliwości podłączenia do urządzenia typu Raspberry Pi i nieograniczonego dostępu do danych. Wykonano próby współpracy z Animal Sound Labs, podczas których używając dostępnych najlepszych mikrofonów posiadanych przez firmę oraz projektując odpowiednią drogę analogowo-cyfrową z możliwością połączenia przez USB do urządzenia typu Raspberry Pi miał powstać odpowiedni mikrofon, jednak próby te zakończyły się niepowodzeniem z uwagi na ograniczenia czasowe Animal Sound Labs w zaproponowanym terminie. W tym czasie na rynku pojawiło się nowe urządzenie firmy Wildlife Acoustics - system SMART, który dostarczył wszystkich niezbędnych elementów, jakie wymagane były od sprzętu do realizacji niniejszej pracy dyplomowej (\ref{img:smart}). Na poniższym obrazku przedstawiony jest system SMART - dwa mikrofony ultradźwięków po lewej i prawej stronie oraz kontroler w centrum.
 
 \begin{figure}[h]
   \centering
@@ -275,12 +291,12 @@ W początkowym okresie prac nad systemem nie istniał mikrofon spełniające wsz
 Z korzyścią dla ochrony nietoperzy i deweloperów farm wiatrowych, a z pewnymi zagrożeniami dla twórców niniejszej pracy dyplomowej mikrofon został wyprodukowany wraz z tzw. kontrolerem (prostym przemysłowym komputerem), który wyposażony jest w oprogramowanie pobierające dane z mikrofonu i po odpowiedniej konfiguracji sieciowej serwujący dane i prezentujący je w interfejsie użytkownika. Mimo tego, że całe rozwiązanie częściowo odpowiada zakresowi niniejszej pracy dyplomowej, nie jest ono idealne, np. nie posiada bazy danych czy też w dość znacznym stopniu niepoprawnie identyfikuje gatunki nietoperzy \cite{kaleidoscope-bias}. Mimo to, fakt pracy członków zespołu nad podobnym rozwiązaniem, z uwagi na obszerne zajęcie się takim tematem i wdrożenie się w wiele jego aspektów, niesie raczej możliwości i szanse rozwoju tego rozwiązania, niż zagrożenie ze strony konkurencji.
 
 \section{Odtwarzanie ultradźwięków}
-Do wyemitowania ultradźwięków niezbędne są urządzenia obsługujące co najmniej dwukrotnie wyższą częstotliwość niż emitowane dźwięki. Wynika to z twierdzenia Nyquista-Shannona, zgodnie z którym częstotliwość próbkowania z sygnału ciągłego ("analogowego") na dyskretny ("cyfrowy")musi być co najmniej dwukrotnie wyższa od najwyższej składowej widma sygnału aby sygnał został odtworzony poprawnie i nie dochodziło do zjawiska aliasingu \cite{probkowanie}. W zależności od możliwości karty dźwiękowej w komputerze użytym jako generator ultradźwięków, należy bądź ustawić maksymalną wartość próbkowania karty, bądź podłączyć wzmacniacz zwiększający maksymalną częstotliwość odtwarzania.
+Do wyemitowania ultradźwięków niezbędne są urządzenia obsługujące co najmniej dwukrotnie wyższą częstotliwość niż emitowane dźwięki. Wynika to z twierdzenia Nyquista-Shannona, zgodnie z którym częstotliwość próbkowania z sygnału ciągłego ("analogowego") na dyskretny ("cyfrowy") musi być co najmniej dwukrotnie wyższa od najwyższej składowej widma sygnału aby sygnał został odtworzony poprawnie i nie dochodziło do zjawiska aliasingu \cite{probkowanie}. W zależności od możliwości karty dźwiękowej w komputerze użytym jako generator ultradźwięków, należy bądź ustawić maksymalną wartość próbkowania karty, bądź podłączyć wzmacniacz zwiększający maksymalną częstotliwość odtwarzania.
 
 Do wstępnych testów poprawności działania sprzętu użyto wzmacniacza iFi Zen Dac o maksymalnej częstotliwości odtwarzania 384 kHz, a do testów terenowych mikrofonu - laptopa DELL G3 z maksymalną częstotliwością próbkowania karty dźwiękowej ustawioną na 96 kHz.
 
 \section{Głosy nietoperzy typu full-spectrum}
-Dźwięk typu full-spectrum, to rodzaj nagrania i analizy spektralnej dźwięku, w którym ujęte jest pełne spektrum nagrywanych częstotliwości. W odróżnieniu np. od nagrań typu zero-crossing posiadają dużo więcej informacji o dźwięku, co przedstawiono na ilustracji (\ref{img:fullspectrum}). Z tego powodu nagrania takie są najlepsze do analizy gatunków nietoperzy, a wykorzystanie tego typu nagrań może dać najlepsze efekty w treningu sieci neuronowej oraz predykcji gatunków.
+Dźwięk typu full-spectrum, to rodzaj nagrania i analizy spektralnej dźwięku, w którym ujęte jest pełne spektrum nagrywanych częstotliwości \cite{fullspectrum}. Nagranie tego typu przedstawiono po lewej stronie na poniższym rysunku. W odróżnieniu np. od nagrań typu zero-crossing (po prawej stronie) posiadają dużo więcej informacji o dźwięku, co przedstawiono na ilustracji (\ref{img:fullspectrum}). W przypadku nagrań typu zero-crossing z sygnału wybierane są jedynie punkty, które znajdują się w miejscu przecięcia osi X i Y wykresu sygnału. Tym samym w przypdku nagrań typu zero-crossing wybrana jest około jedna tysięczna sygnału, co pozwala na zmniejszenie rozmiaru nagrań ale również znaczne zmniejszenie ilości informacji o sygnale \cite{fullspectrum}. Z tego powodu nagrania typu full-spectrum są najlepsze do analizy gatunków nietoperzy, a wykorzystanie tego typu nagrań może dać najlepsze efekty w treningu sieci neuronowej oraz predykcji gatunków.
 
 Tego typu nagrania generowane są tylko przez część detektorów ultradźwięków - tylko przez najnowocześniejsze rekordery, co wpłynęło na zmniejszenie liczby potencjalnych źródeł nagrań do treningu sieni neuronowej.
 
@@ -294,7 +310,7 @@ Tego typu nagrania generowane są tylko przez część detektorów ultradźwięk
 \subsection{Wytworzenie sztucznych głosów nietoperzy do wstępnych testów sprzętu}
 
 W celu przetestowania działania sprzętu rejestrującego i oprogramowania przetwarzającego zarejestrowane dźwięki, przeprowadzono doświadczenie polegające na sztucznym wytworzeniu dźwięków, które imitowały by głos nietoperza.
-Pierwszym etapem było wygenerowanie w programie Audacity sinusoidalnej fali dźwiękowej z początkową częstotliwością 51 kHz i końcową częstotliwością 42 kHz, amplitudą początkową 0 i amplitudą końcową 1, interpolacją logarytmiczną oraz czasem trwania 25 ms (\ref{img:wykres_fali}).
+Pierwszym etapem było wygenerowanie w programie Audacity sinusoidalnej fali dźwiękowej z początkową częstotliwością 51 kHz i końcową częstotliwością 42 kHz, amplitudą początkową 0 i amplitudą końcową 1, interpolacją logarytmiczną oraz czasem trwania 25 ms. Na poniższym rysunku przedstawiono efekt takiej operacji (\ref{img:wykres_fali}).
 
 \begin{figure}[h]
     \centering
@@ -303,7 +319,7 @@ Pierwszym etapem było wygenerowanie w programie Audacity sinusoidalnej fali dź
     \label{img:wykres_fali}
 \end{figure}
 
-Uzyskany w ten sposób wykres fali dźwiękowej skopiowano dziesięciokrotnie i utworzono sekwencję 500 ms dźwięków, przed którą i po której wprowadzono 500 ms ciszy w celu łatwiejszego wyodrębnienia dźwięków po ich późniejszym zarejestrowaniu (\ref{img:wykres_fali_wielokrotnej}).
+Uzyskany w ten sposób wykres fali dźwiękowej skopiowano dziesięciokrotnie i utworzono sekwencję 500 ms dźwięków, przed którą i po której wprowadzono 500 ms ciszy w celu łatwiejszego wyodrębnienia dźwięków po ich późniejszym zarejestrowaniu. Na poniższym rysunku przedstawiono efekt takiej operacji (\ref{img:wykres_fali_wielokrotnej}).
 
 \begin{figure}[h]
     \centering
@@ -314,7 +330,7 @@ Uzyskany w ten sposób wykres fali dźwiękowej skopiowano dziesięciokrotnie i 
 
 Następnie, do wyemitowania dźwięku doświadczenia niezbędne były urządzenia obsługujące co najmniej dwukrotnie wyższą częstotliwość niż emitowane dźwięki. W tym celu do komputera służącego jako generator dźwięku podłączono wzmacniacz iFi Zen Dac o maksymalnej częstotliwości odtwarzania 384 kHz oraz głośnik ultradźwiękowy Pettersson L400 (10-110 kHz). Do zarejestrowania wyemitowanego dźwięku posłużył mikrofon Pettersson M500-384 o częstotliwości próbkowania 384 kHz.
 
-Program BatSound dołączony do mikrofonu posłużył do wizualizacji zarejestrowanego dźwięku.
+Program BatSound dołączony do mikrofonu posłużył do wizualizacji zarejestrowanego dźwięku (\ref{img:batsound}). W górnej części nagrania dźwięk zobrazowany jest w postaci czasowej, a w dolnej w postaci spektrogramu.
 
 \begin{figure}[h]
     \centering
@@ -326,12 +342,12 @@ Program BatSound dołączony do mikrofonu posłużył do wizualizacji zarejestro
 Powyższe doświadczenie dowiodło, iż mikrofon Pettersson M500-384 spełnia swoje zadanie. Mikrofon rejestruje dźwięki w zakresie niesłyszalnym dla człowieka i poprawnie wizualizuje zarejestrowane nagranie.
 
 \subsection{Wytworzenie sztucznych głosów nietoperzy do testów terenowych mikrofonu}
-W identyczny sposób jak głosy nietoperzy do wstępnych testów sprzętu przygotowano też dźwięki do testów terenowych. Dźwięki miały częstotliwości: 16-20 kHz, 25-35 kHz, 37-40 kHz i 40-48 kHz. Poszczególne dźwięki zostały zaprojektowane tak, aby reprezentować zakresy częstotliwości najczęściej występujących grup nietoperzy, a jednocześnie nie nakładały się na siebie – dzięki czemu można je było łatwo rozróżnić w wynikach. Poszczególne zakresy częstotliwości odpowiadają następującym gatunkom:
+W identyczny sposób jak głosy nietoperzy do wstępnych testów sprzętu przygotowano też dźwięki do testów terenowych. Dźwięki miały częstotliwości: 16-20 kHz, 25-35 kHz, 37-40 kHz i 40-48 kHz. Poszczególne dźwięki zostały zaprojektowane tak, aby reprezentować zakresy częstotliwości najczęściej występujących grup nietoperzy \cite{sachanowicz}, \cite{sachanowicz2}, a jednocześnie nie nakładały się na siebie – dzięki czemu można je było łatwo rozróżnić w wynikach. Poszczególne zakresy częstotliwości odpowiadają następującym gatunkom:
 
 \begin{itemize}
   \item{16-20 kHz – borowiec, borowiaczek,}
   \item{25-35 kHz – mroczek posrebrzany, mroczek późny, mroczek pozłocisty i kilka gatunków z rodzaju Myotis,}
-  \item{37-40 kHz – karlik większy i kilka gatunków z rodzaju Myotis}
+  \item{37-40 kHz – karlik większy i kilka gatunków z rodzaju Myotis,}
   \item{40-48 kHz – karlik większy i karlik malutki.}
 \end{itemize}
 
@@ -469,7 +485,7 @@ Odległości detekcji nietoperzy są na tyle małe w kontekście ich ochrony prz
 \chapter{Realizacja sieci neuronowej}
 
 \section{Przygotowanie danych}
-Przygotowanie danych obejmowało podpisanie nagrań zgodnie z wykazem gatunków nietoperzy przypisanych do danych nagrań, które znajdowały się w pliku CSV. Plik ten zawierał nazwę nagrania, datę jego zapisu oraz nazwę gatunkową nietoperza bądź informacje, że był to szum, bądź dźwięk niezidentyfokowany do gatunku. Finalnie w procesie przygotowania i uczenia sieci neuronowej zarówno nagrania jak i ich podpisy zostały przetworzone do postaci tensorów, co zostało zrealizowane w module ładującym dane. Liczby wszystkich dźwięków wyniosła 18 412.
+Przygotowanie danych obejmowało podpisanie nagrań zgodnie z wykazem gatunków nietoperzy przypisanych do danych nagrań, które znajdowały się w pliku CSV. Plik ten zawierał nazwę nagrania, datę jego zapisu oraz nazwę gatunkową nietoperza bądź informacje, że był to szum, bądź dźwięk niezidentyfokowany do gatunku. Finalnie w procesie przygotowania i uczenia sieci neuronowej nagrania zostały przetworzone do postaci tensorów, co zostało zrealizowane w module ładującym dane. Liczby wszystkich dźwięków wyniosła 18 412.
 
 \subsection{Dobór typu spectogramu}
 Do treningu użyto dźwięków przetworzonych na obrazy. Rozważano użycie zwykłego spektrogramu i mel-spektrogramu, jednak zdecydowano się na użycie zwykłego spektrogramu, ponieważ dawał on lepszy obraz. W przypadku bardzo delikatnych głosów nietoperzy na mel-spektrogramie pulsy były często niewidoczne.
@@ -895,15 +911,52 @@ Pod tabelą rekordów znajdują się przyciski paginacji, które pozwalając pod
   \label{img:app_records}
 \end{figure}
 
-\chapter{Implementacja mikroserwisu do synchronizacji danych z systemu SMART z bazą danych i aplikacją}
+\chapter{Implementacja Watchdoga}
 
-Watchdog został napisany w języku Java. Jego działanie polega na monitorowaniu folderu, do którego pobierane są dane z systemu SMART i w przypadku pojawienia się nowych danych, wystawienie API dla NodeJS, z wszelkimi informacjami o nowych danych, takimi jak: data, godzina, numer turbiny itd. 
+Watchdog jest mikroserisem do synchronizacji danych z systemu SMART z bazą danych i aplikacją. Jest programem napisanym w języku Python. Stanowi połączenie pomiędzy systemem SMART, a Aplikacją Użytkownika, której przekazuje rekordy zawierające wynik jego pracy. 
 
-\begin{lstlisting}[language=Java,caption={Implementacja watchdoga do synchronizacji dźwięków z systemu SMART z bazą danych i aplikacją}, label={lst:watchdog}]
+W pierwszej kolejności Watchdog monitoruje folder nagrań na wypadek pojawienia się nowego nagrania. Przedstawiono to na Listingu \ref{lst:watch_directory}
 
-  WATCHDOG DO WKLEJENIA - KUBA POPRAWIA
+\begin{lstlisting}[language=Python,caption={Funkcja służąca do monitorowania folderu z nagraniami}, label={lst:watch_directory}]
+  def watch_directory():
+    from watchdog.events import FileSystemEventHandler
+    from watchdog.observers import Observer
 
+    class MyHandler(FileSystemEventHandler):
+        def on_created(self, event):
+            if event.is_directory:
+                return
+            file_name = os.path.basename(event.src_path)
+            print(f'Utworzono plik: {file_name}')
+            record = NewRecord(file_name)
+            create_record(vars(record))
+
+    event_handler = MyHandler()
+    observer = Observer()
+    observer.schedule(event_handler, PATH, recursive=True)
+    observer.start()
+    print("Watchdog is watching...")
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()
+    observer.join()
+  \end{lstlisting}
+
+Pojawienie się nowego pliku wywołuje zdarzenie, które powoduje, że wykonany zostaje kod parsujący nazwę pliku. Nazwa pliku nagrania zapisana jest w formacie, który przedstawia Listing \ref{lst:recording_name}.
+
+\begin{lstlisting}[language=Java,caption={Przykładowa nazwa pliku nagrania}, label={lst:recording_name}]
+  9c.25.be.01.01.0b_20240123_225004_701432.wav
 \end{lstlisting}
+
+Nazwa pliku podzielona jest na cztery człony oddzielone znakiem ” ” i zakończone rozszerzeniem pliku WAV. Pierwszy człon odnosi się do identyfikatora konkretnego urządzenia SMART. Drugi człon to data nagrania w formacie YYYYMMDD. Trzeci człon to czas nagrania w formacie HHMMSS. Ostatni człon jest losową sześciocyfrową liczbą. Po wyodrębnieniu powyższych członów zostają one zapisane do zmiennych.
+
+
+Następnie Watchdog wykorzystuje model sztucznej inteligencji w celu przanalizowania pliku nagrania. Analiza nadaje odpowiednią wartość zmiennym bat, turbineStopSignal oraz verification. W kolejnym kroku zapisane zmienne zostają umieszczone wewnątrz obiektu JSON (JavaScript Object Notation). Obiekt JSON za pomocą metody POST zostaje wysłany na adres API serwera.
+Serwer nasłuchuje na porcie ”http://localhost:3900/api/records” i po pojawieniu się zapytania z obiektem JSON tworzy na jego podstawie rekord w bazie danych
+
+
 \clearpage
 
 
@@ -1165,6 +1218,7 @@ Mikrofon ultradźwięków wraz z kontrolerem działały nieprzerwanie od dnia mo
 Zdolność mikrofonu do rejestracji sztucznie wytworzonych głosów nietoperzy została zaprezentowana w rozdziale "Prace badawczo-rozwojowe - testy terenowe".
 
 \section{Testy oprogramowania}
+Przygotowano trzy rodzaje testów oprogramowania - testy jednostkowe, testy integracyjne i testy systemowe. Testy jednostkowe są klasycznie implementowanymi testami podczas wytwarzania oprogramowania i miały na celu sprawdzenie poprawności działania niewielkich elementów oprogramowania. Testy integracyjne i systemowe posłużyły z kolei do sprawdzenia poprawności działania systemu w większej skali, na poziomie całego systemu oraz poszczególnych funkcji, które zdefiniowano uprzednio dla systemu.
 
 \subsection{Testy jednostkowe}
 
@@ -1230,7 +1284,7 @@ Listing \ref{lst:Supertest} przedstawia przykład testu integracyjnego z wykorzy
 \end{lstlisting}
 
 \subsection{Testy funkcjonalne}
-W ramach testów sprawdzono zgodność sytemu z wymaganiami Klienta Wewnętrznego (Dziekan, Promotor) i Zewnętrznego (przedstawiciele Bioseco S.A., przedstawiciele klientów Bioseco S.A.). Wymagania te zostały wymienione i opisane poniżej.
+W ramach testów sprawdzono zgodność sytemu z wymaganiami Klienta Wewnętrznego (Dziekan, Promotor) i Zewnętrznego (przedstawiciele Bioseco S.A., przedstawiciele klientów Bioseco S.A.). Wymagania te zostały wymienione i opisane poniżej. Sposób przeprowadzenia testów został opisany przy poszczególnych funkcjach systemu. Były one realizowane poprzez sprawdzenie systemu w działaniu.
 
 \subsubsection{Rejestracja ultradźwięków}
 Rejestracja ultradźwięków została przetestowana w trakcie testów terenowych systemu SMART z wykorzystaniem sztucznie wytworzonych ultradźwięków. Zostało to opisane w punktach: "Testy terenowe systemu SMART" oraz "Prace badawczo-rozwojowe - testy terenowe". 
@@ -1245,7 +1299,7 @@ Powyższe dane pozwalają ocenić, że system SMART (mikrofon ultradźwięków w
 W celu realizacji tej funkcjonalności zostały wykonane dwa elementy - testy terenowe mikrofonu sprawdzające możliwości detekcji ultradźwięków pod różnymi kątami oraz adekwatna do wyników tych testów zaproponowana liczby mikrofonów, która powinna być użyta, aby uzyskać pokrycie 360\textdegree. 
 
 
-Testy terenowe pokazały , że nietoperze są skutecznie wykrywane pod kątem 90\textdegree (Rys. \ref{img:angle0}, \ref{img:angle30}, \ref{img:angle60}, \ref{img:angle90}). Skuteczność wykrywania zmniejsza się pod tym kątem w stosunku do pozostałych kątów o 20 m i spada z 60 m do 40 m dla najniższych częstotliwości (19-20 kHz). Biorąc pod uwagę, że odległości detekcji nietoperzy są na tyle małe w kontekście ich ochrony przed kolizjami z turbinami wiatrowymi, że klasyczne podejście oparte o system detekcyjno-reakcyjny polegające
+Testy terenowe pokazały, że nietoperze są skutecznie wykrywane pod kątem 90\textdegree (Rys. \ref{img:angle0}, \ref{img:angle30}, \ref{img:angle60}, \ref{img:angle90}). Skuteczność wykrywania zmniejsza się pod tym kątem w stosunku do pozostałych kątów o 20 m i spada z 60 m do 40 m dla najniższych częstotliwości (19-20 kHz). Biorąc pod uwagę, że odległości detekcji nietoperzy są na tyle małe w kontekście ich ochrony przed kolizjami z turbinami wiatrowymi, że klasyczne podejście oparte o system detekcyjno-reakcyjny polegające
 na wyłączeniu turbiny na podstawie każdego przelotu nie będzie przydatne i konieczne będzie dobranie specyficznego wyzwalacza zatrzymującego i ponownie uruchamiającego turbinę, takiego jak np. liczba przelotów w jednostce czasu, że odległości wykrywania nietoperzy pod kątem 90\textdegree uzyskane w przeprowadzonych testach można uznać za wystarczające. 
 
 Pokrycie kąta 360\textdegree będzie wobec powyższych wyników zapewnione poprzez montaż dwóch mikrofonów na jednej wysokości, umieszczonych w jednej osi i skierowanych w przeciwnych kierunkach.
@@ -1396,17 +1450,26 @@ Z uwagi na obronę pracy zimą oraz za dnia, kiedy brak jest nietoperzy, a urzą
 
 Watchdog jest programem napisanym w języku Python. Stanowi połączenie pomiędzy systemem SMART, a Aplikacją Użytkownika, której przekazuje rekordy zawierające wynik jego pracy.
 
-W pierwszej kolejności Watchdog monitoruje folder nagrań na wypadek pojawienia się nowego nagrania. Pojawienie się nowego pliku wywołuje zdarzenie, które powoduje, że wykonany zostaje kod parsujący nazwę pliku. Nazwa pliku nagrania zapisana jest w formacie, który przedstawia Listing \ref{lst:recording_name}.
-
-\begin{lstlisting}[language=Java,caption={Przykładowa nazwa pliku nagrania}, label={lst:recording_name}]
-  9c.25.be.01.01.0b_20240123_225004_701432.wav
-\end{lstlisting}
+W pierwszej kolejności Watchdog monitoruje folder nagrań na wypadek pojawienia się nowego nagrania. Pojawienie się nowego pliku wywołuje zdarzenie, które powoduje, że wykonany zostaje kod parsujący nazwę pliku. 
 
 Nazwa pliku podzielona jest na cztery człony oddzielone znakiem ”\_” i zakończone rozszerzeniem pliku WAV. Pierwszy człon odnosi się do identyfikatora konkretnego urządzenia SMART. Drugi człon to data nagrania w formacie \verb|YYYYMMDD|. Trzeci człon to czas nagrania w formacie \verb|HHMMSS|. Ostatni człon jest losową sześciocyfrową liczbą. Po wyodrębnieniu powyższych członów zostają one zapisane do zmiennych.
 
 Następnie Watchdog wykorzystuje model sztucznej inteligencji w celu przanalizowania pliku nagrania. Analiza nadaje odpowiednią wartość zmiennym \verb|bat|, \verb|turbineStopSignal| oraz \verb|verification|.
 
-W kolejnym kroku zapisane zmienne zostają umieszczone wewnątrz obiektu JSON (JavaScript Object Notation). Obiekt JSON za pomocą metody POST zostaje wysłany na adres API serwera. Serwer nasłuchuje na porcie ”http://localhost:3900/api/records” i po pojawieniu się zapytania z obiektem JSON tworzy na jego podstawie rekord w bazie danych.
+W kolejnym kroku zapisane zmienne zostają umieszczone wewnątrz obiektu JSON (JavaScript Object Notation). Obiekt JSON za pomocą metody POST zostaje wysłany na adres API serwera.
+
+\section{Pobranie danych do bazy danych}
+Serwer napisany w NodeJS nasłuchuje na porcie ”http://localhost:3900/api/records” i po pojawieniu się zapytania z obiektem JSON pochodzącym od Watchdoga tworzy na jego podstawie rekord w bazie danych.
+
+\section{Wizualizacja danych w interfejsie użytkownika}
+Po zapisie danych do bazy są one wizualizowane w interfejsie użytkownika, który został napisany w języku Javascript przy wykorzystaniu biblioteki ReactJS.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/app_records}
+  \caption{Widok listy rekordów}
+  \label{img:app_records}
+\end{figure}
 
 \chapter{Przyszłość produktu i komercjalizacja}
 
