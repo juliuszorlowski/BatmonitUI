@@ -106,7 +106,6 @@ Bioseco S.A. jest innowacyjną polską firmą technologiczną z siedzibą w Gda�
 
 \chapter{Metody pracy}
 
-
 \section{Proces wytwórczy}
 W trakcie procesu wytwórczego kluczowymi wymaganiami, które powinien spełniać system były: wybrany mikrofon ultradźwięków możliwy do zastosowania na turbinie wiatrowej, zaimplementowane pobieranie nagrań z mikrofonu, identyfikacja gatunków nietoperzy w tych nagraniach, zapis tych informacji do bazy danych oraz wizualizacja ich w interfejsie użytkownika. 
 
@@ -163,12 +162,9 @@ Po okresie zwinnym, w fazie "Fall" zweryfikowano poprawność działania systemu
   \item{styczeń 2024 - testy systemowe i funkcjonalne}
   \end{itemize}
 
-
 \subsection{Organizacja zespołu}
 Grupa inżynierska była samoorganizującym się zespołem. Część funkcji była silniej przypisana do konkretnych członków grupy:
 Juliusz Orłowski - Software Developer, Software Engineer, Jakub Prucnal - AI Developer, Software Engineer, Magdalena Wybraniec - Product Owner, Project Manager, specjalista dziedzinowy, AI Developer. 
-
-
 
 \section{Środowisko technologiczne}
 
@@ -220,7 +216,7 @@ Komunikacja w obrębie grupy inżynierskiej oraz pomiędzy grupą i Konsultantam
   \item{telefonicznie.}
   \end{itemize}
 
-  Komunikacja pomiędzy grupą inżynierską a Promotorem odbywała się poprzez następujące media:
+Komunikacja pomiędzy grupą inżynierską a Promotorem odbywała się poprzez następujące media:
 \begin{itemize}
   \item{osobiście - spotkania w ramach zajęć na Uczelni,}
   \item{aplikację Teams,}
@@ -264,6 +260,149 @@ Przygotowanie całości projektu składało się z zaprojektowania prac badawczy
 
 \section{Konsultacje z Bioseco S.A.}
 W ramach kooperacji z Bioseco S.A. przeprowadzono spotkania wspomagające zespół inżynierski w procesie wytwórczym, udostępniono większość niezbędnego sprzętu oraz wiedzę z zakresu prowadzenia badań terenowych i opracowania danych, wytwarzania oprogramowania i działania dedykowanych sprzętów. Zrealizowano konfigurację sieciową udostępnionego sprzętu, tak aby umożliwić zdalny dostęp do danych z mikrofonu ultradźwięków. Zainstalowano również testowo mikrofon ultradźwięków na turbinie wiatrowej.
+
+\section{Wymagania}
+  
+W niniejszym podrozdziale wymienia i opisuje się wymagania narzucone przez klienta - Bioseco, przedstawicieli Uczelni – Dziekana i Promotora, a także przez aktualne standardy prawne dotyczące ochrony przyrody oraz aktualne standardy sprzętowe dotyczące nagrywania i identyfikacji nietoperzy.
+
+\subsection*{Wymagania ogólne i dziedzinowe}
+
+  \begin{requirementstab}[label={tab:requirements:general},caption={Baza danych nagrań głosów nietoperzy}]
+    \id{WO 01}
+    \priority{M}
+    \name{Baza danych nagrań głosów nietoperzy}
+    \descr{Zebranie lub pozyskanie bazy danych głosów nietoperzy oraz jej przygotowanie, która posłuży do stworzenia modelu rozpoznawania wystąpienia nietoperza i/lub gatunku nietoperza.}
+    \sholder{UOB 01, UOP 01, UNB 01}
+    \reqrelated{WO 03}
+  \end{requirementstab}
+
+  \begin{requirementstab}[label={tab:requirements:general},caption={Ekologia}]
+    \id{WO 02}
+    \priority{M}
+    \name{Ekologia}
+    \descr{System ma chronić nietoperze przed szkodliwym działaniem farm wiatrowych na ich populację}
+    \sholder{UNB 01, UNP 01, UNP 02}
+    \reqrelated{WO 03}
+  \end{requirementstab}
+    
+  \begin{requirementstab}[label={tab:requirements:general},caption={Normy prawa}]
+    \id{WO 03}
+    \priority{M}
+    \name{Normy prawa ochrony przyrody i prawa dotyczącego ocen oddziaływania na środowisko}
+    \descr{System poprzez swoją przyszłą funkcjonalność wyłączania turbiny będzie stanowił alternatywę dla jedynego obecnie rodzaju działań minimalizujących wpływ turbin na nietoperze, czyli 3 lat monitoringu porealizacyjnego i adekwatnych do jego wyników, narzuconych z góry okresowych wyłączeń turbin, co przyniesie znaczne oszczędności dla deweloperów farm wiatrowych.}
+    \sholder{UNP 02}
+    \reqrelated{WO 02}
+  \end{requirementstab}
+
+  \begin{requirementstab}[label={tab:requirements:general},caption={System rozpoznawania gatunków nietoperzy}]
+    \id{WO 04}
+    \priority{S}
+    \name{System rozpoznawania gatunków nietoperzy}
+    \descr{System do rozpoznawania gatunków nietoperzy jest kosztowny, stworzenie go będzie oprogramowaniem, który przyniesie dodatkowe zyski.}
+    \sholder{UOB 01, UNB01}
+    \reqrelated{}
+  \end{requirementstab}
+  
+  \clearpage
+
+\subsection*{Wymagania funkcjonalne}
+
+  \begin{requirementstab}[label={tab:requirements:func1},caption={System rozpoznawania wystąpienia nietoperza}]
+    \id{WF02}
+    \priority{M}
+    \name{System rozpoznawania wystąpienia nietoperza}
+    \descr{Opracowanie algorytmu uczenia maszynowego oraz rozpoznawania wystąpienia nietoperza na żywo poprzez śledzenie sygnałów uzyskanych za pomocą urządzenia do detekcji.}
+    \acceptcrit{Wytrenowany model do rozpoznawania wystąpienia nietoperzy.}
+    \inputdata{Zbiór nagrań ultradźwięków nietoperzy} 
+    \postconditions{Wytrenowany model}
+    \implementation{}
+    \sholder{UNB 01, UNP 01}
+    \reqrelated{}
+  \end{requirementstab}
+
+  \begin{requirementstab}[label={tab:requirements:func1},caption={System uczenia sieci neuronowej}]
+    \id{WF03}
+    \priority{C}
+    \name{System uczenia sieci neuronowej}
+    \descr{Opracowanie systemu do uczenia sieci neuronowej rozpoznawania gatunków nietoperzy.}
+    \acceptcrit{Stworzony algorytm do tworzenia modelu do rozpoznawania gatunku nietoperza}
+    \inputdata{Zbiór nagrań ultradźwięków nietoperzy}
+    \postconditions{Wytrenowany model}
+    \implementation{}
+    \sholder{UOB 01, UOP 01}
+    \reqrelated{}
+  \end{requirementstab}
+
+  \begin{requirementstab}[label={tab:requirements:func1},caption={System rozpoznawania gatunku nietoperza}]
+    \id{WF04}
+    \priority{S}
+    \name{System rozpoznawania gatunku nietoperza}
+    \descr{Opracowanie systemu do rozpoznawania gatunku nietoperza za pomocą detektora.}
+    \acceptcrit{Stworzenie modelu oraz połączenie go z urządzeniem do rozpoznawania nietoperzy.}
+    \inputdata{Zbiór nagrań ultradźwięków nietoperzy}
+    \postconditions{Wytrenowany model}
+    \implementation{}
+    \sholder{UOB 01}
+    \reqrelated{}
+  \end{requirementstab}
+
+  \begin{requirementstab}[label={tab:requirements:func1},caption={Interfejs do wizualizacji danych}]
+    \id{WF05}
+    \priority{M}
+    \name{Interfejs do wizualizacji danych}
+    \descr{Stworzenie interfejsu do przeglądania danych pobieranych z bazy danych i wizualizacja tych danych.}
+    \acceptcrit{Stworzony interfejs działający i spełniający swoją funkcję.}
+    \inputdata{Nagrania pochodzące z mikrofonu ultradźwięków}
+    \postconditions{Nagrania widoczne w interfejsie użytkownika}
+    \implementation{}
+    \sholder{UOB 01}
+    \reqrelated{}
+  \end{requirementstab}
+
+  \begin{requirementstab}[label={tab:requirements:func1},caption={Liczba i lokalizacja mikrofonów na turbinie}]
+    \id{WF06}
+    \priority{M}
+    \name{Pokrycie kąta 360 stopni dookoła turbiny poprzez rejestrację ultradźwiękową}
+    \descr{Plan liczby i lokalizacji mikrofonów ultradźwięków na turbinie wiatrowej tak, aby system pełnił funkcję ochrony nietoperzy}
+    \acceptcrit{Realizacja testów terenowych mikrofonu}
+    \inputdata{Mikrofon ultradźwięków}
+    \postconditions{Pokrycie kąta 360\textdegree przez rejestrację ultradźwękową}
+    \implementation{}
+    \sholder{UOP 01, UNB 01}
+    \reqrelated{}
+  \end{requirementstab}
+  
+  \clearpage
+
+\subsection*{Interfejs z otoczeniem}
+  
+  \begin{requirementstab}[label={tab:requirements:func1},caption={System wyłączający wiatraki}]
+    \id{WF01}
+    \priority{M}
+    \name{System wyłączający wiatraki}
+    \descr{Połączenie systemu wykrycia nietoperza z systemem wyłączającym wiatraki}
+    \acceptcrit{Stworzenie punktu styku, który będzie jako output dawać sygnał do systemu wyłączającego wiatraki.}
+    \inputdata{Zidentyfikowane nagrania nietoperzy}
+    \postconditions{Wystawione API z informacją o konieczności wyłączenia turbiny}
+    \implementation{}
+    \sholder{UNB 01, UNP 01}
+    \reqrelated{}
+  \end{requirementstab}
+
+  \begin{requirementstab}[label={tab:requirements:func1},caption={Baza danych}]
+    \id{WF02}
+    \priority{M}
+    \name{Baza danych}
+    \descr{Połączenie systemu z bazą danych, która będzie zbierać dane wystąpienia nietoperza}
+    \acceptcrit{Stworzenie punktu styku, który będzie jako output dawać sygnał do systemu wyłączającego wiatraki.}
+    \inputdata{Nagrania nietoperzy z mikrofonu ultradźwięków}
+    \postconditions{Nagrania zapisane w bazie danych}
+    \implementation{}
+    \sholder{UOP 01, UNB 01}
+    \reqrelated{}
+  \end{requirementstab}
+
+  \clearpage
 
 \section{Konsultacje chiropterologiczne i detektorowe}
 W początkowej fazie przygotowania projektu przeprowadzono konsultacje chiropterologiczne obejmujące: pozyskanie zidentyfikowanych nagrań nietoperzy, typu nagrań jakich należy użyć do uczenia głębokiego, rodzaju rejestratorów ultradźwięków jakie mogą być wykorzystane na turbinie wiatrowej w rozwiązaniu końcowym. Konsultacje te przeprowadzono z najlepszymi polskimi chiropterologami oraz polskim, niemieckim i amerykańskim wytwórcą detektorów. Chiropterolodzy, z którymi przeprowadzono konsultacje to: Aneta Zapart, Konrad Bidziński i Joanna Furmankiewicz. Firmy wytwarzające detektory, z którymi prowadzono konsultacje to: Animal Sound Labs, EcoObs, Wildlife Acoustics.
@@ -524,7 +663,6 @@ Parametry pierwszej warstwy konwolucyjnej:
   \item{uzupełnienie skrajnych wartości ("padding") - 2.}
 \end{itemize}
 
-
 Parametry drugiej warstwy konwolucyjnej:
 Warstwa konwolucyjna
 \begin{itemize}
@@ -534,7 +672,6 @@ Warstwa konwolucyjna
   \item {przesunięcie filtra ("stride") - 1,}
   \item{uzupełnienie skrajnych wartości ("padding") - 2.}
 \end{itemize}
-
 
 Parametry trzeciej warstwy konwolucyjnej:
 \begin{itemize}
@@ -553,7 +690,6 @@ Parametry czwartej warstwy konwolucyjnej:
   \item {przesunięcie filtra ("stride") - 1,}
   \item{uzupełnienie skrajnych wartości ("padding") - 2.}
 \end{itemize}
-
 
 W każdej z warstw konwolucyjnych zastosowano funkcję aktywacji ReLU i warstwę max-pooling o filtrze w rozmiarze 2 ("stride").
 
@@ -594,7 +730,6 @@ Identyfikacja gatunków nietoperzy poprzez analizę dźwięków skonwertowanych 
   plt.imshow(specgram[0].log2(), aspect='auto', origin='lower')
   plt.show()
 \end{lstlisting}
-
 
 \subsection{Ładowanie danych}
 
@@ -816,11 +951,9 @@ System SMART na turbinie wiatrowej połączony jest do sieci internetowej, gdzie
   \label{img:system-connection}
 \end{figure} 
 
-
 \section{Architektura systemu}
 
 Na poniższych modelach przedstawiono najważniejsze elementy logiczne, urządzenia wejścia-wyjścia oraz obieg informacji w systemie (\ref{img:architektura_systemu2}). W celu ułatwienia zrozumienia osadzenia systemu w rzeczywistości, architekturę zobrazowano również w postaci graficznej, łącznie z widokiem interfejsu (\ref{img:reprezentacja_graficzna}). 
-
 
 Spośród przedstawionych elementów cały moduł detekcji był zrealizowany poprzez dostarczony przez Bioseco S.A. system SMART firmy Wildlife Acoustics. Składa się on z mikrofonu ultradźwięków i kontrolera. Dźwięki z mikrofonu są rejestrowane przez program firmy Wildlife Acoustics na kontrolerze. Połączenie LAN zostało zrealizowane przez pracowników firmy Bioseco S.A.
 
@@ -995,9 +1128,7 @@ Nazwa pliku podzielona jest na cztery człony oddzielone znakiem ” ” i zako�
 Następnie Watchdog wykorzystuje model sztucznej inteligencji w celu przeanalizowania pliku nagrania. Analiza nadaje odpowiednią wartość zmiennym bat, turbineStopSignal oraz verification. W kolejnym kroku zapisane zmienne zostają umieszczone wewnątrz obiektu JSON (JavaScript Object Notation). Obiekt JSON za pomocą metody POST zostaje wysłany na adres API serwera.
 Serwer nasłuchuje na porcie ”http://localhost:3900/api/records” i po pojawieniu się zapytania z obiektem JSON tworzy na jego podstawie rekord w bazie danych
 
-
 \clearpage
-
 
 \chapter{Implementacja aplikacji użytkownika}
 
@@ -1337,7 +1468,6 @@ Powyższe dane pozwalają ocenić, że system SMART (mikrofon ultradźwięków w
 \subsubsection{Rejestracja ultradźwięków 360\textdegree dookoła turbiny wiatrowej}
 W celu realizacji tej funkcjonalności zostały wykonane dwa elementy - testy terenowe mikrofonu sprawdzające możliwości detekcji ultradźwięków pod różnymi kątami oraz adekwatna do wyników tych testów zaproponowana liczby mikrofonów, która powinna być użyta, aby uzyskać pokrycie 360\textdegree. 
 
-
 Testy terenowe pokazały, że nietoperze są skutecznie wykrywane pod kątem 90\textdegree (Rys. \ref{img:angle0}, \ref{img:angle30}, \ref{img:angle60}, \ref{img:angle90}). Skuteczność wykrywania zmniejsza się pod tym kątem w stosunku do pozostałych kątów o 20 m i spada z 60 m do 40 m dla najniższych częstotliwości (19-20 kHz). Biorąc pod uwagę, że odległości detekcji nietoperzy są na tyle małe w kontekście ich ochrony przed kolizjami z turbinami wiatrowymi, że klasyczne podejście oparte o system detekcyjno-reakcyjny polegające
 na wyłączeniu turbiny na podstawie każdego przelotu nie będzie przydatne i konieczne będzie dobranie specyficznego wyzwalacza zatrzymującego i ponownie uruchamiającego turbinę, takiego jak np. liczba przelotów w jednostce czasu, że odległości wykrywania nietoperzy pod kątem 90\textdegree uzyskane w przeprowadzonych testach można uznać za wystarczające. 
 
@@ -1345,32 +1475,27 @@ Pokrycie kąta 360\textdegree będzie wobec powyższych wyników zapewnione popr
 
 Wobec powyższego należy uznać, że funkcjonalność rejestracji ultradźwięków nietoperzy wokół turbiny wiatrowej została zrealizowana.
 
-
 \subsubsection{Rejestracja ultradźwięków w warunkach wymagających wodoodporności}
 System SMART został zaprojektowany przez producenta z przeznaczeniem szczególnie na turbiny wiatrowe, w związku z czym wodoodporność jest jednym z atrybutów mikrofonu wybranego do niniejszej pracy dyplomowej. Dodatkowo mikrofon ten wyposażony jest w innowacyjne w tego typu sprzętach podgrzewanie. Powoduje to, że wilgoć, która może zbierać się na membranie mikrofonu jest odparowywana, co zapewnia dodatkowo możliwie najlepszą jakość rejestrowanego dźwięku \cite{smart-user-guide}. 
-
 
 Funkcjonalność wodoodporności została więc zrealizowana poprzez dobór odpowiedniego sprzętu.
 
 \subsubsection{Pobranie dźwięku z mikrofonu do komputera}
 Funkcja ta została zrealizowana poprzez odpowiednią konfigurację sieciową systemu SMART przez pracowników firmy Bioseco i podłączenie go do lokalnej sieci Bioseco, do której podłączony jest również komputer firmowy, na którym zainstalowany jest system będący przedmiotem niniejszej pracy dyplomowej. Pobranie dźwięku realizowane jest za pośrednictwem narzędzia \verb|rsync| do folderu na lokalnej maszynie, co zostało przedstawione w punkcie "Pobieranie danych z mikrofonu". 
 
-
 Podczas prób pobierania danych z różnych zakresów czasowych, dane za każdym razem były pobierane poprawnie, w związku z czym funkcjonalność tą należy uznać za zrealizowaną.
 
 \subsubsection{Pobranie dźwięku z komputera do programu analizującego czy nagranie zawiera dźwięk nietoperza}
-Funkcjonalność ta została zrealizowana poprzez Watchdoga zaimplementowanego jako mikroserwis. Watchdog monitoruje folder, do którego trafiają nagrania z systemu SMART i w przypadku pojawienia się nowego nagrania wykorzystuje model sztucznej inteligencji w celu przeanalizowania nagrania. Zostało to szczegółowo opisane w punkcie "Przetwarzanie danych przez Watchdoga". 
 
+Funkcjonalność ta została zrealizowana poprzez Watchdoga zaimplementowanego jako mikroserwis. Watchdog monitoruje folder, do którego trafiają nagrania z systemu SMART i w przypadku pojawienia się nowego nagrania wykorzystuje model sztucznej inteligencji w celu przeanalizowania nagrania. Zostało to szczegółowo opisane w punkcie "Przetwarzanie danych przez Watchdoga". 
 
 Podczas prób pobierania danych z różnych zakresów czasowych, dane za każdym razem były pobierane poprawnie, w związku z czym funkcjonalność tą należy uznać za zrealizowaną.
 
 \subsubsection{Rozpoznanie wystąpienia nietoperza/rozpoznanie gatunku nietoperza}
 System rozpoznawania nietoperzy został zrealizowany poprzez implementację modeli sieci neuronowej, jednak uzyskana dokładność wyniosła poniżej 75\% w związku z czym tej funkcjonalności nie można uznać za zrealizowaną.
 
-
 \subsubsection{Interfejs do wizualizacji danych}
 Realizacja interfejsu do wizualizacji danych została przedstawiona szczegółowo w rozdziale "Implementacja aplikacji użytkownika". Aplikacja użytkownika służy do zbierania i zapisywania w bazie danych rekordów tworzonych na podstawie decyzji modelu sieci neuronowej, które następnie pozwala wyświetlić na liście z możliwością filtrowania i sortowania ich. W skład aplikacji wchodzą: baza danych, serwer oraz interfejs użytkownika. 
-
 
 Wszystkie próby wizualizacji danych po pobraniu dźwięków z mikrofonu powodowały zapis do bazy danych i wyświetlenie w aplikacji użytkownika. Ponadto zaimplementowane zostały testy jednostkowe oraz integracyjne z wykorzystaniem bibliotek Jest oraz Supertest, a do walidacji treści wpisywanej przez użytkownika aplikacji przy rejestracji lub logowaniu posłużyła biblioteka Joi, wykorzystanie tych elementów pomogły zapewnić poprawność funkcjonowania tej części oprogramowania.
 
@@ -1383,7 +1508,6 @@ Wszystkie próby zapisu danych po pobraniu dźwięków z mikrofonu powodowały z
 
 \subsubsection{System do zatrzymywania turbiny wiatrowej}
 Realizacja tej funkcjonalności została zaniechana w trakcie realizacji pracy dyplomowej z uwagi na ograniczony sens praktyczny takiej funkcjonalności przygotowywanej jako rozwiązania ogólnego. Realizacja zatrzymań turbin jest specjalnością firmy Bioseco S.A. (Źródło: Bioseco) i w przypadku każdego z operatorów i każdego typu turbiny wygląda ona zupełnie inaczej. Funkcjonalność taka może być zrealizowana na kilka sposobów, np. poprzez modyfikację rejestrów w protokole MODBUS czy poprzez OPC-UA. Jednak w związku z tym, że jest to funkcjonalność wybitnie specyficzna dla konkretnego klienta i wymagająca żmudnego procesu komunikacji, przygotowań i uzgodnień z operatorem turbiny a kolejno implementacji rozwiązania, realizacja systemu zatrzymania turbiny wiatrowej jako elementu przedmiotowej pracy dyplomowej została zaniechana.
-
 
 \subsection{Testy systemowe}
 Sprawdzona została poprawność działania systemu w zintegrowanym środowisku, gdzie testy te zostały przeprowadzone od początku do końca. Zweryfikowano poprawność pobierania dźwięków oraz poprawność funkcjonalności od pobrania dźwięku, poprzez identyfikację głosu nietoperza po zapis rekordu w bazie i wizualizacji go w Aplikacji użytkownika.
@@ -1400,7 +1524,6 @@ Testy systemowe polegały na kilkukrotnym wykonaniu serii czynności:
 
 Podczas każdego z uruchomień kontrolowano realizację zapisu do bazy danych i aplikacji oraz przypisywanie nagraniom wartości w zakresie gatunków nietoperzy.
 W każdej z z prób zliczano liczbę pobranych nagrań i liczbę nagrań zapisanych do bazy danych i prezentowanych w aplikacji.
-
 
 Wszystkie wykonane próby zakończyły się poprawną realizacją wszystkich elementów.
 
@@ -1520,447 +1643,20 @@ Aplikacja serwowana przez kontroler, mimo wielu ciekawych i potrzebnych w kontek
 \chapter{Podsumowanie}
 W niniejszej pracy dyplomowej udało się zrealizować wszystkie wymagania systemowe zdefiniowane w początkowej fazie przygotowania projektu poza oczekiwaną dokładnością sieci neuronowej. Jedno z wymagań zostało zaniechane w trakcie implementacji systemu i konsultacji z Bioseco S.A. i była nim implementacja zatrzymań turbiny wiatrowej, czego powody wyjaśniono w punkcie "Testy funkcjonalne" (System do zatrzymywania turbiny wiatrowej). 
 
-
 Z sukcesem udało się zrozumieć całość tego interdyscyplinarnego problemu, który ma rozwiązywać zaprojektowany w pracy dyplomowej system oraz wytworzyć wszystkie jego komponenty. Nie udało się wytworzyć pobierania dźwięku z mikrofonu jako rozwiązania generycznego, czyli z wszystkimi elementami oprogramowania znajdującymi się na jednostce obliczeniowej zaimplementowanej przez zespół inżynierski. 
-
 
 Udało się wdrożyć jedno z najnowocześniejszych podejść w automatycznej identyfikacji nietoperzy, jakim jest uczenie głębokie, które zaczęto stosować realnie dopiero na rok przed rozpoczęciem niniejszej pracy, a które daje bardzo dobre rezultaty w automatycznej identyfikacji gatunków nietoperzy. Niestety w niniejszej pracy nie udało się otrzymać zadowalających efektów, co mogło być spowodowane mało optymalnym przygotowaniem danych treningowych, np. braku odfiltrowania nagrań ze znajdującymi się dwoma gatunkami nietoperzy na jednym nagraniu.
 
 Sukcesem jest z pewnością przezwyciężenie wszelkich trudności powstałych w trakcie trwania projektu, utrzymanie składu grupy inżynierskiej i skuteczna finalizacja pracy w zmiennych warunkach osobistych członków zespołu oraz przy złożeniu się niekorzystnych czynników losowych.
 
-
 \chapter{Załączniki}
 
 Na załączonej do niniejszej pracy płycie DVD znajdują się niżej wymienione dokumenty:
-1. Niniejsza praca w formacie PDF
-2. Dokument Założeń Wstępnych
-3. Specyfikacja Wymagań
-4. Kod źródłowy oprogramowania i modelu
-
-\section{Dokument założeń wstępnych}
-
-\begin{documenttable}[]
-  \projectname{Batmonit}
-  \customer{Bioseco S.A.}
-  \contractor{PJATK}
-  \projectteam{
-    \begin{enumerate}
-      \item Juliusz Orłowski
-      \item Jakub Prucnal
-      \item Magdalena Wybraniec
-    \end{enumerate}
-  }
-  \projectlead{
-    \begin{enumerate}
-      \item dr Dawid Gradolewski
-    \end{enumerate}
-  }
-  \documentname{Dokument Założeń Wstępnych}
-  \documentowner{Jakub Prucnal}
-  \projectsupervisor{dr Tadeusz Puźniakowski}
-\end{documenttable}
-\begin{center}
-  \begin{tabular}{ |p{0.1\linewidth}|p{0.28\linewidth}|p{0.2\linewidth}|p{0.24\linewidth}|p{0.12\linewidth}| }
-    \hline
-    \multicolumn{5}{|c|}{\textbf{Historia dokumentu}} \\
-    \hline
-    \textbf{Wersja} & \textbf{Opis modyfikacji} & \textbf{Rozdział/strona} & \textbf{Autor modyfikacji} & \textbf{Data}\\
-    \hline
-    {1.0} & {Wstępna wersja} & {Całość} & {Magdalena Wybraniec \newline Jakub Prucnal} & {2021-11-21}\\
-    \hline
-    {2.0} & {Rozbudowanie opisu problemu, doprecyzowanie i drobne korekty pozostałych elementów} &
-    {Całość} & {Magdalena Wybraniec} & {2021-12-14}\\
-    \hline
-  \end{tabular}
-\end{center}
-
-\begin{enumerate}[label=\textbf{\arabic*}.]
-  \item \textbf{Opis problemu}
-  
-    Farmy wiatrowe mogą mieć znaczący wpływ na środowisko naturalne, w szczególności nietoperze. Wszystkie gatunki nietoperzy w Polsce są objęte ścisłą ochroną gatunkową i podlegają ochronie prawnej zgodnie z Rozporządzeniem Ministra Środowiska z dnia 16 grudnia 2016 r. w sprawie ochrony gatunkowej zwierząt. Tym samym inwestor realizujący inwestycję wiatrową przestrzegając prawa ochrony przyrody jest zobligowany uzyskać tzw. Decyzję Środowiskową (dalej: DŚ). Zawarte są w niej wszelkie informacje dotyczące:
-    \begin{itemize}
-      \item chiropterofauny danego obszaru zebrane w trakcie rocznego monitoringu przedrealizacyjnego,
-      \item szacowanego wpływu inwestycji na nietoperze,
-      \item działań zapobiegających i minimalizujących ewentualny wpływ inwestycji na nietoperze, tak by spełniała ona założenia dobrych praktyk i przepisy prawa – polskiego i międzynarodowego.
-    \end{itemize}
-
-    Dotychczas przyjętą praktyką w przypadku wykrycia zbyt dużych aktywności nietoperzy w monitoringu przedrealizacyjnym było wpisanie do DŚ obowiązkowych wyłączeń turbin w okresach, w których te zbyt duże aktywności wykryto. Jednak aktywność nietoperzy jest bardzo zmienna i po realizacji inwestycji niekoniecznie nietoperze będą w całych tych okresach aktywne na farmie, a przez to zagrożone. A wyłączenia turbin na całe długie okresy w roku wiążą się z ogromnymi stratami inwestorów. System opracowany w ramach niniejszej pracy inżynierskiej mógłby zapoczątkować nowe standardy na poziomie krajowym, europejskim i światowym, w zakresie niezbędnych działań minimalizujących wpływ wiatraków na nietoperze - zamiast dotychczas stosowanych z góry określonych wyłączeń na długi okres, można by stosować wyłączenia sterowane na bieżąco systemem – turbiny wyłączane by były tylko w czasie, kiedy większe liczby nietoperzy faktycznie się pojawiają.
-
-    Problem ten dotyczy głównie farm lądowych, gdyż na farmach morskich aktywność nietoperzy jest zdecydowanie mniejsza.
-
-    Zaprojektowany w ramach pracy inżynierskiej system ma za zadanie wytworzenie prototypu urządzenia zczytującego głos nietoperzy z mikrofonu ultradźwięków i ich analizę, tak by automatycznie wykrywać wystąpienie przelotu nietoperzy przy użyciu narzędzi sztucznej inteligencji, takich jak machine learning (dalej: ML) lub deep learning (dalej DL).
-
-    Głównym udziałowcem i zarazem pomysłodawcą jest firma BIOSECO, której przedstawicielami są dr Dawid Gradolewski oraz dr Damian Dziak. Udziałowcami produktu, który może zostać wytworzony na dalszym etapie na bazie projektu inżynierskiego, są inwestorzy przygotowujący farmy wiatrowe w Polsce i na świecie, takie jak PGE, Energa, RWE, Polenergia, Iberdrola itd., a także twórcy monitoringów chiropterologicznych, Regionalne i Generalna Dyrekcja Ochrony Środowiska - posiadający tę opcję działań minimalizujących w swoim w arsenale.
-
-    \begin{figure}[h]
-        \centering
-        \includegraphics[width=0.8\textwidth]{sprz/rich_picture}
-        \label{img:rich_picture}
-    \end{figure}
-
-  \item \textbf{Cele systemu}
-  
-    System ma na celu zczytywać z mikrofonu ultradźwięki wydawane przez nietoperze, przesyłać je do uprzednio wytrenowanego modelu i sygnalizować, gdy nietoperze się pojawią, podając przy tym wykryty gatunek. Jednocześnie powinien zapisywać sygnały nietoperzy w bazie danych i wizualizować je w interfejsie użytkownika.  System po dopracowaniu i ewentualnej komercjalizacji przeznaczony będzie głównie dla firm posiadających lub zarządzających dużymi farmami wiatrowymi. Korzyści wynikające z zastosowania systemu to: ograniczenie śmiertelności nietoperzy na farmach wiatrowych i możliwość zrealizowania zapisów wynikających z pozwoleń prawnych na realizację konkretnego przedsięwzięcia.
-
-  \item \textbf{Kontekst systemu}
-  
-    System będzie składał się z mikrofonu ultradźwięków wraz z urządzeniem rejestrującym dźwięk (komputerem), do którego będą trafiały wszystkie nagrania, tam analizowane i wystawiające API dla systemu wyłączającego turbinę wiatrową - zamontowane na turbinie wiatrowej.
-
-  \item \textbf{Zakres systemu (funkcjonalność)}
-  
-    Do głównych funkcjonalności systemu będą należały:
-
-    \begin{itemize}
-      \item Rejestracja nagrań,
-      \item Przesyłanie nagrań do urządzenia wewnętrznego, na którym są one przechowywane, analizowane i wstawiane do modelu ML/DL,
-      \item Analiza nagrań z udziałem modelu ML/DL pod kątem występowania nietoperzy i ich gatunków,
-      \item Wizualizacja nagrań nietoperzy w bazie danych poprzez interfejs, wraz z możliwością ich szczegółowego przeglądania.
-    \end{itemize}
-
-  \item \textbf{Wymagania jakościowe i inne}
-  
-    System powinien spełniać następujące wymagania:
-
-    \begin{itemize}
-        \item Przenośność urządzenia zewnętrznego,
-        \item Niezawodne zasilanie urządzenia zewnętrznego,
-        \item Adekwatna do warunków środowiskowych i technologicznych obudowa urządzenia zewnętrznego,
-        \item Niezawodność połączenia pomiędzy zewnętrznym urządzeniem rejestrującym nagrania i urządzeniem przechowującym je,
-        \item Możliwość wystawienia API i wykorzystania przez system wyłączający i włączający turbinę wiatrową.
-    \end{itemize}
-
-  \item \textbf{Wizja konstrukcyjna}
-  
-    Urządzenie zewnętrzne będzie składało się z mikrofonu Pettersson M500-384 (i opcjonalnie z obudową) oraz urządzenia rejestrującego nagranie (np. Raspberry Pi, komputer - do ustalenia), wyposażonego w zasilanie i pamięć. Kod pobierający nagranie z mikrofonu do urządzenia rejestrującego będzie utworzony pierwotnie w Pythonie. Kod modelu ML/DL będzie napisany w Pythonie z użyciem frameworka TensorFlow, PyTorch, lub innego.  
-
-  \item \textbf{Ograniczenia}
-  
-    \begin{itemize}
-      \item Czas trwania projektu jest ograniczony do momentu przekazania książki dyplomowej do dziekanatu uczelni PJATK.
-      \item Ograniczona dostępność nagrań głosów nietoperzy w full-spectrum – możliwa sytuacja, gdy tworzenie projektu będzie odbywało się na podstawie nagrań przetworzonych.
-      \item Aktywność nietoperzy ma miejsce od końca marca do października – w związku z tym brak możliwości nagrywania ich aktywności w trakcie semestru zimowego – a tym samym brak możliwości wykonania prób hardware’u przed kwietniem 2022.
-    \end{itemize}
-
-  \item \textbf{Słownik pojęć}
-  
-    Nagranie full-spectrum – nagranie rejestracji ultradźwięków w pełnym wymiarze
-
-    ML (machine learning, uczenie maszynowe) – obszar sztucznej inteligencji wykorzystujący algorytmy i modele matematyczne, które automatycznie poprawiają się poprzez ekspozycję na dane, w celu prognozowania lub podejmowania decyzji dot. nowo dostarczanych danych
-
-    DL (deep learning) – podzbiór ML wykorzystujący tzw. sieci neuronowe, w której pojedyncze neurony tworzą warstwy i stanowią de facto mnożenie wartości wejściowych z początkowo losowo przypisanymi wagami, gdzie wyniki z poszczególnych wejść są sumowane i przekazywane do tzw. funkcji aktywacji, które decydują czy i jakie wyniki przekazać do kolejnej warstwy neuronów.
-
-\end{enumerate}
-
-\section{Specyfikacja wymagań systemowych}
-
-\begin{documenttable}[]
-  \projectname{Batmonit}
-  \customer{Bioseco S.A.}
-  \contractor{PJATK}
-  \projectteam{
-    \begin{enumerate}
-      \item Juliusz Orłowski
-      \item Jakub Prucnal
-      \item Magdalena Wybraniec
-    \end{enumerate}
-  }
-  \projectlead{
-    \begin{enumerate}
-      \item dr Dawid Gradolewski
-    \end{enumerate}
-  }
-  \documentname{Specyfikacja Wymagań Systemowych}
-  \documentowner{Jakub Prucnal}
-  \projectsupervisor{dr Tadeusz Puźniakowski}
-\end{documenttable}
-\begin{center}
-  \begin{tabular}{ |p{0.1\linewidth}|p{0.28\linewidth}|p{0.2\linewidth}|p{0.24\linewidth}|p{0.12\linewidth}| }
-    \hline
-    \multicolumn{5}{|c|}{\textbf{Historia dokumentu}} \\
-    \hline
-    \textbf{Wersja} & \textbf{Opis modyfikacji} & \textbf{Rozdział/strona} & \textbf{Autor modyfikacji} & \textbf{Data}\\
-    \hline
-    {1.0} & {Wstępna wersja} & {Całość} & {Jakub Prucnal} & {2021-12-05}\\
-    \hline
-    {2.0} & {Całość niektórych punktów, poprawki reszty} & {punkty 2, 2.1, 2.3} & {Magdalena Wybraniec} & {2021-12-19}\\
-    \hline
-  \end{tabular}
-\end{center}
-
-\begin{enumerate}[label=\textbf{\arabic*}.]
-  \item \textbf{Wprowadzenie – o dokumencie}
-    \begin{enumerate}[font=\bfseries]
-      \item \textbf{Cel dokumentu}
-      
-        Zdefiniowanie wymagań na podstawie analizy otoczenia projektu oraz analizę potrzeb klienta.
-
-      \item \textbf{Zakres dokumentu}
-      
-        Określenie udziałowców, zdefiniowanie wymagań, analiza otoczenia projektu.
-
-      \item \textbf{Dokumenty powiązane}
-      
-        Karta Projektu (KP)
-        Dokument Założeń Wstępnych (DZW)
-        Rich Picture
-
-      \item \textbf{Odbiorcy}
-      
-        \begin{itemize}
-          \item Opiekun projektu Tadeusz Puźniakowski,
-          \item Zespół projektowy,
-          \item Przedstawiciele zleceniodawcy: dr Dawid Gradolewski oraz dr Damian Dziak
-          \item Zleceniobiorca
-        \end{itemize}  
-
-      \item \textbf{Słownik pojęć}
-      
-        Nagranie full-spectrum – nagranie rejestracji ultradźwięków w pełnym wymiarze
-        ML (machine learning, uczenie maszynowe) – obszar sztucznej inteligencji wykorzystujący algorytmy i modele matematyczne, które automatycznie poprawiają się poprzez ekspozycję na dane, w celu prognozowania lub podejmowania decyzji dot. nowo dostarczanych danych 
-        DL (deep learning) – podzbiór ML wykorzystujący tzw. sieci neuronowe, w której pojedyncze neurony tworzą warstwy i stanowią de facto mnożenie wartości wejściowych z początkowo losowo przypisanymi wagami, gdzie wyniki z poszczególnych wejść są sumowane i przekazywane do tzw. funkcji aktywacji, które decydują czy i jakie wyniki przekazać do kolejnej warstwy neuronów.      
-
-    \end{enumerate}
-  \item \textbf{Projekt w kontekście}
-    \begin{enumerate}[font=\bfseries]
-      \item \textbf{Kontekst biznesowy}
-      
-        \begin{figure}[h]
-          \centering
-          \includegraphics[width=0.8\textwidth]{sprz/rich_picture}
-          \label{img:rich_picture}
-        \end{figure}
-
-      \item \textbf{Udziałowcy}
-      
-        \begin{stakeholder}[label={},caption={Klient}]
-          \id{UNB 01}
-          \name{Klient}
-          \descr{Firma Bioseco}
-          \type{Nieożywiony, bezpośredni}
-          \viewpoint{Techniczny, ekonomiczny, operatora systemu}
-          \limitations{Brak ograniczeń, jest głównym udziałowcem}
-          \requ{}
-        \end{stakeholder}
-        \begin{stakeholder}[label={},caption={Zespół projektowy}]
-          \id{UOB 01}
-          \name{Zespół projektowy}
-          \descr{Zespół deweloperów, którzy tworzą projekt}
-          \type{Ożywiony, bezpośredni}
-          \viewpoint{Techniczny, wytwórczy}
-          \limitations{Nie specyfikuje finansów}
-          \requ{}
-        \end{stakeholder}
-        \begin{stakeholder}[label={},caption={Opiekun projektu}]
-          \id{UOP 01}
-          \name{Opiekun projektu}
-          \descr{dr Tadeusz Puźniakowski}
-          \type{Ożywiony, pośredni}
-          \viewpoint{Techniczny}
-          \limitations{Nie specyfikuje finansów}
-          \requ{}
-        \end{stakeholder}
-        \begin{stakeholder}[label={},caption={Dostarczyciele nagrań nietoperzy}]
-          \id{UOP 02}
-          \name{Dostarczyciele nagrań nietoperzy}
-          \descr{Tribio Sp. z o.o.}
-          \type{Ożywiony, pośredni}
-          \viewpoint{Ekonomiczny, merytoryczny}
-          \limitations{Brak wpływu na aspekty techniczne oprogramowania}
-          \requ{}
-        \end{stakeholder}
-        \begin{stakeholder}[label={},caption={Klienci klienta}]
-          \id{UNP 01}
-          \name{Klienci klienta}
-          \descr{Klienci firmy Bioseco, którzy przesyłają zapytania o produkt do wykrywania nietoperzy}
-          \type{Nieożywiony, pośredni}
-          \viewpoint{Ekonomiczny, operatora systemu}
-          \limitations{Brak wpływu na aspekty techniczne}
-          \requ{}
-        \end{stakeholder}
-        \begin{stakeholder}[label={},caption={Regulacje prawne}]
-          \id{UNP 02}
-          \name{Regulacje prawne}
-          \descr{Regulacje prawne wynikające z prawa ochrony przyrody i prawda dotyczącego ocen oddziaływania na środowisko}
-          \type{Nieożywiony, pośredni}
-          \viewpoint{Legislacyjny}
-          \limitations{Nie specyfikuje finansów}
-          \requ{}
-        \end{stakeholder}
-        \clearpage
-
-      \item \textbf{Klienci}
-      
-        Klienci wewnętrzni:
-        \begin{itemize}
-          \item Dziekan
-          \item Promotor
-        \end{itemize}
-
-        Klienci zewnętrzni:
-        \begin{itemize}
-          \item Przedstawiciele Bioseco
-          \item Przedstawiciele klientów Bioseco potrzebujący urządzenia do wykrywania nietoperzy na farmach wiatrowych by sprostać wymogom prawa ochrony przyrody
-          \item Firma Pettersson, producent użytego detektora, wzmacniacza i ich oprogramowania,
-          \item Firma Tribio, główny dostawca nagrań nietoperzy do modelu DL
-        \end{itemize}
-
-      \item \textbf{Charakterystyka użytkowników}
-
-        \textbf{Administrator} będzie zajmować się testowaniem systemu i zgrywaniem bazy danych uzyskanych w trakcie gdy system jest włączony. Liczebność tego użytkownika znajduje się w przedziale od 1 do 5.
-
-        \textbf{Zwykły użytkownik} będzie zajmował się przeglądaniem i analizą danych z nagrań. Liczebność tego użytkownika znajduje się w przedziale od 1 do 20.
-
-    \end{enumerate}
-
-  \item \textbf{Wymagania}
-  
-    W niniejszym rozdziale wymienia i opisuje się wymagania narzucone przez klienta - Bioseco, przedstawicieli Uczelni – Dziekana i Promotora, a także przez aktualne standardy prawne dotyczące ochrony przyrody oraz aktualne standardy sprzętowe dotyczące nagrywania i identyfikacji nietoperzy.
-
-    \begin{enumerate}[font=\bfseries]
-      \item \textbf{Wymagania ogólne i dziedzinowe}
-      
-        \begin{requirementstab}[label={tab:requirements:general},caption={Baza danych nagrań głosów nietoperzy}]
-          \id{WO 01}
-          \priority{M}
-          \name{Baza danych nagrań głosów nietoperzy}
-          \descr{Zebranie lub pozyskanie bazy danych głosów nietoperzy oraz jej przygotowanie, która posłuży do stworzenia modelu rozpoznawania wystąpienia nietoperza i/lub gatunku nietoperza.}
-          \sholder{UOB 01, UOP 01, UNB 01}
-          \reqrelated{WO 03}
-        \end{requirementstab}
-        \begin{requirementstab}[label={tab:requirements:general},caption={Ekologia}]
-          \id{WO 02}
-          \priority{M}
-          \name{Ekologia}
-          \descr{System ma chronić nietoperze przed szkodliwym działaniem farm wiatrowych na ich populację}
-          \sholder{UNB 01, UNP 01, UNP 02}
-          \reqrelated{WO 03}
-        \end{requirementstab}
-        \begin{requirementstab}[label={tab:requirements:general},caption={Normy prawa}]
-          \id{WO 03}
-          \priority{M}
-          \name{Normy prawa ochrony przyrody i prawa dotyczącego ocen oddziaływania na środowisko}
-          \descr{System poprzez swoją przyszłą funkcjonalność wyłączania turbiny będzie stanowił alternatywę dla jedynego obecnie rodzaju działań minimalizujących wpływ turbin na nietoperze, czyli 3 lat monitoringu porealizacyjnego i adekwatnych do jego wyników, narzuconych z góry okresowych wyłączeń turbin, co przyniesie znaczne oszczędności dla deweloperów farm wiatrowych.}
-          \sholder{UNP 02}
-          \reqrelated{WO 02}
-        \end{requirementstab}
-        \begin{requirementstab}[label={tab:requirements:general},caption={System rozpoznawania gatunków nietoperzy}]
-          \id{WO 04}
-          \priority{S}
-          \name{System rozpoznawania gatunków nietoperzy}
-          \descr{System do rozpoznawania gatunków nietoperzy jest kosztowny, stworzenie go będzie oprogramowaniem, który przyniesie dodatkowe zyski.}
-          \sholder{UOB 01, UNB01}
-          \reqrelated{}
-        \end{requirementstab}
-        \clearpage
-
-      \item \textbf{Wymagania funkcjonalne}
-      
-
-        \begin{requirementstab}[label={tab:requirements:func1},caption={System rozpoznawania wystąpienia nietoperza}]
-          \id{WF02}
-          \priority{M}
-          \name{System rozpoznawania wystąpienia nietoperza}
-          \descr{Opracowanie algorytmu uczenia maszynowego oraz rozpoznawania wystąpienia nietoperza na żywo poprzez śledzenie sygnałów uzyskanych za pomocą urządzenia do detekcji.}
-          \acceptcrit{Wytrenowany model do rozpoznawania wystąpienia nietoperzy.}
-          \inputdata{Zbiór nagrań ultradźwięków nietoperzy} 
-          \postconditions{Wytrenowany model}
-          \implementation{}
-          \sholder{UNB 01, UNP 01}
-          \reqrelated{}
-        \end{requirementstab}
-        \begin{requirementstab}[label={tab:requirements:func1},caption={System uczenia sieci neuronowej}]
-          \id{WF03}
-          \priority{C}
-          \name{System uczenia sieci neuronowej}
-          \descr{Opracowanie systemu do uczenia sieci neuronowej rozpoznawania gatunków nietoperzy.}
-          \acceptcrit{Stworzony algorytm do tworzenia modelu do rozpoznawania gatunku nietoperza}
-          \inputdata{Zbiór nagrań ultradźwięków nietoperzy}
-          \postconditions{Wytrenowany model}
-          \implementation{}
-          \sholder{UOB 01, UOP 01}
-          \reqrelated{}
-        \end{requirementstab}
-        \begin{requirementstab}[label={tab:requirements:func1},caption={System rozpoznawania gatunku nietoperza}]
-          \id{WF04}
-          \priority{S}
-          \name{System rozpoznawania gatunku nietoperza}
-          \descr{Opracowanie systemu do rozpoznawania gatunku nietoperza za pomocą detektora.}
-          \acceptcrit{Stworzenie modelu oraz połączenie go z urządzeniem do rozpoznawania nietoperzy.}
-          \inputdata{Zbiór nagrań ultradźwięków nietoperzy}
-          \postconditions{Wytrenowany model}
-          \implementation{}
-          \sholder{UOB 01}
-          \reqrelated{}
-        \end{requirementstab}
-        \begin{requirementstab}[label={tab:requirements:func1},caption={Interfejs do wizualizacji danych}]
-          \id{WF05}
-          \priority{M}
-          \name{Interfejs do wizualizacji danych}
-          \descr{Stworzenie interfejsu do przeglądania danych pobieranych z bazy danych i wizualizacja tych danych.}
-          \acceptcrit{Stworzony interfejs działający i spełniający swoją funkcję.}
-          \inputdata{Nagrania pochodzące z mikrofonu ultradźwięków}
-          \postconditions{Nagrania widoczne w interfejsie użytkownika}
-          \implementation{}
-          \sholder{UOB 01}
-          \reqrelated{}
-        \end{requirementstab}
-
-        \begin{requirementstab}[label={tab:requirements:func1},caption={Liczba i lokalizacja mikrofonów na turbinie}]
-          \id{WF06}
-          \priority{M}
-          \name{Pokrycie kąta 360 stopni dookoła turbiny poprzez rejestrację ultradźwiękową}
-          \descr{Plan liczby i lokalizacji mikrofonów ultradźwięków na turbinie wiatrowej tak, aby system pełnił funkcję ochrony nietoperzy}
-          \acceptcrit{Realizacja testów terenowych mikrofonu}
-          \inputdata{Mikrofon ultradźwięków}
-          \postconditions{Pokrycie kąta 360\textdegree przez rejestrację ultradźwękową}
-          \implementation{}
-          \sholder{UOP 01, UNB 01}
-          \reqrelated{}
-        \end{requirementstab}
-        \clearpage
-
-      \item \textbf{Interfejs z otoczeniem}
-      
-        \begin{requirementstab}[label={tab:requirements:func1},caption={System wyłączający wiatraki}]
-          \id{WF01}
-          \priority{M}
-          \name{System wyłączający wiatraki}
-          \descr{Połączenie systemu wykrycia nietoperza z systemem wyłączającym wiatraki}
-          \acceptcrit{Stworzenie punktu styku, który będzie jako output dawać sygnał do systemu wyłączającego wiatraki.}
-          \inputdata{Zidentyfikowane nagrania nietoperzy}
-          \postconditions{Wystawione API z informacją o konieczności wyłączenia turbiny}
-          \implementation{}
-          \sholder{UNB 01, UNP 01}
-          \reqrelated{}
-        \end{requirementstab}
-        \begin{requirementstab}[label={tab:requirements:func1},caption={Baza danych}]
-          \id{WF02}
-          \priority{M}
-          \name{Baza danych}
-          \descr{Połączenie systemu z bazą danych, która będzie zbierać dane wystąpienia nietoperza}
-          \acceptcrit{Stworzenie punktu styku, który będzie jako output dawać sygnał do systemu wyłączającego wiatraki.}
-          \inputdata{Nagrania nietoperzy z mikrofonu ultradźwięków}
-          \postconditions{Nagrania zapisane w bazie danych}
-          \implementation{}
-          \sholder{UOP 01, UNB 01}
-          \reqrelated{}
-        \end{requirementstab}
-
-
-
-        \clearpage
-
-      \item \textbf{Wymagania pozafunkcjonalne}
-      
-
-
-      \item \textbf{Wymagania na środowisko docelowe}
-      
-
-
-    \end{enumerate}
-
-  \item \textbf{Odwołania do literatury}
+\begin{enumerate}
+  \item Niniejsza praca w formacie PDF
+  \item Dokument Założeń Wstępnych
+  \item Specyfikacja Wymagań Systemowych
+  \item Kod źródłowy oprogramowania i modelu
 \end{enumerate}
 
 \clearpage
@@ -1972,8 +1668,6 @@ Na załączonej do niniejszej pracy płycie DVD znajdują się niżej wymienione
   \caption{Diagram przypadków użycia}
   \label{img:use-case}
 \end{figure}
-
-\clearpage
 
 \printbibliography[title={Bibliografia}, heading=bibintoc]
 
