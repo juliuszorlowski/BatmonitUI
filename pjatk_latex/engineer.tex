@@ -242,9 +242,11 @@ Do głównych zagrożeń projektu należą \textit{de facto} te związane z ogra
 Wpływ zagrożeń opisanych w niniejszym dokumencie jest potencjalnie wysoki, dlatego że projekt jest rozbudowany, innowacyjny, i powstaje na studiach zaocznych, w związku z czym zespół projektowy obłożony jest znaczną ilością dodatkowych obowiązków pozaszkolnych, a także pozbawiony jest dużego doświadczenia w realizacji tego typu projektów.
 
 \subsection{Rekomendacje i rozwiązania}
-Podsumowaniem szczegółowych rekomendacji umieszczonych w rozdziale - Załączniki - są zwłaszcza konsultacje ze specjalistami w wybranych dziedzinach, pomoc ze strony Bioseco S.A. w szczególności w rozmowach partnerskich związanych z pozyskaniem nagrań nietoperzy oraz zapewnianiem nowego sprzętu do eksperymentów, ciągła weryfikacja wymagań na system, wzajemne wsparcie i wsparcie bliskich, techniki relaksacyjne, sport.
+Podsumowaniem szczegółowych rekomendacji umieszczonych w tabeli - "Analiza zagrożeń w konwencji soDIS - są zwłaszcza konsultacje ze specjalistami w wybranych dziedzinach, pomoc ze strony Bioseco S.A. w szczególności w rozmowach partnerskich związanych z pozyskaniem nagrań nietoperzy oraz zapewnianiem nowego sprzętu do eksperymentów, ciągła weryfikacja wymagań na system, wzajemne wsparcie i wsparcie bliskich, techniki relaksacyjne, sport.
 
-\chapter{Prace badawczo-rozwojowe - projektowanie}
+\chapter{Prace badawcze - projektowanie}
+
+Przygotowanie całości projektu składało się z zaprojektowania prac badawczych, realizacji tych prac oraz wdrożenia systemu składającego się z mikrofonu ultradźwięków pobierającego dane z otoczenia, kolejno przekazywane do modelu DL analizującego dźwięk pod kątem występowania gatunku nietoperza i zapisującego te dane w bazie danych i wizualizujących w aplikacji użytkownika. Struktura systemu została ustalona przez Bioseco S.A. oraz Promotora pracy, a jej ostateczny kształt jest rezultatem eksperymentów. 
 
 \section{Konsultacje z Bioseco S.A.}
 W ramach kooperacji z Bioseco S.A. przeprowadzono spotkania wspomagające zespół inżynierski w procesie wytwórczym, udostępniono większość niezbędnego sprzętu oraz wiedzę z zakresu prowadzenia badań terenowych i opracowania danych, wytwarzania oprogramowania i działania dedykowanych sprzętów. Zrealizowano konfigurację sieciową udostępnionego sprzętu, tak aby umożliwić zdalny dostęp do danych z mikrofonu ultradźwięków. Zainstalowano również testowo mikrofon ultradźwięków na turbinie wiatrowej.
@@ -346,7 +348,7 @@ Zebranie nagrań nietoperzy odpowiedniego typu i odpowiedniej ich liczby rodził
 
 Po trwających kilka miesięcy poszukiwaniach osób mogących udostępnić takie nagrania, negocjacjach warunków przekazania nagrań oraz samym procesie przekazywania nagrań, udało się pozyskać 71,7 GB danych, w tym 18 412 nagrań zawierających odgłosy nietoperzy oraz inne dźwięki, takie jak szumy pochodzące z otoczenia.
 
-\chapter{Prace badawczo-rozwojowe - testy terenowe}
+\chapter{Prace badawcze - testy terenowe}
 
 \section{Montaż systemu SMART na turbinie wiatrowej}
 System SMART firmy Wildlife Acoustics został zainstalowany na jednej z farm wiatrowych, na których operuje firma Bioseco S.A. przez pracowników firmy. Instalacja miała miejsce 14 lipca 2023 (\ref{img:smart-installed}). 
@@ -467,7 +469,7 @@ Odległości detekcji nietoperzy są na tyle małe w kontekście ich ochrony prz
 \chapter{Realizacja sieci neuronowej}
 
 \section{Przygotowanie danych}
-Przygotowanie danych obejmowało podpisanie nagrań zgodnie z wykazem gatunków nietoperzy przypisanych do danych nagrań, które znajdowały się w pliku CSV.
+Przygotowanie danych obejmowało podpisanie nagrań zgodnie z wykazem gatunków nietoperzy przypisanych do danych nagrań, które znajdowały się w pliku CSV. Plik ten zawierał nazwę nagrania, datę jego zapisu oraz nazwę gatunkową nietoperza bądź informacje, że był to szum, bądź dźwięk niezidentyfokowany do gatunku. Finalnie w procesie przygotowania i uczenia sieci neuronowej zarówno nagrania jak i ich podpisy zostały przetworzone do postaci tensorów, co zostało zrealizowane w module ładującym dane. Liczby wszystkich dźwięków wyniosła 18 412.
 
 \subsection{Dobór typu spectogramu}
 Do treningu użyto dźwięków przetworzonych na obrazy. Rozważano użycie zwykłego spektrogramu i mel-spektrogramu, jednak zdecydowano się na użycie zwykłego spektrogramu, ponieważ dawał on lepszy obraz. W przypadku bardzo delikatnych głosów nietoperzy na mel-spektrogramie pulsy były często niewidoczne.
@@ -561,7 +563,7 @@ Biblioteka TorchAudio jest częścią ekosystemu PyTorch i służy do obsługi i
 Sień neuronowa przygotowana w ramach niniejszej pracy dyplomowej składa się z czterech głównych elementów: modułu transformującego dźwięk do spektrogramów, modułu ładującego dane, modułu do treningu oraz modułu do predykcji.
 
 \subsection{Konwersja dźwięków na spektrogramy}
-Identyfikacja gatunków nietoperzy poprzez analizę dźwięków skonwertowanych do obrazu jest podejściem klasycznym (por. np. \cite{bats-id-dl2020b}). Dlatego jednym z elementów związanych z trenowaniem sieci było przygotowanie modułu konwertującego dźwięk na spektrogramy. Kod modułu przedstawiono poniżej w Listingu \ref{lst:audio-to-spektrogram}.
+Identyfikacja gatunków nietoperzy poprzez analizę dźwięków skonwertowanych do obrazu jest podejściem klasycznym (por. np. \cite{bats-id-dl2020b}). Dlatego jednym z elementów związanych z trenowaniem sieci było przygotowanie modułu konwertującego dźwięk na spektrogramy. Kod modułu przedstawiono poniżej w Listingu \ref{lst:audio-to-spektrogram}. Ścieżki bezwzględne zostały użyte dlatego, że kod ten służył jedynie do treningu i uczenia sieci.
 
 \begin{lstlisting}[language=Python,caption={Implementacja konwersji dźwięku na spektrogram}, label={lst:audio-to-spektrogram}]
   waveform, sample_rate = torchaudio.load(r'C:\\Users\\Jakub\Documents\\PJATK\\INZ\Batmonit_model\\Chiro_sounds_signed\Audio\\PIPNAT\S4U08639_20210731_234142_PIPNAT.wav')
@@ -625,6 +627,15 @@ Główna funkcja tego modułu uruchamia ładowanie danych z uwzględnieniem wszy
 
 \subsection{Sień neuronowa}
 Kod sieci neuronowej przedstawiono poniżej w Listingu \ref{lst:Sequelize_validate}, a wyjaśnienie zastosowania konkretnych jej elementów, takich jak funkcje aktywacji, funkcja błędu, optymalizator, itd. opisano i wyjaśniono w rozdziale: "Dobór parametrów sieci neuronowej". Implementację sieci neuronowej przedstawia Listing \ref{lst:neural_network_implementation}.
+Architektura sieci została zaprojektowana z uwzględnieniem następujących informacji:
+\begin{itemize}
+  \item{potencjalych możliwości sprzętu używanego do treningu,}
+  \item{informacji o konstrukcji sieci neuronowych dostępnych w literaturze,}
+  \item{informacji o konstrukcji sieci neuronowych wykorzystywanych do identyfikacji nietoperzy.}
+\end{itemize}
+
+Architekturę sieci wybrano na podstawie dostępnej literatury, która obfituje w dane o wykorzystaniu sieci konwolucyjnych dających dobre wyniki w identyfikacji nietoperzy. Konstrukcja zastosowanej sieci konwolucyjnej należy z kolei do klasycznych, gdzie po warstwach konwolucyjnych i max-pool, znajdują się warstwy spłaszczające, fully-connected oraz softmax \cite{obuchowski}
+Przyjęto możliwie małą liczbę warstw konwolucyjnych, aby w przypadku konieczności trenowania na własnych urządzeniach proces ten był wykonalny dla sprzętu w okresie, nie uniemożliwiającym realizację pracy dyplomowej. Jednocześnie liczba warstw konwolucyjnych miała znajdować się w przedziale tych używanych w innych projektach por. np. \cite{bats-id-randomforest}. 
 
 \begin{lstlisting}[language=Python,caption={Implementacja sieci neuronowej}, label={lst:neural_network_implementation}]
   class CNNNetwork(nn.Module):
@@ -772,9 +783,6 @@ Kod głównej funkcji przedstawiono w Listingu \ref{lst:predict} poniżej.
 
 \section{Skuteczność sieci neuronowej}
 
-\subsection{Macierz pomyłek}
-
-\subsection{Metryki}
 
 \chapter{Struktura systemu}
 
