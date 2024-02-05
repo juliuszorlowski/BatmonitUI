@@ -115,7 +115,7 @@ Zastosowano podejście hybrydowe: Water-Scrum-Fall \cite{water-scrum-fall1} \cit
 
 Prace rozpoczęto od przygotowania wymagań systemowych, analiz i wstępnego projektu systemu. 
 
-W kolejnej fazie wytwarzania oprogramowania zastosowano metodę programowania zwinnego w oparciu o plany i dokumentację z pierwszego etapu, korygowane na bieżąco przy każdej iteracji. Przyjęto czas trwania sprintu na cztery tygodnie. Przyjąto tak długi okres sprintu z uwagi na liczbę i skalę potencjalnych zagrożeń oraz obciążeń członków zespołu projektowego, jak również występowanie licznych konsultantów zewnętrznych, których ograniczenia mogły dodatkowo wpływać na wydłużenie prac. 
+W kolejnej fazie wytwarzania oprogramowania zastosowano metodę programowania zwinnego w oparciu o plany i dokumentację z pierwszego etapu, korygowane na bieżąco przy każdej iteracji. Przyjęto czas trwania sprintu na cztery tygodnie. Przyjęto tak długi okres sprintu z uwagi na liczbę i skalę potencjalnych zagrożeń oraz obciążeń członków zespołu projektowego, jak również występowanie licznych konsultantów zewnętrznych, których ograniczenia mogły dodatkowo wpływać na wydłużenie prac. 
 
 W ostatniej fazie, po zakończeniu etapu zwinnego, przewidziano testy systemowe i integracyjne. Schemat metodyki wytwarzania oprogramowania przedstawiono poniżej. Odstępstwem od tej wizualizacji było brak elementu "Daily Scrum meeting", który został zastąpiony spotkaniami raz w tygodniu, a w pozostałym czasie komunikacja miała miejsce przez media opisane w rozdziale "Infrastruktura komunikacyjna i dokumentacja". 
 
@@ -140,7 +140,7 @@ W fazie "Water" przygotowano wymagania systemowe, wszelkie niezbędne w początk
   \end{itemize}
 
 \subsubsection{Faza Scrum}
-Na podstawie planów i materiałów zgromadzonych w fazie "Water", w fazie "Scrum" wybrano kolejno kilka mikrofonów ultradźwięków możliwych do zastosowania w MVP. Po ostatecznym doborze mikrofonu przygotowano pod kątem sieciowym i fizycznym instalację mikrofonu na turbinie. Po instalacji mikrofonu przeprowadzono testy terenowe wykrywalności ultradźwięków, podsumowano wyniki i na ich podstawie przygotowano propozycję liczby i lokalizacji mikrofonów na turbinie w celu poprawności realizacji zadania ochrony nietoperzy. W tym okresie trwały też intensywne konsultacje z firmą Wildlife Acoustics w sprawie szczegółow montażu mikrofonów oraz z firmą Bioseco S.A. w celu konfiguracji i instalacji systemu SMART. 
+Na podstawie planów i materiałów zgromadzonych w fazie "Water", w fazie "Scrum" wybrano kolejno kilka mikrofonów ultradźwięków możliwych do zastosowania w MVP. Po ostatecznym doborze mikrofonu przygotowano pod kątem sieciowym i fizycznym instalację mikrofonu na turbinie. Po instalacji mikrofonu przeprowadzono testy terenowe wykrywalności ultradźwięków, podsumowano wyniki i na ich podstawie przygotowano propozycję liczby i lokalizacji mikrofonów na turbinie w celu poprawności realizacji zadania ochrony nietoperzy. W tym okresie trwały też intensywne konsultacje z firmą Wildlife Acoustics w sprawie szczegółów montażu mikrofonów oraz z firmą Bioseco S.A. w celu konfiguracji i instalacji systemu SMART. 
 
 Po weryfikacji poprawności działania systemu SMART rozpoczęto implementację pobierania danych z mikrofonu, bazy danych, interfejsu użytkownika, modelu DL oraz przepływu danych pomiędzy tymi elementami.
 
@@ -279,7 +279,7 @@ W procesie definiowania cech sprzętu jakie powinien posiadać mikrofon i rejest
 
 W początkowym okresie prac nad systemem nie istniał mikrofon spełniające wszystkie powyższe kryteria. W mikrofonie otrzymanym początkowo z Bioseco brakowało wodoodporności. W detektorze Batcorder firmy EcoObs i mikrofonie SMM-U2 Wildlife Acoustics brakowało bezpośredniej możliwości podłączenia do urządzenia typu Raspberry Pi i nieograniczonego dostępu do danych. Wykonano próby współpracy z Animal Sound Labs, podczas których używając dostępnych najlepszych mikrofonów posiadanych przez firmę oraz projektując odpowiednią drogę analogowo-cyfrową z możliwością połączenia przez USB do urządzenia typu Raspberry Pi miał powstać odpowiedni mikrofon, jednak próby te zakończyły się niepowodzeniem z uwagi na ograniczenia czasowe Animal Sound Labs w zaproponowanym terminie. 
 
-Animal Sound Labs jest polską firmą zajmująca się wytwarzaniem detektorów ultradźwięków. Właścicel firmy - Paweł Federowicz posiada bardzo dużą wiedzę dziedzinową z tego zakresu, dlatego bardzo szybko rozpoczęto z nim rozległe konsulatacje dotyczące części projektu inżynierskiego związanego z doborem mikrofonu ultradźwięków oraz przetwarzaniem sygnałów. W trakcie rozmów pomiędzy Bioseco S.A. i Animal Sound Labs dopracowano zakres prac ze strony Animal Sound Labs jaki opisano powyżej. Z uwagi jednak na fakt niewielkij liczby pracowników oraz znaczne obciążenie Animal Sound Labs w tamtym okresie, koopercja nie została zrealizowana.
+Animal Sound Labs jest polską firmą zajmująca się wytwarzaniem detektorów ultradźwięków. Właściciel firmy - Paweł Federowicz posiada bardzo dużą wiedzę dziedzinową z tego zakresu, dlatego bardzo szybko rozpoczęto z nim rozległe konsultacje dotyczące części projektu inżynierskiego związanego z doborem mikrofonu ultradźwięków oraz przetwarzaniem sygnałów. W trakcie rozmów pomiędzy Bioseco S.A. i Animal Sound Labs dopracowano zakres prac ze strony Animal Sound Labs jaki opisano powyżej. Z uwagi jednak na fakt niewielkiej liczby pracowników oraz znaczne obciążenie Animal Sound Labs w tamtym okresie, koopercja nie została zrealizowana.
 
 W tym czasie na rynku pojawiło się nowe urządzenie firmy Wildlife Acoustics - system SMART, który dostarczył wszystkich niezbędnych elementów, jakie wymagane były od sprzętu do realizacji niniejszej pracy dyplomowej (\ref{img:smart}). Na poniższym obrazku przedstawiony jest system SMART - dwa mikrofony ultradźwięków po lewej i prawej stronie oraz kontroler w centrum.
 
@@ -298,7 +298,7 @@ Do wyemitowania ultradźwięków niezbędne są urządzenia obsługujące co naj
 Do wstępnych testów poprawności działania sprzętu użyto wzmacniacza iFi Zen Dac o maksymalnej częstotliwości odtwarzania 384 kHz, a do testów terenowych mikrofonu - laptopa DELL G3 z maksymalną częstotliwością próbkowania karty dźwiękowej ustawioną na 96 kHz.
 
 \section{Głosy nietoperzy typu full-spectrum}
-Dźwięk typu full-spectrum, to rodzaj nagrania i analizy spektralnej dźwięku, w którym ujęte jest pełne spektrum nagrywanych częstotliwości \cite{fullspectrum}. Nagranie tego typu przedstawiono po lewej stronie na poniższym rysunku. W odróżnieniu np. od nagrań typu zero-crossing (po prawej stronie) posiadają dużo więcej informacji o dźwięku, co przedstawiono na ilustracji (\ref{img:fullspectrum}). W przypadku nagrań typu zero-crossing z sygnału wybierane są jedynie punkty, które znajdują się w miejscu przecięcia osi X i Y wykresu sygnału. Tym samym w przypdku nagrań typu zero-crossing wybrana jest około jedna tysięczna sygnału, co pozwala na zmniejszenie rozmiaru nagrań ale również znaczne zmniejszenie ilości informacji o sygnale \cite{fullspectrum}. Z tego powodu nagrania typu full-spectrum są najlepsze do analizy gatunków nietoperzy, a wykorzystanie tego typu nagrań może dać najlepsze efekty w treningu sieci neuronowej oraz predykcji gatunków.
+Dźwięk typu full-spectrum, to rodzaj nagrania i analizy spektralnej dźwięku, w którym ujęte jest pełne spektrum nagrywanych częstotliwości \cite{fullspectrum}. Nagranie tego typu przedstawiono po lewej stronie na poniższym rysunku. W odróżnieniu np. od nagrań typu zero-crossing (po prawej stronie) posiadają dużo więcej informacji o dźwięku, co przedstawiono na ilustracji (\ref{img:fullspectrum}). W przypadku nagrań typu zero-crossing z sygnału wybierane są jedynie punkty, które znajdują się w miejscu przecięcia osi X i Y wykresu sygnału. Tym samym w przypadku nagrań typu zero-crossing wybrana jest około jedna tysięczna sygnału, co pozwala na zmniejszenie rozmiaru nagrań ale również znaczne zmniejszenie ilości informacji o sygnale \cite{fullspectrum}. Z tego powodu nagrania typu full-spectrum są najlepsze do analizy gatunków nietoperzy, a wykorzystanie tego typu nagrań może dać najlepsze efekty w treningu sieci neuronowej oraz predykcji gatunków.
 
 Tego typu nagrania generowane są tylko przez część detektorów ultradźwięków - tylko przez najnowocześniejsze rekordery, co wpłynęło na zmniejszenie liczby potencjalnych źródeł nagrań do treningu sieni neuronowej.
 
@@ -410,7 +410,7 @@ Kluczowe ustalenia z konsultacji są następujące:
 \end{itemize}
 
 \section{Metodyka testów}
-Sztucznie przygotowane dźwięki emitowano w kilku konfiguracjach, składających się z różnych odległości, kątów względem mikrofonu i częstotliwości. Dźwięki o częstotliwościach: 16-20 kHz, 25-35 kHz, 37-40 kHz i 40-48 kHz odtwarzane były w odległościach 7, 20, 40, 60, 80, 100 i 120 m od mikrofonu. Dźwięki odtwarzane były w czterech liniach przebiegających pod kątami 0, 30, 60 i 90 stopni w stosunku do przodu mikrofonu (\ref{img:angles}). Dźwięki odtwarzane były z zestawu głośnika ultradźwiękowego Pettersson L400 oraz laptopa z kartą dźwiękową w konfiguracji umożliwiającej odtwarzanie dźwięków o wysokiej częstotliwości (16-bit, 48 kHz). Dżwięki odtwarzane były w możliwie najwyższym natężeniu. Każdy dźwięk był emitowany w określonej odległości i pod określonym kątem od trzech do sześciu razy, w większości przypadków trzy razy.
+Sztucznie przygotowane dźwięki emitowano w kilku konfiguracjach, składających się z różnych odległości, kątów względem mikrofonu i częstotliwości. Dźwięki o częstotliwościach: 16-20 kHz, 25-35 kHz, 37-40 kHz i 40-48 kHz odtwarzane były w odległościach 7, 20, 40, 60, 80, 100 i 120 m od mikrofonu. Dźwięki odtwarzane były w czterech liniach przebiegających pod kątami 0, 30, 60 i 90 stopni w stosunku do przodu mikrofonu (\ref{img:angles}). Dźwięki odtwarzane były z zestawu głośnika ultradźwiękowego Pettersson L400 oraz laptopa z kartą dźwiękową w konfiguracji umożliwiającej odtwarzanie dźwięków o wysokiej częstotliwości (16-bit, 48 kHz). Dźwięki odtwarzane były w możliwie najwyższym natężeniu. Każdy dźwięk był emitowany w określonej odległości i pod określonym kątem od trzech do sześciu razy, w większości przypadków trzy razy.
 
 \begin{figure}[h]
   \centering
@@ -430,7 +430,7 @@ Badania przeprowadzono w dniu 8 września 2023 roku zgodnie z przedstawioną pow
 \end{figure}
 
 \section{Wyniki testów}
-Każda częstotliwość w każdej odległości i pod każdym kątem od mikrofonu została wyemitowana trzykrotnie (w większości przypadków). W wynikach uwzględniono jaki procent głosów w danej lokalizaci został wykryty, np. jeśli wykryto 2 odtworzenia na 4, to oznaczano wykrycie 50\% dźwięków.
+Każda częstotliwość w każdej odległości i pod każdym kątem od mikrofonu została wyemitowana trzykrotnie (w większości przypadków). W wynikach uwzględniono jaki procent głosów w danej lokalizacji został wykryty, np. jeśli wykryto 2 odtworzenia na 4, to oznaczano wykrycie 50\% dźwięków.
 
 Poniższe wykresy ilustrują odległości detekcji dźwięku w poszczególnych konfiguracjach odległości i kąta, w podziale na poszczególne częstotliwości (\ref{img:angle0}, \ref{img:angle30}, \ref{img:angle60}, \ref{img:angle90}).
 
@@ -487,16 +487,16 @@ Odległości detekcji nietoperzy są na tyle małe w kontekście ich ochrony prz
 \chapter{Realizacja sieci neuronowej}
 
 \section{Przygotowanie danych}
-Przygotowanie danych obejmowało podpisanie nagrań zgodnie z wykazem gatunków nietoperzy przypisanych do danych nagrań, które znajdowały się w pliku CSV. Plik ten zawierał nazwę nagrania, datę jego zapisu oraz nazwę gatunkową nietoperza bądź informacje, że był to szum, bądź dźwięk niezidentyfokowany do gatunku. Finalnie w procesie przygotowania i uczenia sieci neuronowej nagrania zostały przetworzone do postaci tensorów, co zostało zrealizowane w module ładującym dane. Liczby wszystkich dźwięków wyniosła 18 412.
+Przygotowanie danych obejmowało podpisanie nagrań zgodnie z wykazem gatunków nietoperzy przypisanych do danych nagrań, które znajdowały się w pliku CSV. Plik ten zawierał nazwę nagrania, datę jego zapisu oraz nazwę gatunkową nietoperza bądź informacje, że był to szum, bądź dźwięk niezidentyfikowany do gatunku. Finalnie w procesie przygotowania i uczenia sieci neuronowej nagrania zostały przetworzone do postaci tensorów, co zostało zrealizowane w module ładującym dane. Liczby wszystkich dźwięków wyniosła 18 412.
 
-\subsection{Dobór typu spectogramu}
+\subsection{Dobór typu spektogramu}
 Do treningu użyto dźwięków przetworzonych na obrazy. Rozważano użycie zwykłego spektrogramu i mel-spektrogramu, jednak zdecydowano się na użycie zwykłego spektrogramu, ponieważ dawał on lepszy obraz. W przypadku bardzo delikatnych głosów nietoperzy na mel-spektrogramie pulsy były często niewidoczne.
 
 \subsection{Cięcie}
 W celu uzyskania jednolitych wielkości danych na wejściu wszystkie nagrania pocięto na odcinki dwusekundowe. W przypadku gdy ostatni element był krótszy niż dwie sekundy uzupełniano tę część zerami.
 
 \section{Dobór sieci neuronowej}
-Po przeglądzie literatury, konsultacjach z Aleksandrem Obuchowskim oraz weryfikacji zasobów czasowych zdecydowano się ostatecznie na użycie konwolucyjnej sieci neuronowej jako sieci przystępnej w implementacji a jednocześnie potencjalnie dającej bardzo dobre wyniki (por. "Przegląd literatury"). Sieci konwolucyjne były najczęściej używanymi sieciami neuronowymi. Inną architekturą mogącą dać bardzo dobre wyniki była sieć Transofrmers, na co wskazywały wyniki dostępnej publikacji oraz konsultacji z Aleksandrem Obuchowskim \cite{bats-transformers}. Z uwagi jednak na ograniczone dane literaturowe oraz ograniczone zasoby czasowe zaniechano realizacji tego typu architektury.
+Po przeglądzie literatury, konsultacjach z Aleksandrem Obuchowskim oraz weryfikacji zasobów czasowych zdecydowano się ostatecznie na użycie konwolucyjnej sieci neuronowej jako sieci przystępnej w implementacji a jednocześnie potencjalnie dającej bardzo dobre wyniki (por. "Przegląd literatury"). Sieci konwolucyjne były najczęściej używanymi sieciami neuronowymi. Inną architekturą mogącą dać bardzo dobre wyniki była sieć Transformers, na co wskazywały wyniki dostępnej publikacji oraz konsultacji z Aleksandrem Obuchowskim \cite{bats-transformers}. Z uwagi jednak na ograniczone dane literaturowe oraz ograniczone zasoby czasowe zaniechano realizacji tego typu architektury.
 
 \subsection{Przegląd literatury}.
 Do wyszukania publikacji zawierających opracowania dotyczące automatycznego rozpoznawania nietoperzy użyto wyszukiwarki Google Scholar oraz fraz: "bats automated recognition", "bats machine learning", "bats deep learning".
@@ -562,7 +562,7 @@ Funkcja aktywacji używana jest do obliczania wartości neuronów w warstwach wy
 
 W warstwach konwolucyjnych jako funkcji aktywacji użyto funkcji ReLU. (Rectified Linear Unit). Jest to najczęściej używana funkcja aktywacji w warstwach ukrytych. Do jej zalet należą szybkość i nieliniowość.
 
-W ostatniej warstwie użyto funkcji aktywacji softmax. Przekształca ona wartości uzyskiwane na wyjściu tak, aby ich suma była równa 1, dzięki czemu dobrze modeluje prawdopodobieństwo. Jest to najczęsciej wykorzystywana funkcja w warstwach wyjściowych.
+W ostatniej warstwie użyto funkcji aktywacji softmax. Przekształca ona wartości uzyskiwane na wyjściu tak, aby ich suma była równa 1, dzięki czemu dobrze modeluje prawdopodobieństwo. Jest to najczęściej wykorzystywana funkcja w warstwach wyjściowych.
 
 \subsection{Funkcja błędu}
 Funkcja ta jest często używana w sieciach neuronowych w problemach klasyfikacji. Określa ona jak dobrze model przewiduje klasy - im mniejsza wartość funkcji błędu, tym większa dokładność modelu. Podczas uczenia się sieci dąży się do zmniejszania wartości funkcji błędu. W sieci neuronowej użytej w niniejszej pracy wykorzystano funkcję entropii krzyżowej.
@@ -647,7 +647,7 @@ Główna funkcja tego modułu uruchamia ładowanie danych z uwzględnieniem wszy
 Kod sieci neuronowej przedstawiono poniżej w Listingu \ref{lst:Sequelize_validate}, a wyjaśnienie zastosowania konkretnych jej elementów, takich jak funkcje aktywacji, funkcja błędu, optymalizator, itd. opisano i wyjaśniono w rozdziale: "Dobór parametrów sieci neuronowej". Implementację sieci neuronowej przedstawia Listing \ref{lst:neural_network_implementation}.
 Architektura sieci została zaprojektowana z uwzględnieniem następujących informacji:
 \begin{itemize}
-  \item{potencjalych możliwości sprzętu używanego do treningu,}
+  \item{potencjalnych możliwości sprzętu używanego do treningu,}
   \item{informacji o konstrukcji sieci neuronowych dostępnych w literaturze,}
   \item{informacji o konstrukcji sieci neuronowych wykorzystywanych do identyfikacji nietoperzy.}
 \end{itemize}
@@ -824,9 +824,9 @@ Na poniższych modelach przedstawiono najważniejsze elementy logiczne, urządze
 
 Spośród przedstawionych elementów cały moduł detekcji był zrealizowany poprzez dostarczony przez Bioseco S.A. system SMART firmy Wildlife Acoustics. Składa się on z mikrofonu ultradźwięków i kontrolera. Dźwięki z mikrofonu są rejestrowane przez program firmy Wildlife Acoustics na kontrolerze. Połączenie LAN zostało zrealizowane przez pracowników firmy Bioseco S.A.
 
-Moduł decyzyjny stanowiło wytworzone oprogramowanie składające się z Watchdoga, będącego mikroserwisem monitorującym pojawienie się nowych nagrań i identyfikującym nietoperze, bazdy danych do której te informacje trafiały oraz interfejsu użytkownika, który je wizualizował.
+Moduł decyzyjny stanowiło wytworzone oprogramowanie składające się z Watchdoga, będącego mikroserwisem monitorującym pojawienie się nowych nagrań i identyfikującym nietoperze, bazy danych do której te informacje trafiały oraz interfejsu użytkownika, który je wizualizował.
 
-Szczegóły procesu przepływu danych od mikrofonu do interfejsu użytkownika zaprezentowano w rodziale "System w działaniu".
+Szczegóły procesu przepływu danych od mikrofonu do interfejsu użytkownika zaprezentowano w rozdziale "System w działaniu".
 
 \begin{figure}[h]
     \centering
@@ -861,7 +861,7 @@ Do treningu i predykcji gatunków nietoperzy użyta został sieć konwolucyjna s
 
 W każdej z warstw konwolucyjnych zastosowano funkcję aktywacji ReLU i warstwę max-pooling o filtrze w rozmiarze 2 ("stride").
 
-Szczegóły związane z uzasadnieniem implementacji danej architekruty sieci zostały opisane w rozdziale "Realizacja sieci neuronowej".
+Szczegóły związane z uzasadnieniem implementacji danej architektury sieci zostały opisane w rozdziale "Realizacja sieci neuronowej".
 \clearpage
 
 \section{Aplikacja użytkownika}
@@ -952,7 +952,7 @@ Diagram sekwencji wg Rysunku \ref{img:sequence_records} przedstawia logikę dzia
 
 \chapter{Implementacja Watchdoga}
 
-Watchdog jest mikroserisem do synchronizacji danych z systemu SMART z bazą danych i aplikacją. Jest programem napisanym w języku Python. Stanowi połączenie pomiędzy systemem SMART, a Aplikacją Użytkownika, której przekazuje rekordy zawierające wynik jego pracy. 
+Watchdog jest mikroserwisem do synchronizacji danych z systemu SMART z bazą danych i aplikacją. Jest programem napisanym w języku Python. Stanowi połączenie pomiędzy systemem SMART, a Aplikacją Użytkownika, której przekazuje rekordy zawierające wynik jego pracy. 
 
 W pierwszej kolejności Watchdog monitoruje folder nagrań na wypadek pojawienia się nowego nagrania. Przedstawiono to na Listingu \ref{lst:watch_directory}
 
@@ -992,7 +992,7 @@ Pojawienie się nowego pliku wywołuje zdarzenie, które powoduje, że wykonany 
 Nazwa pliku podzielona jest na cztery człony oddzielone znakiem ” ” i zakończone rozszerzeniem pliku WAV. Pierwszy człon odnosi się do identyfikatora konkretnego urządzenia SMART. Drugi człon to data nagrania w formacie YYYYMMDD. Trzeci człon to czas nagrania w formacie HHMMSS. Ostatni człon jest losową sześciocyfrową liczbą. Po wyodrębnieniu powyższych członów zostają one zapisane do zmiennych.
 
 
-Następnie Watchdog wykorzystuje model sztucznej inteligencji w celu przanalizowania pliku nagrania. Analiza nadaje odpowiednią wartość zmiennym bat, turbineStopSignal oraz verification. W kolejnym kroku zapisane zmienne zostają umieszczone wewnątrz obiektu JSON (JavaScript Object Notation). Obiekt JSON za pomocą metody POST zostaje wysłany na adres API serwera.
+Następnie Watchdog wykorzystuje model sztucznej inteligencji w celu przeanalizowania pliku nagrania. Analiza nadaje odpowiednią wartość zmiennym bat, turbineStopSignal oraz verification. W kolejnym kroku zapisane zmienne zostają umieszczone wewnątrz obiektu JSON (JavaScript Object Notation). Obiekt JSON za pomocą metody POST zostaje wysłany na adres API serwera.
 Serwer nasłuchuje na porcie ”http://localhost:3900/api/records” i po pojawieniu się zapytania z obiektem JSON tworzy na jego podstawie rekord w bazie danych
 
 
@@ -1003,7 +1003,7 @@ Serwer nasłuchuje na porcie ”http://localhost:3900/api/records” i po pojawi
 
 Aplikacja użytkownika służy do zbierania i zapisywania w bazie danych rekordów tworzonych na podstawie decyzji modelu sieci neuronowej, które następnie pozwala wyświetlić na liście z możliwością filtrowania i sortowania ich. W skład aplikacji wchodzą: baza danych, serwer oraz interfejs użytkownika.
 
-Centralną rolę pełni serwer, który pośredniczy w komunikacji z bazą danych i przyjmuje komunikację ze strony modelu sztucznej inteligencji oraz interfejsu użytkownika. Komunikacja ta realizowana jest poprzez interfejs API (application programming interface).
+Centralną rolę pełni serwer, który pośredniczy w komunikacji z bazą danych i przyjmuje komunikację ze strony modelu sztucznej inteligencji oraz interfejsu użytkownika. Komunikacja ta realizowana jest poprzez interfejs API (Application Programming Interface).
 \clearpage
 
 \section{Baza danych}
@@ -1328,7 +1328,7 @@ W ramach testów sprawdzono zgodność sytemu z wymaganiami Klienta Wewnętrzneg
 \subsubsection{Rejestracja ultradźwięków}
 Rejestracja ultradźwięków została przetestowana w trakcie testów terenowych systemu SMART z wykorzystaniem sztucznie wytworzonych ultradźwięków. Zostało to opisane w punktach: "Testy terenowe systemu SMART" oraz "Prace badawczo-rozwojowe - testy terenowe". 
 
-Z testów tych wynika, że system wykrywał większość odtworzonych dźwięków o danej częstotliwości, jeśli dźwięk taki na danej odległości od mikrofonu był wykrywany. Tylko w dwóch przypadkach zarejestrowano 66\% odtworzonych dźwięków (2 na 3 odtworzone dźwięki - obydwa przypadki były dla odległości 40 m i częstotliwości 25-35 kHz, pierwszy dla kąta 30\textdegree, a drugi dla kąta 60\textdegree ), a w jednym przypadku 33\% odtworzonych dźwieków (1 na 3 odtworzone dźwięki, na odległości 20 m od mikrofonu dla częstotliwości 40-48 kHz i przy kącie 0\textdegree).
+Z testów tych wynika, że system wykrywał większość odtworzonych dźwięków o danej częstotliwości, jeśli dźwięk taki na danej odległości od mikrofonu był wykrywany. Tylko w dwóch przypadkach zarejestrowano 66\% odtworzonych dźwięków (2 na 3 odtworzone dźwięki - obydwa przypadki były dla odległości 40 m i częstotliwości 25-35 kHz, pierwszy dla kąta 30\textdegree, a drugi dla kąta 60\textdegree ), a w jednym przypadku 33\% odtworzonych dźwięków (1 na 3 odtworzone dźwięki, na odległości 20 m od mikrofonu dla częstotliwości 40-48 kHz i przy kącie 0\textdegree).
 
 Ponadto maksymalne odległości detekcji nietoperzy odzywających się w poszczególnych zakresach częstotliwości odpowiadają odległościom obliczonym matematycznie dla tych częstotliwości \cite{agranat}. 
 
@@ -1372,7 +1372,7 @@ System rozpoznawania nietoperzy został zrealizowany poprzez implementację mode
 Realizacja interfejsu do wizualizacji danych została przedstawiona szczegółowo w rozdziale "Implementacja aplikacji użytkownika". Aplikacja użytkownika służy do zbierania i zapisywania w bazie danych rekordów tworzonych na podstawie decyzji modelu sieci neuronowej, które następnie pozwala wyświetlić na liście z możliwością filtrowania i sortowania ich. W skład aplikacji wchodzą: baza danych, serwer oraz interfejs użytkownika. 
 
 
-Wszystkie próby wizualizacji danych po pobraniu dźwięków z mikrofonu powodowały zapis do bazy danych i wyświetlenie w aplikacji użytkownika. Ponadto zaimplementowane zostały testy jednostkowe oraz integracyjne z wykorzystaniem bibliotek Jest oraz Supertest, a do do walidacji treści wpisywanej przez użytkownika aplikacji przy rejestracji lub logowaniu posłużyła biblioteka Joi, wykorzystanie tych elementów pomogły zapewnić poprawność funkcjonowania tej części oprogramowania.
+Wszystkie próby wizualizacji danych po pobraniu dźwięków z mikrofonu powodowały zapis do bazy danych i wyświetlenie w aplikacji użytkownika. Ponadto zaimplementowane zostały testy jednostkowe oraz integracyjne z wykorzystaniem bibliotek Jest oraz Supertest, a do walidacji treści wpisywanej przez użytkownika aplikacji przy rejestracji lub logowaniu posłużyła biblioteka Joi, wykorzystanie tych elementów pomogły zapewnić poprawność funkcjonowania tej części oprogramowania.
 
 W związku z powyższym funkcjonalność tę można uznać za zrealizowaną.
 
@@ -1417,9 +1417,9 @@ Wszystkie wykonane próby zakończyły się poprawną realizacją wszystkich ele
   \item Implementacja interfejsu użytkownika
   \item Implementacja testów oprogramowania
   \item Implementacja bazy danych
-  \item Implementaca połączenia danych z systemu SMART przez rsync
+  \item Implementacja połączenia danych z systemu SMART przez rsync
   \item Instalacja systemu Linux na komputerze Bioseco
-  \item Wdrożenie przekazywania nagrań pomiędzy systeme SMART a Watchdogiem
+  \item Wdrożenie przekazywania nagrań pomiędzy systemem SMART a Watchdogiem
   \item Wdrożenie przekazywania danych pomiędzy Watchdogiem i aplikacją
   \item Przepisanie książki inżynierskiej do projektu w LaTeX
   \item Wytworzenie sztucznego głosu nietoperza do wstępnych testów sprzętu
@@ -1515,7 +1515,7 @@ System SMART składa się z mikrofonu ultradźwięków i kontrolera będącego p
 
 Dobrej jakości współpraca zapoczątkowana z firmą Wildlife Acoustics niesie możliwości kooperacji we wdrożeniu alternatywnych sposobów serwowania danych, w tym użycie własnego klasyfikatora. Sama firma umożliwia korzystanie z udostępnionych poleceń Linux w celu dostępu i autorskiej manipulacji danymi \cite{smart-linux-guide}.
 
-Aplikacja serwowana przez kontroler, mimo wielu ciekawych i potrzebnych w kontekście wykorzystania systemu SMART na farmach wiatrowych funkcjonalności nie posiada bazy danych. Brak bazy danch wpływa m.in. na brak możliwości precyzyjnego filtrowania danych, w tym danych pobieranych poprzez aplikację do plików CSV, nie ma też łatwej możliwości przygotowania raportów z aktywności nietoperzy na farmie wiatrowej. Wykorzystanie w tym celu aplikacji, jaka została przygotowania w niniejszej pracy dyplomowej takich możliwości dostarcza. Jednak uprzednio aplikacja musiałaby być prawdopodobnie zintegrowana z aktualnym ekosystemem programistycznym firmy Bioseco. W obecnej postaci nie jest więc produktem gotowym do wdrożenia. Jednak z uwagi na zaznajomienie się twórców pracy z wieloma zagadnieniami związanymi z tworzeniem tego typu oprogramowania oraz zagadnieniami dziedzinowymi szansa na komercjalizację interfejsu użytkownika z bazą danych wytworzonymi w oparciu o system przygotowany w niniejszej pracy, jest bardzo wysoka. 
+Aplikacja serwowana przez kontroler, mimo wielu ciekawych i potrzebnych w kontekście wykorzystania systemu SMART na farmach wiatrowych funkcjonalności nie posiada bazy danych. Brak bazy danych wpływa m.in. na brak możliwości precyzyjnego filtrowania danych, w tym danych pobieranych poprzez aplikację do plików CSV, nie ma też łatwej możliwości przygotowania raportów z aktywności nietoperzy na farmie wiatrowej. Wykorzystanie w tym celu aplikacji, jaka została przygotowania w niniejszej pracy dyplomowej takich możliwości dostarcza. Jednak uprzednio aplikacja musiałaby być prawdopodobnie zintegrowana z aktualnym ekosystemem programistycznym firmy Bioseco. W obecnej postaci nie jest więc produktem gotowym do wdrożenia. Jednak z uwagi na zaznajomienie się twórców pracy z wieloma zagadnieniami związanymi z tworzeniem tego typu oprogramowania oraz zagadnieniami dziedzinowymi szansa na komercjalizację interfejsu użytkownika z bazą danych wytworzonymi w oparciu o system przygotowany w niniejszej pracy, jest bardzo wysoka. 
 
 \chapter{Podsumowanie}
 W niniejszej pracy dyplomowej udało się zrealizować wszystkie wymagania systemowe zdefiniowane w początkowej fazie przygotowania projektu poza oczekiwaną dokładnością sieci neuronowej. Jedno z wymagań zostało zaniechane w trakcie implementacji systemu i konsultacji z Bioseco S.A. i była nim implementacja zatrzymań turbiny wiatrowej, czego powody wyjaśniono w punkcie "Testy funkcjonalne" (System do zatrzymywania turbiny wiatrowej). 
@@ -1524,13 +1524,18 @@ W niniejszej pracy dyplomowej udało się zrealizować wszystkie wymagania syste
 Z sukcesem udało się zrozumieć całość tego interdyscyplinarnego problemu, który ma rozwiązywać zaprojektowany w pracy dyplomowej system oraz wytworzyć wszystkie jego komponenty. Nie udało się wytworzyć pobierania dźwięku z mikrofonu jako rozwiązania generycznego, czyli z wszystkimi elementami oprogramowania znajdującymi się na jednostce obliczeniowej zaimplementowanej przez zespół inżynierski. 
 
 
-Udało się wdrożyć jedno z najnowocześniejszych podejść w automatycznej identyfikacji nietoperzy, jakim jest uczenie głębokie, które zaczęto stosować realnie dopiero na rok przed rozpoczęciem niniejszej pracy, a które daje bardzo dobre rezultaty w automatycznej identyfikacji gatunków nietoperzy. Niestety w niniejszej pracy nie udało sie otrzymać zadowalających efektów, co mogło być spowodowane mało optymalnym przygotowaniem danych treningowych, np. braku odfiltrowania nagrań ze znajdującymi się dwoma gatunkami nietoperzy na jednym nagraniu.
+Udało się wdrożyć jedno z najnowocześniejszych podejść w automatycznej identyfikacji nietoperzy, jakim jest uczenie głębokie, które zaczęto stosować realnie dopiero na rok przed rozpoczęciem niniejszej pracy, a które daje bardzo dobre rezultaty w automatycznej identyfikacji gatunków nietoperzy. Niestety w niniejszej pracy nie udało się otrzymać zadowalających efektów, co mogło być spowodowane mało optymalnym przygotowaniem danych treningowych, np. braku odfiltrowania nagrań ze znajdującymi się dwoma gatunkami nietoperzy na jednym nagraniu.
 
 Sukcesem jest z pewnością przezwyciężenie wszelkich trudności powstałych w trakcie trwania projektu, utrzymanie składu grupy inżynierskiej i skuteczna finalizacja pracy w zmiennych warunkach osobistych członków zespołu oraz przy złożeniu się niekorzystnych czynników losowych.
 
 
 \chapter{Załączniki}
 
+Na załączonej do niniejszej pracy płycie DVD znajdują się niżej wymienione dokumenty:
+1. Niniejsza praca w formacie PDF
+2. Dokument Założeń Wstępnych
+3. Specyfikacja Wymagań
+4. Kod źródłowy oprogramowania i modelu
 
 \section{Dokument założeń wstępnych}
 
@@ -1547,7 +1552,7 @@ Sukcesem jest z pewnością przezwyciężenie wszelkich trudności powstałych w
   }
   \projectlead{
     \begin{enumerate}
-      \item Dawid Gradolewski
+      \item dr Dawid Gradolewski
     \end{enumerate}
   }
   \documentname{Dokument Założeń Wstępnych}
@@ -1661,7 +1666,7 @@ Sukcesem jest z pewnością przezwyciężenie wszelkich trudności powstałych w
   }
   \projectlead{
     \begin{enumerate}
-      \item Dawid Gradolewski
+      \item dr Dawid Gradolewski
     \end{enumerate}
   }
   \documentname{Specyfikacja Wymagań Systemowych}
