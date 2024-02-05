@@ -107,8 +107,8 @@ Bioseco S.A. jest innowacyjną polską firmą technologiczną z siedzibą w Gda�
 \chapter{Metody pracy}
 
 
-
 \section{Proces wytwórczy}
+W trakcie procesu wytwórczego kluczowymi wymaganiami, które powinien spełniać system były: wybrany mikrofon ultradźwięków możliwy do zastosowania na turbinie wiatrowej, zaimplementowane pobieranie nagrań z mikrofonu, identyfikacja gatunków nietoperzy w tych nagraniach, zapis tych informacji do bazy danych oraz wizualizacja ich w interfejsie użytkownika. 
 
 \subsection{Przyjęte podejście}
 Zastosowano podejście hybrydowe: Water-Scrum-Fall \cite{water-scrum-fall1} \cite{water-scrum-fall2} \cite{water-scrum-fall3}. Podejście Scrum jest typowe dla projektów, w których ostateczny kształt projektu nie jest znany i jest wymagana duża elastyczność w procesie wytwórczym. Scrum jest więc szczególnie predestynowany do wykorzystania w projektach R\&D, takich jak niniejsza praca inżynierska. Mimo to, z uwagi na duże doświadczenie firmy Bioseco S.A. w pracy z klientami i znajomość ich potrzeb, część wymagań musiała być ściśle określona w początkowej fazie przygotowania systemu, w której wymagania te zdefiniowano, przenalizowano dostępne na rynku zasoby i na tej podstawie przygotowano wstępny projekt systemu. Część wymagań jednak nie była dokładnie zdefiniowana, takich jak np. jaka powinna być architektura rejestratora ultradźwięków, aby realizować zadanie wykrywania nietoperzy na farmach wiatrowych. Do realizacji tego typu wymagań bardzo dobrze nadawało się podejście iteracyjne.
@@ -800,7 +800,7 @@ Kod głównej funkcji przedstawiono w Listingu \ref{lst:predict} poniżej.
 \end{lstlisting}
 
 \section{Skuteczność sieci neuronowej}
-
+Dokładność sieci neuronowej wyniosła poniżej 75\% w związku z czym, nie udało się zrealizować założonego poziomu dokładności.
 
 \chapter{Struktura systemu}
 
@@ -1339,14 +1339,8 @@ Funkcjonalność ta została zrealizowana poprzez Watchdoga zaimplementowanego j
 Podczas prób pobierania danych z różnych zakresów czasowych, dane za każdym razem były pobierane poprawnie, w związku z czym funkcjonalność tą należy uznać za zrealizowaną.
 
 \subsubsection{Rozpoznanie wystąpienia nietoperza/rozpoznanie gatunku nietoperza}
-TODO
+System rozpoznawania nietoperzy został zrealizowany poprzez implementację modeli sieci neuronowej, jednak uzyskana dokładność wyniosła poniżej 75\% w związku z czym tej funkcjonalności nie można uznać za zrealizowaną.
 
-
-\subsubsection{System uczenia sieci neuronowej}
-Realizacja i wyniki sieci neuronowej zostały przedstawiono szczegółowo w rozdziale "Realizacja sieci neuronowej"
-
-
-TODO
 
 \subsubsection{Interfejs do wizualizacji danych}
 Realizacja interfejsu do wizualizacji danych została przedstawiona szczegółowo w rozdziale "Implementacja aplikacji użytkownika". Aplikacja użytkownika służy do zbierania i zapisywania w bazie danych rekordów tworzonych na podstawie decyzji modelu sieci neuronowej, które następnie pozwala wyświetlić na liście z możliwością filtrowania i sortowania ich. W skład aplikacji wchodzą: baza danych, serwer oraz interfejs użytkownika. 
@@ -1831,30 +1825,15 @@ Osiągnięte zostały kluczowe cele projektu - przyczynienie się do rozwiązani
 
       \item \textbf{Wymagania funkcjonalne}
       
-        \begin{requirementstab}[label={tab:requirements:func1},caption={System przygotowania i normalizacji danych}]
-          \id{WF01}
-          \priority{M}
-          \name{System przygotowania i normalizacji danych}
-          \descr{Stworzenie potrzebnych funkcji w programie do oddzielenia odstających próbek i przygotowanie bazy danych do uczenia maszynowego oraz/lub uczenia sieci neuronowych}
-          \acceptcrit{Baza danych uczących model oddzielona od próbek odstających i przystosowana do zadanego zadania.}
-          \inputdata{}
-          \preconditions{}
-          \postconditions{}
-          \exceptions{}
-          \implementation{}
-          \sholder{UOB 01}
-          \reqrelated{}
-        \end{requirementstab}
+
         \begin{requirementstab}[label={tab:requirements:func1},caption={System rozpoznawania wystąpienia nietoperza}]
           \id{WF02}
           \priority{M}
           \name{System rozpoznawania wystąpienia nietoperza}
           \descr{Opracowanie algorytmu uczenia maszynowego oraz rozpoznawania wystąpienia nietoperza na żywo poprzez śledzenie sygnałów uzyskanych za pomocą urządzenia do detekcji.}
           \acceptcrit{Wytrenowany model do rozpoznawania wystąpienia nietoperzy.}
-          \inputdata{}
-          \preconditions{}
-          \postconditions{}
-          \exceptions{}
+          \inputdata{Zbiór nagrań ultradźwięków nietoperzy} 
+          \postconditions{Wytrenowany model}
           \implementation{}
           \sholder{UNB 01, UNP 01}
           \reqrelated{}
@@ -1865,10 +1844,8 @@ Osiągnięte zostały kluczowe cele projektu - przyczynienie się do rozwiązani
           \name{System uczenia sieci neuronowej}
           \descr{Opracowanie systemu do uczenia sieci neuronowej rozpoznawania gatunków nietoperzy.}
           \acceptcrit{Stworzony algorytm do tworzenia modelu do rozpoznawania gatunku nietoperza}
-          \inputdata{}
-          \preconditions{}
-          \postconditions{}
-          \exceptions{}
+          \inputdata{Zbiór nagrań ultradźwięków nietoperzy}
+          \postconditions{Wytrenowany model}
           \implementation{}
           \sholder{UOB 01, UOP 01}
           \reqrelated{}
@@ -1879,10 +1856,8 @@ Osiągnięte zostały kluczowe cele projektu - przyczynienie się do rozwiązani
           \name{System rozpoznawania gatunku nietoperza}
           \descr{Opracowanie systemu do rozpoznawania gatunku nietoperza za pomocą detektora.}
           \acceptcrit{Stworzenie modelu oraz połączenie go z urządzeniem do rozpoznawania nietoperzy.}
-          \inputdata{}
-          \preconditions{}
-          \postconditions{}
-          \exceptions{}
+          \inputdata{Zbiór nagrań ultradźwięków nietoperzy}
+          \postconditions{Wytrenowany model}
           \implementation{}
           \sholder{UOB 01}
           \reqrelated{}
@@ -1893,10 +1868,8 @@ Osiągnięte zostały kluczowe cele projektu - przyczynienie się do rozwiązani
           \name{Interfejs do wizualizacji danych}
           \descr{Stworzenie interfejsu do przeglądania danych pobieranych z bazy danych i wizualizacja tych danych.}
           \acceptcrit{Stworzony interfejs działający i spełniający swoją funkcję.}
-          \inputdata{}
-          \preconditions{}
-          \postconditions{}
-          \exceptions{}
+          \inputdata{Nagrania pochodzące z mikrofonu ultradźwięków}
+          \postconditions{Nagrania widoczne w interfejsie użytkownika}
           \implementation{}
           \sholder{UOB 01}
           \reqrelated{}
@@ -1911,10 +1884,8 @@ Osiągnięte zostały kluczowe cele projektu - przyczynienie się do rozwiązani
           \name{System wyłączający wiatraki}
           \descr{Połączenie systemu wykrycia nietoperza z systemem wyłączającym wiatraki}
           \acceptcrit{Stworzenie punktu styku, który będzie jako output dawać sygnał do systemu wyłączającego wiatraki.}
-          \inputdata{}
-          \preconditions{}
-          \postconditions{}
-          \exceptions{}
+          \inputdata{Zidentyfikowane nagrania nietoperzy}
+          \postconditions{Wystawione API z informacją o konieczności wyłączenia turbiny}
           \implementation{}
           \sholder{UNB 01, UNP 01}
           \reqrelated{}
@@ -1923,16 +1894,28 @@ Osiągnięte zostały kluczowe cele projektu - przyczynienie się do rozwiązani
           \id{WF02}
           \priority{M}
           \name{Baza danych}
-          \descr{Połączenie system z bazą danych, która będzie zbierać dane wystąpienia nietoperza}
+          \descr{Połączenie systemu z bazą danych, która będzie zbierać dane wystąpienia nietoperza}
           \acceptcrit{Stworzenie punktu styku, który będzie jako output dawać sygnał do systemu wyłączającego wiatraki.}
-          \inputdata{}
-          \preconditions{}
-          \postconditions{}
-          \exceptions{}
+          \inputdata{Nagrania nietoperzy z mikrofonu ultradźwięków}
+          \postconditions{Nagrania zapisane w bazie danych}
           \implementation{}
           \sholder{UOP 01, UNB 01}
           \reqrelated{}
         \end{requirementstab}
+
+        \begin{requirementstab}[label={tab:requirements:func1},caption={Liczba i lokalizacja mikrofonów na turbinie}]
+          \id{WF02}
+          \priority{M}
+          \name{Liczba i lokalizacja mikrofonów na turbinie}
+          \descr{Plan liczby i lokalizacji mikrofonów ultradźwięków na turbinie wiatrowej tak, aby system pewłnił funkcje ochrony nietoperzy}
+          \acceptcrit{Realizacja testów terenowych mikrofonu}
+          \inputdata{Mikrofon ultradźwięków}
+          \postconditions{Pokrycie kąte 360\textdegree przez rejestrację ultradźwękową}
+          \implementation{}
+          \sholder{UOP 01, UNB 01}
+          \reqrelated{}
+        \end{requirementstab}
+
         \clearpage
 
       \item \textbf{Wymagania pozafunkcjonalne}
