@@ -1,13 +1,64 @@
-import hug
 import os
-import signal
-import threading
 import time
+import torch
+import torchaudio
 import requests
+from cnn import CNNNetwork
+from batsdataset import BatsDataset
+from train import NUM_SAMPLES, SAMPLE_RATE
 
 # import  as inference
 
 PATH = r"../recordings/"
+
+class_mapping = [
+                "BARBAR",
+                "EPTNIL",
+                "EPTSER",
+                "MYOBRA",
+                "MYODAS",
+                "MYODAU",
+                "MYONAT",
+                "MYCLEI",
+                "NYCNOC",
+                "PIPNAT",
+                "PIPPIP",
+                "PIPPYG",
+                "PLEAUR",
+                "VESMUR",
+]
+
+def pre_prediction(path_sound):
+    cnn = CNNNetwork()
+    state_dict = torch.load(r"C:\Users\Jakub\Documents\PJATK\INZ\Batmonit_model\feedforwardnet.pth", map_location=torch.device('cpu'))
+    cnn.load_state_dict(state_dict)
+
+    # load urban sound dataset
+    #instantiating our dataset object and create data loader
+    spectrogram = torchaudio.transforms.Spectrogram(
+        n_fft=1024,
+        hop_length=1024,
+    )
+
+    bd = BatsDataset(   path_sound,
+                        spectrogram,
+                        SAMPLE_RATE,
+                        NUM_SAMPLES,
+                        "cpu")
+
+    input = bd
+    input.unsqueeze_(0)
+    return cnn, input
+
+def predict(model, input):
+    model, input = pre_prediction()
+    model.eval()
+    with torch.no_grad():
+        preditions = model(input)
+        # Tensor (1, 10) -> [[0.1, 0.01, ..., 0.6]]
+        predicted_index = preditions[0].argmax(0)
+        predicted = class_mapping[predicted_index]
+    return predicted
 
 def watch_directory():
     from watchdog.events import FileSystemEventHandler
@@ -38,7 +89,7 @@ class NewRecord():
     def __init__(self, file_name) -> None:
         self.audio = f"../recordings/{file_name}"
         _, self.date, self.name = self._process_new_file(file_name)
-        self.speciesId = 3 
+        self.speciesId = predict(self.audio)
         self.verification = 1
         self.turbineStopSignal = 1
         self.bat = 1
@@ -60,10 +111,6 @@ class NewRecord():
     def convert_to_dict(self):
         return vars(self)    
 
-def start_server_with_watchdog():
-    watch_thread = threading.Thread(target=watch_directory)
-    watch_thread.start()
-    __hug__.http.serve(port=3800)
 
 def create_record(data):
     url = "http://localhost:3900/api/records"
