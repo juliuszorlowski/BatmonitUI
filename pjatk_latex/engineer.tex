@@ -876,6 +876,15 @@ Widok rejestracji (\ref{img:app_register}) pozwala na zarejestrowanie nowego uż
   \label{img:app_register}
 \end{figure}
 
+Diagram sekwencji przedstawiony na Rysunku \ref{img:sequence_register} obrazuje logikę działania modułu rejestracji. Po wprowadzeniu przez użytkownika danych i potwierdzeniu przyciskiem Register, aplikacja sprawdza, czy takich użytkownik już istnieje w systemie. Jeśli tak, to zwracana jest odpowiedź, że taki użytkownik nie może zostać ponownie zarejestrowany. Jeśli nie istnieje, to użytkownik zostaje zarejestrowany.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{sprz/sequence_register}
+  \caption{Diagram sekwencji dla rejestracji}
+  \label{img:sequence_register}
+\end{figure}
+
 Do celu zalogowania istniejącego już użytkownika służy widok logowania (\ref{img:app_login}).
 \begin{figure}[h]
   \centering
@@ -883,7 +892,15 @@ Do celu zalogowania istniejącego już użytkownika służy widok logowania (\re
   \caption{Widok logowania użytkownika}
   \label{img:app_login}
 \end{figure}
-\clearpage
+
+Diagram sekwencji z Rysunku \ref{img:sequence_login} przedstawia logikę logowania. Po wpisaniu przez użytkownika danych logowania i potwierdzenia przyciskiem Login, aplikacja sprawdza, czy taki użytkownik istnieje. Jeśli tak, to sprawdza, czy wprowadzone hasło jest poprawne. Jeśli tak, to użytkownik zostaje zalogowany. W wypadku gdy użytkownik nie istnieje lub podane hasło jest niepoprawne, aplikacja zwraca komunikat o nieprawidłowych danych logowania.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/sequence_login}
+  \caption{Diagram sekwencji dla logowania}
+  \label{img:sequence_login}
+\end{figure}
 
 Linki \textit{Login} i \textit{Register} są widoczne w pasku menu tylko w razie, gdy żaden użytkownik nie jest zalogowany.
 
@@ -922,6 +939,15 @@ Pod tabelą rekordów znajdują się przyciski paginacji, które pozwalając pod
   \includegraphics[width=0.8\textwidth]{sprz/app_records}
   \caption{Widok listy rekordów}
   \label{img:app_records}
+\end{figure}
+
+Diagram sekwencji wg Rysunku \ref{img:sequence_records} przedstawia logikę działania aplikacji związaną z wyświetlaniem rekordów. W momencie, gdy użytkownik otworzy zakładkę Records z listą rekordów, aplikacja wykonuje zapytanie do bazy danych i pobiera listę rekordów.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sprz/sequence_records}
+  \caption{Diagram sekwencji dla rekordów}
+  \label{img:sequence_records}
 \end{figure}
 
 \chapter{Implementacja Watchdoga}
@@ -1505,6 +1531,11 @@ Sukcesem jest z pewnością przezwyciężenie wszelkich trudności powstałych w
 
 \chapter{Załączniki}
 
+Na załączonej do niniejszej pracy płycie DVD znajduje się poniższe dokumenty i załączniki:
+1. Niniejsza praca w formacie PDF
+2. Dokument Założeń Wstępnych
+3. Specyfikacja Wymagań 
+
 \section{Dokument założeń wstępnych}
 
 \begin{documenttable}[]
@@ -1942,29 +1973,6 @@ Sukcesem jest z pewnością przezwyciężenie wszelkich trudności powstałych w
 \end{figure}
 
 \clearpage
-
-\section{Diagramy sekwencji}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.9\textwidth]{sprz/sequence_register}
-  \caption{Diagram sekwencji dla rejestracji}
-  \label{img:sequence_register}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.8\textwidth]{sprz/sequence_login}
-  \caption{Diagram sekwencji dla logowania}
-  \label{img:sequence_login}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.8\textwidth]{sprz/sequence_records}
-  \caption{Diagram sekwencji dla rekordów}
-  \label{img:sequence_records}
-\end{figure}
 
 \printbibliography[title={Bibliografia}, heading=bibintoc]
 
