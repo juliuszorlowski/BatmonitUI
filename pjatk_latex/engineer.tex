@@ -67,8 +67,7 @@ W ramach sformułowanego tematu wyszczególniono następujące cele badawcze i p
 
 \section{Geneza problemu}
 
-Lądowe farmy wiatrowe mogą mieć znaczący wpływ na środowisko naturalne, w szczególności na nietoperze \cite{Wytyczne}. Wszystkie gatunki nietoperzy w Polsce są objęte ścisłą ochroną gatunkową i podlegają ochronie prawnej zgodnie z Rozporządzeniem Ministra Środowiska z dnia 16 grudnia 2016 r. w sprawie ochrony gatunkowej zwierząt \cite{Rozporządzenie}. Tym samym inwestor realizujący inwestycję wiatrową przestrzegając prawa ochrony przyrody jest zobligowany uzyskać tzw. Decyzję Środowiskową (dalej: DŚ). Zawarte są w niej wszelkie informacje dotyczące: chiropterofauny danego obszaru, szacowanego wpływu inwestycji na nietoperze, działań zapobiegających i minimalizujących ewentualny wpływ inwestycji na nietoperze, tak by spełniała ona założenia dobrych praktyk i przepisy prawa – polskiego 
-i międzynarodowego. 
+Lądowe farmy wiatrowe mogą mieć znaczący wpływ na środowisko naturalne, w szczególności na nietoperze \cite{Wytyczne}. Wszystkie gatunki nietoperzy w Polsce są objęte ścisłą ochroną gatunkową i podlegają ochronie prawnej zgodnie z Rozporządzeniem Ministra Środowiska z dnia 16 grudnia 2016 r. w sprawie ochrony gatunkowej zwierząt \cite{Rozporządzenie}. Tym samym inwestor realizujący inwestycję wiatrową przestrzegając prawa ochrony przyrody jest zobligowany uzyskać tzw. Decyzję Środowiskową (dalej: DŚ). Zawarte są w niej wszelkie informacje dotyczące: chiropterofauny danego obszaru, szacowanego wpływu inwestycji na nietoperze, działań zapobiegających i minimalizujących ewentualny wpływ inwestycji na nietoperze, tak by spełniała ona założenia dobrych praktyk i przepisy prawa – polskiego i międzynarodowego. 
 
 Dotychczas przyjętą praktyką w przypadku wykrycia zbyt dużych aktywności nietoperzy w monitoringu przedrealizacyjnym było wpisanie do DŚ obowiązkowych wyłączeń turbin w okresach, w których te zbyt duże aktywności wykryto \cite{Wytyczne}. Dzieje się tak między innymi dlatego, że nie istniał wcześniej system wykrywający nietoperze w czasie rzeczywistym, w którym akcja, taka jak wyłączenie turbiny mogła być podjęta o bieżące aktywności nietoperzy, warunki pogodowe i inne. Tymczasem dynamika użytkowania przestrzeni przez nietoperze jest bardzo zmienna w czasie i po realizacji inwestycji ssaki te w całych wyznaczonych okresach nie muszą być zagrożone. A wyłączenia turbin na długie okresy w roku wiążą się z ogromnymi stratami inwestorów. System zaproponowany w ramach niniejszej pracy inżynierskiej może przyczynić się do wspierania rozwoju nowych standardów na poziomie krajowym, europejskim i światowym, w zakresie niezbędnych działań minimalizujących wpływ farm wiatrowych na nietoperze. Zamiast dotychczas stosowanych, z góry określonych wyłączeń na długi okres przy określonej prędkości wiatru, mogłyby być wykorzystywane wyłączenia sterowane na bieżąco przez system – turbiny zatrzymywane byłyby tylko w czasie, kiedy większe liczebności nietoperzy faktycznie się pojawiają.
 
@@ -102,7 +101,7 @@ Bioseco S.A. jest innowacyjną polską firmą technologiczną z siedzibą w Gda�
 \section{Proces wytwórczy}
 
 \subsection{Przyjęte podejście}
-Zastosowano podejście hybrydowe: Water-Scrum-Fall \cite{water-scrum-fall1} \cite{water-scrum-fall2} \cite{water-scrum-fall3}. Prace rozpoczęto od przygotowania wymagań systemowych, analiz i wstępnego projektu systemu. W kolejnej fazie wytwarzania oprogramowania zastosowano metodę programowania zwinnego w oparciu o plany i dokumentację z pierwszego etapu, korygowane na bieżąco przy każdej iteracji. W ostatniej fazie, po zakończeniu etapu zwinnego, przewidziano testy systemowe i integracyjne. Schemat metodyki wytwarzania oprogramowania przedstawiono poniżej.
+Zastosowano podejście hybrydowe: Water-Scrum-Fall \cite{water-scrum-fall1} \cite{water-scrum-fall2} \cite{water-scrum-fall3}. Prace rozpoczęto od przygotowania wymagań systemowych, analiz i wstępnego projektu systemu. W kolejnej fazie wytwarzania oprogramowania zastosowano metodę programowania zwinnego w oparciu o plany i dokumentację z pierwszego etapu, korygowane na bieżąco przy każdej iteracji. Przyjęto czas trwania sprintu na 4 tygodnie. Przyjąto tak długi okres sprintu z uwagi na liczbę i skalę potencjalnych zagrożeń oraz obciążeń członków zespołu projektowego. W ostatniej fazie, po zakończeniu etapu zwinnego, przewidziano testy systemowe i integracyjne. Schemat metodyki wytwarzania oprogramowania przedstawiono poniżej. Odstępstwem od tej wizualizacji było brak elementu "Daily Scrum meeting", który został zastąpiony spotkaniami raz w tygodniu, a w pozostałym czasie komunikacja miała miejsce przez media opisane w rozdziale "Infrastruktura komunikacyjna i dokumentacja". 
 
 \begin{figure}[h]
   \centering
@@ -111,13 +110,49 @@ Zastosowano podejście hybrydowe: Water-Scrum-Fall \cite{water-scrum-fall1} \cit
   \label{img:water-scrum-fall}
 \end{figure}
 
+\subsection{Przebieg procesu wytwórczego}
+
+\subsubsection{Faza Water}
+W fazie "Water" przygotowano wymagania systemowe, wszelkie niezbędne w początkowym etapie analizy oraz wstępny projekt systemu. W tym czasie powstała większość dokumentacji. Był to również okres intensywnych konsultacji z Bioseco S.A. oraz konsultantami dziedzinowymi - Animal Sound Labs, Tribio Sp. z o.o. i dr Joanną Furmankiewicz. Był to też główny okres, w którym trwały prace nad doborem odpowiedniego mikrofonu ultradźwięków, co rzutowało na dalszą konstrukcję całego systemu.
+
+\begin{itemize}
+  \item{październik 2022 - spotkanie z Bioseco S.A., odbiór wstępnie dobranego sprzętu do realizacji projektu, zarys wymagań systemowych, wybranie narzędzi komunikacji i metod procesu wytwórczego,}
+  \item{listopad 2022 - spotkanie z Bioseco S.A., wstępny dobór technologii, weryfikacja możliwości wykorzystania sprzętu pozyskanego z Bioseco S.A., opracowanie strategii co do pozyskania bądź opracowania nagrań nietoperzy do modelu DL, rozpoczęcie procesu pozyskania nagrań nietoperzy do modelu DL,}
+  \item{grudzień 2022 - przygotowanie dokumentacji (Karta Projektu, Dokument Założeń Wstępnych, Specyfikacja Wymagań Systemowych, Rich Picture), weryfikacja możliwości wykorzystania sprzętu pozyskanego z Bioseco S.A. w MVP, wytworzenie sztucznego głosu nietoperza, pozyskanie nagrań nietoperzy do modelu DL,}
+  \item{styczeń 2023 - wstępny projekt architektury systemu i przepływu danych między jego elementami, testy otrzymanego z Bioseco S.A. mikrofonu - sprawdzenie poprawności odtwarzania ultradźwięków przez głośnik i poprawności rejestracji przez mikrofon, poszukiwania odpowiedniego mikrofonu ultradźwięków do MVP, pozyskanie nagrań nietoperzy do modelu DL,}
+  \item {luty 2023 - wstępny projekt bazy danych, weryfikacja wybranych technologii do implementacji interfejsu użytkownika i bazy danych, poszukiwania odpowiedniego mikrofonu ultradźwięków do MVP.}
+  \end{itemize}
+
+\subsubsection{Faza Scrum}
+Na podstawie planów i materiałów zgromadzonych w fazie "Water", w fazie "Scrum" wybrano kolejno kilka mikrofonów ultradźwięków możliwych do zastosowania w MVP. Po ostatecznym doborze mikrofonu przygotowano pod kątem sieciowym i fizycznym instalację mikrofonu na turbinie. Po instalacji mikrofonu przeprowadzono testy terenowe wykrywalności ultradźwięków, podsumowano wyniki i na ich podstawie przygotowano propozycję liczby i lokalizacji mikrofonów na turbinie w celu poprawności realizacji zadania ochrony nietoperzy. W tym okresie trwały też intensywne konsultacje z firmą Wildlife Acoustics w sprawie szczegółow montażu mikrofonów oraz z firmą Bioseco S.A. w celu konfiguracji i instalacji systemu SMART. 
+
+Po weryfikacji poprawności działania systemu SMART rozpoczęto implementację pobierania danych z mikrofonu, bazy danych, interfejsu użytkownika, modelu DL oraz przepływu danych pomiędzy tymi elementami.
+
+\begin{itemize}
+  \item{marzec 2023 - nauka NodeJS, React, PyTorch i sieci neuronowych, konsultacje z Bioseco S.A. i Animal Sound Labs w sprawie możliwego do zastosowania mikofonu ultradźwięków, wybór mikrofonu możliwego do zastosowania w MVP (mikrofon dostosowany przez firmę Animal Sound Labs wraz z zaprojektowaną przez Animal Sound Labs drogą analogowo-cyfrową, dostosowane do zakresu MVP),}
+  \item{kwiecień 2023 - nauka NodeJS, React, PyTorch i sieci neuronowych, konsultacje z Bioseco S.A. i EcoObs w sprawie możliwego do zastosowania mikofonu ultradźwięków, wybór kolejnych mikrofonów możliwych do zastosowania w MVP (Batcorder GSM firmy EcoObs, SM-U2 firmy Wildlife Acoustics),}
+  \item{maj 2023 - nauka NodeJS, React, PyTorch, nauka i konsultacje w sprawie możliwych do wykorzystania architektur sieci neuronowych (z Aleksandrem Obuchowskim), ostateczne wybranie mikrofonu ultradźwięków do MVP (system SMART firmy Wildlife Acoustics), przygotowanie szczegółowego planu testów terenowych mikrofonu (konsultacje z pracownikami Bioseco S.A.) w tym wytworzenie sztucznych głosów nietoperzy,}
+  \item{czerwiec 2023 - opracowanie fizycznego i sieciowego podłączenia systemu SMART na turbinie wiatrowej (wraz z pracownikami Bioseco S.A.),}
+  \item{lipiec 2023 - konfiguracja sieciowa i podłączenie systemu SMART na turbinie wiatrowej (zrealizowane przez pracowników Bioseco S.A.), kontrola poprawności działania systemu SMART,}
+  \item{sierpień 2023 - kontrola poprawności działania systemu SMART, konsultacje z Wildlife Acoustics co do liczby i umiejscowienia mikrofonów na turbinie wiatrowej,}
+  \item{wrzesień 2023 - realizacja testów terenowych systemu SMART i opracowanie wyników, konsultacje z Wildlife Acoustics co do liczby i umiejscowienia mikrofonów na turbinie wiatrowej,}
+  \item{październik 2023 - dostosowanie architektury systemu do nowo dobranego mikrofonu ultradźwięków, implementacja bazy danych, aplikacji i modelu DL, konsultacje z Wildlife Acoustics co do liczby i umiejscowienia mikrofonów na turbinie wiatrowej, opracowanie pobierania danych z mikrofonu,}
+  \item {listopad 2023 - spotkanie z Bioseco S.A. w sprawie możliwego przepływu danych pomiędzy elementami systemu oraz implementacja przepływu danych, implementacja bazy danych, aplikacji, modelu DL i watchdoga, dopracowanie pobierania danych z mikrofonu,}
+  \item {grudzień 2023 - implementacja aplikacji, modelu DL i watchdoga.}
+  \end{itemize}
+
+\subsubsection{Faza Fall}
+Po okresie zwinnym, w fazie "Fall" zweryfikowano poprawność działania systemu i realizowanych przez niego zadań z użyciem testów systemowych i funkcjonalnych.
+\begin{itemize}
+  \item{styczeń 2024 - testy systemowe i funkcjonalne}
+  \end{itemize}
+
+
 \subsection{Organizacja zespołu}
 Grupa inżynierska była samoorganizującym się zespołem. Część funkcji była silniej przypisana do konkretnych członków grupy:
-Juliusz Orłowski - Software Developer, Jakub Prucnal - AI Developer, Software Engineer, Magdalena Wybraniec - Product Owner, Project Manager, specjalista dziedzinowy, AI Developer. 
+Juliusz Orłowski - Software Developer, Software Engineer, Jakub Prucnal - AI Developer, Software Engineer, Magdalena Wybraniec - Product Owner, Project Manager, specjalista dziedzinowy, AI Developer. 
 
-\subsection{Charakterystyka przyrostów}
 
-\subsubsection{Water}
 
 \section{Środowisko technologiczne}
 
