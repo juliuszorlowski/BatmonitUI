@@ -14,8 +14,8 @@
 \author{Juliusz Orłowski}{s19799}{Aplikacje Internetowe}{Niestacjonarny}
 \author{Jakub Prucnal}{s19800}{Sztuczna Inteligencja}{Niestacjonarny}
 \author{Magdalena Wybraniec}{s19798}{Sztuczna Inteligencja}{Niestacjonarny}
-\consultant{Dawid Gradolewski}
-\consultant{Damian Dziak}
+\consultant{dr Dawid Gradolewski}
+\consultant{dr Damian Dziak}
 \projectgoals{Projekt typu R\&D, ma na celu implementację systemu składającego się z dostępnego na rynku mikrofonu ultradźwięków odpowiedniego do zastosowania na turbinie wiatrowej oraz oprogramowania pobierającego i analizującego dźwięk pochodzący z mikrofonu oraz rozpoznającego pojawienie się nietoperzy, zapisujący nagrania w bazie danych i wizualizujący je w interfejsie - panelu administratora. Dodatkowo celem będzie przygotowanie analizy odległości i kątów z jakiej mikrofon rejestruje głos nietoperzy i adekwatnie – zaproponowanie liczby i rozstawienia urządzeń nasłuchowych, tak aby pokryć kąt 360 stopni wokół turbiny na farmie wiatrowej.}
 \productsandservices{System rejestrujący i wykrywający nietoperze z nagrań ultradźwięków, możliwy do połączenia z systemem wyłączania turbiny}
 \mainfunctionalities{
@@ -48,7 +48,7 @@ Czas trwania projektu jest ograniczony do momentu przekazania książki dyplomow
 
 \chapter{Wstęp}\label{ch:wstep}
 
-U podłoża rozwoju alternatywnych źródeł elektryczności leży uczynienie branży energetycznej bardziej „zieloną”, aby życie przyszłych pokoleń było przynajmniej tak samo dobre, jak nasze jest dzisiaj. W poszukiwaniu rozwiązań, które zabezpieczają społeczności w dobie globalnego ocieplenia,  zrównoważony rozwój stał się rdzeniem idei alternatywnych źródeł energii. Druga część historii posiada jednak swą ciemną stronę – wiele danych naukowych wskazuje na znaczący niekorzystny wpływ farm wiatrowych na przyrodę, a zwłaszcza nietoperze \cite{Wytyczne}. A są one ważnym elementem bioróżnorodności i poszukiwanego zrównoważonego rozwoju. Autorzy pracy dyplomowej w kooperacji z firmą Bioseco wypracowali oparty o sztuczną inteligencję system, który w przypadku dalszego jego rozwijania, zmniejszy śmiertelność nietoperzy na farmach wiatrowych i pomoże utrzymać branży wiatrowej miano ekologicznej. Chiropterologom zaś oraz urzędnikom oceniającym projekty wiatrowe pod kątem realizacji przyrodniczych norm prawnych, zapewni dodatkowe narzędzia minimalizacji wpływu farm na nietoperze.
+U podłoża rozwoju alternatywnych źródeł elektryczności leży uczynienie branży energetycznej bardziej „zieloną”, aby życie przyszłych pokoleń było przynajmniej tak samo dobre, jak nasze jest dzisiaj. W poszukiwaniu rozwiązań, które zabezpieczają społeczności w dobie globalnego ocieplenia,  zrównoważony rozwój stał się rdzeniem idei alternatywnych źródeł energii. Druga część historii posiada jednak swą ciemną stronę – wiele danych naukowych wskazuje na znaczący niekorzystny wpływ farm wiatrowych na przyrodę, a zwłaszcza nietoperze \cite{Wytyczne} \cite{rodrigues} \cite{furmankiewicz}. A są one ważnym elementem bioróżnorodności i poszukiwanego zrównoważonego rozwoju. Autorzy pracy dyplomowej w kooperacji z firmą Bioseco wypracowali oparty o sztuczną inteligencję system, który w przypadku dalszego jego rozwijania, zmniejszy śmiertelność nietoperzy na farmach wiatrowych i pomoże utrzymać branży wiatrowej miano ekologicznej. Chiropterologom zaś oraz urzędnikom oceniającym projekty wiatrowe pod kątem realizacji przyrodniczych norm prawnych, zapewni dodatkowe narzędzia minimalizacji wpływu farm na nietoperze.
 
 \section{Cele projektu}
 
@@ -57,19 +57,11 @@ W ramach sformułowanego tematu wyszczególniono następujące cele badawcze i p
 \begin{itemize}
   \item{realizację działającego produktu o minimalnym zestawie funkcjonalności (ang: Minimal Viable Product, dalej: MVP) rejestrującego i wykrywającego nietoperze oraz wysyłającego sygnał wyłączenia – docelowo do systemu turbiny wiatrowej – składającego się z części sprzętowej i oprogramowania: aplikacji użytkownika i bazy danych oraz modelu sieci neuronowych (ang: neural network, dalej NN) oraz z aplikacji użytkownika i bazy danych,}
   \item{opracowanie koncepcji liczby i układu mikrofonów ultradźwięków docelowego produktu poprzez przeprowadzenie badań terenowych w zakresie zasięgu pracy testowanego sprzętu, tak by cały system pokrywał obszar 360 stopni dookoła turbiny wiatrowej, w odległości do około 100 m,}
-  \item{opracowanie modelu sieci neuronowych uzyskującego przynajmniej 75\% skuteczności w identyfikacji nietoperzy - borowca wielkiego Nyctalus noctula i karlików Pipistrellus sp., głównych ofiar kolizji z turbinami wiatrowymi,}
+  \item{opracowanie modelu sieci neuronowych uzyskującego przynajmniej 75\% skuteczności w identyfikacji nietoperzy - borowca wielkiego Nyctalus noctula i karlików Pipistrellus sp., głównych ofiar kolizji z turbinami wiatrowymi (Aktualne poziomy dokładności identyfikacji nietoperzy przez tego typu oprogramowanie mieszczą się bowiem przykładowo w przedziałach: 28-82\% \cite{kaleidoscope-accuracy} czy 40-80\% \cite{kaleidoscope-bias})}
   \item{przyczynienie się do rozwiązania realnego problemu występującego w obszarze branży energetyki wiatrowej oraz ochrony przyrody,}
   \item{rozpoczęcie współpracy z Bioseco Sp. z o.o. w celu zaprezentowania umiejętności studentów firmie oraz ich szybszego rozwijania dzięki kontaktowi z realnymi problemami biznesowymi, merytorycznymi, produkcyjnymi i wdrożeniowymi, rozwiązywanymi aktualnie przed doświadczony zespół specjalistów firmy.}
   \end{itemize}
   
-
-\chapter{Słownik pojęć}
-\subsubsection {Nagranie full-spectrum} nagranie rejestracji ultradźwięków w pełnym wymiarze
-\subsubsection {ML} (machine learning, uczenie maszynowe) – obszar sztucznej inteligencji wykorzystujący algorytmy i modele matematyczne, które automatycznie poprawiają się poprzez ekspozycję na dane, w celu prognozowania lub podejmowania decyzji dot. nowo dostarczanych danych 
-\subsubsection {DL} (deep learning) – podzbiór ML wykorzystujący tzw. sieci neuronowe, w której pojedyncze neurony tworzą warstwy i stanowią de facto mnożenie wartości wejściowych z początkowo losowo przypisanymi wagami, gdzie wyniki z poszczególnych wejść są sumowane i przekazywane do tzw. funkcji aktywacji, które decydują czy i jakie wyniki przekazać do kolejnej warstwy neuronów. 
-\subsubsection {AI}
-
-
 \chapter{Podłoże projektu}
 
 \section{Geneza problemu}
@@ -80,13 +72,13 @@ Dotychczas przyjętą praktyką w przypadku wykrycia zbyt dużych aktywności ni
 
 \section{Aktualne rozwiązania konkurencyjne}
 
-Intensywny rozwój sieci neuronowych oraz internetu rzeczy (ang: IoT) przyczynił się do powstania podobnych rozwiązań. Na rynku światowym istnieją zbliżone pod kątem funkcjonalnym systemy, takie jak: DTBat i Fleximouse.
+Intensywny rozwój sieci neuronowych oraz internetu rzeczy (ang: IoT) przyczynił się do powstania podobnych rozwiązań. Na rynku światowym istnieją zbliżone pod kątem funkcjonalnym systemy, takie jak: DTBat i Fleximouse. 
 
-W poniższym zestawieniu przedstawiono dostępne podobne rozwiązania (\ref{img:konkurencja}).
+W poniższym zestawieniu przedstawiono dostępne podobne rozwiązania (\ref{img:konkurencja}). Kolorem zielonym zaznaczono rozwiązanie najbardziej zbliżone do zrealizowanego w niniejszej pracy.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.8\textwidth]{sprz/konkurencja}
+  \includegraphics[width=1.0\textwidth]{sprz/konkurencja}
   \caption{Zestawienie i porównanie podobnych rozwiązań.}
   \label{img:konkurencja}
 \end{figure} 
@@ -181,13 +173,19 @@ Juliusz Orłowski - Software Developer, Software Engineer, Jakub Prucnal - AI De
 \section{Środowisko technologiczne}
 
 \subsection{Technologie}
-Sprzęt wykorzystany do realizacji ostatecznego rozwiązania to system SMART firmy Wildlife Acoustics. Pozostałe najważniejsze sprzęty wykorzystane do realizacji projektu to głośnik ultradźwiękowy Pettersson L400 i laptop DELL G3.
+Sprzęt wykorzystany do realizacji ostatecznego rozwiązania to system SMART firmy Wildlife Acoustics. Pozostałe najważniejsze sprzęty wykorzystane do realizacji projektu to głośnik ultradźwiękowy Pettersson L400 i laptop DELL G3. System SMART został wybrany w efekcie długotrwałego procesu doboru mikrofonu przez zespół inżynierski, który opisano w podpunkcie "Mikrofon ultradźwięków spełniający wymogi końcowego produktu". Głośnik ultradźwięków Pettersson L400 został wybrany jako jeden z bardzo nielicznych tego typu sprzętów dostępnych na rynku i został wyprodukowany przez jednego z najważniejszych producentów sprzętów do detekcji nietoperzy oraz głośników ultradźwięków - firmę Pettersson Electronic AB.
 
 Model sieci neuronowej napisany został w języku Python z wykorzystaniem bibliotek PyTorch i TorchAudio.
+PyTorch jest biblioteką oferującą narzędzia do budowy i trenowania sieci neuronowych, zawiera m.in. moduły do tworzenia warstw sieci, funkcji straty czy optymalizatorów, daje wsparcie do trenowania na kartach graficznych \cite{pytorch}.
+PyTorch jest biblioteką o podobnej popularności co Tensorflow, a w ostatnich latach nawet częściej wykorzystywaną, szczególnie w środowiskach akademickich. Umożliwia ona na większą elastyczność w budowie sieci i ustawieniach jej parametrów. Do zalet takiego rozwiązania należy większy wpływ na kształt i funkcjonowanie sieci, a do wad - dłuższy czas przygotowania oraz wyższy próg wejścia. 
+
+Biblioteka TorchAudio jest częścią ekosystemu PyTorch i służy do obsługi i obróbki plików dźwiękowych. Dostarcza narzędzi pomocnych w ładowaniu danych audio oraz transformacjach takich jak zmiany prędkości czy głośności, przetwarzanie na spektrogramy czy mel-spektrogramy \cite{torchaudio}.
 
 Baza danych została przygotowana w MySQL.
 
 Interfejs użytkownika został napisany w języku JavaScript z użyciem biblioteki ReactJS. Serwer aplikacji został napisany w technologii NodeJS. Użyto również szeregu bibliotek wspomagających tworzenie aplikacji, bazy danych i testów: Sequelize, Express, Jest, Supertest, Joi, Jsonwebtoken. 
+
+MySQL, NodeJS oraz React zostały wykorzystane w znacznej mierze dlatego, że są one używane przez firmę Bioseco S.A. Oznacza, to że poprawnie sprawdzają się w podobnych zastosowaniach oraz w przypadku komercjalizacji produktu, integracja z ekosystemem Bioseco S.A. będzie sprawniejsza niż w przypadku użycia innych technologii.
 
 \subsection{Infrastruktura techniczna}
 Na infrastrukturę techniczną, która umożliwiła realizację kluczowych elementów projektu dyplomowego składały się:
@@ -279,7 +277,11 @@ W procesie definiowania cech sprzętu jakie powinien posiadać mikrofon i rejest
     \item{możliwość sprzętowa do integracji ze sprzętem i oprogramowaniem umożliwiającym pobieranie danych w czasie rzeczywistym.}
   \end{itemize}
 
-W początkowym okresie prac nad systemem nie istniał mikrofon spełniające wszystkie powyższe kryteria. W mikrofonie otrzymanym początkowo z Bioseco brakowało wodoodporności. W detektorze Batcorder firmy EcoObs i mikrofonie SMM-U2 Wildlife Acoustics brakowało bezpośredniej możliwości podłączenia do urządzenia typu Raspberry Pi i nieograniczonego dostępu do danych. Wykonano próby współpracy z Animal Sound Labs, podczas których używając dostępnych najlepszych mikrofonów posiadanych przez firmę oraz projektując odpowiednią drogę analogowo-cyfrową z możliwością połączenia przez USB do urządzenia typu Raspberry Pi miał powstać odpowiedni mikrofon, jednak próby te zakończyły się niepowodzeniem z uwagi na ograniczenia czasowe Animal Sound Labs w zaproponowanym terminie. W tym czasie na rynku pojawiło się nowe urządzenie firmy Wildlife Acoustics - system SMART, który dostarczył wszystkich niezbędnych elementów, jakie wymagane były od sprzętu do realizacji niniejszej pracy dyplomowej (\ref{img:smart}). Na poniższym obrazku przedstawiony jest system SMART - dwa mikrofony ultradźwięków po lewej i prawej stronie oraz kontroler w centrum.
+W początkowym okresie prac nad systemem nie istniał mikrofon spełniające wszystkie powyższe kryteria. W mikrofonie otrzymanym początkowo z Bioseco brakowało wodoodporności. W detektorze Batcorder firmy EcoObs i mikrofonie SMM-U2 Wildlife Acoustics brakowało bezpośredniej możliwości podłączenia do urządzenia typu Raspberry Pi i nieograniczonego dostępu do danych. Wykonano próby współpracy z Animal Sound Labs, podczas których używając dostępnych najlepszych mikrofonów posiadanych przez firmę oraz projektując odpowiednią drogę analogowo-cyfrową z możliwością połączenia przez USB do urządzenia typu Raspberry Pi miał powstać odpowiedni mikrofon, jednak próby te zakończyły się niepowodzeniem z uwagi na ograniczenia czasowe Animal Sound Labs w zaproponowanym terminie. 
+
+Animal Sound Labs jest polską firmą zajmująca się wytwarzaniem detektorów ultradźwięków. Właścicel firmy - Paweł Federowicz posiada bardzo dużą wiedzę dziedzinową z tego zakresu, dlatego bardzo szybko rozpoczęto z nim rozległe konsulatacje dotyczące części projektu inżynierskiego związanego z doborem mikrofonu ultradźwięków oraz przetwarzaniem sygnałów. W trakcie rozmów pomiędzy Bioseco S.A. i Animal Sound Labs dopracowano zakres prac ze strony Animal Sound Labs jaki opisano powyżej. Z uwagi jednak na fakt niewielkij liczby pracowników oraz znaczne obciążenie Animal Sound Labs w tamtym okresie, koopercja nie została zrealizowana.
+
+W tym czasie na rynku pojawiło się nowe urządzenie firmy Wildlife Acoustics - system SMART, który dostarczył wszystkich niezbędnych elementów, jakie wymagane były od sprzętu do realizacji niniejszej pracy dyplomowej (\ref{img:smart}). Na poniższym obrazku przedstawiony jest system SMART - dwa mikrofony ultradźwięków po lewej i prawej stronie oraz kontroler w centrum.
 
 \begin{figure}[h]
   \centering
@@ -362,7 +364,7 @@ Zebranie nagrań nietoperzy odpowiedniego typu i odpowiedniej ich liczby rodził
   \item{kwestie związane z własnością, potencjalne koszty i związane z tym negocjacje.}
 \end{itemize}
 
-Po trwających kilka miesięcy poszukiwaniach osób mogących udostępnić takie nagrania, negocjacjach warunków przekazania nagrań oraz samym procesie przekazywania nagrań, udało się pozyskać 71,7 GB danych, w tym 18 412 nagrań zawierających odgłosy nietoperzy oraz inne dźwięki, takie jak szumy pochodzące z otoczenia.
+Po trwających kilka miesięcy poszukiwaniach osób mogących udostępnić takie nagrania, negocjacjach warunków przekazania nagrań oraz samym procesie przekazywania nagrań, udało się pozyskać 71,7 GB danych, w tym 18 412 nagrań zawierających odgłosy nietoperzy oraz inne dźwięki, takie jak szumy pochodzące z otoczenia. Nagrania przekazała firma Tribio Sp. z o.o. Członkowie zespołu inżynierskiego ogromnie dziękują za tę pomoc, bez której realizacja niniejszej pracy dyplomowej nie byłaby możliwa.
 
 \chapter{Prace badawcze - testy terenowe}
 
@@ -494,9 +496,9 @@ Do treningu użyto dźwięków przetworzonych na obrazy. Rozważano użycie zwyk
 W celu uzyskania jednolitych wielkości danych na wejściu wszystkie nagrania pocięto na odcinki dwusekundowe. W przypadku gdy ostatni element był krótszy niż dwie sekundy uzupełniano tę część zerami.
 
 \section{Dobór sieci neuronowej}
-Po przeglądzie literatury, konsultacjach z ekspertami oraz weryfikacji zasobów czasowych zdecydowano się ostatecznie na użycie konwolucyjnej sieci neuronowej jako sieci przystępnej w implementacji a jednocześnie potencjalnie dającej bardzo dobre wyniki.
+Po przeglądzie literatury, konsultacjach z Aleksandrem Obuchowskim oraz weryfikacji zasobów czasowych zdecydowano się ostatecznie na użycie konwolucyjnej sieci neuronowej jako sieci przystępnej w implementacji a jednocześnie potencjalnie dającej bardzo dobre wyniki (por. "Przegląd literatury"). Sieci konwolucyjne były najczęściej używanymi sieciami neuronowymi. Inną architekturą mogącą dać bardzo dobre wyniki była sieć Transofrmers, na co wskazywały wyniki dostępnej publikacji oraz konsultacji z Aleksandrem Obuchowskim \cite{bats-transformers}. Z uwagi jednak na ograniczone dane literaturowe oraz ograniczone zasoby czasowe zaniechano realizacji tego typu architektury.
 
-\subsection{Przegląd literatury}
+\subsection{Przegląd literatury}.
 Do wyszukania publikacji zawierających opracowania dotyczące automatycznego rozpoznawania nietoperzy użyto wyszukiwarki Google Scholar oraz fraz: "bats automated recognition", "bats machine learning", "bats deep learning".
 
 Do metod automatycznej identyfikacji gatunków nietoperzy wykorzystuje się
@@ -819,6 +821,13 @@ System SMART na turbinie wiatrowej połączony jest do sieci internetowej, gdzie
 
 Na poniższych modelach przedstawiono najważniejsze elementy logiczne, urządzenia wejścia-wyjścia oraz obieg informacji w systemie (\ref{img:architektura_systemu2}). W celu ułatwienia zrozumienia osadzenia systemu w rzeczywistości, architekturę zobrazowano również w postaci graficznej, łącznie z widokiem interfejsu (\ref{img:reprezentacja_graficzna}). 
 
+
+Spośród przedstawionych elementów cały moduł detekcji był zrealizowany poprzez dostarczony przez Bioseco S.A. system SMART firmy Wildlife Acoustics. Składa się on z mikrofonu ultradźwięków i kontrolera. Dźwięki z mikrofonu są rejestrowane przez program firmy Wildlife Acoustics na kontrolerze. Połączenie LAN zostało zrealizowane przez pracowników firmy Bioseco S.A.
+
+Moduł decyzyjny stanowiło wytworzone oprogramowanie składające się z Watchdoga, będącego mikroserwisem monitorującym pojawienie się nowych nagrań i identyfikującym nietoperze, bazdy danych do której te informacje trafiały oraz interfejsu użytkownika, który je wizualizował.
+
+Szczegóły procesu przepływu danych od mikrofonu do interfejsu użytkownika zaprezentowano w rodziale "System w działaniu".
+
 \begin{figure}[h]
     \centering
     \includegraphics[width=1.0\textwidth]{sprz/architektura_systemu2.png}
@@ -846,9 +855,13 @@ Kluczowe zasoby sprzętowe rozwiązania, to system SMART firmy Wildlife Acoustic
 \end{figure}
 
 \section{Model sieci neuronowej}
+Jednym z elementów oprogramowania był model sieci neuronowej. 
+
 Do treningu i predykcji gatunków nietoperzy użyta został sieć konwolucyjna składająca się z czterech bloków konwolucyjnych (z warstwą konwolucyjną, funkcją aktywacji ReLU i warstwą max-pooling), warstwy spłaszczającej do przestrzeni jednowymiarowej (warstwa flatten), warstwy fully-connected (w PyTorch nazywaną "linear") oraz ostatniej warstwy softmax, pozwalającej na uzyskanie wartości prawdopodobieństw przynależności nagrania do danej klasy (gatunku nietoperza).
 
 W każdej z warstw konwolucyjnych zastosowano funkcję aktywacji ReLU i warstwę max-pooling o filtrze w rozmiarze 2 ("stride").
+
+Szczegóły związane z uzasadnieniem implementacji danej architekruty sieci zostały opisane w rozdziale "Realizacja sieci neuronowej".
 \clearpage
 
 \section{Aplikacja użytkownika}
@@ -1478,7 +1491,7 @@ Praca nad rozwiązaniem objętym niniejszym dyplomem zbiegła się w czasie z dw
 W związku z wytworzeniem przez firmę Wildife Acoustics dość zaawansowanego rozwiązania jakim jest system SMART, można było albo wykorzystać to rozwiązanie i poprawić oraz dostosować funkcjonowanie niektórych jego elementów lub też skupić się na wytworzeniu autorskiego rozwiązania. Zarówno w trakcie konsultacji w Bioseco S.A. jak i konsultacji z prowadzącymi przedmioty związane z pracą dyplomową, zdecydowano się na wykorzystanie systemu SMART jako rozwiązania zdecydowanie szybszego w implementacji na farmach wiatrowych, co odpowiadało na potrzeby zarówno Klienta Zewnętrznego (Bioseco S.A. i klienci firmy) oczekującego szybkiego wdrożenia rozwiązania do ochrony nietoperzy, jak i Klienta Wewnętrznego (Dziekan, Promotor) wymagającego sprawnego ukończenia pracy dyplomowej.
 Ponadto należy zauważyć, że firma Wildlife Acoustics posiada 20-letnie doświadczenie w konstrukcji mikrofonów ultradźwięków oraz jest autorem oprogramowania do automatycznej identyfikacji nietoperzy. Było to dodatkowym czynnikiem, który spowodował raczej wybór tego rozwiązania, niż rozpoczynanie podobnej drogi co firma Wildlife Acoustics i jej podobne wiele lat temu.
 
-System SMART składa się z mikrofonu ultradźwięków i kontrolera będącego prostym komputerem przemysłowym, który serwuje aplikację udostępniającą dane z mikrofonu, po uprzedniej odpowiedniej konfiguracji sieciowej. Taka dość zaawansowana konstrukcja rozwiązania spowodowała trudność dla mało doświadczonego zespołu inżynierskiego z ograniczonymi zasobami czasowymi w dotarciu do surowych danych płynących z mikrofonu. Z tego powodu wykorzystano nagrania, które zostały już zarejestrowane na kontrolerze i dopiero te dźwięki pobierano i poddawano analizie pod kątem gatunków nietoperzy i dalszej wizualizacji w aplikacji użytkownika. Prostota takiego rozwiązania odpowiadała zasadniczo celom i zakresowi pracy inżynierskiej, która nie miała doprowadzić do zaprojektowania rozwiązania gotowego do aplikacji na turbinach, a raczej jego prototyp. Rozwiązanie takie z uwagi na swą niegeneryczność, nie będzie stosowane w rozwiązaniu końcowym. Mimo to przynajmniej dwa elementy zrealizowane w ramach niniejszej pracy dyplomowej po dalszym dostosowaniu mają znaczny potencjał komercjalizacji. Do tych elementów należą bardziej zaawansowana pod kątem konstrukcyjnym aplikacja użytkownika w stosunku do aplikacji Wildlife Acoustics, zawierająca bazę danych oraz model sieci neuronowych z większym potencjałem do zwiększania dokładności identyfikacji gatunków nietoperzy. Aktualne poziomy dokładności identyfikacji nietoperzy przez tego typu oprogramowanie są mieszczą się bowiem przykładowo w przedziałach: 28-82\% \cite{kaleidoscope-accuracy} czy 40-80\% \cite{kaleidoscope-bias}. Wykazuje się również, że nowsze oprogramowanie do automatycznej identyfikacji nie przynosi poprawy jeśli chodzi o dokładność oznaczeń. Jest to istotna nisza dla twórców niniejszej pracy dyplomowej z szansą na komercjalizację.
+System SMART składa się zśrodowisko mikrofonu ultradźwięków i kontrolera będącego prostym komputerem przemysłowym, który serwuje aplikację udostępniającą dane z mikrofonu, po uprzedniej odpowiedniej konfiguracji sieciowej. Taka dość zaawansowana konstrukcja rozwiązania spowodowała trudność dla mało doświadczonego zespołu inżynierskiego z ograniczonymi zasobami czasowymi w dotarciu do surowych danych płynących z mikrofonu. Z tego powodu wykorzystano nagrania, które zostały już zarejestrowane na kontrolerze i dopiero te dźwięki pobierano i poddawano analizie pod kątem gatunków nietoperzy i dalszej wizualizacji w aplikacji użytkownika. Prostota takiego rozwiązania odpowiadała zasadniczo celom i zakresowi pracy inżynierskiej, która nie miała doprowadzić do zaprojektowania rozwiązania gotowego do aplikacji na turbinach, a raczej jego prototyp. Rozwiązanie takie z uwagi na swą niegeneryczność, nie będzie stosowane w rozwiązaniu końcowym. Mimo to przynajmniej dwa elementy zrealizowane w ramach niniejszej pracy dyplomowej po dalszym dostosowaniu mają znaczny potencjał komercjalizacji. Do tych elementów należą bardziej zaawansowana pod kątem konstrukcyjnym aplikacja użytkownika w stosunku do aplikacji Wildlife Acoustics, zawierająca bazę danych oraz model sieci neuronowych z większym potencjałem do zwiększania dokładności identyfikacji gatunków nietoperzy. Aktualne poziomy dokładności identyfikacji nietoperzy przez tego typu oprogramowanie mieszczą się bowiem przykładowo w przedziałach: 28-82\% \cite{kaleidoscope-accuracy} czy 40-80\% \cite{kaleidoscope-bias}. Wykazuje się również, że nowsze oprogramowanie do automatycznej identyfikacji nie przynosi poprawy jeśli chodzi o dokładność oznaczeń. Jest to istotna nisza dla twórców niniejszej pracy dyplomowej z szansą na komercjalizację.
 
 Dobrej jakości współpraca zapoczątkowana z firmą Wildlife Acoustics niesie możliwości kooperacji we wdrożeniu alternatywnych sposobów serwowania danych, w tym użycie własnego klasyfikatora. Sama firma umożliwia korzystanie z udostępnionych poleceń Linux w celu dostępu i autorskiej manipulacji danymi \cite{smart-linux-guide}.
 
@@ -1553,7 +1566,7 @@ Osiągnięte zostały kluczowe cele projektu - przyczynienie się do rozwiązani
 
     Zaprojektowany w ramach pracy inżynierskiej system ma za zadanie wytworzenie prototypu urządzenia zczytującego głos nietoperzy z mikrofonu ultradźwięków i ich analizę, tak by automatycznie wykrywać wystąpienie przelotu nietoperzy przy użyciu narzędzi sztucznej inteligencji, takich jak machine learning (dalej: ML) lub deep learning (dalej DL).
 
-    Głównym udziałowcem i zarazem pomysłodawcą jest firma BIOSECO, której przedstawicielami są Dawid Gradolewski oraz Damian Dziak. Udziałowcami produktu, który może zostać wytworzony na dalszym etapie na bazie projektu inżynierskiego, są inwestorzy przygotowujący farmy wiatrowe w Polsce i na świecie, takie jak PGE, Energa, RWE, Polenergia, Iberdrola itd., a także twórcy monitoringów chiropterologicznych, Regionalne i Generalna Dyrekcja Ochrony Środowiska - posiadający tę opcję działań minimalizujących w swoim w arsenale.
+    Głównym udziałowcem i zarazem pomysłodawcą jest firma BIOSECO, której przedstawicielami są dr Dawid Gradolewski oraz dr Damian Dziak. Udziałowcami produktu, który może zostać wytworzony na dalszym etapie na bazie projektu inżynierskiego, są inwestorzy przygotowujący farmy wiatrowe w Polsce i na świecie, takie jak PGE, Energa, RWE, Polenergia, Iberdrola itd., a także twórcy monitoringów chiropterologicznych, Regionalne i Generalna Dyrekcja Ochrony Środowiska - posiadający tę opcję działań minimalizujących w swoim w arsenale.
 
     \begin{figure}[h]
         \centering
@@ -1672,7 +1685,7 @@ Osiągnięte zostały kluczowe cele projektu - przyczynienie się do rozwiązani
         \begin{itemize}
           \item Opiekun projektu Tadeusz Puźniakowski,
           \item Zespół projektowy,
-          \item Przedstawiciele zleceniodawcy: Dawid Gradolewski oraz Damian Dziak
+          \item Przedstawiciele zleceniodawcy: dr Dawid Gradolewski oraz dr Damian Dziak
           \item Zleceniobiorca
         \end{itemize}  
 
