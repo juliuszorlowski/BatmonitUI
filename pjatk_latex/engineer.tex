@@ -462,7 +462,7 @@ Odległości detekcji nietoperzy są na tyle małe w kontekście ich ochrony prz
 Przygotowanie danych obejmowało podpisanie nagrań zgodnie z wykazem gatunków nietoperzy przypisanych do danych nagrań, które znajdowały się w pliku CSV.
 
 \subsection{Dobór typu spectogramu}
-Do treningu użyto dźwięków przetworzonych na obrazy. Rozważano użycie zwykłego spektrogramu i mel-spectrogramu, jednak zdecydowano się na użycie zwykłego spectrogramu, ponieważ dawał on lepszy obraz. W przypadku bardzo delikatnych głosów nietoperzy na mel-spectrogramie pulsy były często niewidoczne.
+Do treningu użyto dźwięków przetworzonych na obrazy. Rozważano użycie zwykłego spektrogramu i mel-spektrogramu, jednak zdecydowano się na użycie zwykłego spektrogramu, ponieważ dawał on lepszy obraz. W przypadku bardzo delikatnych głosów nietoperzy na mel-spektrogramie pulsy były często niewidoczne.
 
 \subsection{Cięcie}
 W celu uzyskania jednolitych wielkości danych na wejściu wszystkie nagrania pocięto na odcinki dwusekundowe. W przypadku gdy ostatni element był krótszy niż dwie sekundy uzupełniano tę część zerami.
@@ -548,14 +548,14 @@ Sieć neuronowa napisana została w języku Python, z użyciem biblbiotek PyTorc
 PyTorch jest biblioteką oferującą narzędzia do budowy i trenowania sieci neuronowych, zawiera m.in. moduły do tworzenia warstw sieci, funkcji straty czy optymalizatorów, daje wsparcie do trenowania na kartach graficznych \cite{pytorch}.
 PyTorch jest biblioteką o podobnej popularności co Tensorflow, a w ostatnich latach nawet częściej wykorzystywaną, szczególnie w środowiskach akademickich. Umożliwia ona na większą elastyczność w budowie sieci i ustawieniach jej parametrów. Do zalet takiego rozwiązania należy większy wpływ na kształt i funkcjonowanie sieci, a do wad - dłuższy czas przygotowania oraz wyższy próg wejścia. 
 
-Biblioteka TorchAudio jest częścią ekosystemu PyTorch i służy do obsługi i obróbki plików dźwiękowych. Dostarcza narzędzi pomocnych w ładowaniu danych audio oraz transformacjach takich jak zmiany prędkości czy głośności, przetwarzanie na spectrogramy czy mel-spectrogramy \cite{torchaudio}. 
+Biblioteka TorchAudio jest częścią ekosystemu PyTorch i służy do obsługi i obróbki plików dźwiękowych. Dostarcza narzędzi pomocnych w ładowaniu danych audio oraz transformacjach takich jak zmiany prędkości czy głośności, przetwarzanie na spektrogramy czy mel-spektrogramy \cite{torchaudio}. 
 
-Sień neuronowa przygotowana w ramach niniejszej pracy dyplomowej składa się z czterech głównych elementów: modułu transformującego dźwięk do spectrogramów, modułu ładującego dane, modułu do treningu oraz modułu do predykcji.
+Sień neuronowa przygotowana w ramach niniejszej pracy dyplomowej składa się z czterech głównych elementów: modułu transformującego dźwięk do spektrogramów, modułu ładującego dane, modułu do treningu oraz modułu do predykcji.
 
 \subsection{Konwersja dźwięków na spektrogramy}
-Identyfikacja gatunków nietoperzy poprzez analizę dźwięków skonwertowanych do obrazu jest podejściem klasycznym (por. np. \cite{bats-id-dl2020b}). Dlatego jednym z elementów związanych z trenowaniem sieci było przygotowanie modułu konwertującego dźwięk na spectrogramy. Kod modułu przedstawiono poniżej w Listingu \ref{lst:audio-to-spectrogram}.
+Identyfikacja gatunków nietoperzy poprzez analizę dźwięków skonwertowanych do obrazu jest podejściem klasycznym (por. np. \cite{bats-id-dl2020b}). Dlatego jednym z elementów związanych z trenowaniem sieci było przygotowanie modułu konwertującego dźwięk na spektrogramy. Kod modułu przedstawiono poniżej w Listingu \ref{lst:audio-to-spektrogram}.
 
-\begin{lstlisting}[language=Python,caption={Implementacja konwersji dźwięku na spektrogram}, label={lst:audio-to-spectrogram}]
+\begin{lstlisting}[language=Python,caption={Implementacja konwersji dźwięku na spektrogram}, label={lst:audio-to-spektrogram}]
   waveform, sample_rate = torchaudio.load(r'C:\\Users\\Jakub\Documents\\PJATK\\INZ\Batmonit_model\\Chiro_sounds_signed\Audio\\PIPNAT\S4U08639_20210731_234142_PIPNAT.wav')
   fragments = torch.split(waveform, split_size_or_sections=2*sample_rate, dim=1)
   
@@ -1306,68 +1306,60 @@ Wszystkie wykonane próby zakończyły się poprawną realizacją wszystkich ele
 \section{Juliusz Orłowski}
 
 \begin{enumerate}
+  \item Projekt architektury systemu
+  \item Specyfikacja wymagań systemowych
+  \item Testy poprawności działania sprzętu udostępnionego przez Bioseco S.A.
   \item Opracowanie schematu bazy danych
   \item Opracowanie projektu graficznego i strukturalnego interfejsu
   \item Implementacja interfejsu użytkownika
+  \item Implementacja testów oprogramowania
   \item Implementacja bazy danych
-  \item Implementaca połączenia danych ze SMARTa przez rsync
+  \item Implementaca połączenia danych z systemu SMART przez rsync
   \item Instalacja systemu Linux na komputerze Bioseco
-  \item Wdrożenie przekazywania nagrań pomiędzy użądzeniem SMART a Watchdogiem
+  \item Wdrożenie przekazywania nagrań pomiędzy systeme SMART a Watchdogiem
   \item Wdrożenie przekazywania danych pomiędzy Watchdogiem i aplikacją
   \item Przepisanie książki inżynierskiej do projektu w LaTeX
-  \item Podrozdział "Wytworzenie sztucznych głosów nietoperzy do wstępnych testów sprzętu"
-  \item Rozdział "Aplikacja użytkownika"
-  \item Rozdział "Implementacja aplikacji użytkownika"
-  \item Rozdział "Testy oprogramowania"
+  \item Wytworzenie sztucznego głosu nietoperza do wstępnych testów sprzętu
+  \item Implementacja testów funkcjonalnych i systemowych
   \item Diagramy sekwencji
+  \item Konsultacje z Bioseco S.A.
 \end{enumerate}
 
 \section{Jakub Prucnal}
 \begin{enumerate}
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
+  \item Projekt architektury systemu
+  \item Specyfikacja wymagań systemowych
+  \item Testy poprawności działania sprzętu udostępnionego przez Bioseco S.A.
+  \item Przepisanie książki inżynierskiej do projektu w Overleaf
+  \item Wdrożenie przekazywania nagrań pomiędzy systemem SMART a Watchdogiem
+  \item Wdrożenie przekazywania danych pomiędzy Watchdogiem i aplikacją
+  \item Dobór architektury sieci neuronowej
+  \item Implementacja modelu sieci neuronowej
+  \item Implementacja wszystkich modułów związanych z siecią neuronową
+  \item Implementacja testów funkcjonalnych i systemowych
+
 \end{enumerate}
 
 \section{Magdalena Wybraniec}
 \begin{enumerate}
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
-  \item
+  \item Projekt architektury systemu
+  \item Specyfikacja wymagań systemowych
+  \item Testy poprawności działania sprzętu udostępnionego przez Bioseco S.A.
+  \item Pozyskanie nagrań nietoperzy typu full-spectrum do modelu DL
+  \item Dobór mikrofonu ultradźwięków
+  \item Koordynacja procesu podłączenia i instalacji systemu SMART na turbinie wiatrowej
+  \item Kontrola poprawności działania systemu SMART po instalacji
+  \item Przygotowanie sztucznych głosów nietoperzy do testów terenowych mikrofonu
+  \item Przygotowanie i realizacja testów terenowych systemu SMART
+  \item Opracowanie koncepcji liczby i lokalizacji mikrofonów na turbinie wiatrowej
+  \item Opracowanie schematu bazy danych
+  \item Opracowanie projektu graficznego i strukturalnego interfejsu
+  \item Opracowanie pobierania danych z systemu SMART do laptopa
+  \item Implementacja pierwszej wersji połączenia danych z systemu SMART przez rsync
+  \item Konsultacje z Wildlife Acoustics, Animal Sound Labs, Tribio Sp. z o.o., EcoObs, Bioseco S.A.
+  \item Dobór architektury sieci neuronowej
+  \item Implementacja wstępnego modelu sieci neuronowej
+  \item Implementacja testów funkcjonalnych i systemowych
 \end{enumerate}
 
 \chapter{System w działaniu}
