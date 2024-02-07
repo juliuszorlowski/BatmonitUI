@@ -60,8 +60,27 @@ W ramach sformułowanego tematu wyszczególniono następujące cele badawcze i p
   \item{opracowanie modelu sieci neuronowych uzyskującego przynajmniej 75\% skuteczności w identyfikacji nietoperzy - borowca wielkiego Nyctalus noctula i karlików Pipistrellus sp., głównych ofiar kolizji z turbinami wiatrowymi (Aktualne poziomy dokładności identyfikacji nietoperzy przez tego typu oprogramowanie mieszczą się bowiem przykładowo w przedziałach: 28-82\% \cite{kaleidoscope-accuracy} czy 40-80\% \cite{kaleidoscope-bias})}
   \item{przyczynienie się do rozwiązania realnego problemu występującego w obszarze branży energetyki wiatrowej oraz ochrony przyrody,}
   \item{rozpoczęcie współpracy z Bioseco Sp. z o.o. w celu zaprezentowania umiejętności studentów firmie oraz ich szybszego rozwijania dzięki kontaktowi z realnymi problemami biznesowymi, merytorycznymi, produkcyjnymi i wdrożeniowymi, rozwiązywanymi aktualnie przed doświadczony zespół specjalistów firmy.}
-  \end{itemize}
-  
+\end{itemize}
+
+\section{Wykaz skrótów i pojęć}
+
+\begin{description}[align=left]
+  \item [MVP] - ang. \textit{Minimum Viable Product} - produkt o minimalnej funkcjonalności spełniający zasadnicze wymagania i gotowy do wykorzystania przez użytkownika w podstawowym zakresie.
+  \item [VPN] - ang. \textit{Virtual Private Network} - metoda połączenia zapewniająca bezpieczną i prywatną komunikację pomiędzy urządzeniami sieciowymi przy wykorzystaniu publicznej infrastruktury sieciowej.
+  \item [SCADA] - ang. \textit{Supervisory Control And Data Acquisition} - system kontroli pozwalający na zdalne nadzorowanie i sterowanie pracą urządzeń.
+  \item [CSV] - ang. \textit{Coma-Separated Values} - format służący do przechowywania danych tabelarycznych w formie wartości oddzielonych przecinkami.
+  \item [Callback] - wywołanie zwrotne - funkcja przekazywana jako argument do innej funkcji, której zadaniem ma być jej wywołanie w późniejszym czasie.
+  \item [ORM] - ang \textit{Object-Relational Mapping} - technika odwzorowania danych pomiędzy relacyjną bazą danych a oprogramowaniem obiektowym.
+  \item [SQL] - ang. \textit{Structured Query Language} - strukturalny język służący do tworzenia i modyfikowania relacyjnych baz danych oraz tworzenia zapytań do zapisu i pobierania danych.
+  \item [HTTP] - ang. \textit{Hypertext Transfer Protocol} - protokół komunikacji warstwy aplikacyjnej protokołu internetowego służący do komunikacji pomiędzy klientem a serwerem.
+  \item [URL] - ang. \textit{Uniform Resource Locator} - ujednolicony format adresowania określający lokalizację danych w sieci komputerowej i stanowiący mechanizm dostępu do nich.
+  \item [Middleware] - wyspecjalizowane oprogramowanie pośredniczące dostarczające usługi dla innego oprogramowania.
+  \item [DOM] - ang. \textit{Document Object Model} - wieloplatformowy interfejs tworzący drzewiastą strukturę obiektów wykorzystywany w przeglądarkach internetowych.
+  \item [Linux] - popularny system operacyjny o otwartym kodzie źródłowym dostępny w szerokiej gamie dystrybucji, szczególnie przydatny do zastosowań technicznych wymagających okrojonej funkcjonalności.
+  \item [WAV] - ang. \textit{Waveform Audio Format} - format służący do przechowywania danych dźwiękowych.
+  \item [JSON] - ang. \textit{JavaScript Object Notation} - wieloplatformowy format do przechowywania i przesyłania danych obiektowych w formie tekstowej.
+\end{description}
+
 \chapter{Podłoże projektu}
 
 \section{Geneza problemu}
@@ -696,7 +715,7 @@ W każdej z warstw konwolucyjnych zastosowano funkcję aktywacji ReLU i warstwę
 \subsection{Funkcje aktywacji}
 Funkcja aktywacji używana jest do obliczania wartości neuronów w warstwach wyjściowych.
 
-W warstwach konwolucyjnych jako funkcji aktywacji użyto funkcji ReLU. (Rectified Linear Unit). Jest to najczęściej używana funkcja aktywacji w warstwach ukrytych. Do jej zalet należą szybkość i nieliniowość.
+W warstwach konwolucyjnych jako funkcji aktywacji użyto funkcji ReLU (Rectified Linear Unit). Jest to najczęściej używana funkcja aktywacji w warstwach ukrytych. Do jej zalet należą szybkość i nieliniowość.
 
 W ostatniej warstwie użyto funkcji aktywacji softmax. Przekształca ona wartości uzyskiwane na wyjściu tak, aby ich suma była równa 1, dzięki czemu dobrze modeluje prawdopodobieństwo. Jest to najczęściej wykorzystywana funkcja w warstwach wyjściowych.
 
@@ -1046,7 +1065,7 @@ Użytkownicy dzielą się na użytkowników zwykłych oraz na użytkowników z p
   \label{img:app_menu_regular_user}
 \end{figure}
 
-W przypadku zalogowania użytkownika z prawami administracyjnymi w pasku menu widoczny jest również przycisk \textit{Users} do widoku listy wszystkich istniejących użytkowników (\ref{img:app_users}.
+W przypadku zalogowania użytkownika z prawami administracyjnymi w pasku menu widoczny jest również przycisk \textit{Users} do widoku listy wszystkich istniejących użytkowników (\ref{img:app_users}).
 
 \begin{figure}[h]
   \centering
@@ -1627,7 +1646,7 @@ Po zapisie danych do bazy są one wizualizowane w interfejsie użytkownika, któ
   \label{img:app_records}
 \end{figure}
 
-\chapter{Przyszłość produktu i komercjalizacja}
+\chapter{Podsumowanie}
 
 Praca nad rozwiązaniem objętym niniejszym dyplomem zbiegła się w czasie z dwoma istotnymi wydarzeniami, czy też procesami, które znacząco wpływają na przyszły kształt i możliwość komercjalizacji produktu. Były to: wprowadzenie na rynek przez firmę Wildlife Acoustics systemu SMART, który w części odpowiadał zakresowi pracy dyplomowej oraz gwałtowny rozwój sztucznej inteligencji i aplikacji jej w różnych dziedzinach życia, w tym w automatycznej identyfikacji nietoperzy.
 
@@ -1640,7 +1659,6 @@ Dobrej jakości współpraca zapoczątkowana z firmą Wildlife Acoustics niesie 
 
 Aplikacja serwowana przez kontroler, mimo wielu ciekawych i potrzebnych w kontekście wykorzystania systemu SMART na farmach wiatrowych funkcjonalności nie posiada bazy danych. Brak bazy danych wpływa m.in. na brak możliwości precyzyjnego filtrowania danych, w tym danych pobieranych poprzez aplikację do plików CSV, nie ma też łatwej możliwości przygotowania raportów z aktywności nietoperzy na farmie wiatrowej. Wykorzystanie w tym celu aplikacji, jaka została przygotowania w niniejszej pracy dyplomowej takich możliwości dostarcza. Jednak uprzednio aplikacja musiałaby być prawdopodobnie zintegrowana z aktualnym ekosystemem programistycznym firmy Bioseco. W obecnej postaci nie jest więc produktem gotowym do wdrożenia. Jednak z uwagi na zaznajomienie się twórców pracy z wieloma zagadnieniami związanymi z tworzeniem tego typu oprogramowania oraz zagadnieniami dziedzinowymi szansa na komercjalizację interfejsu użytkownika z bazą danych wytworzonymi w oparciu o system przygotowany w niniejszej pracy, jest bardzo wysoka. 
 
-\chapter{Podsumowanie}
 W niniejszej pracy dyplomowej udało się zrealizować wszystkie wymagania systemowe zdefiniowane w początkowej fazie przygotowania projektu poza oczekiwaną dokładnością sieci neuronowej. Jedno z wymagań zostało zaniechane w trakcie implementacji systemu i konsultacji z Bioseco S.A. i była nim implementacja zatrzymań turbiny wiatrowej, czego powody wyjaśniono w punkcie "Testy funkcjonalne" (System do zatrzymywania turbiny wiatrowej). 
 
 Z sukcesem udało się zrozumieć całość tego interdyscyplinarnego problemu, który ma rozwiązywać zaprojektowany w pracy dyplomowej system oraz wytworzyć wszystkie jego komponenty. Nie udało się wytworzyć pobierania dźwięku z mikrofonu jako rozwiązania generycznego, czyli z wszystkimi elementami oprogramowania znajdującymi się na jednostce obliczeniowej zaimplementowanej przez zespół inżynierski. 
