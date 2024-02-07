@@ -26,7 +26,7 @@
 \item{Interfejs wizualizujący nagrania}
 \end{itemize}
 }
-\successmeasure{Oprogramowanie wykrywające i rozpoznające pojawienie się nietoperzy oraz wytworzenie lub dobranie z dostępnych na rynku urządzenia do rejestracji ultradźwięków. Dokonana analiza ulokowania urządzeń rejestrujących na wiatraku oraz jej akceptacja przez konsultanta z firmy Bioseco.}
+\successmeasure{Oprogramowanie wykrywające i rozpoznające pojawienie się nietoperzy oraz wytworzenie lub dobranie z dostępnych na rynku urządzenia do rejestracji ultradźwięków. Dokonana analiza ulokowania urządzeń rejestrujących na wiatraku oraz jej akceptacja przez konsultanta z firmy Bioseco S.A.}
 \projlimitations{
 Czas trwania projektu jest ograniczony do momentu przekazania książki dyplomowej do dziekanatu uczelni PJATK. Ograniczona dostępność nagrań głosów nietoperzy typu full-spectrum – możliwa sytuacja gdy tworzenie projektu będzie odbywało się na podstawie nagrań przetworzonych. Aktywność nietoperzy ma miejsce od końca marca do października – w związku z tym brak możliwości nagrywania ich aktywności w trakcie semestru zimowego – a tym samym brak możliwości wykonania prób hardware’u przed kwietniem 2024.
 }
@@ -59,7 +59,7 @@ W ramach sformułowanego tematu wyszczególniono następujące cele badawcze i p
   \item{opracowanie koncepcji liczby i układu mikrofonów ultradźwięków docelowego produktu poprzez przeprowadzenie badań terenowych w zakresie zasięgu pracy testowanego sprzętu, tak by cały system pokrywał obszar 360 stopni dookoła turbiny wiatrowej, w odległości do około 100 m,}
   \item{opracowanie modelu sieci neuronowych uzyskującego przynajmniej 75\% skuteczności w identyfikacji nietoperzy - borowca wielkiego Nyctalus noctula i karlików Pipistrellus sp., głównych ofiar kolizji z turbinami wiatrowymi (Aktualne poziomy dokładności identyfikacji nietoperzy przez tego typu oprogramowanie mieszczą się bowiem przykładowo w przedziałach: 28-82\% \cite{kaleidoscope-accuracy} czy 40-80\% \cite{kaleidoscope-bias})}
   \item{przyczynienie się do rozwiązania realnego problemu występującego w obszarze branży energetyki wiatrowej oraz ochrony przyrody,}
-  \item{rozpoczęcie współpracy z Bioseco Sp. z o.o. w celu zaprezentowania umiejętności studentów firmie oraz ich szybszego rozwijania dzięki kontaktowi z realnymi problemami biznesowymi, merytorycznymi, produkcyjnymi i wdrożeniowymi, rozwiązywanymi aktualnie przed doświadczony zespół specjalistów firmy.}
+  \item{rozpoczęcie współpracy z Bioseco S.A. w celu zaprezentowania umiejętności studentów firmie oraz ich szybszego rozwijania dzięki kontaktowi z realnymi problemami biznesowymi, merytorycznymi, produkcyjnymi i wdrożeniowymi, rozwiązywanymi aktualnie przed doświadczony zespół specjalistów firmy.}
 \end{itemize}
 
 \section{Wykaz skrótów i pojęć}
@@ -206,7 +206,7 @@ MySQL, NodeJS oraz React zostały wykorzystane w znacznej mierze dlatego, że s�
 Na infrastrukturę techniczną, która umożliwiła realizację kluczowych elementów projektu dyplomowego składały się:
 \begin{itemize}
   \item{Internet,}
-  \item{sieć lokalna LAN firmy Bioseco,}
+  \item{sieć lokalna LAN firmy Bioseco S.A.,}
   \item{sieć światłowodowa turbiny wiatrowej,}
   \item{sprzęt komputerowy prywatny i służbowy,}
   \item{przęt do rejestracji nietoperzy (mikrofony ultradźwięków oraz system SMART),}
@@ -282,7 +282,7 @@ W ramach kooperacji z Bioseco S.A. przeprowadzono spotkania wspomagające zespó
 
 \section{Wymagania}
   
-W niniejszym podrozdziale wymienia i opisuje się wymagania narzucone przez klienta - Bioseco, przedstawicieli Uczelni – Dziekana i Promotora, a także przez aktualne standardy prawne dotyczące ochrony przyrody oraz aktualne standardy sprzętowe dotyczące nagrywania i identyfikacji nietoperzy.
+W niniejszym podrozdziale wymienia i opisuje się wymagania narzucone przez klienta - Bioseco S.A., przedstawicieli Uczelni – Dziekana i Promotora, a także przez aktualne standardy prawne dotyczące ochrony przyrody oraz aktualne standardy sprzętowe dotyczące nagrywania i identyfikacji nietoperzy.
 
 \subsection*{Wymagania ogólne i dziedzinowe}
 
@@ -435,7 +435,7 @@ W procesie definiowania cech sprzętu jakie powinien posiadać mikrofon i rejest
     \item{możliwość sprzętowa do integracji ze sprzętem i oprogramowaniem umożliwiającym pobieranie danych w czasie rzeczywistym.}
   \end{itemize}
 
-W początkowym okresie prac nad systemem nie istniał mikrofon spełniające wszystkie powyższe kryteria. W mikrofonie otrzymanym początkowo z Bioseco brakowało wodoodporności. W detektorze Batcorder firmy EcoObs i mikrofonie SMM-U2 Wildlife Acoustics brakowało bezpośredniej możliwości podłączenia do urządzenia typu Raspberry Pi i nieograniczonego dostępu do danych. Wykonano próby współpracy z Animal Sound Labs, podczas których używając dostępnych najlepszych mikrofonów posiadanych przez firmę oraz projektując odpowiednią drogę analogowo-cyfrową z możliwością połączenia przez USB do urządzenia typu Raspberry Pi miał powstać odpowiedni mikrofon, jednak próby te zakończyły się niepowodzeniem z uwagi na ograniczenia czasowe Animal Sound Labs w zaproponowanym terminie. 
+W początkowym okresie prac nad systemem nie istniał mikrofon spełniające wszystkie powyższe kryteria. W mikrofonie otrzymanym początkowo z Bioseco S.A. brakowało wodoodporności. W detektorze Batcorder firmy EcoObs i mikrofonie SMM-U2 Wildlife Acoustics brakowało bezpośredniej możliwości podłączenia do urządzenia typu Raspberry Pi i nieograniczonego dostępu do danych. Wykonano próby współpracy z Animal Sound Labs, podczas których używając dostępnych najlepszych mikrofonów posiadanych przez firmę oraz projektując odpowiednią drogę analogowo-cyfrową z możliwością połączenia przez USB do urządzenia typu Raspberry Pi miał powstać odpowiedni mikrofon, jednak próby te zakończyły się niepowodzeniem z uwagi na ograniczenia czasowe Animal Sound Labs w zaproponowanym terminie. 
 
 Animal Sound Labs jest polską firmą zajmująca się wytwarzaniem detektorów ultradźwięków. Właściciel firmy - Paweł Federowicz posiada bardzo dużą wiedzę dziedzinową z tego zakresu, dlatego bardzo szybko rozpoczęto z nim rozległe konsultacje dotyczące części projektu inżynierskiego związanego z doborem mikrofonu ultradźwięków oraz przetwarzaniem sygnałów. W trakcie rozmów pomiędzy Bioseco S.A. i Animal Sound Labs dopracowano zakres prac ze strony Animal Sound Labs jaki opisano powyżej. Z uwagi jednak na fakt niewielkiej liczby pracowników oraz znaczne obciążenie Animal Sound Labs w tamtym okresie, koopercja nie została zrealizowana.
 
@@ -537,7 +537,7 @@ System SMART firmy Wildlife Acoustics został zainstalowany na jednej z farm wia
 \end{figure} 
 
 \section{Konfiguracja sieciowa}
-Konfiguracja sieciowa systemu SMART została zrealizowana przez Bioseco. SMART został połączony poprzez Ethernet do skrzynki zasilająco-sieciowej Bioseco zainstalowanej w turbinie wiatrowej, poprzez którą system podłączony jest światłowodem do Internetu. Port sieciowy udostępniony z turbiny skonfigurowany jest w taki sposób, aby poprzez VPN w sieci Bioseco możliwy był dostęp do danych z mikrofonu.
+Konfiguracja sieciowa systemu SMART została zrealizowana przez Bioseco S.A.. SMART został połączony poprzez Ethernet do skrzynki zasilająco-sieciowej Bioseco S.A. zainstalowanej w turbinie wiatrowej, poprzez którą system podłączony jest światłowodem do Internetu. Port sieciowy udostępniony z turbiny skonfigurowany jest w taki sposób, aby poprzez VPN w sieci Bioseco S.A. możliwy był dostęp do danych z mikrofonu.
 
 \section{Konsultacje z Wildlife Acoustics}
 Konsultacje z firmą Wildlife Acoustics obejmowały takie elementy jak:
@@ -961,7 +961,7 @@ Dokładność sieci neuronowej wyniosła poniżej 75\% w związku z czym, nie ud
 Struktura wytworzonego systemu została przedstawiona w podziale na poszczególne komponenty.
 
 \section{Schemat połączeń}
-System SMART na turbinie wiatrowej połączony jest do sieci internetowej, gdzie skonfigurowane jest połączenie do sieci Bioseco. Komputer firmowy, na którym skonfigurowane jest połączenie do sieci Bioseco przez VPN łączy się zdalnie z systemem SMART, dzięki czemu możliwy jest dostęp do danych z mikrofonu (\ref{img:system-connection}).
+System SMART na turbinie wiatrowej połączony jest do sieci internetowej, gdzie skonfigurowane jest połączenie do sieci Bioseco S.A.. Komputer firmowy, na którym skonfigurowane jest połączenie do sieci Bioseco S.A. przez VPN łączy się zdalnie z systemem SMART, dzięki czemu możliwy jest dostęp do danych z mikrofonu (\ref{img:system-connection}).
 
 \begin{figure}[h] 
   \centering
@@ -1500,7 +1500,7 @@ System SMART został zaprojektowany przez producenta z przeznaczeniem szczególn
 Funkcjonalność wodoodporności została więc zrealizowana poprzez dobór odpowiedniego sprzętu.
 
 \subsubsection{Pobranie dźwięku z mikrofonu do komputera}
-Funkcja ta została zrealizowana poprzez odpowiednią konfigurację sieciową systemu SMART przez pracowników firmy Bioseco i podłączenie go do lokalnej sieci Bioseco, do której podłączony jest również komputer firmowy, na którym zainstalowany jest system będący przedmiotem niniejszej pracy dyplomowej. Pobranie dźwięku realizowane jest za pośrednictwem narzędzia \verb|rsync| do folderu na lokalnej maszynie, co zostało przedstawione w punkcie "Pobieranie danych z mikrofonu". 
+Funkcja ta została zrealizowana poprzez odpowiednią konfigurację sieciową systemu SMART przez pracowników firmy Bioseco S.A. i podłączenie go do lokalnej sieci Bioseco S.A., do której podłączony jest również komputer firmowy, na którym zainstalowany jest system będący przedmiotem niniejszej pracy dyplomowej. Pobranie dźwięku realizowane jest za pośrednictwem narzędzia \verb|rsync| do folderu na lokalnej maszynie, co zostało przedstawione w punkcie "Pobieranie danych z mikrofonu". 
 
 Podczas prób pobierania danych z różnych zakresów czasowych, dane za każdym razem były pobierane poprawnie, w związku z czym funkcjonalność tą należy uznać za zrealizowaną.
 
@@ -1560,7 +1560,7 @@ Wszystkie wykonane próby zakończyły się poprawną realizacją wszystkich ele
   \item Implementacja testów oprogramowania
   \item Implementacja bazy danych
   \item Implementacja połączenia danych z systemu SMART przez rsync
-  \item Instalacja systemu Linux na komputerze Bioseco
+  \item Instalacja systemu Linux na komputerze Bioseco S.A.
   \item Wdrożenie przekazywania nagrań pomiędzy systemem SMART a Watchdogiem
   \item Wdrożenie przekazywania danych pomiędzy Watchdogiem i aplikacją
   \item Przepisanie książki inżynierskiej do projektu w LaTeX
@@ -1657,7 +1657,7 @@ System SMART składa się z mikrofonu ultradźwięków i kontrolera będącego p
 
 Dobrej jakości współpraca zapoczątkowana z firmą Wildlife Acoustics niesie możliwości kooperacji we wdrożeniu alternatywnych sposobów serwowania danych, w tym użycie własnego klasyfikatora. Sama firma umożliwia korzystanie z udostępnionych poleceń Linux w celu dostępu i autorskiej manipulacji danymi \cite{smart-linux-guide}.
 
-Aplikacja serwowana przez kontroler, mimo wielu ciekawych i potrzebnych w kontekście wykorzystania systemu SMART na farmach wiatrowych funkcjonalności nie posiada bazy danych. Brak bazy danych wpływa m.in. na brak możliwości precyzyjnego filtrowania danych, w tym danych pobieranych poprzez aplikację do plików CSV, nie ma też łatwej możliwości przygotowania raportów z aktywności nietoperzy na farmie wiatrowej. Wykorzystanie w tym celu aplikacji, jaka została przygotowania w niniejszej pracy dyplomowej takich możliwości dostarcza. Jednak uprzednio aplikacja musiałaby być prawdopodobnie zintegrowana z aktualnym ekosystemem programistycznym firmy Bioseco. W obecnej postaci nie jest więc produktem gotowym do wdrożenia. Jednak z uwagi na zaznajomienie się twórców pracy z wieloma zagadnieniami związanymi z tworzeniem tego typu oprogramowania oraz zagadnieniami dziedzinowymi szansa na komercjalizację interfejsu użytkownika z bazą danych wytworzonymi w oparciu o system przygotowany w niniejszej pracy, jest bardzo wysoka. 
+Aplikacja serwowana przez kontroler, mimo wielu ciekawych i potrzebnych w kontekście wykorzystania systemu SMART na farmach wiatrowych funkcjonalności nie posiada bazy danych. Brak bazy danych wpływa m.in. na brak możliwości precyzyjnego filtrowania danych, w tym danych pobieranych poprzez aplikację do plików CSV, nie ma też łatwej możliwości przygotowania raportów z aktywności nietoperzy na farmie wiatrowej. Wykorzystanie w tym celu aplikacji, jaka została przygotowania w niniejszej pracy dyplomowej takich możliwości dostarcza. Jednak uprzednio aplikacja musiałaby być prawdopodobnie zintegrowana z aktualnym ekosystemem programistycznym firmy Bioseco S.A.. W obecnej postaci nie jest więc produktem gotowym do wdrożenia. Jednak z uwagi na zaznajomienie się twórców pracy z wieloma zagadnieniami związanymi z tworzeniem tego typu oprogramowania oraz zagadnieniami dziedzinowymi szansa na komercjalizację interfejsu użytkownika z bazą danych wytworzonymi w oparciu o system przygotowany w niniejszej pracy, jest bardzo wysoka. 
 
 W niniejszej pracy dyplomowej udało się zrealizować wszystkie wymagania systemowe zdefiniowane w początkowej fazie przygotowania projektu poza oczekiwaną dokładnością sieci neuronowej. Jedno z wymagań zostało zaniechane w trakcie implementacji systemu i konsultacji z Bioseco S.A. i była nim implementacja zatrzymań turbiny wiatrowej, czego powody wyjaśniono w punkcie "Testy funkcjonalne" (System do zatrzymywania turbiny wiatrowej). 
 
