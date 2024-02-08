@@ -79,6 +79,19 @@ W ramach sformułowanego tematu wyszczególniono następujące cele badawcze i p
   \item [Linux] - popularny system operacyjny o otwartym kodzie źródłowym dostępny w szerokiej gamie dystrybucji, szczególnie przydatny do zastosowań technicznych wymagających okrojonej funkcjonalności.
   \item [WAV] - ang. \textit{Waveform Audio Format} - format służący do przechowywania danych dźwiękowych.
   \item [JSON] - ang. \textit{JavaScript Object Notation} - wieloplatformowy format do przechowywania i przesyłania danych obiektowych w formie tekstowej.
+  \item [NN] - ang. \textit{Neural Network} - .
+  \item [CNN]
+  \item [AI] - ang. 
+  \item [DL] - ang.
+  \item [ML] - ang.
+  \item [nagrania typu full-spectrum]
+  \item [nagrania typu zero-crossing]
+  \item [ultradźwięki]
+  \item [IoT]
+  \item [DŚ] - Decyzja Środowiskowa
+  \item [R\&D] - ang.
+  \item [chiropterologiczny] - związany z nietoperzami
+  \item [chiropterolog] - specjalista przyrodnik zajmujący się badaniem nietoperzy
 \end{description}
 
 \chapter{Podłoże projektu}
@@ -121,7 +134,7 @@ Struktura matematyczno-programistyczna, służąca do wytworzenia funkcji klasyf
 \end{figure} 
 
 \section{Kooperacja z Bioseco S.A.}
-Bioseco S.A. jest innowacyjną polską firmą technologiczną z siedzibą w Gdańsku, która opracowała systemy wizyjne wykorzystujące sztuczną inteligencję do ochrony zwierząt, głównie ptaków, na farmach wiatrowych i lotniskach. System opracowany i rozwijany jest w kierunku maksymalizacji ochrony zwierząt i minimalizacji strat produkcji. W związku z tym, że aktualnie większość klientów stanowią operatorzy farm wiatrowych, a obok problemu śmiertelności ptaków, drugim najważniejszym przyrodniczym problemem jest śmiertelność nietoperzy, w planach firmy znalazła się również eksploracja tego tematu i możliwość rozwoju technologii do ochrony nietoperzy. Jedna z osób z zespołu inżynierskiego posiada już wiedzę dziedzinową z zakresu zainteresowań Bioseco S.A. Po pomyślnych konsultacjach z firmą przygotowano temat i zakres współpracy spełniający wymogi pracy dyplomowej a jednocześnie zakres zainteresowań przedsiębiorcy.
+Bioseco S.A. jest innowacyjną polską firmą technologiczną z siedzibą w Gdańsku, która opracowała systemy wizyjne wykorzystujące sztuczną inteligencję do ochrony zwierząt, głównie ptaków, na farmach wiatrowych i lotniskach \cite{bioseco1} \cite{bioseco2}. System opracowany i rozwijany jest w kierunku maksymalizacji ochrony zwierząt i minimalizacji strat produkcji. W związku z tym, że aktualnie większość klientów stanowią operatorzy farm wiatrowych, a obok problemu śmiertelności ptaków, drugim najważniejszym przyrodniczym problemem jest śmiertelność nietoperzy \cite{birds-and-bats}, w planach firmy znalazła się również eksploracja tego tematu i możliwość rozwoju technologii do ochrony nietoperzy. Jedna z osób z zespołu inżynierskiego posiada już wiedzę dziedzinową z zakresu zainteresowań Bioseco S.A. Po pomyślnych konsultacjach z firmą przygotowano temat i zakres współpracy spełniający wymogi pracy dyplomowej a jednocześnie zakres zainteresowań przedsiębiorcy.
 
 \chapter{Metody pracy}
 
@@ -200,7 +213,7 @@ Baza danych została przygotowana w MySQL.
 
 Interfejs użytkownika został napisany w języku JavaScript z użyciem biblioteki ReactJS. Serwer aplikacji został napisany w technologii NodeJS. Użyto również szeregu bibliotek wspomagających tworzenie aplikacji, bazy danych i testów: Sequelize, Express, Jest, Supertest, Joi, Jsonwebtoken. 
 
-MySQL, NodeJS oraz React zostały wykorzystane w znacznej mierze dlatego, że są one używane przez firmę Bioseco S.A. Oznacza, to że poprawnie sprawdzają się w podobnych zastosowaniach oraz w przypadku komercjalizacji produktu, integracja z ekosystemem Bioseco S.A. będzie sprawniejsza niż w przypadku użycia innych technologii.
+MySQL, NodeJS oraz React zostały wykorzystane w znacznej mierze dlatego, że są one używane przez firmę Bioseco S.A. Oznacza to, że poprawnie sprawdzają się w podobnych zastosowaniach oraz w przypadku komercjalizacji produktu, integracja z ekosystemem Bioseco S.A. będzie sprawniejsza niż w przypadku użycia innych technologii.
 
 \subsection{Infrastruktura techniczna}
 Na infrastrukturę techniczną, która umożliwiła realizację kluczowych elementów projektu dyplomowego składały się:
@@ -424,7 +437,7 @@ W niniejszym podrozdziale wymienia i opisuje się wymagania narzucone przez klie
   \clearpage
 
 \section{Konsultacje chiropterologiczne i detektorowe}
-W początkowej fazie przygotowania projektu przeprowadzono konsultacje chiropterologiczne obejmujące: pozyskanie zidentyfikowanych nagrań nietoperzy, typu nagrań jakich należy użyć do uczenia głębokiego, rodzaju rejestratorów ultradźwięków jakie mogą być wykorzystane na turbinie wiatrowej w rozwiązaniu końcowym. Konsultacje te przeprowadzono z najlepszymi polskimi chiropterologami oraz polskim, niemieckim i amerykańskim wytwórcą detektorów. Chiropterolodzy, z którymi przeprowadzono konsultacje to: Aneta Zapart, Konrad Bidziński i Joanna Furmankiewicz. Firmy wytwarzające detektory, z którymi prowadzono konsultacje to: Animal Sound Labs, EcoObs, Wildlife Acoustics.
+W początkowej fazie przygotowania projektu przeprowadzono konsultacje chiropterologiczne obejmujące: pozyskanie zidentyfikowanych nagrań nietoperzy, typu nagrań jakich należy użyć do uczenia głębokiego, rodzaju rejestratorów ultradźwięków jakie mogą być wykorzystane na turbinie wiatrowej w rozwiązaniu końcowym. Konsultacje te przeprowadzono z najlepszymi polskimi chiropterologami oraz polskim, niemieckim i amerykańskim wytwórcą detektorów. Chiropterolodzy, z którymi przeprowadzono konsultacje to: Aneta Zapart, Konrad Bidziński (z Tribio Sp. z o.o.) i dr Joanna Furmankiewicz. Firmy wytwarzające detektory, z którymi prowadzono konsultacje to: Animal Sound Labs, EcoObs, Wildlife Acoustics.
 
 \section{Mikrofon ultradźwięków spełniający wymogi końcowego produktu}
 W procesie definiowania cech sprzętu jakie powinien posiadać mikrofon i rejestrator ultradźwięków wyszczególniono następujące cechy:
@@ -448,7 +461,7 @@ W tym czasie na rynku pojawiło się nowe urządzenie firmy Wildlife Acoustics -
   \label{img:smart}
 \end{figure} 
 
-Z korzyścią dla ochrony nietoperzy i deweloperów farm wiatrowych, a z pewnymi zagrożeniami dla twórców niniejszej pracy dyplomowej mikrofon został wyprodukowany wraz z tzw. kontrolerem (prostym przemysłowym komputerem), który wyposażony jest w oprogramowanie pobierające dane z mikrofonu i po odpowiedniej konfiguracji sieciowej serwujący dane i prezentujący je w interfejsie użytkownika. Mimo tego, że całe rozwiązanie częściowo odpowiada zakresowi niniejszej pracy dyplomowej, nie jest ono idealne, np. nie posiada bazy danych czy też w dość znacznym stopniu niepoprawnie identyfikuje gatunki nietoperzy \cite{kaleidoscope-bias}. Mimo to, fakt pracy członków zespołu nad podobnym rozwiązaniem, z uwagi na obszerne zajęcie się takim tematem i wdrożenie się w wiele jego aspektów, niesie raczej możliwości i szanse rozwoju tego rozwiązania, niż zagrożenie ze strony konkurencji.
+Z korzyścią dla ochrony nietoperzy i deweloperów farm wiatrowych, a z pewnymi zagrożeniami dla twórców niniejszej pracy dyplomowej mikrofon został wyprodukowany wraz z tzw. kontrolerem (prostym przemysłowym komputerem), który wyposażony jest w oprogramowanie pobierające dane z mikrofonu i po odpowiedniej konfiguracji sieciowej serwujący dane i prezentujący je w interfejsie użytkownika \cite{smart-user-guide}. Mimo tego, że całe rozwiązanie częściowo odpowiada zakresowi niniejszej pracy dyplomowej, nie jest ono idealne, np. nie posiada bazy danych czy też w dość znacznym stopniu niepoprawnie identyfikuje gatunki nietoperzy \cite{kaleidoscope-bias}. Mimo to, fakt pracy członków zespołu nad podobnym rozwiązaniem, z uwagi na obszerne zajęcie się takim tematem i wdrożenie się w wiele jego aspektów, niesie raczej możliwości i szanse rozwoju tego rozwiązania, niż zagrożenie ze strony konkurencji.
 
 \section{Odtwarzanie ultradźwięków}
 Do wyemitowania ultradźwięków niezbędne są urządzenia obsługujące co najmniej dwukrotnie wyższą częstotliwość niż emitowane dźwięki. Wynika to z twierdzenia Nyquista-Shannona, zgodnie z którym częstotliwość próbkowania z sygnału ciągłego ("analogowego") na dyskretny ("cyfrowy") musi być co najmniej dwukrotnie wyższa od najwyższej składowej widma sygnału aby sygnał został odtworzony poprawnie i nie dochodziło do zjawiska aliasingu \cite{probkowanie}. W zależności od możliwości karty dźwiękowej w komputerze użytym jako generator ultradźwięków, należy bądź ustawić maksymalną wartość próbkowania karty, bądź podłączyć wzmacniacz zwiększający maksymalną częstotliwość odtwarzania.
@@ -488,7 +501,7 @@ Uzyskany w ten sposób wykres fali dźwiękowej skopiowano dziesięciokrotnie i 
     \label{img:wykres_fali_wielokrotnej}
 \end{figure}
 
-Następnie, do wyemitowania dźwięku doświadczenia niezbędne były urządzenia obsługujące co najmniej dwukrotnie wyższą częstotliwość niż emitowane dźwięki. W tym celu do komputera służącego jako generator dźwięku podłączono wzmacniacz iFi Zen Dac o maksymalnej częstotliwości odtwarzania 384 kHz oraz głośnik ultradźwiękowy Pettersson L400 (10-110 kHz). Do zarejestrowania wyemitowanego dźwięku posłużył mikrofon Pettersson M500-384 o częstotliwości próbkowania 384 kHz.
+Następnie, do wyemitowania dźwięku niezbędne były urządzenia obsługujące co najmniej dwukrotnie wyższą częstotliwość niż emitowane dźwięki. W tym celu do komputera służącego jako generator dźwięku podłączono wzmacniacz iFi Zen Dac o maksymalnej częstotliwości odtwarzania 384 kHz oraz głośnik ultradźwiękowy Pettersson L400 (10-110 kHz). Do zarejestrowania wyemitowanego dźwięku posłużył mikrofon Pettersson M500-384 o częstotliwości próbkowania 384 kHz.
 
 Program BatSound dołączony do mikrofonu posłużył do wizualizacji zarejestrowanego dźwięku (\ref{img:batsound}). W górnej części nagrania dźwięk zobrazowany jest w postaci czasowej, a w dolnej w postaci spektrogramu.
 
@@ -511,7 +524,22 @@ W identyczny sposób jak głosy nietoperzy do wstępnych testów sprzętu przygo
   \item{40-48 kHz – karlik większy i karlik malutki.}
 \end{itemize}
 
-Większość z tych nietoperzy to gatunki szczególnie narażone na kolizje z turbinami wiatrowymi, to jest: borowiec, borowiaczek, karliki czy mroczek posrebrzany.
+Większość z tych nietoperzy to gatunki szczególnie narażone na kolizje z turbinami wiatrowymi, to jest: borowiec, borowiaczek, karliki czy mroczek posrebrzany \cite{Wytyczne}, \cite{rodrigues}.
+
+Poniżej przedstawiono zdjęcia borowca (\ref{img:Nyctalus_noctula}) i karlika większego (\ref{img:Pipistrellus_nathusii}) - jednych z dwóch najczęstszych ofiar kolizji z turbinami wiatrowymi.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{sprz/Nyctalus_noctula.jpg}
+  \caption{Borowiec wielki. Źródło: Wikipedia \cite{wiki-borowiec}}. 
+  \label{img:Nyctalus_noctula}
+\end{figure} 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{sprz/Pipistrellus_nathusii.jpg}
+  \caption{Karlik większy. Źródło: Wikipedia \cite{wiki-borowiec}}. 
+  \label{img:Pipistrellus_nathusii}
+\end{figure}
 
 \subsection{Zebranie nagrań nietoperzy}
 Zebranie nagrań nietoperzy odpowiedniego typu i odpowiedniej ich liczby rodziło kilka problemów:
@@ -527,14 +555,8 @@ Po trwających kilka miesięcy poszukiwaniach osób mogących udostępnić takie
 \chapter{Prace badawcze - testy terenowe}
 
 \section{Montaż systemu SMART na turbinie wiatrowej}
-System SMART firmy Wildlife Acoustics został zainstalowany na jednej z farm wiatrowych, na których operuje firma Bioseco S.A. przez pracowników firmy. Instalacja miała miejsce 14 lipca 2023 (\ref{img:smart-installed}). 
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.8\textwidth]{sprz/smart-installed.png}
-  \caption{System SMART firmy Wildlife Acoustics zainstalowany na turbinie wiatrowej. Źródło: Bioseco}
-  \label{img:smart-installed}
-\end{figure} 
+System SMART firmy Wildlife Acoustics został zainstalowany na jednej z farm wiatrowych, na których operuje firma Bioseco S.A. przez pracowników firmy. Instalacja miała miejsce 14 lipca 2023. 
+ 
 
 \section{Konfiguracja sieciowa}
 Konfiguracja sieciowa systemu SMART została zrealizowana przez Bioseco S.A.. SMART został połączony poprzez Ethernet do skrzynki zasilająco-sieciowej Bioseco S.A. zainstalowanej w turbinie wiatrowej, poprzez którą system podłączony jest światłowodem do Internetu. Port sieciowy udostępniony z turbiny skonfigurowany jest w taki sposób, aby poprzez VPN w sieci Bioseco S.A. możliwy był dostęp do danych z mikrofonu.
@@ -1610,7 +1632,7 @@ Wszystkie wykonane próby zakończyły się poprawną realizacją wszystkich ele
 \chapter{System w działaniu}
 
 \section{Rejestracja dźwięków za pomocą mikrofonu ultradźwięków}
-Rejestracja dźwięków odbywa się od zachodu do wschodu słońca, nieprzerwanie od zamontowania mikrofonu na turbinie 14 lipca 2023 r. Funkcję nagrywania dźwięku od zachodu do wschodu słońca można ustawić w aplikacji dostarczonej łącznie z mikrofonem i zainstalowanej na kontrolerze (Rys. \ref{img:smart-installed}).
+Rejestracja dźwięków odbywa się od zachodu do wschodu słońca, nieprzerwanie od zamontowania mikrofonu na turbinie 14 lipca 2023 r. Funkcję nagrywania dźwięku od zachodu do wschodu słońca można ustawić w aplikacji dostarczonej łącznie z mikrofonem i zainstalowanej na kontrolerze (Rys. \ref{img:smart}).
 
 \section{Pobieranie danych z mikrofonu}
 Do pobierania danych z mikrofonu użyto polecenia \verb|rsync| służącego do synchronizacji danych pomiędzy dwoma urządzeniami z systemem Linux. Polecenie to wpisywane jest w terminalu urządzenia, do którego pobierane są nagrania (Listing \ref{lst:rsync_command}).
