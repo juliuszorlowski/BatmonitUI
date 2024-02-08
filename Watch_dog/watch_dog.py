@@ -5,35 +5,17 @@ import torchaudio
 import requests
 from cnn import CNNNetwork
 from batsdataset import BatsDataset
-from train import NUM_SAMPLES, SAMPLE_RATE
 
-# import  as inference
 
 PATH = r"../recordings/"
-
-class_mapping = [
-                "BARBAR",
-                "EPTNIL",
-                "EPTSER",
-                "MYOBRA",
-                "MYODAS",
-                "MYODAU",
-                "MYONAT",
-                "MYCLEI",
-                "NYCNOC",
-                "PIPNAT",
-                "PIPPIP",
-                "PIPPYG",
-                "PLEAUR",
-                "VESMUR",
-]
+SAMPLE_RATE = 192000
+NUM_SAMPLES = 192000
 
 def pre_prediction(path_sound):
     cnn = CNNNetwork()
     state_dict = torch.load(r"C:\Users\Jakub\Documents\PJATK\INZ\Batmonit_model\feedforwardnet.pth", map_location=torch.device('cpu'))
     cnn.load_state_dict(state_dict)
 
-    # load urban sound dataset
     #instantiating our dataset object and create data loader
     spectrogram = torchaudio.transforms.Spectrogram(
         n_fft=1024,
@@ -56,8 +38,7 @@ def predict(model, input):
     with torch.no_grad():
         preditions = model(input)
         # Tensor (1, 10) -> [[0.1, 0.01, ..., 0.6]]
-        predicted_index = preditions[0].argmax(0)
-        predicted = class_mapping[predicted_index]
+        predicted = preditions[0].argmax(0)
     return predicted
 
 def watch_directory():
