@@ -3,8 +3,6 @@ from torch.utils.data import Dataset
 import pandas as pd
 import torch
 import torchaudio
-import matplotlib.pyplot as plt
-
 
 class BatsDataset(Dataset):
     
