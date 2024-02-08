@@ -1000,7 +1000,9 @@ Kod głównej funkcji przedstawiono w Listingu \ref{lst:predict} poniżej.
 \end{lstlisting}
 
 \section{Skuteczność sieci neuronowej}
-Dokładność sieci neuronowej wyniosła poniżej 75\% w związku z czym, nie udało się zrealizować założonego poziomu dokładności.
+Dokładność sieci neuronowej wyniosła poniżej 75\% w związku z czym, nie udało się zrealizować założonego poziomu dokładności. 
+
+Na brak odpowiednio dobrego wyniku mogły złożyć się przede wszystkim elementy związane z danymi, ich liczbą oraz przygotowaniem. Danych zawieracjących głosy nietoperzy była zdecydowana mniejszość spośród całego zbioru danych. Większość stanowiły szumy oraz dźwięki niezidentyfikowane, które mogły zawierać głosy nietoperzy bądź nie. Liczba nagrań samych nietoperzy wyniosła jedynie 2 347. Większość gatunków była też bardzo nielicznie reprezentowana. Dodatkowo w ręcznej analzie wykrywano nagrania, w których znajdował się więcej niż jeden gatunek. Inne czynniki związane z danymi, które mogły wpłynąć na zły wynik były np. brak usunięcia ciszy z nagrań przed przycięciem, co mogło skutkować występowaniem ciszy w pozostałych przyciętych 2-sekundowych odcinkach nagrania, a co za tym idzie zidentyfikowaniem ciszy i szumów jako konkretnego gatunku.
 
 \chapter{Struktura systemu}
 
