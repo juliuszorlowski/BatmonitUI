@@ -32,7 +32,7 @@ export default function RecordsTable({ records, sortColumn, onSort }) {
             <td>{record.turbineStopSignal === true ? "YES" : "NO"}</td>
             <td>{record.verification === true ? "YES" : "NO"}</td>
             <td>
-              <Link to={`/records/${record.id}`}>{record.audio}</Link>
+              <Link to={`/records/${record.id}`}>[WAV]</Link>
             </td>
             <td>
               <Link to={`/records/${record.id}`}>{record.spectrogram}</Link>
