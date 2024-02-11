@@ -13,7 +13,7 @@ NUM_SAMPLES = 192000
 
 def pre_prediction(path_sound):
     cnn = CNNNetwork()
-    state_dict = torch.load(r"C:\Users\Jakub\Documents\PJATK\INZ\Batmonit_model\feedforwardnet.pth", map_location=torch.device('cpu'))
+    state_dict = torch.load("Watch_dog/feedforwardnet.pth", map_location=torch.device('cpu'))
     cnn.load_state_dict(state_dict)
 
     #instantiating our dataset object and create data loader
@@ -29,11 +29,12 @@ def pre_prediction(path_sound):
                         "cpu")
 
     input = bd
-    input.unsqueeze_(0)
+    print(input)
+    # input.unsqueeze_(0)
     return cnn, input
 
-def predict(model, input):
-    model, input = pre_prediction()
+def predict(path):
+    model, input = pre_prediction(path)
     model.eval()
     with torch.no_grad():
         preditions = model(input)
@@ -70,11 +71,12 @@ class NewRecord():
     def __init__(self, file_name) -> None:
         self.audio = f"../recordings/{file_name}"
         _, self.date, self.name = self._process_new_file(file_name)
-        self.speciesId = predict(self.audio)
+        self.speciesId = 1 #predict(self.audio)
         self.verification = 1
         self.turbineStopSignal = 1
         self.bat = 1
         self.turbineId = 1
+        self.spectrogram = "[PNG]"
         
 
     def _process_new_file(self, file_name):
