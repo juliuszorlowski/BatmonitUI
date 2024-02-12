@@ -18,12 +18,13 @@ class BatsDataset(Dataset):
         self.target_sample_rate = target_sample_rate
         self.num_samples = num_samples   
     
-    def __getitem__(self):
+    def __getitem__(self, index):
         signal, sr = torchaudio.load(self.audio_path)
         signal = signal.to(self.device)
         signal = self._resample_if_necessery(signal, sr)
         signal = self._cut_if_necessary(signal) 
         signal = self._mix_down_if_necessary(signal)
+        signal = self._right_pad_if_necessary(signal)
         signal = self.transformation(signal)
         return signal
 

@@ -28,9 +28,8 @@ def pre_prediction(path_sound):
                         NUM_SAMPLES,
                         "cpu")
 
-    input = bd
-    print(input)
-    # input.unsqueeze_(0)
+    input = bd[1]
+    input.unsqueeze_(0)
     return cnn, input
 
 def predict(path):
@@ -39,7 +38,7 @@ def predict(path):
     with torch.no_grad():
         preditions = model(input)
         # Tensor (1, 10) -> [[0.1, 0.01, ..., 0.6]]
-        predicted = preditions[0].argmax(0)
+        predicted = preditions[0].argmax(0).item()
     return predicted
 
 def watch_directory():
@@ -71,7 +70,7 @@ class NewRecord():
     def __init__(self, file_name) -> None:
         self.audio = f"../recordings/{file_name}"
         _, self.date, self.name = self._process_new_file(file_name)
-        self.speciesId = 1 #predict(self.audio)
+        self.speciesId = predict(self.audio)
         self.verification = 1
         self.turbineStopSignal = 1
         self.bat = 1
