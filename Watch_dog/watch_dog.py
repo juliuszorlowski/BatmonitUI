@@ -51,6 +51,8 @@ def watch_directory():
                 return
             file_name = os.path.basename(event.src_path)
             file_name = '.'.join(file_name.split('.wav')[:-1]) + '.wav'
+            if text.startswith('.'):
+                text = text.lstrip('.')
             print(f'Utworzono plik: {file_name}')
             record = NewRecord(file_name)
             create_record(vars(record))
