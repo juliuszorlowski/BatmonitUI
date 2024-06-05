@@ -12,7 +12,7 @@ logger.info("Application Name: " + config.get("name"));
 
 const port = process.env.PORT || config.get("port");
 const server = app.listen(port, () => {
-  logger.info(`Server up on http://localhost:${port}`);
+  logger.info(`Server up on http://127.0.0.1:${port}`);
 });
 
 module.exports = server;

@@ -1,0 +1,50 @@
+name: batmonit
+
+services:
+  db:
+    container_name: db
+    image: mysql:latest
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=batmonit
+      - MYSQL_DATABASE=batmonitdb
+    volumes:
+      - ./server/db-data:/var/lib/mysql
+    healthcheck:
+      test: "mysql -uroot -p$$MYSQL_ROOT_PASSWORD  -e 'SHOW databases'"
+      interval: 10s
+      retries: 3
+    networks:
+      - backend
+  server:
+    container_name: server
+    build:
+      context: ./server
+    ports:
+      - 3900:3900
+    environment:
+      NODE_ENV: development
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - backend
+      - frontend
+  client:
+    container_name: client
+    build:
+      context: ./client
+    ports:
+      - 3000:3000
+    stdin_open: true
+    tty: true
+    depends_on:
+      - server
+    networks:
+      - frontend
+
+networks:
+  backend:
+  frontend:

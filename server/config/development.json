@@ -3,6 +3,6 @@
   "username": "root",
   "password": "batmonit",
   "database": "batmonitdb",
-  "host": "localhost",
+  "host": "host.docker.internal",
   "dialect": "mysql"
 }

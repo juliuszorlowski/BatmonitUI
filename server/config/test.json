@@ -4,6 +4,6 @@
   "username": "root",
   "password": "batmonit",
   "database": "batmonitdb_test",
-  "host": "localhost",
+  "host": "127.0.0.1",
   "dialect": "mysql"
 }
