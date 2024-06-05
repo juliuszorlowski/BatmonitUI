@@ -1,4 +1,4 @@
-name: batmonit
+name: batmonit-ui
 
 services:
   db:
